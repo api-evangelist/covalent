@@ -1,0 +1,108 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Covalent
+providerId: covalent
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: true
+tags:
+  - FinOps
+  - Cost Management
+  - FOCUS
+  - Blockchain
+  - Credits
+description: FOCUS-aligned FinOps definition for the GoldRush platform. Credit-based metering with a subscription floor and per-call credit-cost variance across endpoint families and chain families.
+sources:
+  - https://goldrush.dev/pricing/
+  - https://goldrush.dev/docs/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Covalent
+serviceCategory: Blockchain Data
+billingModel:
+  pricingCategory: Hybrid (Subscription + Usage)
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+    - Usage
+    - Purchase
+    - Tax
+    - Credit
+    - Adjustment
+  primaryUnit: credit
+  secondaryUnits:
+    - request
+    - subscription_month
+focusColumns:
+  ServiceName: GoldRush API
+  ServiceCategory: Blockchain Data
+  ProviderName: Covalent
+  PublisherName: Covalent
+  InvoiceIssuerName: Covalent
+  PricingCategory: Hybrid
+  PricingUnit: credit
+  BillingCurrency: USD
+meters:
+  - name: api_requests
+    unit: request
+    aggregation: sum
+    dimensions:
+      - api_key
+      - endpoint_family
+      - chain
+  - name: credits_consumed
+    unit: credit
+    aggregation: sum
+    dimensions:
+      - api_key
+      - endpoint_family
+      - chain
+  - name: flex_credits_consumed
+    unit: credit
+    aggregation: sum
+    dimensions:
+      - api_key
+  - name: pipeline_events_delivered
+    unit: event
+    aggregation: sum
+    dimensions:
+      - pipeline_id
+      - destination_type
+      - chain
+  - name: streaming_messages
+    unit: message
+    aggregation: sum
+    dimensions:
+      - api_key
+      - subscription_type
+discountModels:
+  - name: Included credits
+    discount: Subscription credits are pre-paid and consumed first before Flex credits.
+  - name: Volume / Enterprise
+    discount: Custom; contact sales (Inner Circle).
+  - name: Caching
+    discount: Hyperliquid Info responses can be cached against shorter TTLs to reduce per-call credit burn.
+unitEconomics:
+  - name: Cost per 1k API requests
+    metric: billed_cost / (api_requests / 1000)
+    target: <$0.50
+  - name: Credit efficiency
+    metric: credits_consumed / api_requests
+    target: '~0.5'
+  - name: Flex-credit overage ratio
+    metric: flex_credits_consumed / (flex_credits_consumed + credits_consumed)
+    target: '<25%'
+principles:
+  - name: Visibility
+    description: Use the GoldRush Platform dashboard to monitor credit burn per key and endpoint family in near real-time.
+  - name: Allocation
+    description: Issue dedicated keys per application or workload so usage and cost reports map cleanly to teams.
+  - name: Optimization
+    description: Cache foundational reads, prefer cross-chain endpoints over per-chain loops, and use the Streaming API for high-frequency updates instead of polling.
+  - name: Accountability
+    description: Cap Flex credits at the plan dashboard to bound team budgets; review monthly Inner Circle commitments against actual consumption.

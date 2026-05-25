@@ -1,0 +1,106 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: GoldRush Foundational API — Balances
+  description: Token, NFT-aware, native, historical, and portfolio balance lookups across 100+ chains. Self-contained Naftiko capability covering the GoldRush Foundational API Balances surface.
+  tags:
+  - Covalent
+  - GoldRush
+  - Balances
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    GOLDRUSH_API_KEY: GOLDRUSH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: foundational-balances
+    baseUri: https://api.covalenthq.com
+    description: GoldRush Foundational API — Balances. Self-contained, no shared references.
+    resources:
+    - name: token-balances
+      path: /v1/{chainName}/address/{walletAddress}/balances_v2/
+      operations:
+      - name: getTokenBalances
+        method: GET
+        description: Get Token Balances For Address.
+        outputRawFormat: json
+        inputParameters:
+        - { name: chainName, in: path, type: string, required: true }
+        - { name: walletAddress, in: path, type: string, required: true }
+        - { name: quote-currency, in: query, type: string, required: false }
+    - name: native-balance
+      path: /v1/{chainName}/address/{walletAddress}/balances_native/
+      operations:
+      - name: getNativeBalance
+        method: GET
+        description: Get Native Token Balance For Address.
+        outputRawFormat: json
+        inputParameters:
+        - { name: chainName, in: path, type: string, required: true }
+        - { name: walletAddress, in: path, type: string, required: true }
+    - name: historical-balances
+      path: /v1/{chainName}/address/{walletAddress}/historical_balances/
+      operations:
+      - name: getHistoricalBalances
+        method: GET
+        description: Get Historical Token Balances For Address.
+        outputRawFormat: json
+        inputParameters:
+        - { name: chainName, in: path, type: string, required: true }
+        - { name: walletAddress, in: path, type: string, required: true }
+        - { name: block-height, in: query, type: integer, required: false }
+    - name: portfolio
+      path: /v1/{chainName}/address/{walletAddress}/portfolio_v2/
+      operations:
+      - name: getPortfolio
+        method: GET
+        description: Get Historical Portfolio Value Over Time.
+        outputRawFormat: json
+        inputParameters:
+        - { name: chainName, in: path, type: string, required: true }
+        - { name: walletAddress, in: path, type: string, required: true }
+    - name: token-holders
+      path: /v1/{chainName}/tokens/{tokenAddress}/token_holders_v2/
+      operations:
+      - name: getTokenHolders
+        method: GET
+        description: Get Token Holders As Of Any Block Height (v2).
+        outputRawFormat: json
+        inputParameters:
+        - { name: chainName, in: path, type: string, required: true }
+        - { name: tokenAddress, in: path, type: string, required: true }
+        - { name: block-height, in: query, type: integer, required: false }
+    authentication:
+      type: apikey
+      key: Authorization
+      value: 'Bearer {{env.GOLDRUSH_API_KEY}}'
+      placement: header
+  exposes:
+  - type: mcp
+    namespace: foundational-balances-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter exposing one tool per Balances operation.
+    tools:
+    - name: goldrush-get-token-balances
+      description: Get token balances for an address on any chain.
+      hints: { readOnly: true, destructive: false, idempotent: true }
+      call: foundational-balances.getTokenBalances
+    - name: goldrush-get-native-balance
+      description: Get native token balance for an address.
+      hints: { readOnly: true, destructive: false, idempotent: true }
+      call: foundational-balances.getNativeBalance
+    - name: goldrush-get-historical-balances
+      description: Get historical token balances at a block height.
+      hints: { readOnly: true, destructive: false, idempotent: true }
+      call: foundational-balances.getHistoricalBalances
+    - name: goldrush-get-portfolio
+      description: Get historical portfolio value over time.
+      hints: { readOnly: true, destructive: false, idempotent: true }
+      call: foundational-balances.getPortfolio
+    - name: goldrush-get-token-holders
+      description: Get token holders at a block height.
+      hints: { readOnly: true, destructive: false, idempotent: true }
+      call: foundational-balances.getTokenHolders

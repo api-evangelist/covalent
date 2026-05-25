@@ -1,0 +1,39 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: GoldRush Foundational API — Security
+  description: Token approvals across ERC20 and NFT contracts for security and revocation workflows. Self-contained Naftiko capability.
+  tags:
+  - Covalent
+  - GoldRush
+  - Security
+  - Approvals
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    GOLDRUSH_API_KEY: GOLDRUSH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: foundational-security
+    baseUri: https://api.covalenthq.com
+    description: GoldRush Foundational API — Security.
+    resources:
+    - name: approvals
+      path: /v1/{chainName}/approvals/{walletAddress}/
+      operations:
+      - { name: getTokenApprovals, method: GET, description: 'Get Token Approvals For Address.', outputRawFormat: json }
+    authentication:
+      type: apikey
+      key: Authorization
+      value: 'Bearer {{env.GOLDRUSH_API_KEY}}'
+      placement: header
+  exposes:
+  - type: mcp
+    namespace: foundational-security-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter exposing the token-approvals tool.
+    tools:
+    - { name: goldrush-get-token-approvals, description: 'List token approvals (ERC20 + NFT) for an address.', hints: { readOnly: true, idempotent: true }, call: foundational-security.getTokenApprovals }

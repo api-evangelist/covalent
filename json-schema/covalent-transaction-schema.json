@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.com/schemas/covalent/covalent-transaction-schema.json",
+  "title": "GoldRush Transaction",
+  "description": "Schema for the GoldRush Foundational API transaction response. Covers items returned by the v3 transactions endpoints — by-address, by-block, by-time-bucket, and by-hash.",
+  "type": "object",
+  "definitions": {
+    "TransactionResponse": {
+      "type": "object",
+      "required": ["data", "error"],
+      "properties": {
+        "data": { "$ref": "#/definitions/TransactionData" },
+        "error": { "type": "boolean" },
+        "error_message": { "type": ["string", "null"] },
+        "error_code": { "type": ["integer", "null"] }
+      }
+    },
+    "TransactionData": {
+      "type": "object",
+      "required": ["chain_id", "chain_name", "items"],
+      "properties": {
+        "address": { "type": ["string", "null"] },
+        "updated_at": { "type": "string", "format": "date-time" },
+        "next_update_at": { "type": "string", "format": "date-time" },
+        "quote_currency": { "type": "string" },
+        "chain_id": { "type": "integer" },
+        "chain_name": { "type": "string" },
+        "current_page": { "type": ["integer", "null"] },
+        "links": {
+          "type": "object",
+          "properties": {
+            "prev": { "type": ["string", "null"] },
+            "next": { "type": ["string", "null"] }
+          }
+        },
+        "items": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/TransactionItem" }
+        }
+      }
+    },
+    "TransactionItem": {
+      "type": "object",
+      "required": ["tx_hash", "block_height"],
+      "properties": {
+        "block_signed_at": { "type": "string", "format": "date-time" },
+        "block_height": { "type": "integer" },
+        "block_hash": { "type": "string" },
+        "tx_hash": { "type": "string" },
+        "tx_offset": { "type": "integer" },
+        "successful": { "type": "boolean" },
+        "miner_address": { "type": ["string", "null"] },
+        "from_address": { "type": "string" },
+        "from_address_label": { "type": ["string", "null"] },
+        "to_address": { "type": ["string", "null"] },
+        "to_address_label": { "type": ["string", "null"] },
+        "value": { "type": "string" },
+        "value_quote": { "type": ["number", "null"] },
+        "pretty_value_quote": { "type": ["string", "null"] },
+        "gas_metadata": {
+          "type": ["object", "null"],
+          "properties": {
+            "contract_decimals": { "type": "integer" },
+            "contract_name": { "type": "string" },
+            "contract_ticker_symbol": { "type": "string" },
+            "contract_address": { "type": "string" }
+          }
+        },
+        "gas_offered": { "type": "integer" },
+        "gas_spent": { "type": "integer" },
+        "gas_price": { "type": "integer" },
+        "fees_paid": { "type": ["string", "null"] },
+        "gas_quote": { "type": ["number", "null"] },
+        "pretty_gas_quote": { "type": ["string", "null"] },
+        "gas_quote_rate": { "type": ["number", "null"] },
+        "log_events": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/LogEvent" }
+        }
+      }
+    },
+    "LogEvent": {
+      "type": "object",
+      "properties": {
+        "block_signed_at": { "type": "string", "format": "date-time" },
+        "block_height": { "type": "integer" },
+        "tx_offset": { "type": "integer" },
+        "log_offset": { "type": "integer" },
+        "tx_hash": { "type": "string" },
+        "raw_log_topics": { "type": "array", "items": { "type": "string" } },
+        "sender_contract_decimals": { "type": ["integer", "null"] },
+        "sender_name": { "type": ["string", "null"] },
+        "sender_contract_ticker_symbol": { "type": ["string", "null"] },
+        "sender_address": { "type": "string" },
+        "sender_address_label": { "type": ["string", "null"] },
+        "sender_logo_url": { "type": ["string", "null"] },
+        "raw_log_data": { "type": ["string", "null"] },
+        "decoded": {
+          "type": ["object", "null"],
+          "properties": {
+            "name": { "type": "string" },
+            "signature": { "type": "string" },
+            "params": {
+              "type": ["array", "null"],
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "type": { "type": "string" },
+                  "indexed": { "type": "boolean" },
+                  "decoded": { "type": "boolean" },
+                  "value": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "oneOf": [
+    { "$ref": "#/definitions/TransactionResponse" }
+  ]
+}

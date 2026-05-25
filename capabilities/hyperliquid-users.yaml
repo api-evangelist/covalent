@@ -1,0 +1,58 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: GoldRush Hyperliquid Info API — Users
+  description: User-scoped Hyperliquid info types (clearinghouseState, userFills, userFunding, userTwapSliceFills, userNonFundingLedgerUpdates, userVaultEquities, subAccounts, delegator history/rewards/summary). Self-contained Naftiko capability.
+  tags:
+  - Covalent
+  - GoldRush
+  - Hyperliquid
+  - Users
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    GOLDRUSH_API_KEY: GOLDRUSH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: hyperliquid-users
+    baseUri: https://hypercore.goldrushdata.com
+    description: GoldRush-hosted Hyperliquid Info endpoint for user-scoped info types.
+    resources:
+    - name: info
+      path: /info
+      operations:
+      - { name: queryClearinghouseState, method: POST, description: 'Query Hyperliquid clearinghouseState.', outputRawFormat: json }
+      - { name: queryBatchClearinghouseState, method: POST, description: 'Query Hyperliquid batchClearinghouseState.', outputRawFormat: json }
+      - { name: querySpotClearinghouseState, method: POST, description: 'Query Hyperliquid spotClearinghouseState.', outputRawFormat: json }
+      - { name: queryBatchSpotClearinghouseState, method: POST, description: 'Query Hyperliquid batchSpotClearinghouseState.', outputRawFormat: json }
+      - { name: queryFrontendOpenOrders, method: POST, description: 'Query Hyperliquid frontendOpenOrders.', outputRawFormat: json }
+      - { name: queryUserFills, method: POST, description: 'Query Hyperliquid userFills.', outputRawFormat: json }
+      - { name: queryUserFillsByTime, method: POST, description: 'Query Hyperliquid userFillsByTime.', outputRawFormat: json }
+      - { name: queryUserFunding, method: POST, description: 'Query Hyperliquid userFunding.', outputRawFormat: json }
+      - { name: queryUserTwapSliceFills, method: POST, description: 'Query Hyperliquid userTwapSliceFills.', outputRawFormat: json }
+      - { name: queryUserNonFundingLedgerUpdates, method: POST, description: 'Query Hyperliquid userNonFundingLedgerUpdates.', outputRawFormat: json }
+      - { name: queryUserVaultEquities, method: POST, description: 'Query Hyperliquid userVaultEquities.', outputRawFormat: json }
+      - { name: querySubAccounts, method: POST, description: 'Query Hyperliquid subAccounts.', outputRawFormat: json }
+      - { name: queryDelegatorHistory, method: POST, description: 'Query Hyperliquid delegatorHistory.', outputRawFormat: json }
+      - { name: queryDelegatorRewards, method: POST, description: 'Query Hyperliquid delegatorRewards.', outputRawFormat: json }
+      - { name: queryDelegatorSummary, method: POST, description: 'Query Hyperliquid delegatorSummary.', outputRawFormat: json }
+    authentication:
+      type: apikey
+      key: Authorization
+      value: 'Bearer {{env.GOLDRUSH_API_KEY}}'
+      placement: header
+  exposes:
+  - type: mcp
+    namespace: hyperliquid-users-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter exposing user-scoped Hyperliquid info tools.
+    tools:
+    - { name: goldrush-hl-clearinghouse-state, description: 'Clearinghouse state for a user.', hints: { readOnly: true, idempotent: true }, call: hyperliquid-users.queryClearinghouseState }
+    - { name: goldrush-hl-user-fills, description: 'Fills for a user.', hints: { readOnly: true, idempotent: true }, call: hyperliquid-users.queryUserFills }
+    - { name: goldrush-hl-user-fills-by-time, description: 'Fills for a user filtered by time.', hints: { readOnly: true, idempotent: true }, call: hyperliquid-users.queryUserFillsByTime }
+    - { name: goldrush-hl-user-funding, description: 'Funding payments for a user.', hints: { readOnly: true, idempotent: true }, call: hyperliquid-users.queryUserFunding }
+    - { name: goldrush-hl-frontend-open-orders, description: 'Open orders for a user.', hints: { readOnly: true, idempotent: true }, call: hyperliquid-users.queryFrontendOpenOrders }
+    - { name: goldrush-hl-sub-accounts, description: 'Sub-accounts for a user.', hints: { readOnly: true, idempotent: true }, call: hyperliquid-users.querySubAccounts }

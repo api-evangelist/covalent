@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.com/schemas/covalent/covalent-balance-schema.json",
+  "title": "GoldRush Balance",
+  "description": "Schema for the GoldRush Foundational API token-balance response. Covers the envelope returned by GET /v1/{chainName}/address/{walletAddress}/balances_v2/ and related balance endpoints.",
+  "type": "object",
+  "definitions": {
+    "BalanceResponse": {
+      "type": "object",
+      "description": "Top-level envelope returned by the GoldRush Foundational API.",
+      "required": ["data", "error"],
+      "properties": {
+        "data": { "$ref": "#/definitions/BalanceData" },
+        "error": { "type": "boolean" },
+        "error_message": { "type": ["string", "null"] },
+        "error_code": { "type": ["integer", "null"] }
+      }
+    },
+    "BalanceData": {
+      "type": "object",
+      "description": "Address-scoped balance data.",
+      "required": ["address", "chain_id", "chain_name", "items"],
+      "properties": {
+        "address": { "type": "string", "description": "Wallet address (lower-cased)." },
+        "updated_at": { "type": "string", "format": "date-time" },
+        "next_update_at": { "type": "string", "format": "date-time" },
+        "quote_currency": { "type": "string" },
+        "chain_id": { "type": "integer" },
+        "chain_name": { "type": "string" },
+        "items": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/BalanceItem" }
+        }
+      }
+    },
+    "BalanceItem": {
+      "type": "object",
+      "description": "Per-token balance row.",
+      "required": ["contract_address", "balance"],
+      "properties": {
+        "contract_decimals": { "type": "integer" },
+        "contract_name": { "type": ["string", "null"] },
+        "contract_ticker_symbol": { "type": ["string", "null"] },
+        "contract_address": { "type": "string" },
+        "supports_erc": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["erc20", "erc721", "erc1155"] }
+        },
+        "logo_url": { "type": ["string", "null"] },
+        "last_transferred_at": { "type": ["string", "null"], "format": "date-time" },
+        "native_token": { "type": "boolean" },
+        "type": { "type": "string", "enum": ["cryptocurrency", "stablecoin", "nft", "dust"] },
+        "balance": { "type": "string", "description": "Raw on-chain balance as a string of base units." },
+        "balance_24h": { "type": ["string", "null"] },
+        "quote_rate": { "type": ["number", "null"] },
+        "quote_rate_24h": { "type": ["number", "null"] },
+        "quote": { "type": "number" },
+        "quote_24h": { "type": ["number", "null"] },
+        "pretty_quote": { "type": "string" },
+        "pretty_quote_24h": { "type": ["string", "null"] },
+        "nft_data": {
+          "type": ["array", "null"],
+          "items": { "$ref": "#/definitions/NftData" }
+        }
+      }
+    },
+    "NftData": {
+      "type": "object",
+      "properties": {
+        "token_id": { "type": "string" },
+        "token_balance": { "type": "string" },
+        "token_url": { "type": ["string", "null"] },
+        "original_owner": { "type": ["string", "null"] },
+        "external_data": { "type": ["object", "null"] },
+        "owner": { "type": ["string", "null"] },
+        "owner_address": { "type": ["string", "null"] },
+        "burned": { "type": "boolean" }
+      }
+    }
+  },
+  "oneOf": [
+    { "$ref": "#/definitions/BalanceResponse" }
+  ]
+}

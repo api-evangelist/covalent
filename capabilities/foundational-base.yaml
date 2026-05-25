@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: GoldRush Foundational API — Base Service
+  description: Blocks, gas prices, log events, chain status, and address resolution (ENS / Lens / Unstoppable). Self-contained Naftiko capability.
+  tags:
+  - Covalent
+  - GoldRush
+  - Blocks
+  - Logs
+  - Gas
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    GOLDRUSH_API_KEY: GOLDRUSH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: foundational-base
+    baseUri: https://api.covalenthq.com
+    description: GoldRush Foundational API — Base Service.
+    resources:
+    - name: block
+      path: /v1/{chainName}/block_v2/{blockHeight}/
+      operations:
+      - { name: getBlock, method: GET, description: 'Get A Block.', outputRawFormat: json }
+    - name: block-heights
+      path: /v1/{chainName}/block_v2/{startDate}/{endDate}/
+      operations:
+      - { name: getBlockHeights, method: GET, description: 'Get Block Heights.', outputRawFormat: json }
+    - name: chains
+      path: /v1/chains/
+      operations:
+      - { name: getAllChains, method: GET, description: 'Get All Chains.', outputRawFormat: json }
+    - name: chains-status
+      path: /v1/chains/status/
+      operations:
+      - { name: getAllChainStatuses, method: GET, description: 'Get All Chain Statuses.', outputRawFormat: json }
+    - name: log-events-by-topic
+      path: /v1/{chainName}/event/topics/{topicHash}/
+      operations:
+      - { name: getLogEventsByTopic, method: GET, description: 'Get Log Events By Topic Hash(es).', outputRawFormat: json }
+    - name: log-events-by-contract
+      path: /v1/{chainName}/events/address/{contractAddress}/
+      operations:
+      - { name: getLogEventsByContract, method: GET, description: 'Get Log Events By Contract Address.', outputRawFormat: json }
+    - name: logs
+      path: /v1/{chainName}/events/
+      operations:
+      - { name: getLogs, method: GET, description: 'Get Logs.', outputRawFormat: json }
+    - name: gas-prices
+      path: /v1/{chainName}/gas_prices/{eventType}/
+      operations:
+      - { name: getGasPrices, method: GET, description: 'Get Gas Prices.', outputRawFormat: json }
+    - name: resolve-address
+      path: /v1/{chainName}/address/{addressName}/resolve_address/
+      operations:
+      - { name: resolveAddress, method: GET, description: 'Get Resolved Address For Registered Address.', outputRawFormat: json }
+    authentication:
+      type: apikey
+      key: Authorization
+      value: 'Bearer {{env.GOLDRUSH_API_KEY}}'
+      placement: header
+  exposes:
+  - type: mcp
+    namespace: foundational-base-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter exposing one tool per Base Service operation.
+    tools:
+    - { name: goldrush-get-block, description: 'Fetch a block.', hints: { readOnly: true, idempotent: true }, call: foundational-base.getBlock }
+    - { name: goldrush-get-block-heights, description: 'Block heights between two dates.', hints: { readOnly: true, idempotent: true }, call: foundational-base.getBlockHeights }
+    - { name: goldrush-get-all-chains, description: 'List supported chains.', hints: { readOnly: true, idempotent: true }, call: foundational-base.getAllChains }
+    - { name: goldrush-get-all-chain-statuses, description: 'Live chain statuses.', hints: { readOnly: true, idempotent: true }, call: foundational-base.getAllChainStatuses }
+    - { name: goldrush-get-log-events-by-topic, description: 'Decoded log events filtered by topic hash.', hints: { readOnly: true, idempotent: true }, call: foundational-base.getLogEventsByTopic }
+    - { name: goldrush-get-log-events-by-contract, description: 'Decoded log events for a contract.', hints: { readOnly: true, idempotent: true }, call: foundational-base.getLogEventsByContract }
+    - { name: goldrush-get-logs, description: 'Raw or decoded chain logs.', hints: { readOnly: true, idempotent: true }, call: foundational-base.getLogs }
+    - { name: goldrush-get-gas-prices, description: 'Gas prices by event type.', hints: { readOnly: true, idempotent: true }, call: foundational-base.getGasPrices }
+    - { name: goldrush-resolve-address, description: 'Resolve ENS / Lens / Unstoppable name.', hints: { readOnly: true, idempotent: true }, call: foundational-base.resolveAddress }

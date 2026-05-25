@@ -1,0 +1,44 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://hypercore.goldrushdata.com/info",
+    "headers": {
+      "Authorization": "Bearer cqt_xxxxxxxxxxxxxxxxxxxx",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "type": "clearinghouseState",
+      "user": "0xfC43f5F9dd45258b3AFf31Bdbe6561D97e8B71de"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "marginSummary": {
+        "accountValue": "1532.41",
+        "totalNtlPos": "1000.00",
+        "totalRawUsd": "1532.41",
+        "totalMarginUsed": "120.00"
+      },
+      "crossMarginSummary": {
+        "accountValue": "1532.41",
+        "totalMarginUsed": "120.00"
+      },
+      "assetPositions": [
+        {
+          "type": "oneWay",
+          "position": {
+            "coin": "BTC",
+            "szi": "0.05",
+            "entryPx": "65000.0",
+            "positionValue": "3325.00",
+            "unrealizedPnl": "75.00",
+            "returnOnEquity": "0.0489",
+            "leverage": { "type": "cross", "value": 20 }
+          }
+        }
+      ],
+      "time": 1716651200000
+    }
+  }
+}

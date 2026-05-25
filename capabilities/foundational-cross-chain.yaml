@@ -1,0 +1,48 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: GoldRush Foundational API — Cross-Chain
+  description: Discover an address's activity across all supported chains in a single call. Self-contained Naftiko capability.
+  tags:
+  - Covalent
+  - GoldRush
+  - Cross-Chain
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    GOLDRUSH_API_KEY: GOLDRUSH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: foundational-cross-chain
+    baseUri: https://api.covalenthq.com
+    description: GoldRush Foundational API — Cross-Chain Activity, Multichain Balances and Transactions.
+    resources:
+    - name: activity
+      path: /v1/address/{walletAddress}/activity/
+      operations:
+      - { name: getActivity, method: GET, description: 'Get Activity Across All Chains For Address.', outputRawFormat: json }
+    - name: multichain-balances
+      path: /v1/allchains/address/{walletAddress}/balances/
+      operations:
+      - { name: getMultichainBalances, method: GET, description: 'Get Multichain Balances.', outputRawFormat: json }
+    - name: multichain-transactions
+      path: /v1/allchains/transactions/
+      operations:
+      - { name: getMultichainTransactions, method: GET, description: 'Get Multichain Multiaddress Transactions.', outputRawFormat: json }
+    authentication:
+      type: apikey
+      key: Authorization
+      value: 'Bearer {{env.GOLDRUSH_API_KEY}}'
+      placement: header
+  exposes:
+  - type: mcp
+    namespace: foundational-cross-chain-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter exposing one tool per Cross-Chain operation.
+    tools:
+    - { name: goldrush-get-cross-chain-activity, description: 'Activity for an address across all chains.', hints: { readOnly: true, idempotent: true }, call: foundational-cross-chain.getActivity }
+    - { name: goldrush-get-multichain-balances, description: 'Token balances across all chains for an address.', hints: { readOnly: true, idempotent: true }, call: foundational-cross-chain.getMultichainBalances }
+    - { name: goldrush-get-multichain-transactions, description: 'Transactions across chains and addresses.', hints: { readOnly: true, idempotent: true }, call: foundational-cross-chain.getMultichainTransactions }

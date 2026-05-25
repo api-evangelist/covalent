@@ -1,0 +1,60 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: GoldRush Pipeline API — Jobs
+  description: Create, manage, start, and pause GoldRush data pipelines. Self-contained Naftiko capability.
+  tags:
+  - Covalent
+  - GoldRush
+  - Pipeline
+  - ETL
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    GOLDRUSH_PIPELINE_SERVICE_KEY: GOLDRUSH_PIPELINE_SERVICE_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: pipeline-jobs
+    baseUri: https://pipeline.goldrush.dev
+    description: GoldRush Pipeline REST API — pipeline management.
+    resources:
+    - name: pipelines
+      path: /v1/pipelines
+      operations:
+      - { name: listPipelines, method: GET, description: 'List Pipelines.', outputRawFormat: json }
+      - { name: createPipeline, method: POST, description: 'Create Pipeline.', outputRawFormat: json }
+    - name: pipeline
+      path: /v1/pipelines/{pipelineId}
+      operations:
+      - { name: getPipeline, method: GET, description: 'Get Pipeline.', outputRawFormat: json }
+      - { name: updatePipeline, method: PATCH, description: 'Update Pipeline.', outputRawFormat: json }
+      - { name: deletePipeline, method: DELETE, description: 'Delete Pipeline.', outputRawFormat: json }
+    - name: pipeline-start
+      path: /v1/pipelines/{pipelineId}/start
+      operations:
+      - { name: startPipeline, method: POST, description: 'Start Pipeline.', outputRawFormat: json }
+    - name: pipeline-pause
+      path: /v1/pipelines/{pipelineId}/pause
+      operations:
+      - { name: pausePipeline, method: POST, description: 'Pause Pipeline.', outputRawFormat: json }
+    authentication:
+      type: apikey
+      key: Authorization
+      value: 'Bearer {{env.GOLDRUSH_PIPELINE_SERVICE_KEY}}'
+      placement: header
+  exposes:
+  - type: mcp
+    namespace: pipeline-jobs-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter exposing Pipeline job-management tools.
+    tools:
+    - { name: goldrush-list-pipelines, description: 'List GoldRush pipelines.', hints: { readOnly: true, idempotent: true }, call: pipeline-jobs.listPipelines }
+    - { name: goldrush-create-pipeline, description: 'Create a new pipeline.', hints: { readOnly: false, destructive: false, idempotent: false }, call: pipeline-jobs.createPipeline }
+    - { name: goldrush-get-pipeline, description: 'Fetch a pipeline.', hints: { readOnly: true, idempotent: true }, call: pipeline-jobs.getPipeline }
+    - { name: goldrush-update-pipeline, description: 'Update a pipeline.', hints: { readOnly: false, destructive: false, idempotent: true }, call: pipeline-jobs.updatePipeline }
+    - { name: goldrush-delete-pipeline, description: 'Delete a pipeline.', hints: { readOnly: false, destructive: true, idempotent: true }, call: pipeline-jobs.deletePipeline }
+    - { name: goldrush-start-pipeline, description: 'Start a pipeline.', hints: { readOnly: false, idempotent: true }, call: pipeline-jobs.startPipeline }
+    - { name: goldrush-pause-pipeline, description: 'Pause a pipeline.', hints: { readOnly: false, idempotent: true }, call: pipeline-jobs.pausePipeline }

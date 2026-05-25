@@ -1,0 +1,108 @@
+openapi: 3.1.0
+info:
+  title: GoldRush Streaming API
+  description: >
+    GraphQL-over-WebSocket interface for sub-second blockchain events. Exposes
+    one-shot queries (OHLCV pairs/tokens, token search, top trader wallets,
+    wallet PnL) and live subscriptions (new DEX pairs, OHLCV pairs/tokens,
+    update pairs/tokens, wallet activity). Documented here as a single REST
+    GraphQL endpoint; subscriptions upgrade the same path to WebSocket.
+  version: v1
+  contact:
+    name: GoldRush Support
+    url: https://goldrush.dev/support/
+servers:
+  - url: https://streaming.goldrush.dev
+    description: Streaming API HTTP endpoint (queries)
+  - url: wss://streaming.goldrush.dev
+    description: Streaming API WebSocket endpoint (subscriptions)
+security:
+  - BearerAuth: []
+tags:
+  - name: GraphQL
+    description: Single GraphQL endpoint serving queries and subscriptions.
+  - name: Queries
+    description: One-shot data queries.
+  - name: Subscriptions
+    description: Live WebSocket subscriptions.
+paths:
+  /graphql:
+    post:
+      summary: Execute Streaming GraphQL Operation
+      description: >
+        Executes a GraphQL `query` or `subscription` operation. Supported
+        queries: `ohlcvPairs`, `ohlcvTokens`, `tokenSearch`,
+        `topTraderWalletsForToken`, `walletPnlByToken`. Supported subscriptions
+        (upgrade to WebSocket on the same path): `newDexPairs`, `ohlcvPairs`,
+        `ohlcvTokens`, `updatePairs`, `updateTokens`, `walletActivity`.
+      operationId: executeStreamingGraphQLOperation
+      tags: [GraphQL, Queries]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GraphQLRequest'
+            examples:
+              OhlcvPairs:
+                summary: OHLCV Pairs Query
+                value:
+                  query: |
+                    query($pair: String!) {
+                      ohlcvPairs(pair: $pair, resolution: "1h") {
+                        timestamp open high low close volume
+                      }
+                    }
+                  variables: { pair: "0x..." }
+              TokenSearch:
+                summary: Token Search Query
+                value:
+                  query: |
+                    query($q: String!) { tokenSearch(query: $q) { address symbol chainName } }
+                  variables: { q: "USDC" }
+      responses:
+        '200':
+          description: GraphQL response envelope
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GraphQLResponse'
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '429': { $ref: '#/components/responses/RateLimited' }
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: GoldRush API key. For WebSocket upgrades, pass the bearer token via the `connectionParams` of the `graphql-ws` protocol.
+  responses:
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/GraphQLResponse' }
+    RateLimited:
+      description: Too Many Requests
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/GraphQLResponse' }
+  schemas:
+    GraphQLRequest:
+      type: object
+      required: [query]
+      properties:
+        query: { type: string, description: GraphQL operation document. }
+        variables: { type: object, additionalProperties: true }
+        operationName: { type: string, nullable: true }
+    GraphQLResponse:
+      type: object
+      properties:
+        data: { type: object, additionalProperties: true, nullable: true }
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              message: { type: string }
+              path: { type: array, items: { type: string } }
+              extensions: { type: object, additionalProperties: true }

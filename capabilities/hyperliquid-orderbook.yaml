@@ -1,0 +1,49 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: GoldRush Hyperliquid WebSocket API — Order Book
+  description: WebSocket channels for Hyperliquid markets — l2Book, l2BookDiff (GoldRush-exclusive), and l4Book (order-level GoldRush-exclusive). Self-contained Naftiko capability documenting the WS connection surface.
+  tags:
+  - Covalent
+  - GoldRush
+  - Hyperliquid
+  - WebSocket
+  - Order Book
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    GOLDRUSH_API_KEY: GOLDRUSH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: hyperliquid-orderbook
+    baseUri: https://hypercore.goldrushdata.com
+    description: 'GoldRush-hosted Hyperliquid WebSocket gateway (wss://hypercore.goldrushdata.com/ws). HTTP base shown for capability binding; subscriptions are WebSocket frames after upgrade.'
+    resources:
+    - name: ws
+      path: /ws
+      operations:
+      - { name: subscribeL2Book, method: GET, description: 'Subscribe to l2Book channel (wire-equal to public Hyperliquid feed).', outputRawFormat: json }
+      - { name: subscribeL2BookDiff, method: GET, description: 'Subscribe to l2BookDiff channel (GoldRush-exclusive differential updates).', outputRawFormat: json }
+      - { name: subscribeL4Book, method: GET, description: 'Subscribe to l4Book channel (order-level, GoldRush-exclusive).', outputRawFormat: json }
+      - { name: subscribeWalletFirehose, method: GET, description: 'Subscribe to wallet firehose stream.', outputRawFormat: json }
+      - { name: subscribeLiquidationsAndVaultEvents, method: GET, description: 'Subscribe to liquidations and vault events.', outputRawFormat: json }
+      - { name: subscribeHip3Markets, method: GET, description: 'Subscribe to HIP-3 markets stream.', outputRawFormat: json }
+      - { name: subscribeHip4Outcomes, method: GET, description: 'Subscribe to HIP-4 outcome markets stream.', outputRawFormat: json }
+    authentication:
+      type: apikey
+      key: Authorization
+      value: 'Bearer {{env.GOLDRUSH_API_KEY}}'
+      placement: header
+  exposes:
+  - type: mcp
+    namespace: hyperliquid-orderbook-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter exposing Hyperliquid WebSocket subscription tools.
+    tools:
+    - { name: goldrush-hl-l2-book, description: 'Subscribe to l2Book.', hints: { readOnly: true, idempotent: false }, call: hyperliquid-orderbook.subscribeL2Book }
+    - { name: goldrush-hl-l2-book-diff, description: 'Subscribe to l2BookDiff.', hints: { readOnly: true, idempotent: false }, call: hyperliquid-orderbook.subscribeL2BookDiff }
+    - { name: goldrush-hl-l4-book, description: 'Subscribe to l4Book.', hints: { readOnly: true, idempotent: false }, call: hyperliquid-orderbook.subscribeL4Book }
+    - { name: goldrush-hl-wallet-firehose, description: 'Subscribe to wallet firehose.', hints: { readOnly: true, idempotent: false }, call: hyperliquid-orderbook.subscribeWalletFirehose }

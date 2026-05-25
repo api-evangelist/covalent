@@ -1,0 +1,466 @@
+aid: covalent
+url: https://raw.githubusercontent.com/api-evangelist/covalent/refs/heads/main/apis.yml
+apis:
+- aid: covalent:goldrush-foundational-api
+  name: GoldRush Foundational API
+  tags:
+  - Blockchain
+  - Web3
+  - Balances
+  - Transactions
+  - NFT
+  - Multi-Chain
+  - Historical Data
+  humanURL: https://goldrush.dev/docs/api-reference/foundational-api/
+  baseURL: https://api.covalenthq.com
+  properties:
+  - url: https://goldrush.dev/docs/api-reference/foundational-api/
+    type: Documentation
+  - url: https://goldrush.dev/docs/api-reference/foundational-api/balance-service
+    type: Documentation
+  - url: https://goldrush.dev/docs/api-reference/foundational-api/transactions-service
+    type: Documentation
+  - url: https://goldrush.dev/docs/api-reference/foundational-api/nft-service
+    type: Documentation
+  - url: https://goldrush.dev/docs/api-reference/foundational-api/base-service
+    type: Documentation
+  - url: https://goldrush.dev/docs/api-reference/foundational-api/cross-chain-activity
+    type: Documentation
+  - url: https://goldrush.dev/docs/api-reference/foundational-api/security-service
+    type: Documentation
+  - url: https://goldrush.dev/docs/api-reference/foundational-api/pricing-service
+    type: Documentation
+  - url: openapi/covalent-foundational-api-openapi.yml
+    type: OpenAPI
+  - url: json-schema/covalent-balance-schema.json
+    type: JSONSchema
+  - url: json-schema/covalent-transaction-schema.json
+    type: JSONSchema
+  - url: json-ld/covalent-context.jsonld
+    type: JSONLD
+  - type: NaftikoCapability
+    url: capabilities/foundational-balances.yaml
+  - type: NaftikoCapability
+    url: capabilities/foundational-transactions.yaml
+  - type: NaftikoCapability
+    url: capabilities/foundational-nft.yaml
+  - type: NaftikoCapability
+    url: capabilities/foundational-base.yaml
+  - type: NaftikoCapability
+    url: capabilities/foundational-cross-chain.yaml
+  - type: NaftikoCapability
+    url: capabilities/foundational-pricing.yaml
+  - type: NaftikoCapability
+    url: capabilities/foundational-security.yaml
+  description: REST API providing structured historical blockchain data across 100+ chains. Resource families
+    include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3
+    paginated, time-bucketed, by-block), NFTs (ownership, holdings, metadata), Base service (blocks, logs, gas
+    prices, address resolution), Cross-Chain Activity (locate active chains for an address in one call), Pricing
+    (historical token prices, pool spot prices), and Security (token approvals). Bearer-token authentication,
+    credit-metered, realtime processing.
+- aid: covalent:goldrush-streaming-api
+  name: GoldRush Streaming API
+  tags:
+  - Blockchain
+  - Streaming
+  - GraphQL
+  - WebSocket
+  - Real-Time
+  - DEX
+  - OHLCV
+  humanURL: https://goldrush.dev/docs/api-reference/streaming-api/
+  baseURL: https://streaming.goldrush.dev
+  properties:
+  - url: https://goldrush.dev/docs/api-reference/streaming-api/
+    type: Documentation
+  - url: openapi/covalent-streaming-api-openapi.yml
+    type: OpenAPI
+  - type: NaftikoCapability
+    url: capabilities/streaming-ohlcv.yaml
+  - type: NaftikoCapability
+    url: capabilities/streaming-pairs.yaml
+  - type: NaftikoCapability
+    url: capabilities/streaming-wallet-activity.yaml
+  description: Real-time blockchain events via GraphQL over WebSockets with sub-second latency. Includes one-shot
+    queries (OHLCV pairs and tokens, token search, top trader wallets, wallet PnL by token) and live subscriptions
+    (new DEX pairs stream, OHLCV pairs and tokens streams, update pairs and tokens streams, wallet activity
+    stream). Designed for trading bots, dashboards, gaming, and AI agents that need push-based updates.
+- aid: covalent:goldrush-pipeline-api
+  name: GoldRush Pipeline API
+  tags:
+  - Blockchain
+  - Data Pipeline
+  - ETL
+  - ABI Decoding
+  - ClickHouse
+  - Kafka
+  - Webhook
+  - SQL
+  humanURL: https://goldrush.dev/docs/api-reference/pipeline-api/
+  baseURL: https://pipeline.goldrush.dev
+  properties:
+  - url: https://goldrush.dev/docs/api-reference/pipeline-api/
+    type: Documentation
+  - url: https://goldrush.dev/docs/api-reference/pipeline-api/quickstart
+    type: Documentation
+  - url: https://goldrush.dev/docs/api-reference/pipeline-api/architecture
+    type: Documentation
+  - url: https://goldrush.dev/docs/api-reference/pipeline-api/destinations
+    type: Documentation
+  - url: https://goldrush.dev/docs/api-reference/pipeline-api/abi-decoding
+    type: Documentation
+  - url: openapi/covalent-pipeline-api-openapi.yml
+    type: OpenAPI
+  - type: NaftikoCapability
+    url: capabilities/pipeline-jobs.yaml
+  - type: NaftikoCapability
+    url: capabilities/pipeline-destinations.yaml
+  description: Managed data pipeline that streams decoded blockchain data into your own infrastructure across
+    20+ chains. Pipelines configure source chains, ABI decoding (event logs and functions), SQL transforms,
+    and destinations including ClickHouse, Kafka, S3/GCS/R2 object storage, Postgres, AWS SQS, and Webhooks.
+    Service Keys are the credential type for programmatic pipeline management. Use cases include data warehousing,
+    analytics, ETL, and backend indexing.
+- aid: covalent:goldrush-hyperliquid-info-api
+  name: GoldRush Hyperliquid Info API
+  tags:
+  - Blockchain
+  - Hyperliquid
+  - Trading
+  - Perpetuals
+  - DEX
+  - Markets
+  humanURL: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/
+  baseURL: https://hypercore.goldrushdata.com
+  properties:
+  - url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/
+    type: Documentation
+  - url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/migration-guide
+    type: Documentation
+  - url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/limits
+    type: Documentation
+  - url: openapi/covalent-hyperliquid-info-api-openapi.yml
+    type: OpenAPI
+  - type: NaftikoCapability
+    url: capabilities/hyperliquid-markets.yaml
+  - type: NaftikoCapability
+    url: capabilities/hyperliquid-users.yaml
+  description: Drop-in replacement for the public Hyperliquid /info API hosted at hypercore.goldrushdata.com.
+    Supports 18 info types including clearinghouseState, batchClearinghouseState, spotClearinghouseState,
+    spotMetaAndAssetCtxs, metaAndAssetCtxs, frontendOpenOrders, userFills / userFillsByTime, userFunding,
+    userTwapSliceFills, userNonFundingLedgerUpdates, userVaultEquities, delegatorHistory, delegatorRewards,
+    delegatorSummary, subAccounts, batchSpotClearinghouseState, and outcomeMeta. Adds caching, batching, and
+    HIP-3 / HIP-4 outcome market coverage on top of the canonical Hyperliquid feed.
+- aid: covalent:goldrush-hyperliquid-websocket-api
+  name: GoldRush Hyperliquid WebSocket API
+  tags:
+  - Blockchain
+  - Hyperliquid
+  - WebSocket
+  - Order Book
+  - Real-Time
+  - Trading
+  humanURL: https://goldrush.dev/docs/api-reference/hyperliquid/websocket-api/
+  baseURL: wss://hypercore.goldrushdata.com/ws
+  properties:
+  - url: https://goldrush.dev/docs/api-reference/hyperliquid/websocket-api/
+    type: Documentation
+  - url: https://goldrush.dev/docs/api-reference/hyperliquid/websocket-api/l2-order-book
+    type: Documentation
+  - url: https://goldrush.dev/docs/api-reference/hyperliquid/websocket-api/l2-order-book-diff
+    type: Documentation
+  - url: https://goldrush.dev/docs/api-reference/hyperliquid/websocket-api/l4-order-book
+    type: Documentation
+  - type: NaftikoCapability
+    url: capabilities/hyperliquid-orderbook.yaml
+  description: WebSocket channels for Hyperliquid markets including l2Book (wire-equal to the public feed),
+    l2BookDiff (GoldRush-exclusive differential updates), and l4Book (order-level GoldRush-exclusive channel)
+    plus wallet firehose, liquidations and vault events, HIP-3 markets, and HIP-4 outcome market streams. Hosted
+    at wss://hypercore.goldrushdata.com/ws for ultra-low-latency trading and analytics.
+- aid: covalent:goldrush-x402-api
+  name: GoldRush x402 API
+  tags:
+  - Blockchain
+  - x402
+  - Pay-Per-Request
+  - HTTP 402
+  - AI Agents
+  humanURL: https://goldrush.dev/docs/api-reference/foundational-api/x402
+  baseURL: https://api.covalenthq.com
+  properties:
+  - url: https://goldrush.dev/docs/api-reference/foundational-api/x402
+    type: Documentation
+  - url: openapi/covalent-x402-api-openapi.yml
+    type: OpenAPI
+  - type: NaftikoCapability
+    url: capabilities/x402-endpoints.yaml
+  description: Pay-per-request HTTP 402 endpoints designed for autonomous AI agents and onchain micropayments.
+    Lists and searches available x402 endpoints, exposes token balance and recent transaction lookups via the
+    402 settlement flow, and returns per-endpoint metadata for agents to discover and pay for data without a
+    long-lived API key.
+name: Covalent
+tags:
+- Blockchain
+- Web3
+- Multi-Chain
+- Data Infrastructure
+- Crypto
+- DeFi
+- NFT
+- Hyperliquid
+- GoldRush
+- AI Agents
+kind: contract
+image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+access: 3rd-Party
+common:
+- type: LinkedIn
+  url: https://www.linkedin.com/company/covalent-hq
+- type: Twitter
+  url: https://twitter.com/Covalent_HQ
+- type: GitHub
+  url: https://github.com/covalenthq
+- url: https://www.covalenthq.com
+  name: Covalent Homepage
+  type: Website
+- url: https://goldrush.dev
+  name: GoldRush Homepage
+  type: Website
+- url: https://goldrush.dev/docs/
+  name: GoldRush Documentation
+  type: Portal
+- url: https://goldrush.dev/docs/api-reference/foundational-api/
+  name: Foundational API Reference
+  type: Documentation
+- url: https://goldrush.dev/docs/api-reference/streaming-api/
+  name: Streaming API Reference
+  type: Documentation
+- url: https://goldrush.dev/docs/api-reference/pipeline-api/
+  name: Pipeline API Reference
+  type: Documentation
+- url: https://goldrush.dev/docs/api-reference/hyperliquid/
+  name: Hyperliquid API Reference
+  type: Documentation
+- url: https://goldrush.dev/docs/changelog
+  name: GoldRush Changelog
+  type: ChangeLog
+- url: https://goldrush.dev/blog/
+  name: GoldRush Blog
+  type: Blog
+- url: https://status.goldrush.dev
+  name: GoldRush Status
+  type: StatusPage
+- url: https://goldrush.dev/pricing/
+  name: GoldRush Pricing
+  type: Pricing
+- url: https://goldrush.dev/platform/
+  name: GoldRush Platform Dashboard
+  type: SignIn
+- url: https://goldrush.dev/support/
+  name: GoldRush Support
+  type: Support
+- url: https://goldrush.dev/chains/
+  name: Supported Chains
+  type: Documentation
+- url: https://goldrush.dev/guides/
+  name: GoldRush Guides
+  type: Documentation
+- url: https://goldrush.dev/case-studies/
+  name: GoldRush Case Studies
+  type: CaseStudies
+- url: https://goldrush.dev/agents/
+  name: GoldRush for AI Agents
+  type: Documentation
+- url: https://www.npmjs.com/package/@covalenthq/client-sdk
+  name: GoldRush JavaScript/TypeScript Client SDK
+  type: SDK
+- url: https://github.com/covalenthq/covalent-api-sdk-go
+  name: GoldRush Go SDK
+  type: SDK
+- url: https://github.com/covalenthq/goldrush-mcp-server
+  name: GoldRush MCP Server (archived; superseded by CLI native MCP)
+  type: SDK
+- url: https://github.com/covalenthq/goldrush-agent-skills
+  name: GoldRush Agent Skills
+  type: SDK
+- url: https://www.npmjs.com/package/@covalenthq/goldrush-cli
+  name: GoldRush CLI
+  type: CLI
+- url: https://github.com/covalenthq/goldrush-kit
+  name: GoldRush Kit (React components, archived)
+  type: SDK
+- url: https://github.com/covalenthq/ai-agent-sdk
+  name: Covalent AI Agent SDK (Zero-Employee Enterprise, archived)
+  type: SDK
+- url: https://github.com/covalenthq/goldrush-enhanced-spam-lists
+  name: GoldRush Enhanced Spam Lists (ERC20 and NFT)
+  type: Tools
+- url: https://github.com/covalenthq/refiner
+  name: Refiner — block specimen processing framework
+  type: Tools
+- url: https://github.com/covalenthq/bsp-agent
+  name: bsp-agent — block specimen producer
+  type: Tools
+- url: https://github.com/covalenthq/bsp-geth
+  name: bsp-geth — go-ethereum modified for block specimens
+  type: Tools
+- url: https://goldrush.dev/docs/api-reference/foundational-api/authentication
+  name: Authentication — Bearer Token
+  type: Authentication
+- url: https://goldrush.dev/docs/api-reference/foundational-api/rate-limits
+  name: Rate Limits
+  type: RateLimits
+- url: plans/covalent-plans-pricing.yml
+  type: Plans
+- url: rate-limits/covalent-rate-limits.yml
+  type: RateLimits
+- url: finops/covalent-finops.yml
+  type: FinOps
+- url: https://goldrush.dev/pricing/
+  data:
+  - id: free-trial
+    name: Free Trial
+    entries:
+    - geo: global
+      unit: 1
+      label: Monthly credits
+      limit: 25000
+      price: 0
+      metric: credits
+      timeFrame: month
+      description: 25,000 API credits per month for testing and prototyping.
+    - geo: global
+      unit: 1
+      label: Rate limit
+      limit: 4
+      price: 0
+      metric: rps
+      timeFrame: second
+      description: 4 requests per second.
+    elements:
+    - name: Access to all GoldRush APIs
+    - name: Full historical data across supported chains
+    - name: Not for production applications
+    description: For testing and prototyping.
+  - id: vibe-coding
+    name: Vibe Coding
+    entries:
+    - geo: global
+      unit: 1
+      label: Monthly subscription
+      limit: 1
+      price: 10
+      metric: month
+      timeFrame: month
+      description: $10/month subscription for indie developers and AI builders.
+    - geo: global
+      unit: 1
+      label: Monthly credits
+      limit: 10000
+      price: 0
+      metric: credits
+      timeFrame: month
+      description: 10,000 API credits per month (prorated).
+    - geo: global
+      unit: 1
+      label: Flex credits
+      price: 0.00077
+      metric: credit
+      timeFrame: usage
+      description: $0.00077 per additional credit beyond the monthly allotment.
+    elements:
+    - name: Recommended for AI agents, copilots, and automated builds
+    - name: Full historical data access
+    - name: Community Discord support
+    description: Indie developers, side projects, learning blockchain development.
+  - id: professional
+    name: Professional
+    entries:
+    - geo: global
+      unit: 1
+      label: Monthly subscription
+      limit: 1
+      price: 250
+      metric: month
+      timeFrame: month
+      description: $250/month for production applications.
+    - geo: global
+      unit: 1
+      label: Monthly credits
+      limit: 300000
+      price: 0
+      metric: credits
+      timeFrame: month
+      description: 300,000 API credits per month (prorated).
+    - geo: global
+      unit: 1
+      label: Rate limit
+      limit: 50
+      price: 0
+      metric: rps
+      timeFrame: second
+      description: 50 requests per second.
+    - geo: global
+      unit: 1
+      label: Flex credits
+      price: 0.00077
+      metric: credit
+      timeFrame: usage
+      description: $0.00077 per additional credit (auto-scaling).
+    elements:
+    - name: Higher rate limits
+    - name: Auto-scaling Flex credits
+    - name: Production-grade performance
+    description: Production applications requiring reliable blockchain data and scaling.
+  - id: inner-circle
+    name: Inner Circle (Enterprise)
+    entries:
+    - geo: global
+      unit: 1
+      label: Custom contract
+      limit: 1
+      price: Call
+      metric: month
+      timeFrame: month
+      description: Custom pricing for enterprise.
+    elements:
+    - name: Dedicated support
+    - name: Commercial agreements with SLAs and NDAs
+    - name: Early product access
+    - name: White-glove service
+    - name: Custom rate limits and credit allotments
+    description: Enterprise-scale operations with mission-critical requirements.
+  name: Plans
+  type: Plans
+- name: Authentication
+  type: Authentication
+  data:
+  - id: bearer
+    name: Bearer Token
+    description: "Send your GoldRush API key as a bearer token in the Authorization header — `Authorization: Bearer cqt_xxxxxxxxxxxxxxxxxxxx`. Keys are minted in the GoldRush Platform dashboard."
+- name: Supported Chains
+  type: Documentation
+  data:
+  - id: foundational
+    name: Foundational Support
+    description: Base, BNB Smart Chain (BSC), Ethereum, Gnosis, Optimism, Polygon.
+  - id: frontier
+    name: Frontier Support
+    description: ADI Chain, ApeChain, Arbitrum, Arbitrum Nova, Arc Testnet, Avalanche C-Chain, Axie/Ronin,
+      Berachain, Bitcoin, HyperCore, HyperEVM, Ink, Linea, Mantle, MegaETH, Monad, Oasis Sapphire, Plasma,
+      Scroll, Sei, Solana, Sonic, Taiko, Unichain, Viction, World Chain, zkSync Era.
+  - id: community
+    name: Community Support
+    description: Blast, Canto, Celo, Cronos zkEVM, Fantom, Manta Pacific Testnet, Moonbeam, Moonriver, Oasis,
+      opBNB, Redstone, ZetaChain.
+  - id: archived
+    name: Archived Support
+    description: Cronos, Harmony.
+- name: Compliance
+  type: Compliance
+  data:
+  - name: SOC 2
+    description: SOC 2 compliant. Enterprise security controls audited.
+maintainers:
+- FN: Covalent
+  email: support@covalenthq.com
+  url: https://goldrush.dev/support/

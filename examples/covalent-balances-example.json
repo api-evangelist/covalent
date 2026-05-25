@@ -1,0 +1,47 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.covalenthq.com/v1/eth-mainnet/address/0xfC43f5F9dd45258b3AFf31Bdbe6561D97e8B71de/balances_v2/",
+    "headers": {
+      "Authorization": "Bearer cqt_xxxxxxxxxxxxxxxxxxxx",
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "data": {
+        "address": "0xfc43f5f9dd45258b3aff31bdbe6561d97e8b71de",
+        "updated_at": "2026-05-25T14:00:00Z",
+        "next_update_at": "2026-05-25T14:05:00Z",
+        "quote_currency": "USD",
+        "chain_id": 1,
+        "chain_name": "eth-mainnet",
+        "items": [
+          {
+            "contract_decimals": 18,
+            "contract_name": "Ether",
+            "contract_ticker_symbol": "ETH",
+            "contract_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+            "supports_erc": ["erc20"],
+            "logo_url": "https://logos.covalenthq.com/tokens/1/0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee.png",
+            "last_transferred_at": "2026-05-20T09:14:22Z",
+            "native_token": true,
+            "type": "cryptocurrency",
+            "balance": "2581423000000000000",
+            "balance_24h": "2581423000000000000",
+            "quote_rate": 3520.41,
+            "quote_rate_24h": 3491.10,
+            "quote": 9087.21,
+            "quote_24h": 9011.97,
+            "pretty_quote": "$9,087.21",
+            "pretty_quote_24h": "$9,011.97"
+          }
+        ]
+      },
+      "error": false,
+      "error_message": null,
+      "error_code": null
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.covalenthq.com/v1/address/0xfC43f5F9dd45258b3AFf31Bdbe6561D97e8B71de/activity/",
+    "headers": {
+      "Authorization": "Bearer cqt_xxxxxxxxxxxxxxxxxxxx",
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "data": {
+        "address": "0xfc43f5f9dd45258b3aff31bdbe6561d97e8b71de",
+        "updated_at": "2026-05-25T14:00:00Z",
+        "items": [
+          { "name": "eth-mainnet", "chain_id": "1", "is_testnet": false, "label": "Ethereum", "last_seen_at": "2026-05-24T19:42:11Z" },
+          { "name": "base-mainnet", "chain_id": "8453", "is_testnet": false, "label": "Base", "last_seen_at": "2026-05-25T08:00:00Z" },
+          { "name": "polygon-mainnet", "chain_id": "137", "is_testnet": false, "label": "Polygon", "last_seen_at": "2026-04-30T10:15:33Z" },
+          { "name": "arbitrum-mainnet", "chain_id": "42161", "is_testnet": false, "label": "Arbitrum", "last_seen_at": "2026-05-12T03:21:19Z" }
+        ]
+      },
+      "error": false,
+      "error_message": null,
+      "error_code": null
+    }
+  }
+}

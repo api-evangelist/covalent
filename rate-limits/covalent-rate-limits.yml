@@ -1,0 +1,68 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Covalent
+providerId: covalent
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: true
+tags:
+  - Blockchain
+  - Rate Limiting
+  - Credits
+  - Quotas
+description: Reconciled rate limits for the GoldRush platform. Requests-per-second caps gate burst traffic; a credit allotment governs monthly consumption with optional Flex-credit overage on paid plans.
+sources:
+  - https://goldrush.dev/pricing/
+  - https://goldrush.dev/docs/
+responseCodes:
+  throttled: 429
+  quotaExceeded: 429
+algorithm: leaky-bucket
+authentication:
+  scheme: Bearer
+  header: Authorization
+  value: 'Bearer <goldrush-api-key>'
+limits:
+  - tier: Free Trial
+    rps: 4
+    monthlyCredits: 25000
+    flexCredits: false
+  - tier: Vibe Coding
+    rps: 4
+    monthlyCredits: 10000
+    flexCredits: true
+    flexPrice: $0.00077 per credit
+  - tier: Professional
+    rps: 50
+    monthlyCredits: 300000
+    flexCredits: true
+    flexPrice: $0.00077 per credit
+  - tier: Inner Circle (Enterprise)
+    rps: custom
+    monthlyCredits: custom
+    flexCredits: true
+    flexPrice: contract
+creditCosts:
+  - endpointFamily: Foundational read endpoints
+    cost: 0.5 credit per call (most endpoints)
+    notes: A handful of compute-heavy endpoints (e.g., portfolio, multichain) charge more credits per call.
+  - endpointFamily: Cross-Chain Activity
+    cost: 0.5 credit per call
+  - endpointFamily: Pricing historical
+    cost: variable per address and time range
+  - endpointFamily: Streaming subscriptions
+    cost: metered per message stream
+  - endpointFamily: Hyperliquid Info
+    cost: per-call credit; cached responses discounted
+  - endpointFamily: Pipeline
+    cost: per-event delivered to destination plus base pipeline runtime
+policies:
+  - name: Rate-limit headers
+    description: HTTP 429 responses include retry guidance; clients should respect retry-after and back off exponentially.
+  - name: Burst control
+    description: RPS caps are token-bucketed at the plan limit; sustained excess returns 429.
+  - name: Credit consumption visibility
+    description: The GoldRush Platform dashboard surfaces real-time credit consumption per key and per endpoint family.
+  - name: Flex credits
+    description: Paid plans (Vibe Coding, Professional) auto-scale beyond the included allotment at $0.00077 per credit unless capped.

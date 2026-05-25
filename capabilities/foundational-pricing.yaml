@@ -1,0 +1,44 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: GoldRush Foundational API — Pricing
+  description: Historical token prices and pool spot prices. Self-contained Naftiko capability.
+  tags:
+  - Covalent
+  - GoldRush
+  - Pricing
+  - DEX
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    GOLDRUSH_API_KEY: GOLDRUSH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: foundational-pricing
+    baseUri: https://api.covalenthq.com
+    description: GoldRush Foundational API — Pricing.
+    resources:
+    - name: historical-prices
+      path: /v1/pricing/historical_by_addresses_v2/{chainName}/{quoteCurrency}/{contractAddresses}/
+      operations:
+      - { name: getHistoricalPrices, method: GET, description: 'Get Historical Token Prices.', outputRawFormat: json }
+    - name: pool-spot-prices
+      path: /v1/{chainName}/xy=k/{dexName}/pool/{poolAddress}/spot_prices/
+      operations:
+      - { name: getPoolSpotPrices, method: GET, description: 'Get Pool Spot Prices.', outputRawFormat: json }
+    authentication:
+      type: apikey
+      key: Authorization
+      value: 'Bearer {{env.GOLDRUSH_API_KEY}}'
+      placement: header
+  exposes:
+  - type: mcp
+    namespace: foundational-pricing-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter exposing one tool per Pricing operation.
+    tools:
+    - { name: goldrush-get-historical-token-prices, description: 'Historical token prices for one or more contracts.', hints: { readOnly: true, idempotent: true }, call: foundational-pricing.getHistoricalPrices }
+    - { name: goldrush-get-pool-spot-prices, description: 'Spot prices for a DEX pool.', hints: { readOnly: true, idempotent: true }, call: foundational-pricing.getPoolSpotPrices }

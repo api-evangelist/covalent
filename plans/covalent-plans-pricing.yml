@@ -1,0 +1,151 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Covalent
+providerId: covalent
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: true
+tags:
+  - Blockchain
+  - Web3
+  - Multi-Chain
+  - Data
+description: 'Reconciled plans and credit-based pricing for the GoldRush platform (Covalent). Source: goldrush.dev/pricing.'
+sources:
+  - https://goldrush.dev/pricing/
+  - https://goldrush.dev/docs/
+plans:
+  - id: covalent-free-trial
+    name: Free Trial
+    type: free
+    description: Testing and prototyping tier; access to all GoldRush APIs across supported chains. Not for production.
+    entries:
+      - label: Monthly credits
+        name: credits
+        type: included
+        metric: credits
+        limit: 25000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Rate limit
+        name: rps
+        type: included
+        metric: rps
+        limit: 4
+        timeFrame: second
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+  - id: covalent-vibe-coding
+    name: Vibe Coding
+    type: subscription
+    description: Recommended for AI agents, copilots, automated builds, indie developers and side projects.
+    entries:
+      - label: Subscription
+        name: subscription
+        type: flat
+        metric: month
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '10.00'
+        userMultiplied: false
+      - label: Monthly credits included
+        name: credits
+        type: included
+        metric: credits
+        limit: 10000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Rate limit
+        name: rps
+        type: included
+        metric: rps
+        limit: 4
+        timeFrame: second
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Flex credits
+        name: flex_credits
+        type: metered
+        metric: credit
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '0.00077'
+        userMultiplied: false
+  - id: covalent-professional
+    name: Professional
+    type: subscription
+    description: Production applications requiring reliable blockchain data and scaling, with auto-scaling Flex credits.
+    entries:
+      - label: Subscription
+        name: subscription
+        type: flat
+        metric: month
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '250.00'
+        userMultiplied: false
+      - label: Monthly credits included
+        name: credits
+        type: included
+        metric: credits
+        limit: 300000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Rate limit
+        name: rps
+        type: included
+        metric: rps
+        limit: 50
+        timeFrame: second
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Flex credits
+        name: flex_credits
+        type: metered
+        metric: credit
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '0.00077'
+        userMultiplied: false
+  - id: covalent-inner-circle
+    name: Inner Circle (Enterprise)
+    type: enterprise
+    description: Enterprise plan with custom commercial agreements, SLAs, NDAs, dedicated support, early product access, white-glove service.
+    entries:
+      - label: Custom contract
+        name: custom
+        type: flat
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: 'Call'
+        userMultiplied: false
+notes:
+  - Credit costs vary per endpoint (most Foundational endpoints cost 0.5 credit per call; some heavier endpoints cost more).
+  - Flex credits scale paid plans beyond the included allotment without service interruption.

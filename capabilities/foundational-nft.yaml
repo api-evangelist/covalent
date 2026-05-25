@@ -1,0 +1,48 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: GoldRush Foundational API — NFTs
+  description: NFT holdings and collection ownership checks across 100+ chains. Self-contained Naftiko capability.
+  tags:
+  - Covalent
+  - GoldRush
+  - NFT
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    GOLDRUSH_API_KEY: GOLDRUSH_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: foundational-nft
+    baseUri: https://api.covalenthq.com
+    description: GoldRush Foundational API — NFTs.
+    resources:
+    - name: nfts-for-address
+      path: /v1/{chainName}/address/{walletAddress}/balances_nft/
+      operations:
+      - { name: getNftsForAddress, method: GET, description: 'Get NFTs For Address.', outputRawFormat: json }
+    - name: check-ownership-token
+      path: /v1/{chainName}/tokens/{collectionContract}/nft_token_ids/{tokenId}/check_ownership/{walletAddress}/
+      operations:
+      - { name: checkOwnershipForToken, method: GET, description: 'Check Ownership In NFT Collection For Specific Token.', outputRawFormat: json }
+    - name: check-ownership-collection
+      path: /v1/{chainName}/tokens/{collectionContract}/check_ownership/{walletAddress}/
+      operations:
+      - { name: checkOwnershipForCollection, method: GET, description: 'Check Ownership In NFT Collection.', outputRawFormat: json }
+    authentication:
+      type: apikey
+      key: Authorization
+      value: 'Bearer {{env.GOLDRUSH_API_KEY}}'
+      placement: header
+  exposes:
+  - type: mcp
+    namespace: foundational-nft-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter exposing one tool per NFT operation.
+    tools:
+    - { name: goldrush-get-nfts-for-address, description: 'List NFTs held by an address.', hints: { readOnly: true, idempotent: true }, call: foundational-nft.getNftsForAddress }
+    - { name: goldrush-check-nft-ownership-token, description: 'Check ownership of a specific NFT in a collection.', hints: { readOnly: true, idempotent: true }, call: foundational-nft.checkOwnershipForToken }
+    - { name: goldrush-check-nft-ownership-collection, description: 'Check membership in an NFT collection.', hints: { readOnly: true, idempotent: true }, call: foundational-nft.checkOwnershipForCollection }

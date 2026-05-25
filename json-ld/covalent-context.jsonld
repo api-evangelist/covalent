@@ -1,0 +1,126 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://schema.org/",
+    "covalent": "https://api.covalenthq.com/v1/",
+    "goldrush": "https://goldrush.dev/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "hydra": "http://www.w3.org/ns/hydra/core#",
+
+    "Balance": {
+      "@id": "covalent:Balance",
+      "@context": {
+        "address": { "@id": "covalent:Balance/address", "@type": "xsd:string" },
+        "chain_id": { "@id": "covalent:Balance/chainId", "@type": "xsd:integer" },
+        "chain_name": { "@id": "covalent:Balance/chainName", "@type": "xsd:string" },
+        "quote_currency": { "@id": "covalent:Balance/quoteCurrency", "@type": "xsd:string" },
+        "updated_at": { "@id": "covalent:Balance/updatedAt", "@type": "xsd:dateTime" },
+        "items": { "@id": "covalent:Balance/items", "@container": "@list" }
+      }
+    },
+
+    "BalanceItem": {
+      "@id": "covalent:BalanceItem",
+      "@context": {
+        "contract_address": { "@id": "covalent:BalanceItem/contractAddress", "@type": "xsd:string" },
+        "contract_name": { "@id": "covalent:BalanceItem/contractName", "@type": "xsd:string" },
+        "contract_ticker_symbol": { "@id": "covalent:BalanceItem/contractTickerSymbol", "@type": "xsd:string" },
+        "contract_decimals": { "@id": "covalent:BalanceItem/contractDecimals", "@type": "xsd:integer" },
+        "balance": { "@id": "covalent:BalanceItem/balance", "@type": "xsd:string" },
+        "quote": { "@id": "covalent:BalanceItem/quote", "@type": "xsd:decimal" },
+        "quote_rate": { "@id": "covalent:BalanceItem/quoteRate", "@type": "xsd:decimal" },
+        "native_token": { "@id": "covalent:BalanceItem/nativeToken", "@type": "xsd:boolean" }
+      }
+    },
+
+    "Transaction": {
+      "@id": "covalent:Transaction",
+      "@context": {
+        "tx_hash": { "@id": "covalent:Transaction/txHash", "@type": "xsd:string" },
+        "block_height": { "@id": "covalent:Transaction/blockHeight", "@type": "xsd:integer" },
+        "block_hash": { "@id": "covalent:Transaction/blockHash", "@type": "xsd:string" },
+        "block_signed_at": { "@id": "covalent:Transaction/blockSignedAt", "@type": "xsd:dateTime" },
+        "from_address": { "@id": "covalent:Transaction/fromAddress", "@type": "xsd:string" },
+        "to_address": { "@id": "covalent:Transaction/toAddress", "@type": "xsd:string" },
+        "value": { "@id": "covalent:Transaction/value", "@type": "xsd:string" },
+        "value_quote": { "@id": "covalent:Transaction/valueQuote", "@type": "xsd:decimal" },
+        "gas_spent": { "@id": "covalent:Transaction/gasSpent", "@type": "xsd:integer" },
+        "gas_price": { "@id": "covalent:Transaction/gasPrice", "@type": "xsd:integer" },
+        "successful": { "@id": "covalent:Transaction/successful", "@type": "xsd:boolean" },
+        "log_events": { "@id": "covalent:Transaction/logEvents", "@container": "@list" }
+      }
+    },
+
+    "LogEvent": {
+      "@id": "covalent:LogEvent",
+      "@context": {
+        "tx_hash": { "@id": "covalent:LogEvent/txHash", "@type": "xsd:string" },
+        "block_height": { "@id": "covalent:LogEvent/blockHeight", "@type": "xsd:integer" },
+        "log_offset": { "@id": "covalent:LogEvent/logOffset", "@type": "xsd:integer" },
+        "sender_address": { "@id": "covalent:LogEvent/senderAddress", "@type": "xsd:string" },
+        "raw_log_topics": { "@id": "covalent:LogEvent/rawLogTopics", "@container": "@list" },
+        "raw_log_data": { "@id": "covalent:LogEvent/rawLogData", "@type": "xsd:string" },
+        "decoded": { "@id": "covalent:LogEvent/decoded" }
+      }
+    },
+
+    "Block": {
+      "@id": "covalent:Block",
+      "@context": {
+        "height": { "@id": "covalent:Block/height", "@type": "xsd:integer" },
+        "signed_at": { "@id": "covalent:Block/signedAt", "@type": "xsd:dateTime" },
+        "block_hash": { "@id": "covalent:Block/blockHash", "@type": "xsd:string" },
+        "block_parent_hash": { "@id": "covalent:Block/blockParentHash", "@type": "xsd:string" },
+        "mined_by": { "@id": "covalent:Block/minedBy", "@type": "xsd:string" },
+        "extra_data": { "@id": "covalent:Block/extraData", "@type": "xsd:string" },
+        "gas_used": { "@id": "covalent:Block/gasUsed", "@type": "xsd:integer" },
+        "gas_limit": { "@id": "covalent:Block/gasLimit", "@type": "xsd:integer" }
+      }
+    },
+
+    "Chain": {
+      "@id": "covalent:Chain",
+      "@context": {
+        "name": { "@id": "covalent:Chain/name", "@type": "xsd:string" },
+        "chain_id": { "@id": "covalent:Chain/chainId", "@type": "xsd:integer" },
+        "is_testnet": { "@id": "covalent:Chain/isTestnet", "@type": "xsd:boolean" },
+        "logo_url": { "@id": "covalent:Chain/logoUrl", "@type": "xsd:string" },
+        "label": { "@id": "covalent:Chain/label", "@type": "xsd:string" }
+      }
+    },
+
+    "Pipeline": {
+      "@id": "goldrush:Pipeline",
+      "@context": {
+        "id": { "@id": "goldrush:Pipeline/id", "@type": "xsd:string" },
+        "name": { "@id": "goldrush:Pipeline/name", "@type": "xsd:string" },
+        "state": { "@id": "goldrush:Pipeline/state", "@type": "xsd:string" },
+        "chain": { "@id": "goldrush:Pipeline/chain", "@type": "xsd:string" },
+        "destination": { "@id": "goldrush:Pipeline/destination" },
+        "created_at": { "@id": "goldrush:Pipeline/createdAt", "@type": "xsd:dateTime" }
+      }
+    },
+
+    "Destination": {
+      "@id": "goldrush:Destination",
+      "@context": {
+        "id": { "@id": "goldrush:Destination/id", "@type": "xsd:string" },
+        "name": { "@id": "goldrush:Destination/name", "@type": "xsd:string" },
+        "type": { "@id": "goldrush:Destination/type", "@type": "xsd:string" }
+      }
+    },
+
+    "HyperliquidInfoRequest": {
+      "@id": "goldrush:HyperliquidInfoRequest",
+      "@context": {
+        "type": { "@id": "goldrush:HyperliquidInfoRequest/type", "@type": "xsd:string" },
+        "user": { "@id": "goldrush:HyperliquidInfoRequest/user", "@type": "xsd:string" },
+        "coin": { "@id": "goldrush:HyperliquidInfoRequest/coin", "@type": "xsd:string" },
+        "startTime": { "@id": "goldrush:HyperliquidInfoRequest/startTime", "@type": "xsd:long" },
+        "endTime": { "@id": "goldrush:HyperliquidInfoRequest/endTime", "@type": "xsd:long" }
+      }
+    }
+  }
+}
