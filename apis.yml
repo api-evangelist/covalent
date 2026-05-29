@@ -75,6 +75,8 @@ apis:
     type: Documentation
   - url: openapi/covalent-streaming-api-openapi.yml
     type: OpenAPI
+  - url: asyncapi/covalent-asyncapi.yml
+    type: AsyncAPI
   - type: NaftikoCapability
     url: capabilities/streaming-ohlcv.yaml
   - type: NaftikoCapability

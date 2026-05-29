@@ -1,0 +1,699 @@
+asyncapi: 2.6.0
+info:
+  title: GoldRush Streaming API
+  version: "1.0.0"
+  description: |
+    Real-time blockchain data from GoldRush (Covalent) delivered over a single
+    WebSocket endpoint that speaks the GraphQL over WebSocket protocol
+    (`graphql-transport-ws`, the protocol implemented by the `graphql-ws`
+    library).
+
+    The Streaming API exposes one WebSocket URL. All real-time channels are
+    multiplexed over that single connection as GraphQL `subscribe` operations,
+    each identified by a client-chosen subscription `id`. The server pushes
+    `next` frames carrying the payload of each active GraphQL subscription
+    until the client sends `complete` or the socket closes.
+
+    Authentication is performed in the GraphQL-WS `connection_init` frame using
+    the `GOLDRUSH_API_KEY` connection parameter (the same bearer-format key
+    used elsewhere on the GoldRush platform). Raw WebSocket clients (i.e. not
+    using `graphql-ws`) must negotiate the `graphql-transport-ws` subprotocol
+    via `Sec-WebSocket-Protocol`.
+
+    Available real-time GraphQL subscriptions:
+      - newPairs                — New DEX pairs as they launch
+      - ohlcvCandlesForPair     — OHLCV candles for one or more DEX pairs
+      - ohlcvCandlesForToken    — OHLCV candles for one or more tokens
+      - updatePairs             — Live price / volume / liquidity for pairs
+      - updateTokens            — Live price / volume / liquidity for tokens
+      - walletTxs               — Wallet activity stream (EVM, Solana, HyperCore)
+
+    One-shot GraphQL queries (token search, top trader wallets for token,
+    wallet PnL by token, OHLCV pairs/tokens history) share the same WebSocket
+    endpoint but are request/response and are not modeled here — see the
+    Streaming API OpenAPI for the request shapes.
+  contact:
+    name: GoldRush Support
+    url: https://goldrush.dev/support/
+    email: support@covalenthq.com
+  license:
+    name: Proprietary
+    url: https://www.covalenthq.com/terms-of-service/
+  termsOfService: https://www.covalenthq.com/terms-of-service/
+
+servers:
+  production:
+    url: streaming.goldrushdata.com/graphql
+    protocol: wss
+    description: |
+      GoldRush Streaming API WebSocket endpoint. Speaks the
+      `graphql-transport-ws` subprotocol. Authenticate via the
+      `GOLDRUSH_API_KEY` field of the GraphQL-WS `connection_init` payload.
+    security:
+      - apiKey: []
+      - graphqlWsSubprotocol: []
+
+defaultContentType: application/json
+
+channels:
+  /graphql:
+    description: |
+      Single multiplexed channel. The client and server exchange
+      `graphql-transport-ws` control frames (`connection_init`, `subscribe`,
+      `next`, `error`, `complete`, `ping`, `pong`) over this connection. Each
+      active subscription is identified by a client-generated `id` and carries
+      one of the supported GoldRush GraphQL subscription operations.
+    bindings:
+      ws:
+        bindingVersion: "0.1.0"
+        method: GET
+        headers:
+          type: object
+          properties:
+            Sec-WebSocket-Protocol:
+              type: string
+              const: graphql-transport-ws
+              description: |
+                Required when connecting with a raw WebSocket client.
+                The `graphql-ws` library sets this automatically.
+    publish:
+      operationId: clientToServer
+      summary: Frames sent by the client to the server.
+      description: |
+        Control and subscribe frames sent from the client to GoldRush over the
+        GraphQL-WS channel.
+      message:
+        oneOf:
+          - $ref: "#/components/messages/ConnectionInit"
+          - $ref: "#/components/messages/Subscribe"
+          - $ref: "#/components/messages/Complete"
+          - $ref: "#/components/messages/Ping"
+          - $ref: "#/components/messages/Pong"
+    subscribe:
+      operationId: serverToClient
+      summary: Frames pushed by the server to the client.
+      description: |
+        Acknowledgement, data and lifecycle frames pushed from GoldRush to the
+        client. Each `next` frame carries the GraphQL payload of one active
+        subscription, identified by `id`.
+      message:
+        oneOf:
+          - $ref: "#/components/messages/ConnectionAck"
+          - $ref: "#/components/messages/Next"
+          - $ref: "#/components/messages/ErrorFrame"
+          - $ref: "#/components/messages/Complete"
+          - $ref: "#/components/messages/Ping"
+          - $ref: "#/components/messages/Pong"
+
+components:
+  securitySchemes:
+    apiKey:
+      type: userPassword
+      description: |
+        GoldRush API key (format `cqt_xxxxxxxxxxxxxxxxxxxx`). Send it inside
+        the GraphQL-WS `connection_init` payload as
+        `{ "GOLDRUSH_API_KEY": "<your-key>" }`. The GoldRush platform mints
+        keys in the dashboard at https://goldrush.dev/platform/.
+    graphqlWsSubprotocol:
+      type: apiKey
+      in: user
+      description: |
+        Raw WebSocket clients must negotiate the `graphql-transport-ws`
+        WebSocket subprotocol via the `Sec-WebSocket-Protocol` header during
+        the handshake. The `graphql-ws` SDK handles this automatically.
+
+  messages:
+    ConnectionInit:
+      name: ConnectionInit
+      title: connection_init
+      summary: Open the GraphQL-WS session and authenticate.
+      description: |
+        First frame sent by the client. Carries the API key in
+        `payload.GOLDRUSH_API_KEY`. The server replies with
+        `connection_ack` on success.
+      contentType: application/json
+      payload:
+        type: object
+        required: [type, payload]
+        properties:
+          type:
+            type: string
+            const: connection_init
+          payload:
+            type: object
+            required: [GOLDRUSH_API_KEY]
+            properties:
+              GOLDRUSH_API_KEY:
+                type: string
+                description: GoldRush API key.
+                example: cqt_xxxxxxxxxxxxxxxxxxxxxxxx
+
+    ConnectionAck:
+      name: ConnectionAck
+      title: connection_ack
+      summary: Server acknowledgement of a successful connection_init.
+      contentType: application/json
+      payload:
+        type: object
+        required: [type]
+        properties:
+          type:
+            type: string
+            const: connection_ack
+          payload:
+            type: object
+
+    Subscribe:
+      name: Subscribe
+      title: subscribe
+      summary: Start a new GraphQL subscription on this connection.
+      description: |
+        Client frame that opens one of the supported GoldRush GraphQL
+        subscriptions (`newPairs`, `ohlcvCandlesForPair`,
+        `ohlcvCandlesForToken`, `updatePairs`, `updateTokens`, `walletTxs`).
+        Each `subscribe` frame is tagged with a client-chosen `id` which the
+        server echoes on subsequent `next`, `error` and `complete` frames.
+      contentType: application/json
+      payload:
+        type: object
+        required: [id, type, payload]
+        properties:
+          id:
+            type: string
+            description: Client-chosen subscription identifier.
+          type:
+            type: string
+            const: subscribe
+          payload:
+            type: object
+            required: [query]
+            properties:
+              query:
+                type: string
+                description: GraphQL subscription document.
+              variables:
+                oneOf:
+                  - $ref: "#/components/schemas/NewPairsVariables"
+                  - $ref: "#/components/schemas/OhlcvCandlesForPairVariables"
+                  - $ref: "#/components/schemas/OhlcvCandlesForTokenVariables"
+                  - $ref: "#/components/schemas/UpdatePairsVariables"
+                  - $ref: "#/components/schemas/UpdateTokensVariables"
+                  - $ref: "#/components/schemas/WalletTxsVariables"
+              operationName:
+                type: string
+
+    Next:
+      name: Next
+      title: next
+      summary: Data frame carrying the payload of an active subscription.
+      description: |
+        Server pushes a `next` frame for every event published to one of the
+        client's active subscriptions. The `id` matches the `subscribe` frame
+        that opened the stream. `payload.data` carries the GraphQL result for
+        exactly one of the supported subscription operations.
+      contentType: application/json
+      payload:
+        type: object
+        required: [id, type, payload]
+        properties:
+          id:
+            type: string
+          type:
+            type: string
+            const: next
+          payload:
+            type: object
+            properties:
+              data:
+                oneOf:
+                  - type: object
+                    properties:
+                      newPairs:
+                        $ref: "#/components/schemas/NewPair"
+                  - type: object
+                    properties:
+                      ohlcvCandlesForPair:
+                        $ref: "#/components/schemas/OhlcvCandle"
+                  - type: object
+                    properties:
+                      ohlcvCandlesForToken:
+                        $ref: "#/components/schemas/OhlcvCandle"
+                  - type: object
+                    properties:
+                      updatePairs:
+                        $ref: "#/components/schemas/PairUpdate"
+                  - type: object
+                    properties:
+                      updateTokens:
+                        $ref: "#/components/schemas/TokenUpdate"
+                  - type: object
+                    properties:
+                      walletTxs:
+                        $ref: "#/components/schemas/WalletTx"
+              errors:
+                type: array
+                items:
+                  type: object
+
+    ErrorFrame:
+      name: Error
+      title: error
+      summary: GraphQL error frame for a specific subscription id.
+      contentType: application/json
+      payload:
+        type: object
+        required: [id, type, payload]
+        properties:
+          id:
+            type: string
+          type:
+            type: string
+            const: error
+          payload:
+            type: array
+            items:
+              type: object
+
+    Complete:
+      name: Complete
+      title: complete
+      summary: |
+        Lifecycle frame. Client sends to cancel an active subscription;
+        server sends when a subscription naturally terminates.
+      contentType: application/json
+      payload:
+        type: object
+        required: [id, type]
+        properties:
+          id:
+            type: string
+          type:
+            type: string
+            const: complete
+
+    Ping:
+      name: Ping
+      title: ping
+      summary: Keep-alive ping (either direction).
+      contentType: application/json
+      payload:
+        type: object
+        required: [type]
+        properties:
+          type:
+            type: string
+            const: ping
+          payload:
+            type: object
+
+    Pong:
+      name: Pong
+      title: pong
+      summary: Keep-alive pong (either direction).
+      contentType: application/json
+      payload:
+        type: object
+        required: [type]
+        properties:
+          type:
+            type: string
+            const: pong
+          payload:
+            type: object
+
+  schemas:
+    ChainName:
+      type: string
+      description: |
+        GraphQL enum of supported chains. Includes values such as
+        ETH_MAINNET, BASE_MAINNET, BSC_MAINNET, MATIC_MAINNET, SOLANA_MAINNET,
+        HYPERCORE_MAINNET, and others. See the GoldRush Streaming API
+        reference for the authoritative list.
+      example: BASE_MAINNET
+
+    DexProtocol:
+      type: string
+      description: GraphQL enum identifying a DEX protocol family.
+      example: UNISWAP_V3
+
+    OhlcvTimeInterval:
+      type: string
+      enum: [ONE_SECOND, ONE_MINUTE, ONE_HOUR]
+      description: Candle duration.
+
+    OhlcvTimeFrame:
+      type: string
+      description: |
+        Historical lookback for the streamed candles (GraphQL enum). Values
+        such as ONE_HOUR / ONE_DAY are supported; consult the live schema.
+      example: ONE_HOUR
+
+    ContractMetadata:
+      type: object
+      properties:
+        contract_name:
+          type: string
+        contract_address:
+          type: string
+        contract_decimals:
+          type: integer
+        contract_ticker_symbol:
+          type: string
+
+    DeltaMetric:
+      type: object
+      description: Comparative metric over a rolling window.
+      properties:
+        previous_value:
+          type: number
+        current_value:
+          type: number
+        pct_change:
+          type: number
+
+    WindowMetrics:
+      type: object
+      description: |
+        Rolling-window metrics returned in updatePairs / updateTokens
+        for the last_5m / last_1hr / last_6hr / last_24hr buckets.
+      properties:
+        volume:
+          $ref: "#/components/schemas/DeltaMetric"
+        volume_usd:
+          $ref: "#/components/schemas/DeltaMetric"
+        price:
+          $ref: "#/components/schemas/DeltaMetric"
+        buy_count:
+          $ref: "#/components/schemas/DeltaMetric"
+        sell_count:
+          $ref: "#/components/schemas/DeltaMetric"
+        swap_count:
+          $ref: "#/components/schemas/DeltaMetric"
+        buy_volume:
+          $ref: "#/components/schemas/DeltaMetric"
+        sell_volume:
+          $ref: "#/components/schemas/DeltaMetric"
+        unique_buyers:
+          $ref: "#/components/schemas/DeltaMetric"
+        unique_sellers:
+          $ref: "#/components/schemas/DeltaMetric"
+
+    NewPairsVariables:
+      type: object
+      required: [chain_name, protocols]
+      properties:
+        chain_name:
+          $ref: "#/components/schemas/ChainName"
+        protocols:
+          type: array
+          items:
+            $ref: "#/components/schemas/DexProtocol"
+
+    NewPair:
+      type: object
+      properties:
+        chain_name:
+          $ref: "#/components/schemas/ChainName"
+        protocol:
+          $ref: "#/components/schemas/DexProtocol"
+        protocol_version:
+          type: string
+        pair_address:
+          type: string
+        pair:
+          $ref: "#/components/schemas/ContractMetadata"
+        base_token:
+          $ref: "#/components/schemas/ContractMetadata"
+        quote_token:
+          $ref: "#/components/schemas/ContractMetadata"
+        liquidity:
+          type: number
+        supply:
+          type: number
+        dev_holdings:
+          type: number
+        market_cap:
+          type: number
+        quote_rate:
+          type: number
+        quote_rate_usd:
+          type: number
+        tx_hash:
+          type: string
+        deployer_address:
+          type: string
+        event_name:
+          type: string
+        block_signed_at:
+          type: string
+          format: date-time
+
+    OhlcvCandlesForPairVariables:
+      type: object
+      required: [chain_name, pair_addresses, interval, timeframe]
+      properties:
+        chain_name:
+          $ref: "#/components/schemas/ChainName"
+        pair_addresses:
+          type: array
+          maxItems: 5
+          items:
+            type: string
+        interval:
+          $ref: "#/components/schemas/OhlcvTimeInterval"
+        timeframe:
+          $ref: "#/components/schemas/OhlcvTimeFrame"
+        limit:
+          type: integer
+
+    OhlcvCandlesForTokenVariables:
+      type: object
+      required: [chain_name, token_addresses, interval, timeframe]
+      properties:
+        chain_name:
+          $ref: "#/components/schemas/ChainName"
+        token_addresses:
+          type: array
+          maxItems: 5
+          items:
+            type: string
+        interval:
+          $ref: "#/components/schemas/OhlcvTimeInterval"
+        timeframe:
+          $ref: "#/components/schemas/OhlcvTimeFrame"
+        limit:
+          type: integer
+
+    OhlcvCandle:
+      type: object
+      properties:
+        id:
+          type: string
+        chain_name:
+          $ref: "#/components/schemas/ChainName"
+        pair_address:
+          type: string
+        base_token:
+          $ref: "#/components/schemas/ContractMetadata"
+        quote_token:
+          $ref: "#/components/schemas/ContractMetadata"
+        interval:
+          $ref: "#/components/schemas/OhlcvTimeInterval"
+        timeframe:
+          $ref: "#/components/schemas/OhlcvTimeFrame"
+        timestamp:
+          type: string
+          format: date-time
+        open:
+          type: number
+        high:
+          type: number
+        low:
+          type: number
+        close:
+          type: number
+        volume:
+          type: number
+        volume_usd:
+          type: number
+        quote_rate:
+          type: number
+        quote_rate_usd:
+          type: number
+
+    UpdatePairsVariables:
+      type: object
+      required: [chain_name, pair_addresses]
+      properties:
+        chain_name:
+          $ref: "#/components/schemas/ChainName"
+        pair_addresses:
+          type: array
+          maxItems: 5
+          items:
+            type: string
+
+    PairUpdate:
+      type: object
+      properties:
+        id:
+          type: string
+        chain_name:
+          $ref: "#/components/schemas/ChainName"
+        pair_address:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        direction:
+          type: string
+        trader:
+          type: string
+        sender:
+          type: string
+        liquidity:
+          type: number
+        market_cap:
+          type: number
+        quote_rate:
+          type: number
+        quote_rate_usd:
+          type: number
+        base_token:
+          $ref: "#/components/schemas/ContractMetadata"
+        quote_token:
+          $ref: "#/components/schemas/ContractMetadata"
+        last_5m:
+          $ref: "#/components/schemas/WindowMetrics"
+        last_1hr:
+          $ref: "#/components/schemas/WindowMetrics"
+        last_6hr:
+          $ref: "#/components/schemas/WindowMetrics"
+        last_24hr:
+          $ref: "#/components/schemas/WindowMetrics"
+
+    UpdateTokensVariables:
+      type: object
+      required: [chain_name, token_addresses]
+      properties:
+        chain_name:
+          $ref: "#/components/schemas/ChainName"
+        token_addresses:
+          type: array
+          maxItems: 5
+          items:
+            type: string
+
+    TokenUpdate:
+      type: object
+      properties:
+        id:
+          type: string
+        chain_name:
+          $ref: "#/components/schemas/ChainName"
+        pair_address:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        direction:
+          type: string
+        trader:
+          type: string
+        sender:
+          type: string
+        liquidity:
+          type: number
+        market_cap:
+          type: number
+        quote_rate:
+          type: number
+        quote_rate_usd:
+          type: number
+        base_token:
+          $ref: "#/components/schemas/ContractMetadata"
+        quote_token:
+          $ref: "#/components/schemas/ContractMetadata"
+        last_5m:
+          $ref: "#/components/schemas/WindowMetrics"
+        last_1hr:
+          $ref: "#/components/schemas/WindowMetrics"
+        last_6hr:
+          $ref: "#/components/schemas/WindowMetrics"
+        last_24hr:
+          $ref: "#/components/schemas/WindowMetrics"
+
+    WalletTxsVariables:
+      type: object
+      required: [wallet_addresses, chain_name]
+      description: |
+        `wallet_addresses` accepts up to 1000 addresses for
+        HYPERCORE_MAINNET, and up to 100 addresses for EVM and Solana chains.
+      properties:
+        wallet_addresses:
+          type: array
+          items:
+            type: string
+        chain_name:
+          $ref: "#/components/schemas/ChainName"
+
+    EventLog:
+      type: object
+      properties:
+        data:
+          type: string
+        emitter_address:
+          type: string
+        log_offset:
+          type: integer
+        topics:
+          type: array
+          items:
+            type: string
+
+    WalletTx:
+      type: object
+      description: |
+        One wallet transaction or event for a subscribed wallet. The
+        `decoded_details` field is a GraphQL union; possible variants include
+        ApproveTransaction, BridgeTransaction, DepositTransaction,
+        SwapTransaction, TransferTransaction, WithdrawTransaction, plus
+        HyperCore-specific events (HypercoreFillTransaction,
+        HypercoreDelegationEvent, HypercoreDepositEvent,
+        HypercoreFundingEvent, HypercoreLedgerEvent,
+        HypercoreWithdrawalEvent) and ErrorDetails.
+      properties:
+        chain_name:
+          $ref: "#/components/schemas/ChainName"
+        tx_hash:
+          type: string
+        block_hash:
+          type: string
+        block_height:
+          type: integer
+        block_signed_at:
+          type: string
+          format: date-time
+        tx_offset:
+          type: integer
+        from_address:
+          type: string
+        to_address:
+          type: string
+        miner_address:
+          type: string
+        value:
+          type: string
+        gas_used:
+          type: integer
+        successful:
+          type: boolean
+        decoded_type:
+          type: string
+        decoded_details:
+          type: object
+          description: Polymorphic GraphQL union describing the decoded event.
+        logs:
+          type: array
+          items:
+            $ref: "#/components/schemas/EventLog"
