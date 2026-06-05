@@ -38,26 +38,12 @@ apis:
     type: JSONSchema
   - url: json-ld/covalent-context.jsonld
     type: JSONLD
-  - type: NaftikoCapability
-    url: capabilities/foundational-balances.yaml
-  - type: NaftikoCapability
-    url: capabilities/foundational-transactions.yaml
-  - type: NaftikoCapability
-    url: capabilities/foundational-nft.yaml
-  - type: NaftikoCapability
-    url: capabilities/foundational-base.yaml
-  - type: NaftikoCapability
-    url: capabilities/foundational-cross-chain.yaml
-  - type: NaftikoCapability
-    url: capabilities/foundational-pricing.yaml
-  - type: NaftikoCapability
-    url: capabilities/foundational-security.yaml
-  description: REST API providing structured historical blockchain data across 100+ chains. Resource families
-    include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3
-    paginated, time-bucketed, by-block), NFTs (ownership, holdings, metadata), Base service (blocks, logs, gas
-    prices, address resolution), Cross-Chain Activity (locate active chains for an address in one call), Pricing
-    (historical token prices, pool spot prices), and Security (token approvals). Bearer-token authentication,
-    credit-metered, realtime processing.
+  description: >-
+    REST API providing structured historical blockchain data across 100+ chains. Resource families include Balances
+    (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed,
+    by-block), NFTs (ownership, holdings, metadata), Base service (blocks, logs, gas prices, address resolution),
+    Cross-Chain Activity (locate active chains for an address in one call), Pricing (historical token prices, pool
+    spot prices), and Security (token approvals). Bearer-token authentication, credit-metered, realtime processing.
 - aid: covalent:goldrush-streaming-api
   name: GoldRush Streaming API
   tags:
@@ -77,16 +63,13 @@ apis:
     type: OpenAPI
   - url: asyncapi/covalent-asyncapi.yml
     type: AsyncAPI
-  - type: NaftikoCapability
-    url: capabilities/streaming-ohlcv.yaml
-  - type: NaftikoCapability
-    url: capabilities/streaming-pairs.yaml
-  - type: NaftikoCapability
-    url: capabilities/streaming-wallet-activity.yaml
-  description: Real-time blockchain events via GraphQL over WebSockets with sub-second latency. Includes one-shot
-    queries (OHLCV pairs and tokens, token search, top trader wallets, wallet PnL by token) and live subscriptions
-    (new DEX pairs stream, OHLCV pairs and tokens streams, update pairs and tokens streams, wallet activity
-    stream). Designed for trading bots, dashboards, gaming, and AI agents that need push-based updates.
+  - url: graphql/covalent-graphql.md
+    type: GraphQL
+  description: >-
+    Real-time blockchain events via GraphQL over WebSockets with sub-second latency. Includes one-shot queries (OHLCV
+    pairs and tokens, token search, top trader wallets, wallet PnL by token) and live subscriptions (new DEX pairs
+    stream, OHLCV pairs and tokens streams, update pairs and tokens streams, wallet activity stream). Designed for
+    trading bots, dashboards, gaming, and AI agents that need push-based updates.
 - aid: covalent:goldrush-pipeline-api
   name: GoldRush Pipeline API
   tags:
@@ -113,15 +96,12 @@ apis:
     type: Documentation
   - url: openapi/covalent-pipeline-api-openapi.yml
     type: OpenAPI
-  - type: NaftikoCapability
-    url: capabilities/pipeline-jobs.yaml
-  - type: NaftikoCapability
-    url: capabilities/pipeline-destinations.yaml
-  description: Managed data pipeline that streams decoded blockchain data into your own infrastructure across
-    20+ chains. Pipelines configure source chains, ABI decoding (event logs and functions), SQL transforms,
-    and destinations including ClickHouse, Kafka, S3/GCS/R2 object storage, Postgres, AWS SQS, and Webhooks.
-    Service Keys are the credential type for programmatic pipeline management. Use cases include data warehousing,
-    analytics, ETL, and backend indexing.
+  description: >-
+    Managed data pipeline that streams decoded blockchain data into your own infrastructure across 20+ chains.
+    Pipelines configure source chains, ABI decoding (event logs and functions), SQL transforms, and destinations
+    including ClickHouse, Kafka, S3/GCS/R2 object storage, Postgres, AWS SQS, and Webhooks. Service Keys are the
+    credential type for programmatic pipeline management. Use cases include data warehousing, analytics, ETL, and
+    backend indexing.
 - aid: covalent:goldrush-hyperliquid-info-api
   name: GoldRush Hyperliquid Info API
   tags:
@@ -142,16 +122,13 @@ apis:
     type: Documentation
   - url: openapi/covalent-hyperliquid-info-api-openapi.yml
     type: OpenAPI
-  - type: NaftikoCapability
-    url: capabilities/hyperliquid-markets.yaml
-  - type: NaftikoCapability
-    url: capabilities/hyperliquid-users.yaml
-  description: Drop-in replacement for the public Hyperliquid /info API hosted at hypercore.goldrushdata.com.
-    Supports 18 info types including clearinghouseState, batchClearinghouseState, spotClearinghouseState,
-    spotMetaAndAssetCtxs, metaAndAssetCtxs, frontendOpenOrders, userFills / userFillsByTime, userFunding,
-    userTwapSliceFills, userNonFundingLedgerUpdates, userVaultEquities, delegatorHistory, delegatorRewards,
-    delegatorSummary, subAccounts, batchSpotClearinghouseState, and outcomeMeta. Adds caching, batching, and
-    HIP-3 / HIP-4 outcome market coverage on top of the canonical Hyperliquid feed.
+  description: >-
+    Drop-in replacement for the public Hyperliquid /info API hosted at hypercore.goldrushdata.com. Supports 18 info
+    types including clearinghouseState, batchClearinghouseState, spotClearinghouseState, spotMetaAndAssetCtxs,
+    metaAndAssetCtxs, frontendOpenOrders, userFills / userFillsByTime, userFunding, userTwapSliceFills,
+    userNonFundingLedgerUpdates, userVaultEquities, delegatorHistory, delegatorRewards, delegatorSummary, subAccounts,
+    batchSpotClearinghouseState, and outcomeMeta. Adds caching, batching, and HIP-3 / HIP-4 outcome market coverage on
+    top of the canonical Hyperliquid feed.
 - aid: covalent:goldrush-hyperliquid-websocket-api
   name: GoldRush Hyperliquid WebSocket API
   tags:
@@ -172,12 +149,11 @@ apis:
     type: Documentation
   - url: https://goldrush.dev/docs/api-reference/hyperliquid/websocket-api/l4-order-book
     type: Documentation
-  - type: NaftikoCapability
-    url: capabilities/hyperliquid-orderbook.yaml
-  description: WebSocket channels for Hyperliquid markets including l2Book (wire-equal to the public feed),
-    l2BookDiff (GoldRush-exclusive differential updates), and l4Book (order-level GoldRush-exclusive channel)
-    plus wallet firehose, liquidations and vault events, HIP-3 markets, and HIP-4 outcome market streams. Hosted
-    at wss://hypercore.goldrushdata.com/ws for ultra-low-latency trading and analytics.
+  description: >-
+    WebSocket channels for Hyperliquid markets including l2Book (wire-equal to the public feed), l2BookDiff
+    (GoldRush-exclusive differential updates), and l4Book (order-level GoldRush-exclusive channel) plus wallet
+    firehose, liquidations and vault events, HIP-3 markets, and HIP-4 outcome market streams. Hosted at
+    wss://hypercore.goldrushdata.com/ws for ultra-low-latency trading and analytics.
 - aid: covalent:goldrush-x402-api
   name: GoldRush x402 API
   tags:
@@ -193,12 +169,10 @@ apis:
     type: Documentation
   - url: openapi/covalent-x402-api-openapi.yml
     type: OpenAPI
-  - type: NaftikoCapability
-    url: capabilities/x402-endpoints.yaml
-  description: Pay-per-request HTTP 402 endpoints designed for autonomous AI agents and onchain micropayments.
-    Lists and searches available x402 endpoints, exposes token balance and recent transaction lookups via the
-    402 settlement flow, and returns per-endpoint metadata for agents to discover and pay for data without a
-    long-lived API key.
+  description: >-
+    Pay-per-request HTTP 402 endpoints designed for autonomous AI agents and onchain micropayments. Lists and searches
+    available x402 endpoints, exposes token balance and recent transaction lookups via the 402 settlement flow, and
+    returns per-endpoint metadata for agents to discover and pay for data without a long-lived API key.
 name: Covalent
 tags:
 - Blockchain
@@ -438,7 +412,9 @@ common:
   data:
   - id: bearer
     name: Bearer Token
-    description: "Send your GoldRush API key as a bearer token in the Authorization header — `Authorization: Bearer cqt_xxxxxxxxxxxxxxxxxxxx`. Keys are minted in the GoldRush Platform dashboard."
+    description: >-
+      Send your GoldRush API key as a bearer token in the Authorization header — `Authorization: Bearer
+      cqt_xxxxxxxxxxxxxxxxxxxx`. Keys are minted in the GoldRush Platform dashboard.
 - name: Supported Chains
   type: Documentation
   data:
@@ -447,13 +423,15 @@ common:
     description: Base, BNB Smart Chain (BSC), Ethereum, Gnosis, Optimism, Polygon.
   - id: frontier
     name: Frontier Support
-    description: ADI Chain, ApeChain, Arbitrum, Arbitrum Nova, Arc Testnet, Avalanche C-Chain, Axie/Ronin,
-      Berachain, Bitcoin, HyperCore, HyperEVM, Ink, Linea, Mantle, MegaETH, Monad, Oasis Sapphire, Plasma,
-      Scroll, Sei, Solana, Sonic, Taiko, Unichain, Viction, World Chain, zkSync Era.
+    description: >-
+      ADI Chain, ApeChain, Arbitrum, Arbitrum Nova, Arc Testnet, Avalanche C-Chain, Axie/Ronin, Berachain, Bitcoin,
+      HyperCore, HyperEVM, Ink, Linea, Mantle, MegaETH, Monad, Oasis Sapphire, Plasma, Scroll, Sei, Solana, Sonic,
+      Taiko, Unichain, Viction, World Chain, zkSync Era.
   - id: community
     name: Community Support
-    description: Blast, Canto, Celo, Cronos zkEVM, Fantom, Manta Pacific Testnet, Moonbeam, Moonriver, Oasis,
-      opBNB, Redstone, ZetaChain.
+    description: >-
+      Blast, Canto, Celo, Cronos zkEVM, Fantom, Manta Pacific Testnet, Moonbeam, Moonriver, Oasis, opBNB, Redstone,
+      ZetaChain.
   - id: archived
     name: Archived Support
     description: Cronos, Harmony.
