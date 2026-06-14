@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "GoldRush Hyperliquid Info API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Info",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query Hyperliquid Info Endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hypercore.goldrushdata.com/info",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "POSTs a JSON body with a required `type` discriminator. Supported types include `clearinghouseState`, `batchClearinghouseState`, `spotClearinghouseState`, `batchSpotClearinghouseState`, `metaAndAssetCtxs`, `spotMetaAndAssetCtxs`, `frontendOpenOrders`, `userFills`, `userFillsByTime`, `userFunding`, `userNonFundingLedgerUpdates`, `userTwapSliceFills`, `userVaultEquities`, `delegatorHistory`, `delegatorRewards`, `delegatorSummary`, `subAccounts`, and `outcomeMeta`.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

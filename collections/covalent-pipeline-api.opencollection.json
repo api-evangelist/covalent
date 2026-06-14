@@ -1,0 +1,282 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "GoldRush Pipeline API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pipelines",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Pipelines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pipeline.goldrush.dev/v1/pipelines"
+          },
+          "docs": "List Pipelines"
+        },
+        {
+          "info": {
+            "name": "Create Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pipeline.goldrush.dev/v1/pipelines",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Pipeline"
+        },
+        {
+          "info": {
+            "name": "Get Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pipeline.goldrush.dev/v1/pipelines/:pipelineId",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Pipeline"
+        },
+        {
+          "info": {
+            "name": "Update Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://pipeline.goldrush.dev/v1/pipelines/:pipelineId",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Pipeline"
+        },
+        {
+          "info": {
+            "name": "Delete Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://pipeline.goldrush.dev/v1/pipelines/:pipelineId",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete Pipeline"
+        },
+        {
+          "info": {
+            "name": "Start Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pipeline.goldrush.dev/v1/pipelines/:pipelineId/start",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Start Pipeline"
+        },
+        {
+          "info": {
+            "name": "Pause Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pipeline.goldrush.dev/v1/pipelines/:pipelineId/pause",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Pause Pipeline"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Destinations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Destinations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pipeline.goldrush.dev/v1/destinations"
+          },
+          "docs": "List Destinations"
+        },
+        {
+          "info": {
+            "name": "Create Destination",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pipeline.goldrush.dev/v1/destinations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Destination"
+        },
+        {
+          "info": {
+            "name": "Get Destination",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pipeline.goldrush.dev/v1/destinations/:destinationId",
+            "params": [
+              {
+                "name": "destinationId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Destination"
+        },
+        {
+          "info": {
+            "name": "Delete Destination",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://pipeline.goldrush.dev/v1/destinations/:destinationId",
+            "params": [
+              {
+                "name": "destinationId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete Destination"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ABI",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List ABIs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pipeline.goldrush.dev/v1/abis"
+          },
+          "docs": "List ABIs"
+        },
+        {
+          "info": {
+            "name": "Upload ABI",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pipeline.goldrush.dev/v1/abis",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upload ABI"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Transforms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List SQL Transforms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pipeline.goldrush.dev/v1/transforms"
+          },
+          "docs": "List SQL Transforms"
+        },
+        {
+          "info": {
+            "name": "Create SQL Transform",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pipeline.goldrush.dev/v1/transforms",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create SQL Transform"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

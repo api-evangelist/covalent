@@ -1,0 +1,125 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "GoldRush x402 API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Discovery",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Available X402 Endpoints",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/x402/endpoints"
+          },
+          "docs": "List All Available X402 Endpoints"
+        },
+        {
+          "info": {
+            "name": "Search X402 Endpoints",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/x402/endpoints/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search X402 Endpoints"
+        },
+        {
+          "info": {
+            "name": "Get Details For A Specific X402 Endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/x402/endpoints/:endpointId",
+            "params": [
+              {
+                "name": "endpointId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Details For A Specific X402 Endpoint"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Token Balances For Address (X402)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/x402/:chainName/address/:walletAddress/balances_v2/",
+            "params": [
+              {
+                "name": "chainName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "walletAddress",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Token Balances For Address (X402)"
+        },
+        {
+          "info": {
+            "name": "Get Recent Transactions For Address (X402)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/x402/:chainName/address/:walletAddress/transactions_v3/",
+            "params": [
+              {
+                "name": "chainName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "walletAddress",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Recent Transactions For Address (X402)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

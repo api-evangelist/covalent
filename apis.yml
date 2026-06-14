@@ -1,5 +1,6 @@
 aid: covalent
 url: https://raw.githubusercontent.com/api-evangelist/covalent/refs/heads/main/apis.yml
+modified: 2026-06-14
 apis:
 - aid: covalent:goldrush-foundational-api
   name: GoldRush Foundational API
@@ -435,6 +436,9 @@ common:
   - id: archived
     name: Archived Support
     description: Cronos, Harmony.
+- url: vocabulary/covalent-vocabulary.json
+  name: GoldRush API Vocabulary
+  type: Vocabulary
 - name: Compliance
   type: Compliance
   data:

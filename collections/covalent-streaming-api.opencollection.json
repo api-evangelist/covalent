@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "GoldRush Streaming API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GraphQL",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Execute Streaming GraphQL Operation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://streaming.goldrush.dev/graphql",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes a GraphQL `query` or `subscription` operation. Supported queries: `ohlcvPairs`, `ohlcvTokens`, `tokenSearch`, `topTraderWalletsForToken`, `walletPnlByToken`. Supported subscriptions (upgrade to WebSocket on the same path): `newDexPairs`, `ohlcvPairs`, `ohlcvTokens`, `updatePairs`, `updateTokens`, `walletActivity`.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

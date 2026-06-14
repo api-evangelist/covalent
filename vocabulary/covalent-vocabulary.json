@@ -1,0 +1,298 @@
+{
+  "vocabulary": {
+    "name": "GoldRush / Covalent API Vocabulary",
+    "description": "Domain terminology for Covalent GoldRush APIs covering blockchain data, balances, transactions, NFTs, pipelines, and Hyperliquid market data.",
+    "version": "1.0.0",
+    "url": "https://goldrush.dev/docs/",
+    "terms": [
+      {
+        "term": "chain_id",
+        "label": "Chain ID",
+        "definition": "Numeric identifier for an EVM-compatible blockchain network (e.g., 1 for Ethereum mainnet, 137 for Polygon, 8453 for Base). Used to disambiguate identical addresses across networks.",
+        "type": "integer",
+        "tags": ["blockchain", "multi-chain"]
+      },
+      {
+        "term": "chain_name",
+        "label": "Chain Name",
+        "definition": "Human-readable slug identifying a blockchain network (e.g., 'eth-mainnet', 'base-mainnet', 'polygon-mainnet'). Used as a path parameter in most GoldRush Foundational API endpoints.",
+        "type": "string",
+        "tags": ["blockchain", "multi-chain"]
+      },
+      {
+        "term": "wallet_address",
+        "label": "Wallet Address",
+        "definition": "A 0x-prefixed hex string identifying an Ethereum-style account on an EVM chain. ENS names, Lens handles, and Unstoppable Domain names are also accepted on the Base service resolve endpoint.",
+        "type": "string",
+        "tags": ["blockchain", "identity"]
+      },
+      {
+        "term": "contract_address",
+        "label": "Contract Address",
+        "definition": "A 0x-prefixed hex string identifying a deployed smart contract (e.g., an ERC20 token, NFT collection, or DEX pool) on an EVM chain.",
+        "type": "string",
+        "tags": ["blockchain", "smart-contract"]
+      },
+      {
+        "term": "balance",
+        "label": "Token Balance",
+        "definition": "Raw on-chain token balance expressed as an integer string in the token's smallest denomination (e.g., wei for ETH, with 18 decimals). Divide by 10^contract_decimals to get a human-readable amount.",
+        "type": "string",
+        "tags": ["balances", "token"]
+      },
+      {
+        "term": "quote",
+        "label": "Fiat Quote",
+        "definition": "The current USD (or selected quote_currency) value of a token holding, computed from the on-chain balance and the quote_rate spot price.",
+        "type": "number",
+        "tags": ["balances", "pricing"]
+      },
+      {
+        "term": "quote_rate",
+        "label": "Quote Rate",
+        "definition": "Spot price of one token unit in the requested quote currency (default USD). Null when the price feed is unavailable.",
+        "type": "number",
+        "tags": ["pricing", "token"]
+      },
+      {
+        "term": "quote_currency",
+        "label": "Quote Currency",
+        "definition": "Three-letter fiat or crypto currency code used to express token values throughout a response (e.g., 'USD', 'EUR', 'ETH'). Defaults to 'USD'.",
+        "type": "string",
+        "tags": ["pricing"]
+      },
+      {
+        "term": "contract_decimals",
+        "label": "Contract Decimals",
+        "definition": "Number of decimal places the token contract uses. Used to convert the raw balance string to a human-readable float. Most ERC20 tokens use 18 decimals; USDC uses 6.",
+        "type": "integer",
+        "tags": ["token", "balances"]
+      },
+      {
+        "term": "native_token",
+        "label": "Native Token",
+        "definition": "Boolean flag indicating the balance item represents the chain's native gas token (e.g., ETH on Ethereum, MATIC on Polygon) rather than a deployed ERC20 contract.",
+        "type": "boolean",
+        "tags": ["token", "balances"]
+      },
+      {
+        "term": "tx_hash",
+        "label": "Transaction Hash",
+        "definition": "66-character hex string (0x + 64 hex digits) uniquely identifying a transaction on a given chain. Sometimes called a transaction ID (TXID).",
+        "type": "string",
+        "tags": ["transactions", "blockchain"]
+      },
+      {
+        "term": "block_height",
+        "label": "Block Height",
+        "definition": "Sequential integer identifying a block's position in a blockchain. Block 0 is the genesis block. Used as a point-in-time reference for historical balance and portfolio queries.",
+        "type": "integer",
+        "tags": ["blockchain", "transactions"]
+      },
+      {
+        "term": "block_signed_at",
+        "label": "Block Signed At",
+        "definition": "ISO 8601 UTC timestamp recorded by the block proposer when the block was finalized. May differ slightly from wall-clock time depending on the chain's block time.",
+        "type": "string",
+        "format": "date-time",
+        "tags": ["blockchain", "transactions"]
+      },
+      {
+        "term": "gas_spent",
+        "label": "Gas Spent",
+        "definition": "Actual gas units consumed by a transaction (≤ gas_offered). Multiplied by gas_price to derive the total transaction fee.",
+        "type": "integer",
+        "tags": ["transactions", "gas"]
+      },
+      {
+        "term": "gas_price",
+        "label": "Gas Price",
+        "definition": "Price per gas unit in wei paid by the sender. Total fee = gas_spent × gas_price.",
+        "type": "integer",
+        "tags": ["transactions", "gas"]
+      },
+      {
+        "term": "log_events",
+        "label": "Log Events",
+        "definition": "Array of decoded EVM event logs emitted during a transaction. Each entry includes the sender contract, raw topic hashes, raw data, and a decoded object with the ABI-decoded event name, signature, and parameters.",
+        "type": "array",
+        "tags": ["transactions", "smart-contract", "abi"]
+      },
+      {
+        "term": "supports_erc",
+        "label": "Supports ERC",
+        "definition": "Array of token standard strings indicating which ERC interfaces the contract implements. Common values: 'erc20', 'erc721', 'erc1155'.",
+        "type": "array",
+        "tags": ["token", "nft"]
+      },
+      {
+        "term": "nft_data",
+        "label": "NFT Data",
+        "definition": "Array of individual NFT token records present in an ERC-721 or ERC-1155 balance item, including token_id, token_balance, token_url, and external metadata.",
+        "type": "array",
+        "tags": ["nft"]
+      },
+      {
+        "term": "topic_hash",
+        "label": "Topic Hash",
+        "definition": "Keccak-256 hash of an EVM event signature (e.g., Transfer(address,address,uint256)). Used to filter log events in the Base service log endpoints.",
+        "type": "string",
+        "tags": ["blockchain", "smart-contract", "abi"]
+      },
+      {
+        "term": "time_bucket",
+        "label": "Time Bucket",
+        "definition": "Integer index used in the bulk transactions endpoint representing a UTC-day window. Time bucket 0 = most recent day, 1 = the previous day, etc.",
+        "type": "integer",
+        "tags": ["transactions", "pagination"]
+      },
+      {
+        "term": "pipeline",
+        "label": "Pipeline",
+        "definition": "A GoldRush Pipeline API resource that continuously streams decoded blockchain data from a source chain to a configured destination (ClickHouse, Kafka, S3, Postgres, SQS, or Webhook).",
+        "type": "object",
+        "tags": ["pipeline", "etl"]
+      },
+      {
+        "term": "destination",
+        "label": "Destination",
+        "definition": "The target data store or messaging system where a Pipeline delivers decoded blockchain events. Supported types: clickhouse, kafka, s3, gcs, r2, postgres, sqs, webhook.",
+        "type": "object",
+        "tags": ["pipeline", "etl"]
+      },
+      {
+        "term": "abi_decoding",
+        "label": "ABI Decoding",
+        "definition": "Process of translating raw EVM transaction input data and log event bytes into human-readable parameter names and values using a smart contract's Application Binary Interface (ABI).",
+        "type": "concept",
+        "tags": ["pipeline", "smart-contract", "abi"]
+      },
+      {
+        "term": "service_key",
+        "label": "Service Key",
+        "definition": "Credential type used to authenticate programmatic access to the GoldRush Pipeline API. Distinct from the API key (Bearer token) used by the Foundational and other REST APIs.",
+        "type": "string",
+        "tags": ["authentication", "pipeline"]
+      },
+      {
+        "term": "bearer_token",
+        "label": "Bearer Token",
+        "definition": "GoldRush API key sent in the HTTP Authorization header as 'Bearer cqt_xxxxxxxxxxxxxxxxxxxx'. Minted in the GoldRush Platform dashboard. Required for all Foundational, Streaming, Hyperliquid, and x402 API calls.",
+        "type": "string",
+        "tags": ["authentication"]
+      },
+      {
+        "term": "credits",
+        "label": "API Credits",
+        "definition": "Unit of consumption metering for GoldRush API calls. Each endpoint costs a defined number of credits per call. Monthly credit allotments vary by plan (Free: 25,000; Vibe Coding: 10,000; Professional: 300,000). Flex credits can be purchased beyond the allotment.",
+        "type": "integer",
+        "tags": ["billing", "rate-limits"]
+      },
+      {
+        "term": "ohlcv",
+        "label": "OHLCV",
+        "definition": "Open-High-Low-Close-Volume candlestick data for a trading pair. Provided by the GoldRush Streaming API for DEX trading pairs and tokens in both one-shot query and live subscription form.",
+        "type": "object",
+        "tags": ["streaming", "trading", "dex"]
+      },
+      {
+        "term": "dex_pair",
+        "label": "DEX Pair",
+        "definition": "A liquidity pool or trading pair on a decentralized exchange (e.g., ETH/USDC on Uniswap). Identified by a pool contract address on a specific chain.",
+        "type": "object",
+        "tags": ["streaming", "dex", "trading"]
+      },
+      {
+        "term": "subscription",
+        "label": "WebSocket Subscription",
+        "definition": "A persistent GraphQL-over-WebSocket channel that pushes real-time events to the client. GoldRush Streaming API subscriptions include new DEX pairs, OHLCV updates, wallet activity, and Hyperliquid order book streams.",
+        "type": "concept",
+        "tags": ["streaming", "websocket", "real-time"]
+      },
+      {
+        "term": "clearinghouse_state",
+        "label": "Clearinghouse State",
+        "definition": "Hyperliquid perpetuals account snapshot including open positions, margin, leverage, and unrealized PnL for a given wallet address. Returned by the GoldRush Hyperliquid Info API clearinghouseState request type.",
+        "type": "object",
+        "tags": ["hyperliquid", "trading", "perpetuals"]
+      },
+      {
+        "term": "x402",
+        "label": "HTTP 402 Payment Required",
+        "definition": "Protocol extension where an API endpoint returns HTTP 402 with payment metadata; the client (typically an AI agent) settles a micropayment on-chain and retries. GoldRush x402 endpoints enable per-request blockchain data access without a long-lived API key.",
+        "type": "concept",
+        "tags": ["x402", "payments", "ai-agents"]
+      },
+      {
+        "term": "spot_clearinghouse_state",
+        "label": "Spot Clearinghouse State",
+        "definition": "Hyperliquid spot market account snapshot showing token balances held in the clearinghouse for a user address. Returned by the spotClearinghouseState request type in the GoldRush Hyperliquid Info API.",
+        "type": "object",
+        "tags": ["hyperliquid", "trading", "spot"]
+      },
+      {
+        "term": "l2_book",
+        "label": "L2 Order Book",
+        "definition": "Level-2 aggregated order book snapshot showing price levels and total size at each level for a Hyperliquid market. Wire-compatible with the public Hyperliquid feed; delivered via the GoldRush Hyperliquid WebSocket API.",
+        "type": "object",
+        "tags": ["hyperliquid", "order-book", "websocket"]
+      },
+      {
+        "term": "l2_book_diff",
+        "label": "L2 Order Book Diff",
+        "definition": "GoldRush-exclusive differential update channel for L2 order books, sending only changed price levels rather than full snapshots to reduce bandwidth.",
+        "type": "object",
+        "tags": ["hyperliquid", "order-book", "websocket"]
+      },
+      {
+        "term": "l4_book",
+        "label": "L4 Order Book",
+        "definition": "GoldRush-exclusive order-level view of a Hyperliquid market showing individual resting orders with their sizes and order IDs, enabling more granular order-flow analysis than L2.",
+        "type": "object",
+        "tags": ["hyperliquid", "order-book", "websocket"]
+      },
+      {
+        "term": "hip3",
+        "label": "HIP-3",
+        "definition": "Hyperliquid Improvement Proposal 3, defining programmatic native token creation (spot markets for new tokens). GoldRush covers HIP-3 outcome markets in both the Info and WebSocket APIs.",
+        "type": "concept",
+        "tags": ["hyperliquid", "spot", "trading"]
+      },
+      {
+        "term": "hip4",
+        "label": "HIP-4",
+        "definition": "Hyperliquid Improvement Proposal 4, defining prediction / outcome markets on Hyperliquid. Accessible via the GoldRush Hyperliquid Info and WebSocket APIs with dedicated outcomeMeta and outcome market stream endpoints.",
+        "type": "concept",
+        "tags": ["hyperliquid", "outcome-markets", "trading"]
+      },
+      {
+        "term": "cross_chain_activity",
+        "label": "Cross-Chain Activity",
+        "definition": "GoldRush endpoint family that locates all chains where a given wallet address has had on-chain activity in a single API call, returning chain names, chain IDs, and the most recent activity timestamp per chain.",
+        "type": "concept",
+        "tags": ["multi-chain", "cross-chain"]
+      },
+      {
+        "term": "token_approval",
+        "label": "Token Approval",
+        "definition": "An ERC20 or NFT allowance granted by a wallet to a spender contract, enabling the spender to transfer tokens on the owner's behalf. GoldRush Security Service surfaces outstanding approvals and risk exposure.",
+        "type": "object",
+        "tags": ["security", "smart-contract", "token"]
+      },
+      {
+        "term": "foundational_support",
+        "label": "Foundational Chain Support",
+        "definition": "The highest tier of GoldRush chain support, providing real-time indexing, full historical data, and SLA guarantees. Foundational chains: Base, BNB Smart Chain, Ethereum, Gnosis, Optimism, Polygon.",
+        "type": "concept",
+        "tags": ["multi-chain", "blockchain"]
+      },
+      {
+        "term": "frontier_support",
+        "label": "Frontier Chain Support",
+        "definition": "Second tier of GoldRush chain support for newer or lower-volume networks. Includes Arbitrum, Avalanche, Bitcoin, Berachain, Solana, Monad, MegaETH, zkSync Era, and others.",
+        "type": "concept",
+        "tags": ["multi-chain", "blockchain"]
+      }
+    ]
+  }
+}
