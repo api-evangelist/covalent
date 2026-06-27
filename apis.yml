@@ -231,7 +231,7 @@ common:
   type: Pricing
 - url: https://goldrush.dev/platform/
   name: GoldRush Platform Dashboard
-  type: SignIn
+  type: Login
 - url: https://goldrush.dev/support/
   name: GoldRush Support
   type: Support
@@ -249,25 +249,25 @@ common:
   type: Documentation
 - url: https://www.npmjs.com/package/@covalenthq/client-sdk
   name: GoldRush JavaScript/TypeScript Client SDK
-  type: SDK
+  type: SDKs
 - url: https://github.com/covalenthq/covalent-api-sdk-go
   name: GoldRush Go SDK
-  type: SDK
+  type: SDKs
 - url: https://github.com/covalenthq/goldrush-mcp-server
   name: GoldRush MCP Server (archived; superseded by CLI native MCP)
-  type: SDK
+  type: SDKs
 - url: https://github.com/covalenthq/goldrush-agent-skills
   name: GoldRush Agent Skills
-  type: SDK
+  type: SDKs
 - url: https://www.npmjs.com/package/@covalenthq/goldrush-cli
   name: GoldRush CLI
   type: CLI
 - url: https://github.com/covalenthq/goldrush-kit
   name: GoldRush Kit (React components, archived)
-  type: SDK
+  type: SDKs
 - url: https://github.com/covalenthq/ai-agent-sdk
   name: Covalent AI Agent SDK (Zero-Employee Enterprise, archived)
-  type: SDK
+  type: SDKs
 - url: https://github.com/covalenthq/goldrush-enhanced-spam-lists
   name: GoldRush Enhanced Spam Lists (ERC20 and NFT)
   type: Tools
