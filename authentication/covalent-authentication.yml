@@ -1,0 +1,18 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/covalent-foundational-api-openapi.yml, openapi/covalent-hyperliquid-info-api-openapi.yml,
+  openapi/covalent-pipeline-api-openapi.yml, openapi/covalent-streaming-api-openapi.yml, openapi/covalent-x402-api-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  description: 'GoldRush API key, sent as `Authorization: Bearer <key>`.'
+  sources:
+  - openapi/covalent-foundational-api-openapi.yml
+  - openapi/covalent-hyperliquid-info-api-openapi.yml
+  - openapi/covalent-pipeline-api-openapi.yml
+  - openapi/covalent-streaming-api-openapi.yml
+  - openapi/covalent-x402-api-openapi.yml
