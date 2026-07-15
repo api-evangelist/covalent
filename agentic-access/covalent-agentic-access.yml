@@ -1,0 +1,663 @@
+generated: '2026-07-15'
+method: generated
+source: openapi/covalent-foundational-api-openapi.yml, openapi/covalent-hyperliquid-info-api-openapi.yml,
+  openapi/covalent-pipeline-api-openapi.yml, openapi/covalent-streaming-api-openapi.yml, openapi/covalent-x402-api-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 58
+  by_action_class:
+    connected: 47
+    acting: 11
+  by_consequence:
+    read: 47
+    write: 11
+  human_in_the_loop_required: 0
+operations:
+- path: /v1/{chainName}/address/{walletAddress}/balances_v2/
+  method: get
+  operationId: getTokenBalancesForAddress
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{chainName}/address/{walletAddress}/balances_native/
+  method: get
+  operationId: getNativeTokenBalanceForAddress
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{chainName}/address/{walletAddress}/historical_balances/
+  method: get
+  operationId: getHistoricalTokenBalancesForAddress
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{chainName}/address/{walletAddress}/portfolio_v2/
+  method: get
+  operationId: getHistoricalPortfolioValueOverTime
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{chainName}/address/{walletAddress}/transfers_v2/
+  method: get
+  operationId: getErc20TokenTransfersForAddress
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{chainName}/tokens/{tokenAddress}/token_holders_v2/
+  method: get
+  operationId: getTokenHoldersAsOfBlockHeight
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{chainName}/address/{walletAddress}/transactions_v3/
+  method: get
+  operationId: getRecentTransactionsForAddressV3
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{chainName}/address/{walletAddress}/transactions_v3/page/{page}/
+  method: get
+  operationId: getPaginatedTransactionsForAddressV3
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{chainName}/address/{walletAddress}/transactions_v3/earliest/
+  method: get
+  operationId: getEarliestTransactionsForAddressV3
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{chainName}/bulk/transactions/{walletAddress}/{timeBucket}/
+  method: get
+  operationId: getBulkTimeBucketTransactionsForAddressV3
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{chainName}/address/{walletAddress}/transactions_summary/
+  method: get
+  operationId: getTransactionSummaryForAddress
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{chainName}/transaction_v2/{txHash}/
+  method: get
+  operationId: getTransaction
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{chainName}/block/{blockHeight}/transactions_v3/
+  method: get
+  operationId: getAllTransactionsInBlockV3
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{chainName}/block/{blockHeight}/transactions_v3/page/{page}/
+  method: get
+  operationId: getAllTransactionsInBlockByPageV3
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{chainName}/address/{walletAddress}/balances_nft/
+  method: get
+  operationId: getNftsForAddress
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{chainName}/tokens/{collectionContract}/nft_token_ids/{tokenId}/check_ownership/{walletAddress}/
+  method: get
+  operationId: checkOwnershipInNftCollectionForToken
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{chainName}/tokens/{collectionContract}/check_ownership/{walletAddress}/
+  method: get
+  operationId: checkOwnershipInNftCollection
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{chainName}/block_v2/{blockHeight}/
+  method: get
+  operationId: getBlock
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{chainName}/block_v2/{startDate}/{endDate}/
+  method: get
+  operationId: getBlockHeights
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/chains/
+  method: get
+  operationId: getAllChains
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/chains/status/
+  method: get
+  operationId: getAllChainStatuses
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{chainName}/event/topics/{topicHash}/
+  method: get
+  operationId: getLogEventsByTopicHash
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{chainName}/events/address/{contractAddress}/
+  method: get
+  operationId: getLogEventsByContractAddress
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{chainName}/events/
+  method: get
+  operationId: getLogs
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{chainName}/gas_prices/{eventType}/
+  method: get
+  operationId: getGasPrices
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{chainName}/address/{addressName}/resolve_address/
+  method: get
+  operationId: getResolvedAddress
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/address/{walletAddress}/activity/
+  method: get
+  operationId: getActivityAcrossAllChainsForAddress
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/allchains/address/{walletAddress}/balances/
+  method: get
+  operationId: getMultichainBalances
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/allchains/transactions/
+  method: get
+  operationId: getMultichainMultiaddressTransactions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/pricing/historical_by_addresses_v2/{chainName}/{quoteCurrency}/{contractAddresses}/
+  method: get
+  operationId: getHistoricalTokenPrices
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{chainName}/xy=k/{dexName}/pool/{poolAddress}/spot_prices/
+  method: get
+  operationId: getPoolSpotPrices
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/{chainName}/approvals/{walletAddress}/
+  method: get
+  operationId: getTokenApprovalsForAddress
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/bitcoin-mainnet/address/{walletAddress}/balances_v2/
+  method: get
+  operationId: getBitcoinBalanceForNonHdAddress
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/bitcoin-hd-mainnet/address/{walletAddress}/balances_v2/
+  method: get
+  operationId: getBitcoinBalancesForHdAddress
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/bitcoin-mainnet/address/{walletAddress}/historical_balances/
+  method: get
+  operationId: getHistoricalBitcoinBalanceForNonHdAddress
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/bitcoin-mainnet/address/{walletAddress}/transactions_v2/
+  method: get
+  operationId: getBitcoinTransactionsForNonHdAddress
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /info
+  method: post
+  operationId: queryHyperliquidInfo
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/pipelines
+  method: get
+  operationId: listPipelines
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/pipelines
+  method: post
+  operationId: createPipeline
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/pipelines/{pipelineId}
+  method: get
+  operationId: getPipeline
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/pipelines/{pipelineId}
+  method: patch
+  operationId: updatePipeline
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/pipelines/{pipelineId}
+  method: delete
+  operationId: deletePipeline
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/pipelines/{pipelineId}/start
+  method: post
+  operationId: startPipeline
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/pipelines/{pipelineId}/pause
+  method: post
+  operationId: pausePipeline
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/destinations
+  method: get
+  operationId: listDestinations
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/destinations
+  method: post
+  operationId: createDestination
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/destinations/{destinationId}
+  method: get
+  operationId: getDestination
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/destinations/{destinationId}
+  method: delete
+  operationId: deleteDestination
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/abis
+  method: get
+  operationId: listAbis
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/abis
+  method: post
+  operationId: uploadAbi
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/transforms
+  method: get
+  operationId: listTransforms
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/transforms
+  method: post
+  operationId: createTransform
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /graphql
+  method: post
+  operationId: executeStreamingGraphQLOperation
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/x402/endpoints
+  method: get
+  operationId: listX402Endpoints
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/x402/endpoints/search
+  method: get
+  operationId: searchX402Endpoints
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/x402/endpoints/{endpointId}
+  method: get
+  operationId: getX402Endpoint
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/x402/{chainName}/address/{walletAddress}/balances_v2/
+  method: get
+  operationId: getX402TokenBalancesForAddress
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/x402/{chainName}/address/{walletAddress}/transactions_v3/
+  method: get
+  operationId: getX402RecentTransactionsForAddress
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
