@@ -1,0 +1,55 @@
+openapi: 3.1.0
+info:
+  title: GoldRush Foundational ABI Security API
+  description: 'Structured historical blockchain data across 100+ chains via REST. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs, Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity, Pricing, and Security (token approvals).
+
+    '
+  version: v1
+  contact:
+    name: GoldRush Support
+    url: https://goldrush.dev/support/
+  license:
+    name: Covalent Terms of Service
+    url: https://www.covalenthq.com/terms-of-service/
+servers:
+- url: https://api.covalenthq.com
+  description: GoldRush production server
+security:
+- BearerAuth: []
+tags:
+- name: Security
+  description: Token approvals across ERC20 and NFT contracts.
+paths:
+  /v1/{chainName}/approvals/{walletAddress}/:
+    get:
+      summary: Get Token Approvals For Address
+      operationId: getTokenApprovalsForAddress
+      tags:
+      - Security
+      parameters:
+      - $ref: '#/components/parameters/ChainName'
+      - $ref: '#/components/parameters/WalletAddress'
+      responses:
+        '200':
+          description: OK
+components:
+  parameters:
+    ChainName:
+      name: chainName
+      in: path
+      required: true
+      description: Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID.
+      schema:
+        type: string
+    WalletAddress:
+      name: walletAddress
+      in: path
+      required: true
+      description: Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service.
+      schema:
+        type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: 'GoldRush API key, sent as `Authorization: Bearer <key>`.'

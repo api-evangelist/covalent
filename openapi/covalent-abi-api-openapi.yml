@@ -1,0 +1,69 @@
+openapi: 3.1.0
+info:
+  title: GoldRush Foundational ABI API
+  description: 'Structured historical blockchain data across 100+ chains via REST. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs, Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity, Pricing, and Security (token approvals).
+
+    '
+  version: v1
+  contact:
+    name: GoldRush Support
+    url: https://goldrush.dev/support/
+  license:
+    name: Covalent Terms of Service
+    url: https://www.covalenthq.com/terms-of-service/
+servers:
+- url: https://api.covalenthq.com
+  description: GoldRush production server
+security:
+- BearerAuth: []
+tags:
+- name: ABI
+  description: Manage ABI definitions used for log and function decoding.
+paths:
+  /v1/abis:
+    get:
+      summary: List ABIs
+      operationId: listAbis
+      tags:
+      - ABI
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: Upload ABI
+      operationId: uploadAbi
+      tags:
+      - ABI
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Abi'
+      responses:
+        '201':
+          description: Created
+components:
+  schemas:
+    Abi:
+      type: object
+      required:
+      - name
+      - abi
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+        abi:
+          type: array
+          description: JSON ABI definition.
+          items:
+            type: object
+            additionalProperties: true
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: 'GoldRush API key, sent as `Authorization: Bearer <key>`.'

@@ -1,0 +1,276 @@
+openapi: 3.1.0
+info:
+  title: GoldRush Foundational ABI Transactions API
+  description: 'Structured historical blockchain data across 100+ chains via REST. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs, Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity, Pricing, and Security (token approvals).
+
+    '
+  version: v1
+  contact:
+    name: GoldRush Support
+    url: https://goldrush.dev/support/
+  license:
+    name: Covalent Terms of Service
+    url: https://www.covalenthq.com/terms-of-service/
+servers:
+- url: https://api.covalenthq.com
+  description: GoldRush production server
+security:
+- BearerAuth: []
+tags:
+- name: Transactions
+  description: Transaction lookups by address, block, and time bucket.
+paths:
+  /v1/{chainName}/address/{walletAddress}/transfers_v2/:
+    get:
+      summary: Get ERC20 Token Transfers For Address
+      description: ERC20 transfer history for an address, filterable by contract.
+      operationId: getErc20TokenTransfersForAddress
+      tags:
+      - Transactions
+      parameters:
+      - $ref: '#/components/parameters/ChainName'
+      - $ref: '#/components/parameters/WalletAddress'
+      - name: contract-address
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+  /v1/{chainName}/address/{walletAddress}/transactions_v3/:
+    get:
+      summary: Get Recent Transactions For Address (v3)
+      description: Recent transactions for an address.
+      operationId: getRecentTransactionsForAddressV3
+      tags:
+      - Transactions
+      parameters:
+      - $ref: '#/components/parameters/ChainName'
+      - $ref: '#/components/parameters/WalletAddress'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionResponse'
+  /v1/{chainName}/address/{walletAddress}/transactions_v3/page/{page}/:
+    get:
+      summary: Get Paginated Transactions For Address (v3)
+      operationId: getPaginatedTransactionsForAddressV3
+      tags:
+      - Transactions
+      parameters:
+      - $ref: '#/components/parameters/ChainName'
+      - $ref: '#/components/parameters/WalletAddress'
+      - name: page
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+  /v1/{chainName}/address/{walletAddress}/transactions_v3/earliest/:
+    get:
+      summary: Get Earliest Transactions For Address (v3)
+      operationId: getEarliestTransactionsForAddressV3
+      tags:
+      - Transactions
+      parameters:
+      - $ref: '#/components/parameters/ChainName'
+      - $ref: '#/components/parameters/WalletAddress'
+      responses:
+        '200':
+          description: OK
+  /v1/{chainName}/bulk/transactions/{walletAddress}/{timeBucket}/:
+    get:
+      summary: Get Bulk Time Bucket Transactions For Address (v3)
+      description: Returns a bulk time-bucketed window of transactions.
+      operationId: getBulkTimeBucketTransactionsForAddressV3
+      tags:
+      - Transactions
+      parameters:
+      - $ref: '#/components/parameters/ChainName'
+      - $ref: '#/components/parameters/WalletAddress'
+      - name: timeBucket
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+  /v1/{chainName}/address/{walletAddress}/transactions_summary/:
+    get:
+      summary: Get Transaction Summary For Address
+      operationId: getTransactionSummaryForAddress
+      tags:
+      - Transactions
+      parameters:
+      - $ref: '#/components/parameters/ChainName'
+      - $ref: '#/components/parameters/WalletAddress'
+      responses:
+        '200':
+          description: OK
+  /v1/{chainName}/transaction_v2/{txHash}/:
+    get:
+      summary: Get A Transaction
+      operationId: getTransaction
+      tags:
+      - Transactions
+      parameters:
+      - $ref: '#/components/parameters/ChainName'
+      - name: txHash
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionResponse'
+  /v1/{chainName}/block/{blockHeight}/transactions_v3/:
+    get:
+      summary: Get All Transactions In A Block (v3)
+      operationId: getAllTransactionsInBlockV3
+      tags:
+      - Transactions
+      parameters:
+      - $ref: '#/components/parameters/ChainName'
+      - name: blockHeight
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+  /v1/{chainName}/block/{blockHeight}/transactions_v3/page/{page}/:
+    get:
+      summary: Get All Transactions In A Block By Page (v3)
+      operationId: getAllTransactionsInBlockByPageV3
+      tags:
+      - Transactions
+      parameters:
+      - $ref: '#/components/parameters/ChainName'
+      - name: blockHeight
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: page
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    TransactionResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            address:
+              type: string
+            updated_at:
+              type: string
+              format: date-time
+            next_update_at:
+              type: string
+              format: date-time
+            quote_currency:
+              type: string
+            chain_id:
+              type: integer
+            chain_name:
+              type: string
+            current_page:
+              type: integer
+            links:
+              type: object
+              properties:
+                prev:
+                  type: string
+                  nullable: true
+                next:
+                  type: string
+                  nullable: true
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/TransactionItem'
+    TransactionItem:
+      type: object
+      properties:
+        block_signed_at:
+          type: string
+          format: date-time
+        block_height:
+          type: integer
+        block_hash:
+          type: string
+        tx_hash:
+          type: string
+        tx_offset:
+          type: integer
+        successful:
+          type: boolean
+        from_address:
+          type: string
+        from_address_label:
+          type: string
+          nullable: true
+        to_address:
+          type: string
+        to_address_label:
+          type: string
+          nullable: true
+        value:
+          type: string
+        value_quote:
+          type: number
+        pretty_value_quote:
+          type: string
+        gas_offered:
+          type: integer
+        gas_spent:
+          type: integer
+        gas_price:
+          type: integer
+        gas_quote:
+          type: number
+        gas_quote_rate:
+          type: number
+        log_events:
+          type: array
+          items:
+            type: object
+  parameters:
+    ChainName:
+      name: chainName
+      in: path
+      required: true
+      description: Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID.
+      schema:
+        type: string
+    WalletAddress:
+      name: walletAddress
+      in: path
+      required: true
+      description: Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service.
+      schema:
+        type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: 'GoldRush API key, sent as `Authorization: Bearer <key>`.'

@@ -1,0 +1,66 @@
+openapi: 3.1.0
+info:
+  title: GoldRush Foundational ABI Transforms API
+  description: 'Structured historical blockchain data across 100+ chains via REST. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs, Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity, Pricing, and Security (token approvals).
+
+    '
+  version: v1
+  contact:
+    name: GoldRush Support
+    url: https://goldrush.dev/support/
+  license:
+    name: Covalent Terms of Service
+    url: https://www.covalenthq.com/terms-of-service/
+servers:
+- url: https://api.covalenthq.com
+  description: GoldRush production server
+security:
+- BearerAuth: []
+tags:
+- name: Transforms
+  description: Manage SQL transforms applied to decoded events before delivery.
+paths:
+  /v1/transforms:
+    get:
+      summary: List SQL Transforms
+      operationId: listTransforms
+      tags:
+      - Transforms
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: Create SQL Transform
+      operationId: createTransform
+      tags:
+      - Transforms
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transform'
+      responses:
+        '201':
+          description: Created
+components:
+  schemas:
+    Transform:
+      type: object
+      required:
+      - name
+      - sql
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+        sql:
+          type: string
+          description: SQL applied to the decoded event stream before delivery.
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: 'GoldRush API key, sent as `Authorization: Bearer <key>`.'

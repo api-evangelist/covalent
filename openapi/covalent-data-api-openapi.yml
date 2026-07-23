@@ -1,0 +1,100 @@
+openapi: 3.1.0
+info:
+  title: GoldRush Foundational ABI Data API
+  description: 'Structured historical blockchain data across 100+ chains via REST. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs, Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity, Pricing, and Security (token approvals).
+
+    '
+  version: v1
+  contact:
+    name: GoldRush Support
+    url: https://goldrush.dev/support/
+  license:
+    name: Covalent Terms of Service
+    url: https://www.covalenthq.com/terms-of-service/
+servers:
+- url: https://api.covalenthq.com
+  description: GoldRush production server
+security:
+- BearerAuth: []
+tags:
+- name: Data
+  description: x402-priced data endpoints.
+paths:
+  /v1/x402/{chainName}/address/{walletAddress}/balances_v2/:
+    get:
+      summary: Get Token Balances For Address (X402)
+      operationId: getX402TokenBalancesForAddress
+      tags:
+      - Data
+      parameters:
+      - name: chainName
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: walletAddress
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+        '402':
+          description: Payment Required - settle via x402 protocol and retry.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/X402Challenge'
+  /v1/x402/{chainName}/address/{walletAddress}/transactions_v3/:
+    get:
+      summary: Get Recent Transactions For Address (X402)
+      operationId: getX402RecentTransactionsForAddress
+      tags:
+      - Data
+      parameters:
+      - name: chainName
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: walletAddress
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+        '402':
+          description: Payment Required - settle via x402 protocol and retry.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/X402Challenge'
+components:
+  schemas:
+    X402Challenge:
+      type: object
+      properties:
+        scheme:
+          type: string
+          example: x402
+        recipient:
+          type: string
+        amount:
+          type: string
+        asset:
+          type: string
+        chain:
+          type: string
+        nonce:
+          type: string
+        expires:
+          type: integer
+          format: int64
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: 'GoldRush API key, sent as `Authorization: Bearer <key>`.'

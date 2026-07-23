@@ -1,0 +1,88 @@
+openapi: 3.1.0
+info:
+  title: GoldRush Foundational ABI Pricing API
+  description: 'Structured historical blockchain data across 100+ chains via REST. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs, Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity, Pricing, and Security (token approvals).
+
+    '
+  version: v1
+  contact:
+    name: GoldRush Support
+    url: https://goldrush.dev/support/
+  license:
+    name: Covalent Terms of Service
+    url: https://www.covalenthq.com/terms-of-service/
+servers:
+- url: https://api.covalenthq.com
+  description: GoldRush production server
+security:
+- BearerAuth: []
+tags:
+- name: Pricing
+  description: Historical token prices and pool spot prices.
+paths:
+  /v1/pricing/historical_by_addresses_v2/{chainName}/{quoteCurrency}/{contractAddresses}/:
+    get:
+      summary: Get Historical Token Prices
+      operationId: getHistoricalTokenPrices
+      tags:
+      - Pricing
+      parameters:
+      - $ref: '#/components/parameters/ChainName'
+      - name: quoteCurrency
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: contractAddresses
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: from
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: to
+        in: query
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: OK
+  /v1/{chainName}/xy=k/{dexName}/pool/{poolAddress}/spot_prices/:
+    get:
+      summary: Get Pool Spot Prices
+      operationId: getPoolSpotPrices
+      tags:
+      - Pricing
+      parameters:
+      - $ref: '#/components/parameters/ChainName'
+      - name: dexName
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: poolAddress
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+components:
+  parameters:
+    ChainName:
+      name: chainName
+      in: path
+      required: true
+      description: Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID.
+      schema:
+        type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: 'GoldRush API key, sent as `Authorization: Bearer <key>`.'

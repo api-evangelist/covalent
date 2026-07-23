@@ -1,0 +1,94 @@
+openapi: 3.1.0
+info:
+  title: GoldRush Foundational ABI NFT API
+  description: 'Structured historical blockchain data across 100+ chains via REST. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs, Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity, Pricing, and Security (token approvals).
+
+    '
+  version: v1
+  contact:
+    name: GoldRush Support
+    url: https://goldrush.dev/support/
+  license:
+    name: Covalent Terms of Service
+    url: https://www.covalenthq.com/terms-of-service/
+servers:
+- url: https://api.covalenthq.com
+  description: GoldRush production server
+security:
+- BearerAuth: []
+tags:
+- name: NFT
+  description: NFTs held by an address and collection ownership checks.
+paths:
+  /v1/{chainName}/address/{walletAddress}/balances_nft/:
+    get:
+      summary: Get NFTs For Address
+      operationId: getNftsForAddress
+      tags:
+      - NFT
+      parameters:
+      - $ref: '#/components/parameters/ChainName'
+      - $ref: '#/components/parameters/WalletAddress'
+      responses:
+        '200':
+          description: OK
+  /v1/{chainName}/tokens/{collectionContract}/nft_token_ids/{tokenId}/check_ownership/{walletAddress}/:
+    get:
+      summary: Check Ownership In NFT Collection For Specific Token
+      operationId: checkOwnershipInNftCollectionForToken
+      tags:
+      - NFT
+      parameters:
+      - $ref: '#/components/parameters/ChainName'
+      - name: collectionContract
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: tokenId
+        in: path
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/WalletAddress'
+      responses:
+        '200':
+          description: OK
+  /v1/{chainName}/tokens/{collectionContract}/check_ownership/{walletAddress}/:
+    get:
+      summary: Check Ownership In NFT Collection
+      operationId: checkOwnershipInNftCollection
+      tags:
+      - NFT
+      parameters:
+      - $ref: '#/components/parameters/ChainName'
+      - name: collectionContract
+        in: path
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/WalletAddress'
+      responses:
+        '200':
+          description: OK
+components:
+  parameters:
+    ChainName:
+      name: chainName
+      in: path
+      required: true
+      description: Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID.
+      schema:
+        type: string
+    WalletAddress:
+      name: walletAddress
+      in: path
+      required: true
+      description: Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service.
+      schema:
+        type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: 'GoldRush API key, sent as `Authorization: Bearer <key>`.'

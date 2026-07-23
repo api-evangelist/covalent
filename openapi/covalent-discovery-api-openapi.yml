@@ -1,0 +1,101 @@
+openapi: 3.1.0
+info:
+  title: GoldRush Foundational ABI Discovery API
+  description: 'Structured historical blockchain data across 100+ chains via REST. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs, Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity, Pricing, and Security (token approvals).
+
+    '
+  version: v1
+  contact:
+    name: GoldRush Support
+    url: https://goldrush.dev/support/
+  license:
+    name: Covalent Terms of Service
+    url: https://www.covalenthq.com/terms-of-service/
+servers:
+- url: https://api.covalenthq.com
+  description: GoldRush production server
+security:
+- BearerAuth: []
+tags:
+- name: Discovery
+  description: List and search x402 endpoints exposed by GoldRush.
+paths:
+  /v1/x402/endpoints:
+    get:
+      summary: List All Available X402 Endpoints
+      operationId: listX402Endpoints
+      tags:
+      - Discovery
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/X402Endpoint'
+  /v1/x402/endpoints/search:
+    get:
+      summary: Search X402 Endpoints
+      operationId: searchX402Endpoints
+      tags:
+      - Discovery
+      parameters:
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+  /v1/x402/endpoints/{endpointId}:
+    get:
+      summary: Get Details For A Specific X402 Endpoint
+      operationId: getX402Endpoint
+      tags:
+      - Discovery
+      parameters:
+      - name: endpointId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/X402Endpoint'
+components:
+  schemas:
+    X402Endpoint:
+      type: object
+      properties:
+        id:
+          type: string
+        path:
+          type: string
+        method:
+          type: string
+        description:
+          type: string
+        price:
+          type: object
+          properties:
+            amount:
+              type: string
+            asset:
+              type: string
+            chain:
+              type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: 'GoldRush API key, sent as `Authorization: Bearer <key>`.'

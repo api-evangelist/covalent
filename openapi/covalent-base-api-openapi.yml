@@ -1,0 +1,172 @@
+openapi: 3.1.0
+info:
+  title: GoldRush Foundational ABI Base API
+  description: 'Structured historical blockchain data across 100+ chains via REST. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs, Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity, Pricing, and Security (token approvals).
+
+    '
+  version: v1
+  contact:
+    name: GoldRush Support
+    url: https://goldrush.dev/support/
+  license:
+    name: Covalent Terms of Service
+    url: https://www.covalenthq.com/terms-of-service/
+servers:
+- url: https://api.covalenthq.com
+  description: GoldRush production server
+security:
+- BearerAuth: []
+tags:
+- name: Base
+  description: Blocks, gas prices, log events, address resolution, chain status.
+paths:
+  /v1/{chainName}/block_v2/{blockHeight}/:
+    get:
+      summary: Get A Block
+      operationId: getBlock
+      tags:
+      - Base
+      parameters:
+      - $ref: '#/components/parameters/ChainName'
+      - name: blockHeight
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+  /v1/{chainName}/block_v2/{startDate}/{endDate}/:
+    get:
+      summary: Get Block Heights
+      operationId: getBlockHeights
+      tags:
+      - Base
+      parameters:
+      - $ref: '#/components/parameters/ChainName'
+      - name: startDate
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: endDate
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: OK
+  /v1/chains/:
+    get:
+      summary: Get All Chains
+      operationId: getAllChains
+      tags:
+      - Base
+      responses:
+        '200':
+          description: OK
+  /v1/chains/status/:
+    get:
+      summary: Get All Chain Statuses
+      operationId: getAllChainStatuses
+      tags:
+      - Base
+      responses:
+        '200':
+          description: OK
+  /v1/{chainName}/event/topics/{topicHash}/:
+    get:
+      summary: Get Log Events By Topic Hash(es)
+      operationId: getLogEventsByTopicHash
+      tags:
+      - Base
+      parameters:
+      - $ref: '#/components/parameters/ChainName'
+      - name: topicHash
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+  /v1/{chainName}/events/address/{contractAddress}/:
+    get:
+      summary: Get Log Events By Contract Address
+      operationId: getLogEventsByContractAddress
+      tags:
+      - Base
+      parameters:
+      - $ref: '#/components/parameters/ChainName'
+      - name: contractAddress
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+  /v1/{chainName}/events/:
+    get:
+      summary: Get Logs
+      operationId: getLogs
+      tags:
+      - Base
+      parameters:
+      - $ref: '#/components/parameters/ChainName'
+      responses:
+        '200':
+          description: OK
+  /v1/{chainName}/gas_prices/{eventType}/:
+    get:
+      summary: Get Gas Prices
+      operationId: getGasPrices
+      tags:
+      - Base
+      parameters:
+      - $ref: '#/components/parameters/ChainName'
+      - name: eventType
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - erc20transfers
+          - nativetokens
+          - uniswapv3
+      responses:
+        '200':
+          description: OK
+  /v1/{chainName}/address/{addressName}/resolve_address/:
+    get:
+      summary: Get Resolved Address For Registered Address
+      operationId: getResolvedAddress
+      tags:
+      - Base
+      parameters:
+      - $ref: '#/components/parameters/ChainName'
+      - name: addressName
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+components:
+  parameters:
+    ChainName:
+      name: chainName
+      in: path
+      required: true
+      description: Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID.
+      schema:
+        type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: 'GoldRush API key, sent as `Authorization: Bearer <key>`.'

@@ -1,0 +1,272 @@
+openapi: 3.1.0
+info:
+  title: GoldRush Foundational ABI Balances API
+  description: 'Structured historical blockchain data across 100+ chains via REST. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs, Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity, Pricing, and Security (token approvals).
+
+    '
+  version: v1
+  contact:
+    name: GoldRush Support
+    url: https://goldrush.dev/support/
+  license:
+    name: Covalent Terms of Service
+    url: https://www.covalenthq.com/terms-of-service/
+servers:
+- url: https://api.covalenthq.com
+  description: GoldRush production server
+security:
+- BearerAuth: []
+tags:
+- name: Balances
+  description: Native, ERC20, ERC721, ERC1155, and historical token balances.
+paths:
+  /v1/{chainName}/address/{walletAddress}/balances_v2/:
+    get:
+      summary: Get Token Balances For Address
+      description: Returns native + ERC20 token balances for an address on the given chain.
+      operationId: getTokenBalancesForAddress
+      tags:
+      - Balances
+      parameters:
+      - $ref: '#/components/parameters/ChainName'
+      - $ref: '#/components/parameters/WalletAddress'
+      - name: quote-currency
+        in: query
+        schema:
+          type: string
+          default: USD
+      - name: nft
+        in: query
+        schema:
+          type: boolean
+      - name: no-nft-fetch
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Token balance response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BalanceResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+  /v1/{chainName}/address/{walletAddress}/balances_native/:
+    get:
+      summary: Get Native Token Balance For Address
+      description: Returns the native token balance (e.g., ETH) for an address.
+      operationId: getNativeTokenBalanceForAddress
+      tags:
+      - Balances
+      parameters:
+      - $ref: '#/components/parameters/ChainName'
+      - $ref: '#/components/parameters/WalletAddress'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BalanceResponse'
+  /v1/{chainName}/address/{walletAddress}/historical_balances/:
+    get:
+      summary: Get Historical Token Balances For Address
+      description: Historical token balances at a specific block height or timestamp.
+      operationId: getHistoricalTokenBalancesForAddress
+      tags:
+      - Balances
+      parameters:
+      - $ref: '#/components/parameters/ChainName'
+      - $ref: '#/components/parameters/WalletAddress'
+      - name: block-height
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BalanceResponse'
+  /v1/{chainName}/address/{walletAddress}/portfolio_v2/:
+    get:
+      summary: Get Historical Portfolio Value Over Time
+      description: Time-series portfolio value broken down by token holding.
+      operationId: getHistoricalPortfolioValueOverTime
+      tags:
+      - Balances
+      parameters:
+      - $ref: '#/components/parameters/ChainName'
+      - $ref: '#/components/parameters/WalletAddress'
+      - name: days
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+  /v1/{chainName}/address/{walletAddress}/transfers_v2/:
+    get:
+      summary: Get ERC20 Token Transfers For Address
+      description: ERC20 transfer history for an address, filterable by contract.
+      operationId: getErc20TokenTransfersForAddress
+      tags:
+      - Balances
+      parameters:
+      - $ref: '#/components/parameters/ChainName'
+      - $ref: '#/components/parameters/WalletAddress'
+      - name: contract-address
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+  /v1/{chainName}/tokens/{tokenAddress}/token_holders_v2/:
+    get:
+      summary: Get Token Holders As Of Any Block Height (v2)
+      description: List token holders of an ERC20/721/1155 contract at a block height.
+      operationId: getTokenHoldersAsOfBlockHeight
+      tags:
+      - Balances
+      parameters:
+      - $ref: '#/components/parameters/ChainName'
+      - name: tokenAddress
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: block-height
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+components:
+  parameters:
+    WalletAddress:
+      name: walletAddress
+      in: path
+      required: true
+      description: Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service.
+      schema:
+        type: string
+    ChainName:
+      name: chainName
+      in: path
+      required: true
+      description: Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID.
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: Unauthorized - missing or invalid Bearer token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimited:
+      description: Too Many Requests - rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    BalanceItem:
+      type: object
+      properties:
+        contract_decimals:
+          type: integer
+        contract_name:
+          type: string
+        contract_ticker_symbol:
+          type: string
+        contract_address:
+          type: string
+        supports_erc:
+          type: array
+          items:
+            type: string
+        logo_url:
+          type: string
+        last_transferred_at:
+          type: string
+          format: date-time
+          nullable: true
+        native_token:
+          type: boolean
+        type:
+          type: string
+        balance:
+          type: string
+        balance_24h:
+          type: string
+          nullable: true
+        quote_rate:
+          type: number
+          nullable: true
+        quote_rate_24h:
+          type: number
+          nullable: true
+        quote:
+          type: number
+        quote_24h:
+          type: number
+          nullable: true
+        pretty_quote:
+          type: string
+        pretty_quote_24h:
+          type: string
+          nullable: true
+    BalanceResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            address:
+              type: string
+            updated_at:
+              type: string
+              format: date-time
+            next_update_at:
+              type: string
+              format: date-time
+            quote_currency:
+              type: string
+            chain_id:
+              type: integer
+            chain_name:
+              type: string
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/BalanceItem'
+        error:
+          type: boolean
+        error_message:
+          type: string
+          nullable: true
+        error_code:
+          type: integer
+          nullable: true
+    Error:
+      type: object
+      properties:
+        error:
+          type: boolean
+        error_message:
+          type: string
+        error_code:
+          type: integer
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: 'GoldRush API key, sent as `Authorization: Bearer <key>`.'

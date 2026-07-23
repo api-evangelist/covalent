@@ -1,0 +1,67 @@
+openapi: 3.1.0
+info:
+  title: GoldRush Foundational ABI Cross-Chain API
+  description: 'Structured historical blockchain data across 100+ chains via REST. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs, Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity, Pricing, and Security (token approvals).
+
+    '
+  version: v1
+  contact:
+    name: GoldRush Support
+    url: https://goldrush.dev/support/
+  license:
+    name: Covalent Terms of Service
+    url: https://www.covalenthq.com/terms-of-service/
+servers:
+- url: https://api.covalenthq.com
+  description: GoldRush production server
+security:
+- BearerAuth: []
+tags:
+- name: Cross-Chain
+  description: Discover an address's activity across all supported chains.
+paths:
+  /v1/address/{walletAddress}/activity/:
+    get:
+      summary: Get Activity Across All Chains For Address
+      operationId: getActivityAcrossAllChainsForAddress
+      tags:
+      - Cross-Chain
+      parameters:
+      - $ref: '#/components/parameters/WalletAddress'
+      responses:
+        '200':
+          description: OK
+  /v1/allchains/address/{walletAddress}/balances/:
+    get:
+      summary: Get Multichain Balances
+      operationId: getMultichainBalances
+      tags:
+      - Cross-Chain
+      parameters:
+      - $ref: '#/components/parameters/WalletAddress'
+      responses:
+        '200':
+          description: OK
+  /v1/allchains/transactions/:
+    get:
+      summary: Get Multichain Multiaddress Transactions
+      operationId: getMultichainMultiaddressTransactions
+      tags:
+      - Cross-Chain
+      responses:
+        '200':
+          description: OK
+components:
+  parameters:
+    WalletAddress:
+      name: walletAddress
+      in: path
+      required: true
+      description: Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service.
+      schema:
+        type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: 'GoldRush API key, sent as `Authorization: Bearer <key>`.'

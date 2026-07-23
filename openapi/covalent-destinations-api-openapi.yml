@@ -1,0 +1,105 @@
+openapi: 3.1.0
+info:
+  title: GoldRush Foundational ABI Destinations API
+  description: 'Structured historical blockchain data across 100+ chains via REST. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs, Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity, Pricing, and Security (token approvals).
+
+    '
+  version: v1
+  contact:
+    name: GoldRush Support
+    url: https://goldrush.dev/support/
+  license:
+    name: Covalent Terms of Service
+    url: https://www.covalenthq.com/terms-of-service/
+servers:
+- url: https://api.covalenthq.com
+  description: GoldRush production server
+security:
+- BearerAuth: []
+tags:
+- name: Destinations
+  description: Manage destination connections (ClickHouse, Kafka, S3/GCS/R2, Postgres, SQS, Webhook).
+paths:
+  /v1/destinations:
+    get:
+      summary: List Destinations
+      operationId: listDestinations
+      tags:
+      - Destinations
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: Create Destination
+      operationId: createDestination
+      tags:
+      - Destinations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Destination'
+      responses:
+        '201':
+          description: Created
+  /v1/destinations/{destinationId}:
+    get:
+      summary: Get Destination
+      operationId: getDestination
+      tags:
+      - Destinations
+      parameters:
+      - $ref: '#/components/parameters/DestinationId'
+      responses:
+        '200':
+          description: OK
+    delete:
+      summary: Delete Destination
+      operationId: deleteDestination
+      tags:
+      - Destinations
+      parameters:
+      - $ref: '#/components/parameters/DestinationId'
+      responses:
+        '204':
+          description: No Content
+components:
+  parameters:
+    DestinationId:
+      name: destinationId
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    Destination:
+      type: object
+      required:
+      - type
+      - name
+      - config
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - clickhouse
+          - kafka
+          - object_storage
+          - postgres
+          - sqs
+          - webhook
+        config:
+          type: object
+          additionalProperties: true
+          description: Connection config (host, bucket, topic, queue URL, webhook URL, credentials, format).
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: 'GoldRush API key, sent as `Authorization: Bearer <key>`.'

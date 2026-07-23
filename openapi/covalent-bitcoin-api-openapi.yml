@@ -1,0 +1,80 @@
+openapi: 3.1.0
+info:
+  title: GoldRush Foundational ABI Bitcoin API
+  description: 'Structured historical blockchain data across 100+ chains via REST. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs, Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity, Pricing, and Security (token approvals).
+
+    '
+  version: v1
+  contact:
+    name: GoldRush Support
+    url: https://goldrush.dev/support/
+  license:
+    name: Covalent Terms of Service
+    url: https://www.covalenthq.com/terms-of-service/
+servers:
+- url: https://api.covalenthq.com
+  description: GoldRush production server
+security:
+- BearerAuth: []
+tags:
+- name: Bitcoin
+  description: Bitcoin balance and transaction lookups (HD and non-HD).
+paths:
+  /v1/bitcoin-mainnet/address/{walletAddress}/balances_v2/:
+    get:
+      summary: Get Bitcoin Balance For Non-HD Address
+      operationId: getBitcoinBalanceForNonHdAddress
+      tags:
+      - Bitcoin
+      parameters:
+      - $ref: '#/components/parameters/WalletAddress'
+      responses:
+        '200':
+          description: OK
+  /v1/bitcoin-hd-mainnet/address/{walletAddress}/balances_v2/:
+    get:
+      summary: Get Bitcoin Balances For HD Address
+      operationId: getBitcoinBalancesForHdAddress
+      tags:
+      - Bitcoin
+      parameters:
+      - $ref: '#/components/parameters/WalletAddress'
+      responses:
+        '200':
+          description: OK
+  /v1/bitcoin-mainnet/address/{walletAddress}/historical_balances/:
+    get:
+      summary: Get Historical Bitcoin Balance For Non-HD Address
+      operationId: getHistoricalBitcoinBalanceForNonHdAddress
+      tags:
+      - Bitcoin
+      parameters:
+      - $ref: '#/components/parameters/WalletAddress'
+      responses:
+        '200':
+          description: OK
+  /v1/bitcoin-mainnet/address/{walletAddress}/transactions_v2/:
+    get:
+      summary: Get Bitcoin Transactions For Non-HD Address
+      operationId: getBitcoinTransactionsForNonHdAddress
+      tags:
+      - Bitcoin
+      parameters:
+      - $ref: '#/components/parameters/WalletAddress'
+      responses:
+        '200':
+          description: OK
+components:
+  parameters:
+    WalletAddress:
+      name: walletAddress
+      in: path
+      required: true
+      description: Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service.
+      schema:
+        type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: 'GoldRush API key, sent as `Authorization: Bearer <key>`.'

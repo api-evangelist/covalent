@@ -1,0 +1,202 @@
+openapi: 3.1.0
+info:
+  title: GoldRush Foundational ABI Pipelines API
+  description: 'Structured historical blockchain data across 100+ chains via REST. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs, Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity, Pricing, and Security (token approvals).
+
+    '
+  version: v1
+  contact:
+    name: GoldRush Support
+    url: https://goldrush.dev/support/
+  license:
+    name: Covalent Terms of Service
+    url: https://www.covalenthq.com/terms-of-service/
+servers:
+- url: https://api.covalenthq.com
+  description: GoldRush production server
+security:
+- BearerAuth: []
+tags:
+- name: Pipelines
+  description: Create, list, update, and delete data pipelines.
+paths:
+  /v1/pipelines:
+    get:
+      summary: List Pipelines
+      operationId: listPipelines
+      tags:
+      - Pipelines
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PipelineList'
+    post:
+      summary: Create Pipeline
+      operationId: createPipeline
+      tags:
+      - Pipelines
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pipeline'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pipeline'
+  /v1/pipelines/{pipelineId}:
+    get:
+      summary: Get Pipeline
+      operationId: getPipeline
+      tags:
+      - Pipelines
+      parameters:
+      - $ref: '#/components/parameters/PipelineId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pipeline'
+    patch:
+      summary: Update Pipeline
+      operationId: updatePipeline
+      tags:
+      - Pipelines
+      parameters:
+      - $ref: '#/components/parameters/PipelineId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pipeline'
+      responses:
+        '200':
+          description: OK
+    delete:
+      summary: Delete Pipeline
+      operationId: deletePipeline
+      tags:
+      - Pipelines
+      parameters:
+      - $ref: '#/components/parameters/PipelineId'
+      responses:
+        '204':
+          description: No Content
+  /v1/pipelines/{pipelineId}/start:
+    post:
+      summary: Start Pipeline
+      operationId: startPipeline
+      tags:
+      - Pipelines
+      parameters:
+      - $ref: '#/components/parameters/PipelineId'
+      responses:
+        '202':
+          description: Accepted
+  /v1/pipelines/{pipelineId}/pause:
+    post:
+      summary: Pause Pipeline
+      operationId: pausePipeline
+      tags:
+      - Pipelines
+      parameters:
+      - $ref: '#/components/parameters/PipelineId'
+      responses:
+        '202':
+          description: Accepted
+components:
+  parameters:
+    PipelineId:
+      name: pipelineId
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    PipelineList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Pipeline'
+    Pipeline:
+      type: object
+      required:
+      - name
+      - source
+      - destinationId
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+        description:
+          type: string
+        source:
+          type: object
+          properties:
+            chain:
+              type: string
+              description: Chain slug (e.g.
+              eth-mainnet).: null
+            startBlock:
+              type: integer
+            endBlock:
+              type: integer
+              nullable: true
+            contractAddresses:
+              type: array
+              items:
+                type: string
+            topics:
+              type: array
+              items:
+                type: string
+        destinationId:
+          type: string
+        decoder:
+          type: object
+          properties:
+            abiIds:
+              type: array
+              items:
+                type: string
+            normalizer:
+              type: string
+              enum:
+              - evm
+              - solana
+              - hypercore
+        transformIds:
+          type: array
+          items:
+            type: string
+        state:
+          type: string
+          enum:
+          - draft
+          - running
+          - paused
+          - errored
+          readOnly: true
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: 'GoldRush API key, sent as `Authorization: Bearer <key>`.'
