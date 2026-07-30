@@ -1,135 +1,20 @@
 aid: covalent
 url: https://raw.githubusercontent.com/api-evangelist/covalent/refs/heads/main/apis.yml
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: true
+  try_now: true
+  public: false
+  label: Freemium (free trial) · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 modified: 2026-06-14
 apis:
-- aid: covalent:goldrush-foundational-api
-  name: GoldRush Foundational API
-  tags:
-  - Blockchain
-  - Web3
-  - Balances
-  - Transactions
-  - NFT
-  - Multi-Chain
-  - Historical Data
-  humanURL: https://goldrush.dev/docs/api-reference/foundational-api/
-  baseURL: https://api.covalenthq.com
-  properties:
-  - url: https://goldrush.dev/docs/api-reference/foundational-api/
-    type: Documentation
-  - url: https://goldrush.dev/docs/api-reference/foundational-api/balance-service
-    type: Documentation
-  - url: https://goldrush.dev/docs/api-reference/foundational-api/transactions-service
-    type: Documentation
-  - url: https://goldrush.dev/docs/api-reference/foundational-api/nft-service
-    type: Documentation
-  - url: https://goldrush.dev/docs/api-reference/foundational-api/base-service
-    type: Documentation
-  - url: https://goldrush.dev/docs/api-reference/foundational-api/cross-chain-activity
-    type: Documentation
-  - url: https://goldrush.dev/docs/api-reference/foundational-api/security-service
-    type: Documentation
-  - url: https://goldrush.dev/docs/api-reference/foundational-api/pricing-service
-    type: Documentation
-  - url: openapi/covalent-foundational-api-openapi.yml
-    type: OpenAPI
-  - url: json-schema/covalent-balance-schema.json
-    type: JSONSchema
-  - url: json-schema/covalent-transaction-schema.json
-    type: JSONSchema
-  - url: json-ld/covalent-context.jsonld
-    type: JSONLD
-  description: >-
-    REST API providing structured historical blockchain data across 100+ chains. Resource families include Balances
-    (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed,
-    by-block), NFTs (ownership, holdings, metadata), Base service (blocks, logs, gas prices, address resolution),
-    Cross-Chain Activity (locate active chains for an address in one call), Pricing (historical token prices, pool
-    spot prices), and Security (token approvals). Bearer-token authentication, credit-metered, realtime processing.
-- aid: covalent:goldrush-streaming-api
-  name: GoldRush Streaming API
-  tags:
-  - Blockchain
-  - Streaming
-  - GraphQL
-  - WebSocket
-  - Real-Time
-  - DEX
-  - OHLCV
-  humanURL: https://goldrush.dev/docs/api-reference/streaming-api/
-  baseURL: https://streaming.goldrush.dev
-  properties:
-  - url: https://goldrush.dev/docs/api-reference/streaming-api/
-    type: Documentation
-  - url: openapi/covalent-streaming-api-openapi.yml
-    type: OpenAPI
-  - url: asyncapi/covalent-asyncapi.yml
-    type: AsyncAPI
-  - url: graphql/covalent-graphql.md
-    type: GraphQL
-  description: >-
-    Real-time blockchain events via GraphQL over WebSockets with sub-second latency. Includes one-shot queries (OHLCV
-    pairs and tokens, token search, top trader wallets, wallet PnL by token) and live subscriptions (new DEX pairs
-    stream, OHLCV pairs and tokens streams, update pairs and tokens streams, wallet activity stream). Designed for
-    trading bots, dashboards, gaming, and AI agents that need push-based updates.
-- aid: covalent:goldrush-pipeline-api
-  name: GoldRush Pipeline API
-  tags:
-  - Blockchain
-  - Data Pipeline
-  - ETL
-  - ABI Decoding
-  - ClickHouse
-  - Kafka
-  - Webhook
-  - SQL
-  humanURL: https://goldrush.dev/docs/api-reference/pipeline-api/
-  baseURL: https://pipeline.goldrush.dev
-  properties:
-  - url: https://goldrush.dev/docs/api-reference/pipeline-api/
-    type: Documentation
-  - url: https://goldrush.dev/docs/api-reference/pipeline-api/quickstart
-    type: Documentation
-  - url: https://goldrush.dev/docs/api-reference/pipeline-api/architecture
-    type: Documentation
-  - url: https://goldrush.dev/docs/api-reference/pipeline-api/destinations
-    type: Documentation
-  - url: https://goldrush.dev/docs/api-reference/pipeline-api/abi-decoding
-    type: Documentation
-  - url: openapi/covalent-pipeline-api-openapi.yml
-    type: OpenAPI
-  description: >-
-    Managed data pipeline that streams decoded blockchain data into your own infrastructure across 20+ chains.
-    Pipelines configure source chains, ABI decoding (event logs and functions), SQL transforms, and destinations
-    including ClickHouse, Kafka, S3/GCS/R2 object storage, Postgres, AWS SQS, and Webhooks. Service Keys are the
-    credential type for programmatic pipeline management. Use cases include data warehousing, analytics, ETL, and
-    backend indexing.
-- aid: covalent:goldrush-hyperliquid-info-api
-  name: GoldRush Hyperliquid Info API
-  tags:
-  - Blockchain
-  - Hyperliquid
-  - Trading
-  - Perpetuals
-  - DEX
-  - Markets
-  humanURL: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/
-  baseURL: https://hypercore.goldrushdata.com
-  properties:
-  - url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/
-    type: Documentation
-  - url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/migration-guide
-    type: Documentation
-  - url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/limits
-    type: Documentation
-  - url: openapi/covalent-hyperliquid-info-api-openapi.yml
-    type: OpenAPI
-  description: >-
-    Drop-in replacement for the public Hyperliquid /info API hosted at hypercore.goldrushdata.com. Supports 18 info
-    types including clearinghouseState, batchClearinghouseState, spotClearinghouseState, spotMetaAndAssetCtxs,
-    metaAndAssetCtxs, frontendOpenOrders, userFills / userFillsByTime, userFunding, userTwapSliceFills,
-    userNonFundingLedgerUpdates, userVaultEquities, delegatorHistory, delegatorRewards, delegatorSummary, subAccounts,
-    batchSpotClearinghouseState, and outcomeMeta. Adds caching, batching, and HIP-3 / HIP-4 outcome market coverage on
-    top of the canonical Hyperliquid feed.
 - aid: covalent:goldrush-hyperliquid-websocket-api
   name: GoldRush Hyperliquid WebSocket API
   tags:
@@ -152,28 +37,961 @@ apis:
     type: Documentation
   description: >-
     WebSocket channels for Hyperliquid markets including l2Book (wire-equal to the public feed), l2BookDiff
-    (GoldRush-exclusive differential updates), and l4Book (order-level GoldRush-exclusive channel) plus wallet
-    firehose, liquidations and vault events, HIP-3 markets, and HIP-4 outcome market streams. Hosted at
-    wss://hypercore.goldrushdata.com/ws for ultra-low-latency trading and analytics.
-- aid: covalent:goldrush-x402-api
-  name: GoldRush x402 API
-  tags:
-  - Blockchain
-  - x402
-  - Pay-Per-Request
-  - HTTP 402
-  - AI Agents
-  humanURL: https://goldrush.dev/docs/api-reference/foundational-api/x402
+    (GoldRush-exclusive differential updates), and l4Book (order-level GoldRush-exclusive channel) plus
+    wallet firehose, liquidations and vault events, HIP-3 markets, and HIP-4 outcome market streams. Hosted
+    at wss://hypercore.goldrushdata.com/ws for ultra-low-latency trading and analytics.
+- aid: covalent:covalent-abi-api
+  name: Covalent ABI API
+  description: Manage ABI definitions used for log and function decoding.
+  humanURL: https://goldrush.dev/docs/api-reference/foundational-api/
   baseURL: https://api.covalenthq.com
+  tags:
+  - ABI
   properties:
-  - url: https://goldrush.dev/docs/api-reference/foundational-api/x402
-    type: Documentation
-  - url: openapi/covalent-x402-api-openapi.yml
-    type: OpenAPI
-  description: >-
-    Pay-per-request HTTP 402 endpoints designed for autonomous AI agents and onchain micropayments. Lists and searches
-    available x402 endpoints, exposes token balance and recent transaction lookups via the 402 settlement flow, and
-    returns per-endpoint metadata for agents to discover and pay for data without a long-lived API key.
+  - type: OpenAPI
+    url: openapi/covalent-abi-api-openapi.yml
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/balance-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/transactions-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/nft-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/base-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/cross-chain-activity
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/security-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/pricing-service
+  - type: JSONSchema
+    url: json-schema/covalent-balance-schema.json
+  - type: JSONSchema
+    url: json-schema/covalent-transaction-schema.json
+  - type: JSONLD
+    url: json-ld/covalent-context.jsonld
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/streaming-api/
+  - type: AsyncAPI
+    url: asyncapi/covalent-asyncapi.yml
+  - type: GraphQL
+    url: graphql/covalent-graphql.md
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/quickstart
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/architecture
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/destinations
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/abi-decoding
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/migration-guide
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/limits
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/x402
+- aid: covalent:covalent-balances-api
+  name: Covalent Balances API
+  description: Native, ERC20, ERC721, ERC1155, and historical token balances.
+  humanURL: https://goldrush.dev/docs/api-reference/foundational-api/
+  baseURL: https://api.covalenthq.com
+  tags:
+  - Balances
+  properties:
+  - type: OpenAPI
+    url: openapi/covalent-balances-api-openapi.yml
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/balance-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/transactions-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/nft-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/base-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/cross-chain-activity
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/security-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/pricing-service
+  - type: JSONSchema
+    url: json-schema/covalent-balance-schema.json
+  - type: JSONSchema
+    url: json-schema/covalent-transaction-schema.json
+  - type: JSONLD
+    url: json-ld/covalent-context.jsonld
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/streaming-api/
+  - type: AsyncAPI
+    url: asyncapi/covalent-asyncapi.yml
+  - type: GraphQL
+    url: graphql/covalent-graphql.md
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/quickstart
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/architecture
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/destinations
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/abi-decoding
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/migration-guide
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/limits
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/x402
+- aid: covalent:covalent-base-api
+  name: Covalent Base API
+  description: Blocks, gas prices, log events, address resolution, chain status.
+  humanURL: https://goldrush.dev/docs/api-reference/foundational-api/
+  baseURL: https://api.covalenthq.com
+  tags:
+  - Base
+  properties:
+  - type: OpenAPI
+    url: openapi/covalent-base-api-openapi.yml
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/balance-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/transactions-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/nft-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/base-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/cross-chain-activity
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/security-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/pricing-service
+  - type: JSONSchema
+    url: json-schema/covalent-balance-schema.json
+  - type: JSONSchema
+    url: json-schema/covalent-transaction-schema.json
+  - type: JSONLD
+    url: json-ld/covalent-context.jsonld
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/streaming-api/
+  - type: AsyncAPI
+    url: asyncapi/covalent-asyncapi.yml
+  - type: GraphQL
+    url: graphql/covalent-graphql.md
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/quickstart
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/architecture
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/destinations
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/abi-decoding
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/migration-guide
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/limits
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/x402
+- aid: covalent:covalent-bitcoin-api
+  name: Covalent Bitcoin API
+  description: Bitcoin balance and transaction lookups (HD and non-HD).
+  humanURL: https://goldrush.dev/docs/api-reference/foundational-api/
+  baseURL: https://api.covalenthq.com
+  tags:
+  - Bitcoin
+  properties:
+  - type: OpenAPI
+    url: openapi/covalent-bitcoin-api-openapi.yml
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/balance-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/transactions-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/nft-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/base-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/cross-chain-activity
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/security-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/pricing-service
+  - type: JSONSchema
+    url: json-schema/covalent-balance-schema.json
+  - type: JSONSchema
+    url: json-schema/covalent-transaction-schema.json
+  - type: JSONLD
+    url: json-ld/covalent-context.jsonld
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/streaming-api/
+  - type: AsyncAPI
+    url: asyncapi/covalent-asyncapi.yml
+  - type: GraphQL
+    url: graphql/covalent-graphql.md
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/quickstart
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/architecture
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/destinations
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/abi-decoding
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/migration-guide
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/limits
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/x402
+- aid: covalent:covalent-cross-chain-api
+  name: Covalent Cross-Chain API
+  description: Discover an address's activity across all supported chains.
+  humanURL: https://goldrush.dev/docs/api-reference/foundational-api/
+  baseURL: https://api.covalenthq.com
+  tags:
+  - Cross-Chain
+  properties:
+  - type: OpenAPI
+    url: openapi/covalent-cross-chain-api-openapi.yml
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/balance-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/transactions-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/nft-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/base-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/cross-chain-activity
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/security-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/pricing-service
+  - type: JSONSchema
+    url: json-schema/covalent-balance-schema.json
+  - type: JSONSchema
+    url: json-schema/covalent-transaction-schema.json
+  - type: JSONLD
+    url: json-ld/covalent-context.jsonld
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/streaming-api/
+  - type: AsyncAPI
+    url: asyncapi/covalent-asyncapi.yml
+  - type: GraphQL
+    url: graphql/covalent-graphql.md
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/quickstart
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/architecture
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/destinations
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/abi-decoding
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/migration-guide
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/limits
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/x402
+- aid: covalent:covalent-data-api
+  name: Covalent Data API
+  description: x402-priced data endpoints.
+  humanURL: https://goldrush.dev/docs/api-reference/foundational-api/
+  baseURL: https://api.covalenthq.com
+  tags:
+  - Data
+  properties:
+  - type: OpenAPI
+    url: openapi/covalent-data-api-openapi.yml
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/balance-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/transactions-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/nft-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/base-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/cross-chain-activity
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/security-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/pricing-service
+  - type: JSONSchema
+    url: json-schema/covalent-balance-schema.json
+  - type: JSONSchema
+    url: json-schema/covalent-transaction-schema.json
+  - type: JSONLD
+    url: json-ld/covalent-context.jsonld
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/streaming-api/
+  - type: AsyncAPI
+    url: asyncapi/covalent-asyncapi.yml
+  - type: GraphQL
+    url: graphql/covalent-graphql.md
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/quickstart
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/architecture
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/destinations
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/abi-decoding
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/migration-guide
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/limits
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/x402
+- aid: covalent:covalent-destinations-api
+  name: Covalent Destinations API
+  description: Manage destination connections (ClickHouse, Kafka, S3/GCS/R2, Postgres, SQS, Webhook).
+  humanURL: https://goldrush.dev/docs/api-reference/foundational-api/
+  baseURL: https://api.covalenthq.com
+  tags:
+  - Destinations
+  properties:
+  - type: OpenAPI
+    url: openapi/covalent-destinations-api-openapi.yml
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/balance-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/transactions-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/nft-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/base-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/cross-chain-activity
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/security-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/pricing-service
+  - type: JSONSchema
+    url: json-schema/covalent-balance-schema.json
+  - type: JSONSchema
+    url: json-schema/covalent-transaction-schema.json
+  - type: JSONLD
+    url: json-ld/covalent-context.jsonld
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/streaming-api/
+  - type: AsyncAPI
+    url: asyncapi/covalent-asyncapi.yml
+  - type: GraphQL
+    url: graphql/covalent-graphql.md
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/quickstart
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/architecture
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/destinations
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/abi-decoding
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/migration-guide
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/limits
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/x402
+- aid: covalent:covalent-discovery-api
+  name: Covalent Discovery API
+  description: List and search x402 endpoints exposed by GoldRush.
+  humanURL: https://goldrush.dev/docs/api-reference/foundational-api/
+  baseURL: https://api.covalenthq.com
+  tags:
+  - Discovery
+  properties:
+  - type: OpenAPI
+    url: openapi/covalent-discovery-api-openapi.yml
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/balance-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/transactions-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/nft-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/base-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/cross-chain-activity
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/security-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/pricing-service
+  - type: JSONSchema
+    url: json-schema/covalent-balance-schema.json
+  - type: JSONSchema
+    url: json-schema/covalent-transaction-schema.json
+  - type: JSONLD
+    url: json-ld/covalent-context.jsonld
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/streaming-api/
+  - type: AsyncAPI
+    url: asyncapi/covalent-asyncapi.yml
+  - type: GraphQL
+    url: graphql/covalent-graphql.md
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/quickstart
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/architecture
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/destinations
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/abi-decoding
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/migration-guide
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/limits
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/x402
+- aid: covalent:covalent-graphql-api
+  name: Covalent GraphQL API
+  description: Single GraphQL endpoint serving queries and subscriptions.
+  humanURL: https://goldrush.dev/docs/api-reference/foundational-api/
+  baseURL: https://api.covalenthq.com
+  tags:
+  - GraphQL
+  properties:
+  - type: OpenAPI
+    url: openapi/covalent-graphql-api-openapi.yml
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/balance-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/transactions-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/nft-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/base-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/cross-chain-activity
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/security-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/pricing-service
+  - type: JSONSchema
+    url: json-schema/covalent-balance-schema.json
+  - type: JSONSchema
+    url: json-schema/covalent-transaction-schema.json
+  - type: JSONLD
+    url: json-ld/covalent-context.jsonld
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/streaming-api/
+  - type: AsyncAPI
+    url: asyncapi/covalent-asyncapi.yml
+  - type: GraphQL
+    url: graphql/covalent-graphql.md
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/quickstart
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/architecture
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/destinations
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/abi-decoding
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/migration-guide
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/limits
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/x402
+- aid: covalent:covalent-info-api
+  name: Covalent Info API
+  description: Dispatching POST endpoint for Hyperliquid info types.
+  humanURL: https://goldrush.dev/docs/api-reference/foundational-api/
+  baseURL: https://api.covalenthq.com
+  tags:
+  - Info
+  properties:
+  - type: OpenAPI
+    url: openapi/covalent-info-api-openapi.yml
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/balance-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/transactions-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/nft-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/base-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/cross-chain-activity
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/security-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/pricing-service
+  - type: JSONSchema
+    url: json-schema/covalent-balance-schema.json
+  - type: JSONSchema
+    url: json-schema/covalent-transaction-schema.json
+  - type: JSONLD
+    url: json-ld/covalent-context.jsonld
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/streaming-api/
+  - type: AsyncAPI
+    url: asyncapi/covalent-asyncapi.yml
+  - type: GraphQL
+    url: graphql/covalent-graphql.md
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/quickstart
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/architecture
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/destinations
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/abi-decoding
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/migration-guide
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/limits
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/x402
+- aid: covalent:covalent-nft-api
+  name: Covalent NFT API
+  description: NFTs held by an address and collection ownership checks.
+  humanURL: https://goldrush.dev/docs/api-reference/foundational-api/
+  baseURL: https://api.covalenthq.com
+  tags:
+  - NFT
+  properties:
+  - type: OpenAPI
+    url: openapi/covalent-nft-api-openapi.yml
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/balance-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/transactions-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/nft-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/base-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/cross-chain-activity
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/security-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/pricing-service
+  - type: JSONSchema
+    url: json-schema/covalent-balance-schema.json
+  - type: JSONSchema
+    url: json-schema/covalent-transaction-schema.json
+  - type: JSONLD
+    url: json-ld/covalent-context.jsonld
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/streaming-api/
+  - type: AsyncAPI
+    url: asyncapi/covalent-asyncapi.yml
+  - type: GraphQL
+    url: graphql/covalent-graphql.md
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/quickstart
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/architecture
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/destinations
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/abi-decoding
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/migration-guide
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/limits
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/x402
+- aid: covalent:covalent-pipelines-api
+  name: Covalent Pipelines API
+  description: Create, list, update, and delete data pipelines.
+  humanURL: https://goldrush.dev/docs/api-reference/foundational-api/
+  baseURL: https://api.covalenthq.com
+  tags:
+  - Pipelines
+  properties:
+  - type: OpenAPI
+    url: openapi/covalent-pipelines-api-openapi.yml
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/balance-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/transactions-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/nft-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/base-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/cross-chain-activity
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/security-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/pricing-service
+  - type: JSONSchema
+    url: json-schema/covalent-balance-schema.json
+  - type: JSONSchema
+    url: json-schema/covalent-transaction-schema.json
+  - type: JSONLD
+    url: json-ld/covalent-context.jsonld
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/streaming-api/
+  - type: AsyncAPI
+    url: asyncapi/covalent-asyncapi.yml
+  - type: GraphQL
+    url: graphql/covalent-graphql.md
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/quickstart
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/architecture
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/destinations
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/abi-decoding
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/migration-guide
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/limits
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/x402
+- aid: covalent:covalent-pricing-api
+  name: Covalent Pricing API
+  description: Historical token prices and pool spot prices.
+  humanURL: https://goldrush.dev/docs/api-reference/foundational-api/
+  baseURL: https://api.covalenthq.com
+  tags:
+  - Pricing
+  properties:
+  - type: OpenAPI
+    url: openapi/covalent-pricing-api-openapi.yml
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/balance-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/transactions-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/nft-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/base-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/cross-chain-activity
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/security-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/pricing-service
+  - type: JSONSchema
+    url: json-schema/covalent-balance-schema.json
+  - type: JSONSchema
+    url: json-schema/covalent-transaction-schema.json
+  - type: JSONLD
+    url: json-ld/covalent-context.jsonld
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/streaming-api/
+  - type: AsyncAPI
+    url: asyncapi/covalent-asyncapi.yml
+  - type: GraphQL
+    url: graphql/covalent-graphql.md
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/quickstart
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/architecture
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/destinations
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/abi-decoding
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/migration-guide
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/limits
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/x402
+- aid: covalent:covalent-queries-api
+  name: Covalent Queries API
+  description: One-shot data queries.
+  humanURL: https://goldrush.dev/docs/api-reference/foundational-api/
+  baseURL: https://api.covalenthq.com
+  tags:
+  - Queries
+  properties:
+  - type: OpenAPI
+    url: openapi/covalent-queries-api-openapi.yml
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/balance-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/transactions-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/nft-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/base-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/cross-chain-activity
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/security-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/pricing-service
+  - type: JSONSchema
+    url: json-schema/covalent-balance-schema.json
+  - type: JSONSchema
+    url: json-schema/covalent-transaction-schema.json
+  - type: JSONLD
+    url: json-ld/covalent-context.jsonld
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/streaming-api/
+  - type: AsyncAPI
+    url: asyncapi/covalent-asyncapi.yml
+  - type: GraphQL
+    url: graphql/covalent-graphql.md
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/quickstart
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/architecture
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/destinations
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/abi-decoding
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/migration-guide
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/limits
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/x402
+- aid: covalent:covalent-security-api
+  name: Covalent Security API
+  description: Token approvals across ERC20 and NFT contracts.
+  humanURL: https://goldrush.dev/docs/api-reference/foundational-api/
+  baseURL: https://api.covalenthq.com
+  tags:
+  - Security
+  properties:
+  - type: OpenAPI
+    url: openapi/covalent-security-api-openapi.yml
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/balance-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/transactions-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/nft-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/base-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/cross-chain-activity
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/security-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/pricing-service
+  - type: JSONSchema
+    url: json-schema/covalent-balance-schema.json
+  - type: JSONSchema
+    url: json-schema/covalent-transaction-schema.json
+  - type: JSONLD
+    url: json-ld/covalent-context.jsonld
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/streaming-api/
+  - type: AsyncAPI
+    url: asyncapi/covalent-asyncapi.yml
+  - type: GraphQL
+    url: graphql/covalent-graphql.md
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/quickstart
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/architecture
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/destinations
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/abi-decoding
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/migration-guide
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/limits
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/x402
+- aid: covalent:covalent-transactions-api
+  name: Covalent Transactions API
+  description: Transaction lookups by address, block, and time bucket.
+  humanURL: https://goldrush.dev/docs/api-reference/foundational-api/
+  baseURL: https://api.covalenthq.com
+  tags:
+  - Transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/covalent-transactions-api-openapi.yml
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/balance-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/transactions-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/nft-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/base-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/cross-chain-activity
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/security-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/pricing-service
+  - type: JSONSchema
+    url: json-schema/covalent-balance-schema.json
+  - type: JSONSchema
+    url: json-schema/covalent-transaction-schema.json
+  - type: JSONLD
+    url: json-ld/covalent-context.jsonld
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/streaming-api/
+  - type: AsyncAPI
+    url: asyncapi/covalent-asyncapi.yml
+  - type: GraphQL
+    url: graphql/covalent-graphql.md
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/quickstart
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/architecture
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/destinations
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/abi-decoding
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/migration-guide
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/limits
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/x402
+- aid: covalent:covalent-transforms-api
+  name: Covalent Transforms API
+  description: Manage SQL transforms applied to decoded events before delivery.
+  humanURL: https://goldrush.dev/docs/api-reference/foundational-api/
+  baseURL: https://api.covalenthq.com
+  tags:
+  - Transforms
+  properties:
+  - type: OpenAPI
+    url: openapi/covalent-transforms-api-openapi.yml
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/balance-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/transactions-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/nft-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/base-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/cross-chain-activity
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/security-service
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/pricing-service
+  - type: JSONSchema
+    url: json-schema/covalent-balance-schema.json
+  - type: JSONSchema
+    url: json-schema/covalent-transaction-schema.json
+  - type: JSONLD
+    url: json-ld/covalent-context.jsonld
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/streaming-api/
+  - type: AsyncAPI
+    url: asyncapi/covalent-asyncapi.yml
+  - type: GraphQL
+    url: graphql/covalent-graphql.md
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/quickstart
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/architecture
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/destinations
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/pipeline-api/abi-decoding
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/migration-guide
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/hyperliquid/info-api/limits
+  - type: Documentation
+    url: https://goldrush.dev/docs/api-reference/foundational-api/x402
 name: Covalent
 tags:
 - Blockchain
@@ -187,9 +1005,11 @@ tags:
 - GoldRush
 - AI Agents
 kind: contract
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/covalent.png
 access: 3rd-Party
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/covalent/overview
 - type: AgenticAccess
   url: agentic-access/covalent-agentic-access.yml
 - type: DomainSecurity
