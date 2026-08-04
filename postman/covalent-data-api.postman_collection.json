@@ -1,0 +1,399 @@
+{
+  "info": {
+    "_postman_id": "ee341bb5-4354-462d-863d-4aaeadd630e7",
+    "name": "GoldRush Foundational ABI Data API",
+    "description": "Structured historical blockchain data across 100+ chains via REST. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs, Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity, Pricing, and Security (token approvals).\n\n\nContact Support:\n Name: GoldRush Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:26:32.000Z",
+    "updatedAt": "2026-07-28T01:26:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ee341bb5-4354-462d-863d-4aaeadd630e7"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "x402",
+          "item": [
+            {
+              "name": "{chainName}",
+              "item": [
+                {
+                  "name": "address",
+                  "item": [
+                    {
+                      "name": "{walletAddress}",
+                      "item": [
+                        {
+                          "name": "balances_v2",
+                          "item": [
+                            {
+                              "name": "Get Token Balances For Address (X402)",
+                              "id": "ab4925f8-1477-4b12-a4aa-9bb9816f6c85",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/x402/:chainName/address/:walletAddress/balances_v2/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "x402",
+                                    ":chainName",
+                                    "address",
+                                    ":walletAddress",
+                                    "balances_v2",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "aec43be5-1dcd-4a40-a92b-9e7b39ba2423",
+                                      "key": "chainName",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "553ed50f-a7c1-4cd3-8964-0706fed4440e",
+                                      "key": "walletAddress",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "id": "30f3c550-0b08-47cb-8b92-fd6bab98976c",
+                                  "name": "OK",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/x402/:chainName/address/:walletAddress/balances_v2/",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "x402",
+                                        ":chainName",
+                                        "address",
+                                        ":walletAddress",
+                                        "balances_v2",
+                                        ""
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "chainName"
+                                        },
+                                        {
+                                          "key": "walletAddress"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:26:33.000Z",
+                                  "updatedAt": "2026-07-28T01:26:33.000Z",
+                                  "uid": "35240-30f3c550-0b08-47cb-8b92-fd6bab98976c"
+                                },
+                                {
+                                  "id": "b257f3f6-1920-421d-a8b8-f4e11253ded6",
+                                  "name": "Payment Required - settle via x402 protocol and retry.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/x402/:chainName/address/:walletAddress/balances_v2/",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "x402",
+                                        ":chainName",
+                                        "address",
+                                        ":walletAddress",
+                                        "balances_v2",
+                                        ""
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "chainName"
+                                        },
+                                        {
+                                          "key": "walletAddress"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Payment Required",
+                                  "code": 402,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"scheme\": \"<string>\",\n  \"recipient\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"asset\": \"<string>\",\n  \"chain\": \"<string>\",\n  \"nonce\": \"<string>\",\n  \"expires\": \"<long>\"\n}",
+                                  "createdAt": "2026-07-28T01:26:33.000Z",
+                                  "updatedAt": "2026-07-28T01:26:33.000Z",
+                                  "uid": "35240-b257f3f6-1920-421d-a8b8-f4e11253ded6"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:26:33.000Z",
+                              "updatedAt": "2026-07-28T01:26:33.000Z",
+                              "uid": "35240-ab4925f8-1477-4b12-a4aa-9bb9816f6c85"
+                            }
+                          ],
+                          "id": "659a6cdf-7ca8-4a56-953b-d6990638f961",
+                          "createdAt": "2026-07-28T01:26:32.000Z",
+                          "updatedAt": "2026-07-28T01:26:32.000Z",
+                          "uid": "35240-659a6cdf-7ca8-4a56-953b-d6990638f961"
+                        },
+                        {
+                          "name": "transactions_v3",
+                          "item": [
+                            {
+                              "name": "Get Recent Transactions For Address (X402)",
+                              "id": "2ec7c3c6-7b3f-445e-9b79-4d96d89f3588",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/x402/:chainName/address/:walletAddress/transactions_v3/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "x402",
+                                    ":chainName",
+                                    "address",
+                                    ":walletAddress",
+                                    "transactions_v3",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "b157e9fb-1399-4b92-b986-4810d6cf5128",
+                                      "key": "chainName",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "d5ec2beb-e6a7-4ff6-85d3-69f01a0f3266",
+                                      "key": "walletAddress",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "id": "183540ea-8ea4-4066-a19b-69c4a33d4e7d",
+                                  "name": "OK",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/x402/:chainName/address/:walletAddress/transactions_v3/",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "x402",
+                                        ":chainName",
+                                        "address",
+                                        ":walletAddress",
+                                        "transactions_v3",
+                                        ""
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "chainName"
+                                        },
+                                        {
+                                          "key": "walletAddress"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:26:33.000Z",
+                                  "updatedAt": "2026-07-28T01:26:33.000Z",
+                                  "uid": "35240-183540ea-8ea4-4066-a19b-69c4a33d4e7d"
+                                },
+                                {
+                                  "id": "558367bb-9188-4f2c-be4e-e1a986937500",
+                                  "name": "Payment Required - settle via x402 protocol and retry.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/x402/:chainName/address/:walletAddress/transactions_v3/",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "x402",
+                                        ":chainName",
+                                        "address",
+                                        ":walletAddress",
+                                        "transactions_v3",
+                                        ""
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "chainName"
+                                        },
+                                        {
+                                          "key": "walletAddress"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Payment Required",
+                                  "code": 402,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"scheme\": \"<string>\",\n  \"recipient\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"asset\": \"<string>\",\n  \"chain\": \"<string>\",\n  \"nonce\": \"<string>\",\n  \"expires\": \"<long>\"\n}",
+                                  "createdAt": "2026-07-28T01:26:33.000Z",
+                                  "updatedAt": "2026-07-28T01:26:33.000Z",
+                                  "uid": "35240-558367bb-9188-4f2c-be4e-e1a986937500"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:26:33.000Z",
+                              "updatedAt": "2026-07-28T01:26:33.000Z",
+                              "uid": "35240-2ec7c3c6-7b3f-445e-9b79-4d96d89f3588"
+                            }
+                          ],
+                          "id": "bd487df6-411e-430c-8d1a-49a7912874f8",
+                          "createdAt": "2026-07-28T01:26:32.000Z",
+                          "updatedAt": "2026-07-28T01:26:32.000Z",
+                          "uid": "35240-bd487df6-411e-430c-8d1a-49a7912874f8"
+                        }
+                      ],
+                      "id": "06c6f3a8-71df-453d-b345-3daa797c4a97",
+                      "createdAt": "2026-07-28T01:26:32.000Z",
+                      "updatedAt": "2026-07-28T01:26:32.000Z",
+                      "uid": "35240-06c6f3a8-71df-453d-b345-3daa797c4a97"
+                    }
+                  ],
+                  "id": "05fd62b3-d2db-4d81-9a04-93f8ee570f1c",
+                  "createdAt": "2026-07-28T01:26:32.000Z",
+                  "updatedAt": "2026-07-28T01:26:32.000Z",
+                  "uid": "35240-05fd62b3-d2db-4d81-9a04-93f8ee570f1c"
+                }
+              ],
+              "id": "8c9c4068-ee30-457b-85b8-4170776c247f",
+              "createdAt": "2026-07-28T01:26:32.000Z",
+              "updatedAt": "2026-07-28T01:26:32.000Z",
+              "uid": "35240-8c9c4068-ee30-457b-85b8-4170776c247f"
+            }
+          ],
+          "id": "1bec3f4c-6d3f-4dc1-87f9-a408d6f4939a",
+          "createdAt": "2026-07-28T01:26:32.000Z",
+          "updatedAt": "2026-07-28T01:26:32.000Z",
+          "uid": "35240-1bec3f4c-6d3f-4dc1-87f9-a408d6f4939a"
+        }
+      ],
+      "id": "247ba206-a6c0-402e-8718-fc275a5d07e2",
+      "createdAt": "2026-07-28T01:26:32.000Z",
+      "updatedAt": "2026-07-28T01:26:32.000Z",
+      "uid": "35240-247ba206-a6c0-402e-8718-fc275a5d07e2"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.covalenthq.com"
+    }
+  ]
+}

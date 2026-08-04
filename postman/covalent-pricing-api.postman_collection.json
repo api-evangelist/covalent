@@ -1,0 +1,362 @@
+{
+  "info": {
+    "_postman_id": "57b6e366-4f20-4e0a-93bd-0f3f6736de9a",
+    "name": "GoldRush Foundational ABI Pricing API",
+    "description": "Structured historical blockchain data across 100+ chains via REST. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs, Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity, Pricing, and Security (token approvals).\n\n\nContact Support:\n Name: GoldRush Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:27:04.000Z",
+    "updatedAt": "2026-07-28T01:27:04.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-57b6e366-4f20-4e0a-93bd-0f3f6736de9a"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "pricing",
+          "item": [
+            {
+              "name": "historical_by_addresses_v2",
+              "item": [
+                {
+                  "name": "{chainName}",
+                  "item": [
+                    {
+                      "name": "{quoteCurrency}",
+                      "item": [
+                        {
+                          "name": "{contractAddresses}",
+                          "item": [
+                            {
+                              "name": "Get Historical Token Prices",
+                              "id": "b2245a1c-1e2e-4043-8e87-e02153519993",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/pricing/historical_by_addresses_v2/:chainName/:quoteCurrency/:contractAddresses/?from=<date>&to=<date>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "pricing",
+                                    "historical_by_addresses_v2",
+                                    ":chainName",
+                                    ":quoteCurrency",
+                                    ":contractAddresses",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "from",
+                                      "value": "<date>"
+                                    },
+                                    {
+                                      "key": "to",
+                                      "value": "<date>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "90e0fe05-8eda-41f8-836e-1eaf4410e71f",
+                                      "key": "chainName",
+                                      "value": "<string>",
+                                      "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                                    },
+                                    {
+                                      "id": "6df2af20-c6c1-4708-ac30-2c3c15adc3ba",
+                                      "key": "quoteCurrency",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "17dcbe4b-b458-48cf-a60f-988f2804e001",
+                                      "key": "contractAddresses",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "id": "3edce5c0-ab8f-4fa7-94b5-b4fb7f207a50",
+                                  "name": "OK",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/pricing/historical_by_addresses_v2/:chainName/:quoteCurrency/:contractAddresses/?from=<date>&to=<date>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "pricing",
+                                        "historical_by_addresses_v2",
+                                        ":chainName",
+                                        ":quoteCurrency",
+                                        ":contractAddresses",
+                                        ""
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "from",
+                                          "value": "<date>"
+                                        },
+                                        {
+                                          "key": "to",
+                                          "value": "<date>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "chainName"
+                                        },
+                                        {
+                                          "key": "quoteCurrency"
+                                        },
+                                        {
+                                          "key": "contractAddresses"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:27:04.000Z",
+                                  "updatedAt": "2026-07-28T01:27:04.000Z",
+                                  "uid": "35240-3edce5c0-ab8f-4fa7-94b5-b4fb7f207a50"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:27:04.000Z",
+                              "updatedAt": "2026-07-28T01:27:04.000Z",
+                              "uid": "35240-b2245a1c-1e2e-4043-8e87-e02153519993"
+                            }
+                          ],
+                          "id": "f7fa72f6-9c94-45a2-b527-72a6d01b9609",
+                          "createdAt": "2026-07-28T01:27:04.000Z",
+                          "updatedAt": "2026-07-28T01:27:04.000Z",
+                          "uid": "35240-f7fa72f6-9c94-45a2-b527-72a6d01b9609"
+                        }
+                      ],
+                      "id": "b896c345-a9fa-43b6-a070-0ee8840e37ed",
+                      "createdAt": "2026-07-28T01:27:04.000Z",
+                      "updatedAt": "2026-07-28T01:27:04.000Z",
+                      "uid": "35240-b896c345-a9fa-43b6-a070-0ee8840e37ed"
+                    }
+                  ],
+                  "id": "919ec8b7-5acb-45dd-b622-5f81a38ebab2",
+                  "createdAt": "2026-07-28T01:27:04.000Z",
+                  "updatedAt": "2026-07-28T01:27:04.000Z",
+                  "uid": "35240-919ec8b7-5acb-45dd-b622-5f81a38ebab2"
+                }
+              ],
+              "id": "1fcd9d4c-8447-4d04-bdb5-e7c320a005ab",
+              "createdAt": "2026-07-28T01:27:04.000Z",
+              "updatedAt": "2026-07-28T01:27:04.000Z",
+              "uid": "35240-1fcd9d4c-8447-4d04-bdb5-e7c320a005ab"
+            }
+          ],
+          "id": "479735ee-c3a7-4e5d-b10d-a2aa98d7defa",
+          "createdAt": "2026-07-28T01:27:04.000Z",
+          "updatedAt": "2026-07-28T01:27:04.000Z",
+          "uid": "35240-479735ee-c3a7-4e5d-b10d-a2aa98d7defa"
+        },
+        {
+          "name": "{chainName}",
+          "item": [
+            {
+              "name": "xy=k",
+              "item": [
+                {
+                  "name": "{dexName}",
+                  "item": [
+                    {
+                      "name": "pool",
+                      "item": [
+                        {
+                          "name": "{poolAddress}",
+                          "item": [
+                            {
+                              "name": "spot_prices",
+                              "item": [
+                                {
+                                  "name": "Get Pool Spot Prices",
+                                  "id": "940a9b64-2d8e-4cfd-9023-72288ac777bb",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/:chainName/xy=k/:dexName/pool/:poolAddress/spot_prices/",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        ":chainName",
+                                        "xy=k",
+                                        ":dexName",
+                                        "pool",
+                                        ":poolAddress",
+                                        "spot_prices",
+                                        ""
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "d799367e-3b81-4a7e-baa0-12b682302341",
+                                          "key": "chainName",
+                                          "value": "<string>",
+                                          "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                                        },
+                                        {
+                                          "id": "249748c0-64da-407e-806a-5369f410d235",
+                                          "key": "dexName",
+                                          "value": "<string>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "90e1dae0-8b5f-4518-9766-bb990d50a3ea",
+                                          "key": "poolAddress",
+                                          "value": "<string>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "ab6f3a66-3f37-4919-bf29-5994b31956fc",
+                                      "name": "OK",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/v1/:chainName/xy=k/:dexName/pool/:poolAddress/spot_prices/",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "v1",
+                                            ":chainName",
+                                            "xy=k",
+                                            ":dexName",
+                                            "pool",
+                                            ":poolAddress",
+                                            "spot_prices",
+                                            ""
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "chainName"
+                                            },
+                                            {
+                                              "key": "dexName"
+                                            },
+                                            {
+                                              "key": "poolAddress"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T01:27:04.000Z",
+                                      "updatedAt": "2026-07-28T01:27:04.000Z",
+                                      "uid": "35240-ab6f3a66-3f37-4919-bf29-5994b31956fc"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T01:27:04.000Z",
+                                  "updatedAt": "2026-07-28T01:27:04.000Z",
+                                  "uid": "35240-940a9b64-2d8e-4cfd-9023-72288ac777bb"
+                                }
+                              ],
+                              "id": "1492e4d0-4474-458c-bbca-df07a55e1ef8",
+                              "createdAt": "2026-07-28T01:27:04.000Z",
+                              "updatedAt": "2026-07-28T01:27:04.000Z",
+                              "uid": "35240-1492e4d0-4474-458c-bbca-df07a55e1ef8"
+                            }
+                          ],
+                          "id": "af7374d9-546c-4663-b1bf-79a49f4de8d6",
+                          "createdAt": "2026-07-28T01:27:04.000Z",
+                          "updatedAt": "2026-07-28T01:27:04.000Z",
+                          "uid": "35240-af7374d9-546c-4663-b1bf-79a49f4de8d6"
+                        }
+                      ],
+                      "id": "fe476aa7-765a-4b0c-8d3c-d81b12fb3318",
+                      "createdAt": "2026-07-28T01:27:04.000Z",
+                      "updatedAt": "2026-07-28T01:27:04.000Z",
+                      "uid": "35240-fe476aa7-765a-4b0c-8d3c-d81b12fb3318"
+                    }
+                  ],
+                  "id": "1a0f0fa4-7b77-4a43-b1ed-87ef1d26edcf",
+                  "createdAt": "2026-07-28T01:27:04.000Z",
+                  "updatedAt": "2026-07-28T01:27:04.000Z",
+                  "uid": "35240-1a0f0fa4-7b77-4a43-b1ed-87ef1d26edcf"
+                }
+              ],
+              "id": "f47d8215-03d8-4d1d-99c6-155aba8e593f",
+              "createdAt": "2026-07-28T01:27:04.000Z",
+              "updatedAt": "2026-07-28T01:27:04.000Z",
+              "uid": "35240-f47d8215-03d8-4d1d-99c6-155aba8e593f"
+            }
+          ],
+          "id": "b702ac46-07d1-4d25-bdc9-90dc6696453a",
+          "createdAt": "2026-07-28T01:27:04.000Z",
+          "updatedAt": "2026-07-28T01:27:04.000Z",
+          "uid": "35240-b702ac46-07d1-4d25-bdc9-90dc6696453a"
+        }
+      ],
+      "id": "37ef796f-eda0-4ac1-b913-35d8e921a85e",
+      "createdAt": "2026-07-28T01:27:04.000Z",
+      "updatedAt": "2026-07-28T01:27:04.000Z",
+      "uid": "35240-37ef796f-eda0-4ac1-b913-35d8e921a85e"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.covalenthq.com"
+    }
+  ]
+}

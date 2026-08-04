@@ -1,0 +1,252 @@
+{
+  "info": {
+    "_postman_id": "e9d5d679-f160-43b7-aed4-265c27d6d231",
+    "name": "GoldRush Foundational ABI Queries API",
+    "description": "Structured historical blockchain data across 100+ chains via REST. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs, Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity, Pricing, and Security (token approvals).\n\n\nContact Support:\n Name: GoldRush Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:27:04.000Z",
+    "updatedAt": "2026-07-28T01:27:05.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e9d5d679-f160-43b7-aed4-265c27d6d231"
+  },
+  "item": [
+    {
+      "name": "graphql",
+      "item": [
+        {
+          "name": "Execute Streaming GraphQL Operation",
+          "id": "e116eec8-e871-4c58-b811-600504a591db",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"<string>\",\n  \"variables\": {\n    \"dolor_48\": -50424644.05613512,\n    \"officia9\": true,\n    \"veniam95\": 88530529,\n    \"deseruntf6\": 38531344,\n    \"dodb\": -10368330.435982823\n  },\n  \"operationName\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/graphql",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "graphql"
+              ]
+            },
+            "description": "Executes a GraphQL `query` or `subscription` operation. Supported queries: `ohlcvPairs`, `ohlcvTokens`, `tokenSearch`, `topTraderWalletsForToken`, `walletPnlByToken`. Supported subscriptions (upgrade to WebSocket on the same path): `newDexPairs`, `ohlcvPairs`, `ohlcvTokens`, `updatePairs`, `updateTokens`, `walletActivity`.\n"
+          },
+          "response": [
+            {
+              "id": "f6bfec69-4b53-4bd2-b7d1-1db364b43cd2",
+              "name": "GraphQL response envelope",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"variables\": {\n    \"dolor_48\": -50424644.05613512,\n    \"officia9\": true,\n    \"veniam95\": 88530529,\n    \"deseruntf6\": 38531344,\n    \"dodb\": -10368330.435982823\n  },\n  \"operationName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/graphql",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "graphql"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": {\n    \"tempor9\": 18700788.95705816,\n    \"qui_6e\": -91132354.65235192,\n    \"ad_6\": \"sint ad\"\n  },\n  \"errors\": [\n    {\n      \"message\": \"<string>\",\n      \"path\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"extensions\": {\n        \"Lorem_d\": \"non deserunt adipisicing eu\",\n        \"voluptate_c\": -90779642.00280522,\n        \"laborumda\": false,\n        \"enimc\": \"exercitation\"\n      }\n    },\n    {\n      \"message\": \"<string>\",\n      \"path\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"extensions\": {\n        \"officia_f97\": -13495554.612469584\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:27:05.000Z",
+              "updatedAt": "2026-07-28T01:27:05.000Z",
+              "uid": "35240-f6bfec69-4b53-4bd2-b7d1-1db364b43cd2"
+            },
+            {
+              "id": "08b8eca7-1a0f-4f01-96a6-d1ef038b0b7c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"variables\": {\n    \"dolor_48\": -50424644.05613512,\n    \"officia9\": true,\n    \"veniam95\": 88530529,\n    \"deseruntf6\": 38531344,\n    \"dodb\": -10368330.435982823\n  },\n  \"operationName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/graphql",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "graphql"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": {\n    \"tempor9\": 18700788.95705816,\n    \"qui_6e\": -91132354.65235192,\n    \"ad_6\": \"sint ad\"\n  },\n  \"errors\": [\n    {\n      \"message\": \"<string>\",\n      \"path\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"extensions\": {\n        \"Lorem_d\": \"non deserunt adipisicing eu\",\n        \"voluptate_c\": -90779642.00280522,\n        \"laborumda\": false,\n        \"enimc\": \"exercitation\"\n      }\n    },\n    {\n      \"message\": \"<string>\",\n      \"path\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"extensions\": {\n        \"officia_f97\": -13495554.612469584\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:27:05.000Z",
+              "updatedAt": "2026-07-28T01:27:05.000Z",
+              "uid": "35240-08b8eca7-1a0f-4f01-96a6-d1ef038b0b7c"
+            },
+            {
+              "id": "ce30e066-5921-488c-890b-a0f341b00d96",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"variables\": {\n    \"dolor_48\": -50424644.05613512,\n    \"officia9\": true,\n    \"veniam95\": 88530529,\n    \"deseruntf6\": 38531344,\n    \"dodb\": -10368330.435982823\n  },\n  \"operationName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/graphql",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "graphql"
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": {\n    \"tempor9\": 18700788.95705816,\n    \"qui_6e\": -91132354.65235192,\n    \"ad_6\": \"sint ad\"\n  },\n  \"errors\": [\n    {\n      \"message\": \"<string>\",\n      \"path\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"extensions\": {\n        \"Lorem_d\": \"non deserunt adipisicing eu\",\n        \"voluptate_c\": -90779642.00280522,\n        \"laborumda\": false,\n        \"enimc\": \"exercitation\"\n      }\n    },\n    {\n      \"message\": \"<string>\",\n      \"path\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"extensions\": {\n        \"officia_f97\": -13495554.612469584\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:27:05.000Z",
+              "updatedAt": "2026-07-28T01:27:05.000Z",
+              "uid": "35240-ce30e066-5921-488c-890b-a0f341b00d96"
+            }
+          ],
+          "createdAt": "2026-07-28T01:27:05.000Z",
+          "updatedAt": "2026-07-28T01:27:05.000Z",
+          "uid": "35240-e116eec8-e871-4c58-b811-600504a591db"
+        }
+      ],
+      "id": "5106d8f3-3447-43da-a45a-09688a293605",
+      "createdAt": "2026-07-28T01:27:05.000Z",
+      "updatedAt": "2026-07-28T01:27:05.000Z",
+      "uid": "35240-5106d8f3-3447-43da-a45a-09688a293605"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.covalenthq.com"
+    }
+  ]
+}

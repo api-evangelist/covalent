@@ -1,0 +1,335 @@
+{
+  "info": {
+    "_postman_id": "6580aead-2acd-401b-ab32-29a3f0830ea4",
+    "name": "GoldRush Foundational ABI Cross-Chain API",
+    "description": "Structured historical blockchain data across 100+ chains via REST. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs, Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity, Pricing, and Security (token approvals).\n\n\nContact Support:\n Name: GoldRush Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:26:31.000Z",
+    "updatedAt": "2026-07-28T01:26:31.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6580aead-2acd-401b-ab32-29a3f0830ea4"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "address",
+          "item": [
+            {
+              "name": "{walletAddress}",
+              "item": [
+                {
+                  "name": "activity",
+                  "item": [
+                    {
+                      "name": "Get Activity Across All Chains For Address",
+                      "id": "68107bfb-9d62-4c29-be52-5b02a2263c31",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/address/:walletAddress/activity/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "address",
+                            ":walletAddress",
+                            "activity",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "12a02c62-d898-4885-9f53-c6b5cdf570cb",
+                              "key": "walletAddress",
+                              "value": "<string>",
+                              "description": "(Required) Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "12ddc8c1-7c33-4fdb-864f-dff555488616",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/address/:walletAddress/activity/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "address",
+                                ":walletAddress",
+                                "activity",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "walletAddress"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:26:32.000Z",
+                          "updatedAt": "2026-07-28T01:26:32.000Z",
+                          "uid": "35240-12ddc8c1-7c33-4fdb-864f-dff555488616"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:26:32.000Z",
+                      "updatedAt": "2026-07-28T01:26:32.000Z",
+                      "uid": "35240-68107bfb-9d62-4c29-be52-5b02a2263c31"
+                    }
+                  ],
+                  "id": "918b1ef5-ec20-4549-a70e-75b7940be5db",
+                  "createdAt": "2026-07-28T01:26:32.000Z",
+                  "updatedAt": "2026-07-28T01:26:32.000Z",
+                  "uid": "35240-918b1ef5-ec20-4549-a70e-75b7940be5db"
+                }
+              ],
+              "id": "17bda259-3240-45ed-9da6-3171ed9b1de4",
+              "createdAt": "2026-07-28T01:26:32.000Z",
+              "updatedAt": "2026-07-28T01:26:32.000Z",
+              "uid": "35240-17bda259-3240-45ed-9da6-3171ed9b1de4"
+            }
+          ],
+          "id": "7c1dbdbc-5c0f-46a2-9cd2-e885f03b640c",
+          "createdAt": "2026-07-28T01:26:32.000Z",
+          "updatedAt": "2026-07-28T01:26:32.000Z",
+          "uid": "35240-7c1dbdbc-5c0f-46a2-9cd2-e885f03b640c"
+        },
+        {
+          "name": "allchains",
+          "item": [
+            {
+              "name": "address",
+              "item": [
+                {
+                  "name": "{walletAddress}",
+                  "item": [
+                    {
+                      "name": "balances",
+                      "item": [
+                        {
+                          "name": "Get Multichain Balances",
+                          "id": "4e055482-5c4d-4086-b455-06e47274ba67",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/allchains/address/:walletAddress/balances/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "allchains",
+                                "address",
+                                ":walletAddress",
+                                "balances",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "id": "3f891575-8825-4327-960d-9b4ab321be1d",
+                                  "key": "walletAddress",
+                                  "value": "<string>",
+                                  "description": "(Required) Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "1e108edd-ab94-4baa-a976-7eff91ae0b94",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/allchains/address/:walletAddress/balances/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "allchains",
+                                    "address",
+                                    ":walletAddress",
+                                    "balances",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "walletAddress"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:26:32.000Z",
+                              "updatedAt": "2026-07-28T01:26:32.000Z",
+                              "uid": "35240-1e108edd-ab94-4baa-a976-7eff91ae0b94"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:26:32.000Z",
+                          "updatedAt": "2026-07-28T01:26:32.000Z",
+                          "uid": "35240-4e055482-5c4d-4086-b455-06e47274ba67"
+                        }
+                      ],
+                      "id": "7f824611-96a6-4efb-80fc-9fe88a79fea5",
+                      "createdAt": "2026-07-28T01:26:32.000Z",
+                      "updatedAt": "2026-07-28T01:26:32.000Z",
+                      "uid": "35240-7f824611-96a6-4efb-80fc-9fe88a79fea5"
+                    }
+                  ],
+                  "id": "d5b2350f-c046-4847-99bb-026262cb1748",
+                  "createdAt": "2026-07-28T01:26:32.000Z",
+                  "updatedAt": "2026-07-28T01:26:32.000Z",
+                  "uid": "35240-d5b2350f-c046-4847-99bb-026262cb1748"
+                }
+              ],
+              "id": "2a67cc4d-28cd-4fce-b90d-f29ef84a8b55",
+              "createdAt": "2026-07-28T01:26:32.000Z",
+              "updatedAt": "2026-07-28T01:26:32.000Z",
+              "uid": "35240-2a67cc4d-28cd-4fce-b90d-f29ef84a8b55"
+            },
+            {
+              "name": "transactions",
+              "item": [
+                {
+                  "name": "Get Multichain Multiaddress Transactions",
+                  "id": "df886c8f-6321-40fb-9ddc-e8c37e4a5404",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/allchains/transactions/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "allchains",
+                        "transactions",
+                        ""
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "595f92f7-f35a-4f7d-9c5b-8c27a027a22d",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/allchains/transactions/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "allchains",
+                            "transactions",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:26:32.000Z",
+                      "updatedAt": "2026-07-28T01:26:32.000Z",
+                      "uid": "35240-595f92f7-f35a-4f7d-9c5b-8c27a027a22d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:26:32.000Z",
+                  "updatedAt": "2026-07-28T01:26:32.000Z",
+                  "uid": "35240-df886c8f-6321-40fb-9ddc-e8c37e4a5404"
+                }
+              ],
+              "id": "846487e3-faf7-4f4f-b233-99070e19f4cc",
+              "createdAt": "2026-07-28T01:26:32.000Z",
+              "updatedAt": "2026-07-28T01:26:32.000Z",
+              "uid": "35240-846487e3-faf7-4f4f-b233-99070e19f4cc"
+            }
+          ],
+          "id": "f8f3bc37-c2f9-4441-810e-133bba4ee08e",
+          "createdAt": "2026-07-28T01:26:32.000Z",
+          "updatedAt": "2026-07-28T01:26:32.000Z",
+          "uid": "35240-f8f3bc37-c2f9-4441-810e-133bba4ee08e"
+        }
+      ],
+      "id": "c8c7147a-3083-483a-a238-c073a8fb2793",
+      "createdAt": "2026-07-28T01:26:32.000Z",
+      "updatedAt": "2026-07-28T01:26:32.000Z",
+      "uid": "35240-c8c7147a-3083-483a-a238-c073a8fb2793"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.covalenthq.com"
+    }
+  ]
+}

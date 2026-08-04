@@ -1,0 +1,949 @@
+{
+  "info": {
+    "_postman_id": "20d5c962-bc73-4261-9e44-217db863d019",
+    "name": "GoldRush Foundational ABI Base API",
+    "description": "Structured historical blockchain data across 100+ chains via REST. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs, Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity, Pricing, and Security (token approvals).\n\n\nContact Support:\n Name: GoldRush Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:26:29.000Z",
+    "updatedAt": "2026-07-28T01:26:29.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-20d5c962-bc73-4261-9e44-217db863d019"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "{chainName}",
+          "item": [
+            {
+              "name": "block_v2",
+              "item": [
+                {
+                  "name": "{blockHeight}",
+                  "item": [
+                    {
+                      "name": "Get A Block",
+                      "id": "7559f10a-7cd2-46eb-a3ae-951bb4124320",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/:chainName/block_v2/:blockHeight/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            ":chainName",
+                            "block_v2",
+                            ":blockHeight",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "4e1746d1-1d18-446a-972f-f375087b32ef",
+                              "key": "chainName",
+                              "value": "<string>",
+                              "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                            },
+                            {
+                              "id": "c540f2a3-ed37-4c07-853b-210041fdfea2",
+                              "key": "blockHeight",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "52edab78-04f9-438a-ab7a-d497e67f9302",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/:chainName/block_v2/:blockHeight/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                ":chainName",
+                                "block_v2",
+                                ":blockHeight",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "chainName"
+                                },
+                                {
+                                  "key": "blockHeight"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:26:29.000Z",
+                          "updatedAt": "2026-07-28T01:26:29.000Z",
+                          "uid": "35240-52edab78-04f9-438a-ab7a-d497e67f9302"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:26:29.000Z",
+                      "updatedAt": "2026-07-28T01:26:29.000Z",
+                      "uid": "35240-7559f10a-7cd2-46eb-a3ae-951bb4124320"
+                    }
+                  ],
+                  "id": "c15fdec3-82ae-46a7-84aa-09623bb72d6b",
+                  "createdAt": "2026-07-28T01:26:29.000Z",
+                  "updatedAt": "2026-07-28T01:26:29.000Z",
+                  "uid": "35240-c15fdec3-82ae-46a7-84aa-09623bb72d6b"
+                },
+                {
+                  "name": "{startDate}",
+                  "item": [
+                    {
+                      "name": "{endDate}",
+                      "item": [
+                        {
+                          "name": "Get Block Heights",
+                          "id": "62e437e9-5125-4fce-820e-12b274c44ddd",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/:chainName/block_v2/:startDate/:endDate/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                ":chainName",
+                                "block_v2",
+                                ":startDate",
+                                ":endDate",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "id": "05271c00-d40f-4311-bdbe-0f302b7ead31",
+                                  "key": "chainName",
+                                  "value": "<string>",
+                                  "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                                },
+                                {
+                                  "id": "57a63c9b-d128-4291-87a4-72198ae7b83e",
+                                  "key": "startDate",
+                                  "value": "<date>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "ba6fc38f-010b-4ace-b384-283a5493e4b8",
+                                  "key": "endDate",
+                                  "value": "<date>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "a27091d7-719c-46ac-8403-fb20fe5459fd",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/:chainName/block_v2/:startDate/:endDate/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":chainName",
+                                    "block_v2",
+                                    ":startDate",
+                                    ":endDate",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "chainName"
+                                    },
+                                    {
+                                      "key": "startDate"
+                                    },
+                                    {
+                                      "key": "endDate"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:26:29.000Z",
+                              "updatedAt": "2026-07-28T01:26:29.000Z",
+                              "uid": "35240-a27091d7-719c-46ac-8403-fb20fe5459fd"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:26:29.000Z",
+                          "updatedAt": "2026-07-28T01:26:29.000Z",
+                          "uid": "35240-62e437e9-5125-4fce-820e-12b274c44ddd"
+                        }
+                      ],
+                      "id": "401e2042-465b-4dc4-b4b2-5c395aa5e502",
+                      "createdAt": "2026-07-28T01:26:29.000Z",
+                      "updatedAt": "2026-07-28T01:26:29.000Z",
+                      "uid": "35240-401e2042-465b-4dc4-b4b2-5c395aa5e502"
+                    }
+                  ],
+                  "id": "274e8be4-84bf-4162-a5c9-b107a0be8151",
+                  "createdAt": "2026-07-28T01:26:29.000Z",
+                  "updatedAt": "2026-07-28T01:26:29.000Z",
+                  "uid": "35240-274e8be4-84bf-4162-a5c9-b107a0be8151"
+                }
+              ],
+              "id": "707c8a1f-3d1d-49a9-bc58-465d2fd5aafa",
+              "createdAt": "2026-07-28T01:26:29.000Z",
+              "updatedAt": "2026-07-28T01:26:29.000Z",
+              "uid": "35240-707c8a1f-3d1d-49a9-bc58-465d2fd5aafa"
+            },
+            {
+              "name": "event",
+              "item": [
+                {
+                  "name": "topics",
+                  "item": [
+                    {
+                      "name": "{topicHash}",
+                      "item": [
+                        {
+                          "name": "Get Log Events By Topic Hash(es)",
+                          "id": "25fec99a-45a6-4519-9259-1c933add79f8",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/:chainName/event/topics/:topicHash/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                ":chainName",
+                                "event",
+                                "topics",
+                                ":topicHash",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "id": "4c139734-4a21-4be3-b433-d6a0579e5ba2",
+                                  "key": "chainName",
+                                  "value": "<string>",
+                                  "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                                },
+                                {
+                                  "id": "6b18c55f-dd3a-467c-8c15-96eae09204c8",
+                                  "key": "topicHash",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "4661c51d-adbf-457c-b2c0-56a340e60291",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/:chainName/event/topics/:topicHash/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":chainName",
+                                    "event",
+                                    "topics",
+                                    ":topicHash",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "chainName"
+                                    },
+                                    {
+                                      "key": "topicHash"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:26:29.000Z",
+                              "updatedAt": "2026-07-28T01:26:29.000Z",
+                              "uid": "35240-4661c51d-adbf-457c-b2c0-56a340e60291"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:26:29.000Z",
+                          "updatedAt": "2026-07-28T01:26:29.000Z",
+                          "uid": "35240-25fec99a-45a6-4519-9259-1c933add79f8"
+                        }
+                      ],
+                      "id": "c995694c-8dc2-4d7d-92d4-04c5bd4b74c7",
+                      "createdAt": "2026-07-28T01:26:29.000Z",
+                      "updatedAt": "2026-07-28T01:26:29.000Z",
+                      "uid": "35240-c995694c-8dc2-4d7d-92d4-04c5bd4b74c7"
+                    }
+                  ],
+                  "id": "dd224638-4fde-4f59-bf59-d3824c6962ce",
+                  "createdAt": "2026-07-28T01:26:29.000Z",
+                  "updatedAt": "2026-07-28T01:26:29.000Z",
+                  "uid": "35240-dd224638-4fde-4f59-bf59-d3824c6962ce"
+                }
+              ],
+              "id": "c9546246-ba9b-4ebb-ada3-658feb42a59a",
+              "createdAt": "2026-07-28T01:26:29.000Z",
+              "updatedAt": "2026-07-28T01:26:29.000Z",
+              "uid": "35240-c9546246-ba9b-4ebb-ada3-658feb42a59a"
+            },
+            {
+              "name": "events",
+              "item": [
+                {
+                  "name": "address",
+                  "item": [
+                    {
+                      "name": "{contractAddress}",
+                      "item": [
+                        {
+                          "name": "Get Log Events By Contract Address",
+                          "id": "2193b7b4-b434-4412-bb94-c87fa54e1ec3",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/:chainName/events/address/:contractAddress/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                ":chainName",
+                                "events",
+                                "address",
+                                ":contractAddress",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "id": "66e8472b-a866-4178-a801-b18d4b337345",
+                                  "key": "chainName",
+                                  "value": "<string>",
+                                  "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                                },
+                                {
+                                  "id": "9ac9c6c0-1017-4e93-824a-a41577b3b733",
+                                  "key": "contractAddress",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "173eb9e9-3593-4f17-894f-1f1a060e18bc",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/:chainName/events/address/:contractAddress/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":chainName",
+                                    "events",
+                                    "address",
+                                    ":contractAddress",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "chainName"
+                                    },
+                                    {
+                                      "key": "contractAddress"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:26:29.000Z",
+                              "updatedAt": "2026-07-28T01:26:29.000Z",
+                              "uid": "35240-173eb9e9-3593-4f17-894f-1f1a060e18bc"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:26:29.000Z",
+                          "updatedAt": "2026-07-28T01:26:29.000Z",
+                          "uid": "35240-2193b7b4-b434-4412-bb94-c87fa54e1ec3"
+                        }
+                      ],
+                      "id": "757914ad-2c25-4cf5-af1a-20aff277d81c",
+                      "createdAt": "2026-07-28T01:26:29.000Z",
+                      "updatedAt": "2026-07-28T01:26:29.000Z",
+                      "uid": "35240-757914ad-2c25-4cf5-af1a-20aff277d81c"
+                    }
+                  ],
+                  "id": "43de3be9-630a-4297-ad21-a0464c475ecd",
+                  "createdAt": "2026-07-28T01:26:29.000Z",
+                  "updatedAt": "2026-07-28T01:26:29.000Z",
+                  "uid": "35240-43de3be9-630a-4297-ad21-a0464c475ecd"
+                },
+                {
+                  "name": "Get Logs",
+                  "id": "697508a9-321a-467c-ae1a-6e08babd03dd",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/:chainName/events/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        ":chainName",
+                        "events",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "d7cb26cf-5981-41cb-bcea-e3d269b528ea",
+                          "key": "chainName",
+                          "value": "<string>",
+                          "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "0dde1f70-24dd-488e-83e7-d2927e822565",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/:chainName/events/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            ":chainName",
+                            "events",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "chainName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:26:29.000Z",
+                      "updatedAt": "2026-07-28T01:26:29.000Z",
+                      "uid": "35240-0dde1f70-24dd-488e-83e7-d2927e822565"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:26:29.000Z",
+                  "updatedAt": "2026-07-28T01:26:29.000Z",
+                  "uid": "35240-697508a9-321a-467c-ae1a-6e08babd03dd"
+                }
+              ],
+              "id": "af2bfc6d-b0aa-4cff-94e1-ef89e2ef4a65",
+              "createdAt": "2026-07-28T01:26:29.000Z",
+              "updatedAt": "2026-07-28T01:26:29.000Z",
+              "uid": "35240-af2bfc6d-b0aa-4cff-94e1-ef89e2ef4a65"
+            },
+            {
+              "name": "gas_prices",
+              "item": [
+                {
+                  "name": "{eventType}",
+                  "item": [
+                    {
+                      "name": "Get Gas Prices",
+                      "id": "799b1843-1bb0-4930-9f10-0945688f84a1",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/:chainName/gas_prices/:eventType/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            ":chainName",
+                            "gas_prices",
+                            ":eventType",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "a6dde578-32bf-4e54-8332-123edf19e8fb",
+                              "key": "chainName",
+                              "value": "<string>",
+                              "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                            },
+                            {
+                              "id": "4082b553-df1e-476b-8005-fe7a11465a06",
+                              "key": "eventType",
+                              "value": "uniswapv3",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "602409d9-a158-461b-8919-9a0fcb052767",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/:chainName/gas_prices/:eventType/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                ":chainName",
+                                "gas_prices",
+                                ":eventType",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "chainName"
+                                },
+                                {
+                                  "key": "eventType"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:26:29.000Z",
+                          "updatedAt": "2026-07-28T01:26:29.000Z",
+                          "uid": "35240-602409d9-a158-461b-8919-9a0fcb052767"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:26:29.000Z",
+                      "updatedAt": "2026-07-28T01:26:29.000Z",
+                      "uid": "35240-799b1843-1bb0-4930-9f10-0945688f84a1"
+                    }
+                  ],
+                  "id": "0a4293a6-c6e7-4ec0-a311-33f77f3d2866",
+                  "createdAt": "2026-07-28T01:26:29.000Z",
+                  "updatedAt": "2026-07-28T01:26:29.000Z",
+                  "uid": "35240-0a4293a6-c6e7-4ec0-a311-33f77f3d2866"
+                }
+              ],
+              "id": "299623f4-b56a-417b-94dd-1c1ee0ec181c",
+              "createdAt": "2026-07-28T01:26:29.000Z",
+              "updatedAt": "2026-07-28T01:26:29.000Z",
+              "uid": "35240-299623f4-b56a-417b-94dd-1c1ee0ec181c"
+            },
+            {
+              "name": "address",
+              "item": [
+                {
+                  "name": "{addressName}",
+                  "item": [
+                    {
+                      "name": "resolve_address",
+                      "item": [
+                        {
+                          "name": "Get Resolved Address For Registered Address",
+                          "id": "6279e3f7-3f79-4705-99c1-c4d93254c30b",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/:chainName/address/:addressName/resolve_address/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                ":chainName",
+                                "address",
+                                ":addressName",
+                                "resolve_address",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "id": "7c05a2a8-06e3-4512-9c7a-34756dbc5479",
+                                  "key": "chainName",
+                                  "value": "<string>",
+                                  "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                                },
+                                {
+                                  "id": "c0eb712a-ee9a-4063-b2d3-c8e09311a77d",
+                                  "key": "addressName",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "10b94634-6061-4523-90ab-3bec47cc22e4",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/:chainName/address/:addressName/resolve_address/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":chainName",
+                                    "address",
+                                    ":addressName",
+                                    "resolve_address",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "chainName"
+                                    },
+                                    {
+                                      "key": "addressName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:26:29.000Z",
+                              "updatedAt": "2026-07-28T01:26:29.000Z",
+                              "uid": "35240-10b94634-6061-4523-90ab-3bec47cc22e4"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:26:29.000Z",
+                          "updatedAt": "2026-07-28T01:26:29.000Z",
+                          "uid": "35240-6279e3f7-3f79-4705-99c1-c4d93254c30b"
+                        }
+                      ],
+                      "id": "9d32b59c-4584-4e2e-85a6-1e204969d6ce",
+                      "createdAt": "2026-07-28T01:26:29.000Z",
+                      "updatedAt": "2026-07-28T01:26:29.000Z",
+                      "uid": "35240-9d32b59c-4584-4e2e-85a6-1e204969d6ce"
+                    }
+                  ],
+                  "id": "b43c1fc9-2b44-471b-9c78-726d64a5b5c0",
+                  "createdAt": "2026-07-28T01:26:29.000Z",
+                  "updatedAt": "2026-07-28T01:26:29.000Z",
+                  "uid": "35240-b43c1fc9-2b44-471b-9c78-726d64a5b5c0"
+                }
+              ],
+              "id": "57add946-0fce-4630-adcb-e267ec0dfda2",
+              "createdAt": "2026-07-28T01:26:29.000Z",
+              "updatedAt": "2026-07-28T01:26:29.000Z",
+              "uid": "35240-57add946-0fce-4630-adcb-e267ec0dfda2"
+            }
+          ],
+          "id": "70be04c9-c35a-4784-a3d2-c2a32deddb65",
+          "createdAt": "2026-07-28T01:26:29.000Z",
+          "updatedAt": "2026-07-28T01:26:29.000Z",
+          "uid": "35240-70be04c9-c35a-4784-a3d2-c2a32deddb65"
+        },
+        {
+          "name": "chains",
+          "item": [
+            {
+              "name": "status",
+              "item": [
+                {
+                  "name": "Get All Chain Statuses",
+                  "id": "f78d5855-60b3-4fb6-8bed-bab8f73b95de",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/chains/status/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "chains",
+                        "status",
+                        ""
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "3f44aca6-6483-4a87-9ca1-5dfdad8f24b2",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/chains/status/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "chains",
+                            "status",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:26:29.000Z",
+                      "updatedAt": "2026-07-28T01:26:29.000Z",
+                      "uid": "35240-3f44aca6-6483-4a87-9ca1-5dfdad8f24b2"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:26:29.000Z",
+                  "updatedAt": "2026-07-28T01:26:29.000Z",
+                  "uid": "35240-f78d5855-60b3-4fb6-8bed-bab8f73b95de"
+                }
+              ],
+              "id": "0853ba04-c87a-4ff3-af5f-eae46cd8b899",
+              "createdAt": "2026-07-28T01:26:29.000Z",
+              "updatedAt": "2026-07-28T01:26:29.000Z",
+              "uid": "35240-0853ba04-c87a-4ff3-af5f-eae46cd8b899"
+            },
+            {
+              "name": "Get All Chains",
+              "id": "a05be9f8-d80c-42d4-8311-4c06be1f6bc1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/chains/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "chains",
+                    ""
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "30a4c4d2-5e9e-42d5-abb3-8eed635ebc95",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/chains/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "chains",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:26:29.000Z",
+                  "updatedAt": "2026-07-28T01:26:29.000Z",
+                  "uid": "35240-30a4c4d2-5e9e-42d5-abb3-8eed635ebc95"
+                }
+              ],
+              "createdAt": "2026-07-28T01:26:29.000Z",
+              "updatedAt": "2026-07-28T01:26:29.000Z",
+              "uid": "35240-a05be9f8-d80c-42d4-8311-4c06be1f6bc1"
+            }
+          ],
+          "id": "f0d4ec8a-090c-4006-b432-870c3cc2a485",
+          "createdAt": "2026-07-28T01:26:29.000Z",
+          "updatedAt": "2026-07-28T01:26:29.000Z",
+          "uid": "35240-f0d4ec8a-090c-4006-b432-870c3cc2a485"
+        }
+      ],
+      "id": "89bd5a5f-04e2-4481-9bfd-c0bbc469d4c0",
+      "createdAt": "2026-07-28T01:26:29.000Z",
+      "updatedAt": "2026-07-28T01:26:29.000Z",
+      "uid": "35240-89bd5a5f-04e2-4481-9bfd-c0bbc469d4c0"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.covalenthq.com"
+    }
+  ]
+}

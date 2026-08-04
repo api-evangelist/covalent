@@ -1,0 +1,134 @@
+openapi: 3.1.0
+info:
+  title: GoldRush x402 API
+  description: >
+    Pay-per-request HTTP 402 endpoints for autonomous AI agents and onchain
+    micropayments. Discover available x402 endpoints, search the directory,
+    and call balance / transaction lookups with a 402 settlement flow.
+  version: v1
+  contact:
+    name: GoldRush Support
+    url: https://goldrush.dev/support/
+servers:
+  - url: https://api.covalenthq.com
+    description: GoldRush x402 endpoints
+security:
+  - BearerAuth: []
+tags:
+  - name: Discovery
+    description: List and search x402 endpoints exposed by GoldRush.
+  - name: Data
+    description: x402-priced data endpoints.
+paths:
+  /v1/x402/endpoints:
+    get:
+      summary: List All Available X402 Endpoints
+      operationId: listX402Endpoints
+      tags: [Discovery]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: '#/components/schemas/X402Endpoint' }
+  /v1/x402/endpoints/search:
+    get:
+      summary: Search X402 Endpoints
+      operationId: searchX402Endpoints
+      tags: [Discovery]
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: OK }
+  /v1/x402/endpoints/{endpointId}:
+    get:
+      summary: Get Details For A Specific X402 Endpoint
+      operationId: getX402Endpoint
+      tags: [Discovery]
+      parameters:
+        - name: endpointId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: OK, content: { application/json: { schema: { $ref: '#/components/schemas/X402Endpoint' } } } }
+  /v1/x402/{chainName}/address/{walletAddress}/balances_v2/:
+    get:
+      summary: Get Token Balances For Address (X402)
+      operationId: getX402TokenBalancesForAddress
+      tags: [Data]
+      parameters:
+        - name: chainName
+          in: path
+          required: true
+          schema: { type: string }
+        - name: walletAddress
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: OK }
+        '402':
+          description: Payment Required - settle via x402 protocol and retry.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/X402Challenge' }
+  /v1/x402/{chainName}/address/{walletAddress}/transactions_v3/:
+    get:
+      summary: Get Recent Transactions For Address (X402)
+      operationId: getX402RecentTransactionsForAddress
+      tags: [Data]
+      parameters:
+        - name: chainName
+          in: path
+          required: true
+          schema: { type: string }
+        - name: walletAddress
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: OK }
+        '402':
+          description: Payment Required - settle via x402 protocol and retry.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/X402Challenge' }
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Optional bearer key; pay-per-request endpoints accept an x402 settlement header in lieu of a long-lived key.
+  schemas:
+    X402Endpoint:
+      type: object
+      properties:
+        id: { type: string }
+        path: { type: string }
+        method: { type: string }
+        description: { type: string }
+        price:
+          type: object
+          properties:
+            amount: { type: string }
+            asset: { type: string }
+            chain: { type: string }
+    X402Challenge:
+      type: object
+      properties:
+        scheme: { type: string, example: x402 }
+        recipient: { type: string }
+        amount: { type: string }
+        asset: { type: string }
+        chain: { type: string }
+        nonce: { type: string }
+        expires: { type: integer, format: int64 }

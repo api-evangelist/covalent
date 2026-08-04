@@ -1,0 +1,453 @@
+{
+  "info": {
+    "_postman_id": "348fd638-2d3e-4da0-81de-147f16d49f53",
+    "name": "GoldRush Foundational ABI Bitcoin API",
+    "description": "Structured historical blockchain data across 100+ chains via REST. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs, Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity, Pricing, and Security (token approvals).\n\n\nContact Support:\n Name: GoldRush Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:26:30.000Z",
+    "updatedAt": "2026-07-28T01:26:30.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-348fd638-2d3e-4da0-81de-147f16d49f53"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "bitcoin-mainnet",
+          "item": [
+            {
+              "name": "address",
+              "item": [
+                {
+                  "name": "{walletAddress}",
+                  "item": [
+                    {
+                      "name": "balances_v2",
+                      "item": [
+                        {
+                          "name": "Get Bitcoin Balance For Non-HD Address",
+                          "id": "411b1703-47f5-4f93-a489-f7e69dce7478",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/bitcoin-mainnet/address/:walletAddress/balances_v2/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "bitcoin-mainnet",
+                                "address",
+                                ":walletAddress",
+                                "balances_v2",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "id": "1787d9c7-3123-45b7-ba12-b88c7c7e83cc",
+                                  "key": "walletAddress",
+                                  "value": "<string>",
+                                  "description": "(Required) Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "fb3cd866-0ad8-4c23-a20a-c9963839f772",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/bitcoin-mainnet/address/:walletAddress/balances_v2/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "bitcoin-mainnet",
+                                    "address",
+                                    ":walletAddress",
+                                    "balances_v2",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "walletAddress"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:26:31.000Z",
+                              "updatedAt": "2026-07-28T01:26:31.000Z",
+                              "uid": "35240-fb3cd866-0ad8-4c23-a20a-c9963839f772"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:26:31.000Z",
+                          "updatedAt": "2026-07-28T01:26:31.000Z",
+                          "uid": "35240-411b1703-47f5-4f93-a489-f7e69dce7478"
+                        }
+                      ],
+                      "id": "6b90ddf2-242c-49e3-8145-a895c18f6ea0",
+                      "createdAt": "2026-07-28T01:26:31.000Z",
+                      "updatedAt": "2026-07-28T01:26:31.000Z",
+                      "uid": "35240-6b90ddf2-242c-49e3-8145-a895c18f6ea0"
+                    },
+                    {
+                      "name": "historical_balances",
+                      "item": [
+                        {
+                          "name": "Get Historical Bitcoin Balance For Non-HD Address",
+                          "id": "c5727ba7-f84e-4a67-8826-090b030a99f0",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/bitcoin-mainnet/address/:walletAddress/historical_balances/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "bitcoin-mainnet",
+                                "address",
+                                ":walletAddress",
+                                "historical_balances",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "id": "5d2c34a9-d492-4141-ac44-56d62322bdb4",
+                                  "key": "walletAddress",
+                                  "value": "<string>",
+                                  "description": "(Required) Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "54ac55f1-2dd9-49d6-a0ed-00ef4c940f8f",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/bitcoin-mainnet/address/:walletAddress/historical_balances/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "bitcoin-mainnet",
+                                    "address",
+                                    ":walletAddress",
+                                    "historical_balances",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "walletAddress"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:26:31.000Z",
+                              "updatedAt": "2026-07-28T01:26:31.000Z",
+                              "uid": "35240-54ac55f1-2dd9-49d6-a0ed-00ef4c940f8f"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:26:31.000Z",
+                          "updatedAt": "2026-07-28T01:26:31.000Z",
+                          "uid": "35240-c5727ba7-f84e-4a67-8826-090b030a99f0"
+                        }
+                      ],
+                      "id": "a469d57d-9dd4-4e47-944b-50888b9f923e",
+                      "createdAt": "2026-07-28T01:26:31.000Z",
+                      "updatedAt": "2026-07-28T01:26:31.000Z",
+                      "uid": "35240-a469d57d-9dd4-4e47-944b-50888b9f923e"
+                    },
+                    {
+                      "name": "transactions_v2",
+                      "item": [
+                        {
+                          "name": "Get Bitcoin Transactions For Non-HD Address",
+                          "id": "59611831-41b9-4ea4-a8e2-b993da22daf5",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/bitcoin-mainnet/address/:walletAddress/transactions_v2/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "bitcoin-mainnet",
+                                "address",
+                                ":walletAddress",
+                                "transactions_v2",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "id": "b34bd82d-8993-452c-9e27-9ad5fa76042d",
+                                  "key": "walletAddress",
+                                  "value": "<string>",
+                                  "description": "(Required) Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "9f852207-42af-4071-9061-f3d511f07230",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/bitcoin-mainnet/address/:walletAddress/transactions_v2/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "bitcoin-mainnet",
+                                    "address",
+                                    ":walletAddress",
+                                    "transactions_v2",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "walletAddress"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:26:31.000Z",
+                              "updatedAt": "2026-07-28T01:26:31.000Z",
+                              "uid": "35240-9f852207-42af-4071-9061-f3d511f07230"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:26:31.000Z",
+                          "updatedAt": "2026-07-28T01:26:31.000Z",
+                          "uid": "35240-59611831-41b9-4ea4-a8e2-b993da22daf5"
+                        }
+                      ],
+                      "id": "182b380e-a844-4b7e-81eb-f04358393064",
+                      "createdAt": "2026-07-28T01:26:31.000Z",
+                      "updatedAt": "2026-07-28T01:26:31.000Z",
+                      "uid": "35240-182b380e-a844-4b7e-81eb-f04358393064"
+                    }
+                  ],
+                  "id": "e88b0773-5063-4bc4-b26a-8c5e2738bd21",
+                  "createdAt": "2026-07-28T01:26:31.000Z",
+                  "updatedAt": "2026-07-28T01:26:31.000Z",
+                  "uid": "35240-e88b0773-5063-4bc4-b26a-8c5e2738bd21"
+                }
+              ],
+              "id": "b37274f3-9c54-4165-9b3c-6538f699c1fe",
+              "createdAt": "2026-07-28T01:26:31.000Z",
+              "updatedAt": "2026-07-28T01:26:31.000Z",
+              "uid": "35240-b37274f3-9c54-4165-9b3c-6538f699c1fe"
+            }
+          ],
+          "id": "822e56af-16b1-457f-827c-c1e3ccb9f2ba",
+          "createdAt": "2026-07-28T01:26:31.000Z",
+          "updatedAt": "2026-07-28T01:26:31.000Z",
+          "uid": "35240-822e56af-16b1-457f-827c-c1e3ccb9f2ba"
+        },
+        {
+          "name": "bitcoin-hd-mainnet",
+          "item": [
+            {
+              "name": "address",
+              "item": [
+                {
+                  "name": "{walletAddress}",
+                  "item": [
+                    {
+                      "name": "balances_v2",
+                      "item": [
+                        {
+                          "name": "Get Bitcoin Balances For HD Address",
+                          "id": "ab08eaa6-0c56-40f5-a473-2df93885059f",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/bitcoin-hd-mainnet/address/:walletAddress/balances_v2/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "bitcoin-hd-mainnet",
+                                "address",
+                                ":walletAddress",
+                                "balances_v2",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "id": "f0e3e575-35ff-45f7-9fe5-f98cc31abc4e",
+                                  "key": "walletAddress",
+                                  "value": "<string>",
+                                  "description": "(Required) Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "50d94fef-9a31-41db-ba58-88136388fc2c",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/bitcoin-hd-mainnet/address/:walletAddress/balances_v2/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "bitcoin-hd-mainnet",
+                                    "address",
+                                    ":walletAddress",
+                                    "balances_v2",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "walletAddress"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:26:31.000Z",
+                              "updatedAt": "2026-07-28T01:26:31.000Z",
+                              "uid": "35240-50d94fef-9a31-41db-ba58-88136388fc2c"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:26:31.000Z",
+                          "updatedAt": "2026-07-28T01:26:31.000Z",
+                          "uid": "35240-ab08eaa6-0c56-40f5-a473-2df93885059f"
+                        }
+                      ],
+                      "id": "cfd275ef-e229-4e21-a040-f2d9c4f65135",
+                      "createdAt": "2026-07-28T01:26:31.000Z",
+                      "updatedAt": "2026-07-28T01:26:31.000Z",
+                      "uid": "35240-cfd275ef-e229-4e21-a040-f2d9c4f65135"
+                    }
+                  ],
+                  "id": "65afdcfd-288b-4d8c-b152-263fe2674b83",
+                  "createdAt": "2026-07-28T01:26:31.000Z",
+                  "updatedAt": "2026-07-28T01:26:31.000Z",
+                  "uid": "35240-65afdcfd-288b-4d8c-b152-263fe2674b83"
+                }
+              ],
+              "id": "da46ee9a-0774-4619-a453-1d48a78967a8",
+              "createdAt": "2026-07-28T01:26:31.000Z",
+              "updatedAt": "2026-07-28T01:26:31.000Z",
+              "uid": "35240-da46ee9a-0774-4619-a453-1d48a78967a8"
+            }
+          ],
+          "id": "104d0026-84c4-44b2-82da-78f85ae93053",
+          "createdAt": "2026-07-28T01:26:31.000Z",
+          "updatedAt": "2026-07-28T01:26:31.000Z",
+          "uid": "35240-104d0026-84c4-44b2-82da-78f85ae93053"
+        }
+      ],
+      "id": "44a6fa25-892d-43cb-835e-d435989f687d",
+      "createdAt": "2026-07-28T01:26:31.000Z",
+      "updatedAt": "2026-07-28T01:26:31.000Z",
+      "uid": "35240-44a6fa25-892d-43cb-835e-d435989f687d"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.covalenthq.com"
+    }
+  ]
+}

@@ -1,0 +1,197 @@
+{
+  "info": {
+    "_postman_id": "8a77e827-fac8-4698-909b-6a1d42274ec8",
+    "name": "GoldRush Foundational ABI API",
+    "description": "Structured historical blockchain data across 100+ chains via REST. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs, Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity, Pricing, and Security (token approvals).\n\n\nContact Support:\n Name: GoldRush Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:26:26.000Z",
+    "updatedAt": "2026-07-28T01:26:26.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8a77e827-fac8-4698-909b-6a1d42274ec8"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "abis",
+          "item": [
+            {
+              "name": "List ABIs",
+              "id": "34b7d004-c4a0-4ee0-82f2-0b1920ea7472",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/abis",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "abis"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "0179904e-21c4-4747-b72a-c498270781a4",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/abis",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "abis"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:26:27.000Z",
+                  "updatedAt": "2026-07-28T01:26:27.000Z",
+                  "uid": "35240-0179904e-21c4-4747-b72a-c498270781a4"
+                }
+              ],
+              "createdAt": "2026-07-28T01:26:27.000Z",
+              "updatedAt": "2026-07-28T01:26:27.000Z",
+              "uid": "35240-34b7d004-c4a0-4ee0-82f2-0b1920ea7472"
+            },
+            {
+              "name": "Upload ABI",
+              "id": "4f99d9c0-1fef-46b6-a88e-e4845e6b4bc9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"abi\": [\n    {\n      \"sunt_21\": -31691818.21759422,\n      \"ad_3f\": 28496112.11411202\n    },\n    {\n      \"incididunt_505\": 3490256.6512085944\n    }\n  ],\n  \"id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/abis",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "abis"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "f0f60daa-6168-47f3-a75a-18a2920c11dd",
+                  "name": "Created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"abi\": [\n    {\n      \"sunt_21\": -31691818.21759422,\n      \"ad_3f\": 28496112.11411202\n    },\n    {\n      \"incididunt_505\": 3490256.6512085944\n    }\n  ],\n  \"id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/abis",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "abis"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:26:27.000Z",
+                  "updatedAt": "2026-07-28T01:26:27.000Z",
+                  "uid": "35240-f0f60daa-6168-47f3-a75a-18a2920c11dd"
+                }
+              ],
+              "createdAt": "2026-07-28T01:26:27.000Z",
+              "updatedAt": "2026-07-28T01:26:27.000Z",
+              "uid": "35240-4f99d9c0-1fef-46b6-a88e-e4845e6b4bc9"
+            }
+          ],
+          "id": "89557225-b30e-4f8b-b4ab-224ec25ce646",
+          "createdAt": "2026-07-28T01:26:26.000Z",
+          "updatedAt": "2026-07-28T01:26:26.000Z",
+          "uid": "35240-89557225-b30e-4f8b-b4ab-224ec25ce646"
+        }
+      ],
+      "id": "7206229b-c9b7-4a2c-a066-a91c4cdf1fbd",
+      "createdAt": "2026-07-28T01:26:26.000Z",
+      "updatedAt": "2026-07-28T01:26:26.000Z",
+      "uid": "35240-7206229b-c9b7-4a2c-a066-a91c4cdf1fbd"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.covalenthq.com"
+    }
+  ]
+}

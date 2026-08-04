@@ -1,0 +1,356 @@
+{
+  "info": {
+    "_postman_id": "52d21688-8805-4e37-908c-1df31e934111",
+    "name": "GoldRush Foundational ABI Destinations API",
+    "description": "Structured historical blockchain data across 100+ chains via REST. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs, Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity, Pricing, and Security (token approvals).\n\n\nContact Support:\n Name: GoldRush Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:26:33.000Z",
+    "updatedAt": "2026-07-28T01:26:33.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-52d21688-8805-4e37-908c-1df31e934111"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "destinations",
+          "item": [
+            {
+              "name": "{destinationId}",
+              "item": [
+                {
+                  "name": "Get Destination",
+                  "id": "9156ee69-314e-47c9-96a9-da0fcccee6e3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/destinations/:destinationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "destinations",
+                        ":destinationId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "de8f260f-43d6-4aa8-87a2-4c8b3f8f87a3",
+                          "key": "destinationId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "874e7099-839d-471f-b7dc-3efbb5a9ae1b",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/destinations/:destinationId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "destinations",
+                            ":destinationId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "destinationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:26:33.000Z",
+                      "updatedAt": "2026-07-28T01:26:33.000Z",
+                      "uid": "35240-874e7099-839d-471f-b7dc-3efbb5a9ae1b"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:26:33.000Z",
+                  "updatedAt": "2026-07-28T01:26:33.000Z",
+                  "uid": "35240-9156ee69-314e-47c9-96a9-da0fcccee6e3"
+                },
+                {
+                  "name": "Delete Destination",
+                  "id": "ee87c865-bccf-4ab3-bb4c-b342a18dfd3c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/destinations/:destinationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "destinations",
+                        ":destinationId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e4260edd-b632-46a5-bd8d-3b018ee90005",
+                          "key": "destinationId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "f001625c-75a0-4108-a2e8-23527ee38c8d",
+                      "name": "No Content",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/destinations/:destinationId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "destinations",
+                            ":destinationId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "destinationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:26:33.000Z",
+                      "updatedAt": "2026-07-28T01:26:33.000Z",
+                      "uid": "35240-f001625c-75a0-4108-a2e8-23527ee38c8d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:26:33.000Z",
+                  "updatedAt": "2026-07-28T01:26:33.000Z",
+                  "uid": "35240-ee87c865-bccf-4ab3-bb4c-b342a18dfd3c"
+                }
+              ],
+              "id": "02912ec6-be93-418d-a123-e205e2719451",
+              "createdAt": "2026-07-28T01:26:33.000Z",
+              "updatedAt": "2026-07-28T01:26:33.000Z",
+              "uid": "35240-02912ec6-be93-418d-a123-e205e2719451"
+            },
+            {
+              "name": "List Destinations",
+              "id": "0501e59a-db76-496c-a3b9-4bcd5eeb3854",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/destinations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "destinations"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "43f32839-80cb-4b46-8ddb-8b1012005551",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/destinations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "destinations"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:26:33.000Z",
+                  "updatedAt": "2026-07-28T01:26:33.000Z",
+                  "uid": "35240-43f32839-80cb-4b46-8ddb-8b1012005551"
+                }
+              ],
+              "createdAt": "2026-07-28T01:26:33.000Z",
+              "updatedAt": "2026-07-28T01:26:33.000Z",
+              "uid": "35240-0501e59a-db76-496c-a3b9-4bcd5eeb3854"
+            },
+            {
+              "name": "Create Destination",
+              "id": "b237dda4-a11a-43da-87e5-c03fd11d36fd",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"kafka\",\n  \"name\": \"<string>\",\n  \"config\": {\n    \"commodob\": -60542972\n  },\n  \"id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/destinations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "destinations"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "3e4e99d4-f78c-4c34-8859-bea082ef3a3b",
+                  "name": "Created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"type\": \"kafka\",\n  \"name\": \"<string>\",\n  \"config\": {\n    \"commodob\": -60542972\n  },\n  \"id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/destinations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "destinations"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:26:33.000Z",
+                  "updatedAt": "2026-07-28T01:26:33.000Z",
+                  "uid": "35240-3e4e99d4-f78c-4c34-8859-bea082ef3a3b"
+                }
+              ],
+              "createdAt": "2026-07-28T01:26:33.000Z",
+              "updatedAt": "2026-07-28T01:26:33.000Z",
+              "uid": "35240-b237dda4-a11a-43da-87e5-c03fd11d36fd"
+            }
+          ],
+          "id": "48e26a86-7ba3-45cd-b0f8-0e01aef2a9df",
+          "createdAt": "2026-07-28T01:26:33.000Z",
+          "updatedAt": "2026-07-28T01:26:33.000Z",
+          "uid": "35240-48e26a86-7ba3-45cd-b0f8-0e01aef2a9df"
+        }
+      ],
+      "id": "023d56a9-bec9-4b93-ae15-dd2d3c8fdba2",
+      "createdAt": "2026-07-28T01:26:33.000Z",
+      "updatedAt": "2026-07-28T01:26:33.000Z",
+      "uid": "35240-023d56a9-bec9-4b93-ae15-dd2d3c8fdba2"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.covalenthq.com"
+    }
+  ]
+}

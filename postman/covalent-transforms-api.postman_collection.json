@@ -1,0 +1,197 @@
+{
+  "info": {
+    "_postman_id": "a0634103-db8d-445f-b16a-56e125c0a723",
+    "name": "GoldRush Foundational ABI Transforms API",
+    "description": "Structured historical blockchain data across 100+ chains via REST. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs, Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity, Pricing, and Security (token approvals).\n\n\nContact Support:\n Name: GoldRush Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:27:24.000Z",
+    "updatedAt": "2026-07-28T01:27:24.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a0634103-db8d-445f-b16a-56e125c0a723"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "transforms",
+          "item": [
+            {
+              "name": "List SQL Transforms",
+              "id": "6e8f8616-a4ef-44a0-bb11-2b9849008399",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/transforms",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "transforms"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "2b3b6752-b0f0-4897-9e30-d5f05a56ad3e",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/transforms",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "transforms"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:27:24.000Z",
+                  "updatedAt": "2026-07-28T01:27:24.000Z",
+                  "uid": "35240-2b3b6752-b0f0-4897-9e30-d5f05a56ad3e"
+                }
+              ],
+              "createdAt": "2026-07-28T01:27:24.000Z",
+              "updatedAt": "2026-07-28T01:27:24.000Z",
+              "uid": "35240-6e8f8616-a4ef-44a0-bb11-2b9849008399"
+            },
+            {
+              "name": "Create SQL Transform",
+              "id": "1b2a5f42-747f-4167-8c5c-074158059145",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"sql\": \"<string>\",\n  \"id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/transforms",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "transforms"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "3181e20f-1625-49c8-b287-beeb2afffc5b",
+                  "name": "Created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"sql\": \"<string>\",\n  \"id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/transforms",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "transforms"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:27:24.000Z",
+                  "updatedAt": "2026-07-28T01:27:24.000Z",
+                  "uid": "35240-3181e20f-1625-49c8-b287-beeb2afffc5b"
+                }
+              ],
+              "createdAt": "2026-07-28T01:27:24.000Z",
+              "updatedAt": "2026-07-28T01:27:24.000Z",
+              "uid": "35240-1b2a5f42-747f-4167-8c5c-074158059145"
+            }
+          ],
+          "id": "abee88a1-bc18-4e0d-9206-8b5c8aa36839",
+          "createdAt": "2026-07-28T01:27:24.000Z",
+          "updatedAt": "2026-07-28T01:27:24.000Z",
+          "uid": "35240-abee88a1-bc18-4e0d-9206-8b5c8aa36839"
+        }
+      ],
+      "id": "e61591d3-8bf0-48c5-82ac-e3e4ba3e7215",
+      "createdAt": "2026-07-28T01:27:24.000Z",
+      "updatedAt": "2026-07-28T01:27:24.000Z",
+      "uid": "35240-e61591d3-8bf0-48c5-82ac-e3e4ba3e7215"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.covalenthq.com"
+    }
+  ]
+}

@@ -1,0 +1,281 @@
+{
+  "info": {
+    "_postman_id": "66467cf9-2ddd-477a-8e20-a773838721d0",
+    "name": "GoldRush Foundational ABI Info API",
+    "description": "Structured historical blockchain data across 100+ chains via REST. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs, Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity, Pricing, and Security (token approvals).\n\n\nContact Support:\n Name: GoldRush Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:26:39.000Z",
+    "updatedAt": "2026-07-28T01:26:39.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-66467cf9-2ddd-477a-8e20-a773838721d0"
+  },
+  "item": [
+    {
+      "name": "info",
+      "item": [
+        {
+          "name": "Query Hyperliquid Info Endpoint",
+          "id": "2611dddd-38ec-4181-a8c9-ef45f5ecc170",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"delegatorHistory\",\n  \"user\": \"<string>\",\n  \"users\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"startTime\": \"<long>\",\n  \"endTime\": \"<long>\",\n  \"coin\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/info",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "info"
+              ]
+            },
+            "description": "POSTs a JSON body with a required `type` discriminator. Supported types include `clearinghouseState`, `batchClearinghouseState`, `spotClearinghouseState`, `batchSpotClearinghouseState`, `metaAndAssetCtxs`, `spotMetaAndAssetCtxs`, `frontendOpenOrders`, `userFills`, `userFillsByTime`, `userFunding`, `userNonFundingLedgerUpdates`, `userTwapSliceFills`, `userVaultEquities`, `delegatorHistory`, `delegatorRewards`, `delegatorSummary`, `subAccounts`, and `outcomeMeta`.\n"
+          },
+          "response": [
+            {
+              "id": "da27e38d-bb99-40db-b46f-f6b5d97689bb",
+              "name": "Info response (shape depends on `type`).",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"delegatorHistory\",\n  \"user\": \"<string>\",\n  \"users\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"startTime\": \"<long>\",\n  \"endTime\": \"<long>\",\n  \"coin\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/info",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "info"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"in_1a\": true,\n  \"Ut__5\": 93273954,\n  \"sed_4\": 10499713.27178523,\n  \"nisi2\": \"ullamco Lorem enim\"\n}",
+              "createdAt": "2026-07-28T01:26:40.000Z",
+              "updatedAt": "2026-07-28T01:26:40.000Z",
+              "uid": "35240-da27e38d-bb99-40db-b46f-f6b5d97689bb"
+            },
+            {
+              "id": "9e1dcebd-e27f-403b-9d13-5969eb2e96ad",
+              "name": "Bad Request - unknown or malformed type",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"delegatorHistory\",\n  \"user\": \"<string>\",\n  \"users\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"startTime\": \"<long>\",\n  \"endTime\": \"<long>\",\n  \"coin\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/info",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "info"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:26:40.000Z",
+              "updatedAt": "2026-07-28T01:26:40.000Z",
+              "uid": "35240-9e1dcebd-e27f-403b-9d13-5969eb2e96ad"
+            },
+            {
+              "id": "42b44aa0-1e18-41a4-baa9-0e93bd084364",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"delegatorHistory\",\n  \"user\": \"<string>\",\n  \"users\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"startTime\": \"<long>\",\n  \"endTime\": \"<long>\",\n  \"coin\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/info",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "info"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:26:40.000Z",
+              "updatedAt": "2026-07-28T01:26:40.000Z",
+              "uid": "35240-42b44aa0-1e18-41a4-baa9-0e93bd084364"
+            },
+            {
+              "id": "b8a4e1b7-a714-4332-b364-e8251c1af83a",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"delegatorHistory\",\n  \"user\": \"<string>\",\n  \"users\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"startTime\": \"<long>\",\n  \"endTime\": \"<long>\",\n  \"coin\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/info",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "info"
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:26:40.000Z",
+              "updatedAt": "2026-07-28T01:26:40.000Z",
+              "uid": "35240-b8a4e1b7-a714-4332-b364-e8251c1af83a"
+            }
+          ],
+          "createdAt": "2026-07-28T01:26:40.000Z",
+          "updatedAt": "2026-07-28T01:26:40.000Z",
+          "uid": "35240-2611dddd-38ec-4181-a8c9-ef45f5ecc170"
+        }
+      ],
+      "id": "38b22875-7068-4ced-97a3-fac75ad01391",
+      "createdAt": "2026-07-28T01:26:40.000Z",
+      "updatedAt": "2026-07-28T01:26:40.000Z",
+      "uid": "35240-38b22875-7068-4ced-97a3-fac75ad01391"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.covalenthq.com"
+    }
+  ]
+}

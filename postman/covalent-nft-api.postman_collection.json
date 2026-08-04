@@ -1,0 +1,452 @@
+{
+  "info": {
+    "_postman_id": "f28568a3-21e9-40fd-a4d6-a62b1d6c5b78",
+    "name": "GoldRush Foundational ABI NFT API",
+    "description": "Structured historical blockchain data across 100+ chains via REST. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs, Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity, Pricing, and Security (token approvals).\n\n\nContact Support:\n Name: GoldRush Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:26:40.000Z",
+    "updatedAt": "2026-07-28T01:26:40.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f28568a3-21e9-40fd-a4d6-a62b1d6c5b78"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "{chainName}",
+          "item": [
+            {
+              "name": "address",
+              "item": [
+                {
+                  "name": "{walletAddress}",
+                  "item": [
+                    {
+                      "name": "balances_nft",
+                      "item": [
+                        {
+                          "name": "Get NFTs For Address",
+                          "id": "977581a7-7652-40f7-a3a4-adecb9e79de6",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/:chainName/address/:walletAddress/balances_nft/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                ":chainName",
+                                "address",
+                                ":walletAddress",
+                                "balances_nft",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "id": "cd35a8c2-385f-410a-92df-cb6608d33285",
+                                  "key": "chainName",
+                                  "value": "<string>",
+                                  "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                                },
+                                {
+                                  "id": "94d8a0e4-db53-45cf-b379-5bcfac779392",
+                                  "key": "walletAddress",
+                                  "value": "<string>",
+                                  "description": "(Required) Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "60c9f62d-30a7-419b-b5c2-6179a306c26e",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/:chainName/address/:walletAddress/balances_nft/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":chainName",
+                                    "address",
+                                    ":walletAddress",
+                                    "balances_nft",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "chainName"
+                                    },
+                                    {
+                                      "key": "walletAddress"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:26:41.000Z",
+                              "updatedAt": "2026-07-28T01:26:41.000Z",
+                              "uid": "35240-60c9f62d-30a7-419b-b5c2-6179a306c26e"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:26:41.000Z",
+                          "updatedAt": "2026-07-28T01:26:41.000Z",
+                          "uid": "35240-977581a7-7652-40f7-a3a4-adecb9e79de6"
+                        }
+                      ],
+                      "id": "08115476-f02d-401d-b0df-380a256f6d51",
+                      "createdAt": "2026-07-28T01:26:41.000Z",
+                      "updatedAt": "2026-07-28T01:26:41.000Z",
+                      "uid": "35240-08115476-f02d-401d-b0df-380a256f6d51"
+                    }
+                  ],
+                  "id": "ddb765c7-1e99-4b0e-9448-500ab46ac0a7",
+                  "createdAt": "2026-07-28T01:26:41.000Z",
+                  "updatedAt": "2026-07-28T01:26:41.000Z",
+                  "uid": "35240-ddb765c7-1e99-4b0e-9448-500ab46ac0a7"
+                }
+              ],
+              "id": "2449fcaf-b3b7-4fe7-84c7-34db02191053",
+              "createdAt": "2026-07-28T01:26:41.000Z",
+              "updatedAt": "2026-07-28T01:26:41.000Z",
+              "uid": "35240-2449fcaf-b3b7-4fe7-84c7-34db02191053"
+            },
+            {
+              "name": "tokens",
+              "item": [
+                {
+                  "name": "{collectionContract}",
+                  "item": [
+                    {
+                      "name": "nft_token_ids",
+                      "item": [
+                        {
+                          "name": "{tokenId}",
+                          "item": [
+                            {
+                              "name": "check_ownership",
+                              "item": [
+                                {
+                                  "name": "{walletAddress}",
+                                  "item": [
+                                    {
+                                      "name": "Check Ownership In NFT Collection For Specific Token",
+                                      "id": "ce0d18d4-dc78-4c6c-8a1c-0f521b00d352",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "method": "GET",
+                                        "header": [],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/v1/:chainName/tokens/:collectionContract/nft_token_ids/:tokenId/check_ownership/:walletAddress/",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "v1",
+                                            ":chainName",
+                                            "tokens",
+                                            ":collectionContract",
+                                            "nft_token_ids",
+                                            ":tokenId",
+                                            "check_ownership",
+                                            ":walletAddress",
+                                            ""
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "656ec018-f003-49bd-b388-cab0eaf24447",
+                                              "key": "chainName",
+                                              "value": "<string>",
+                                              "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                                            },
+                                            {
+                                              "id": "8a0d6229-1e5f-45ce-b804-94d6399e9181",
+                                              "key": "collectionContract",
+                                              "value": "<string>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "33d9360b-4a05-4a3e-a497-a996442e8721",
+                                              "key": "tokenId",
+                                              "value": "<string>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "24210368-bdc2-4dfa-bbae-72fc37f6d8f4",
+                                              "key": "walletAddress",
+                                              "value": "<string>",
+                                              "description": "(Required) Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "1ba8b6a3-61af-4510-91a5-a44f328929c8",
+                                          "name": "OK",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/v1/:chainName/tokens/:collectionContract/nft_token_ids/:tokenId/check_ownership/:walletAddress/",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "v1",
+                                                ":chainName",
+                                                "tokens",
+                                                ":collectionContract",
+                                                "nft_token_ids",
+                                                ":tokenId",
+                                                "check_ownership",
+                                                ":walletAddress",
+                                                ""
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "chainName"
+                                                },
+                                                {
+                                                  "key": "collectionContract"
+                                                },
+                                                {
+                                                  "key": "tokenId"
+                                                },
+                                                {
+                                                  "key": "walletAddress"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T01:26:41.000Z",
+                                          "updatedAt": "2026-07-28T01:26:41.000Z",
+                                          "uid": "35240-1ba8b6a3-61af-4510-91a5-a44f328929c8"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T01:26:41.000Z",
+                                      "updatedAt": "2026-07-28T01:26:41.000Z",
+                                      "uid": "35240-ce0d18d4-dc78-4c6c-8a1c-0f521b00d352"
+                                    }
+                                  ],
+                                  "id": "2cd04b28-54bd-4ffd-935d-b01d59578c02",
+                                  "createdAt": "2026-07-28T01:26:41.000Z",
+                                  "updatedAt": "2026-07-28T01:26:41.000Z",
+                                  "uid": "35240-2cd04b28-54bd-4ffd-935d-b01d59578c02"
+                                }
+                              ],
+                              "id": "fe3583e0-a5a4-4a93-9de2-d5f52b6beac7",
+                              "createdAt": "2026-07-28T01:26:41.000Z",
+                              "updatedAt": "2026-07-28T01:26:41.000Z",
+                              "uid": "35240-fe3583e0-a5a4-4a93-9de2-d5f52b6beac7"
+                            }
+                          ],
+                          "id": "bafcfba7-ee85-4a3c-b934-e52d0d601a65",
+                          "createdAt": "2026-07-28T01:26:41.000Z",
+                          "updatedAt": "2026-07-28T01:26:41.000Z",
+                          "uid": "35240-bafcfba7-ee85-4a3c-b934-e52d0d601a65"
+                        }
+                      ],
+                      "id": "0ff55055-619c-47ce-8032-cd28317b8512",
+                      "createdAt": "2026-07-28T01:26:41.000Z",
+                      "updatedAt": "2026-07-28T01:26:41.000Z",
+                      "uid": "35240-0ff55055-619c-47ce-8032-cd28317b8512"
+                    },
+                    {
+                      "name": "check_ownership",
+                      "item": [
+                        {
+                          "name": "{walletAddress}",
+                          "item": [
+                            {
+                              "name": "Check Ownership In NFT Collection",
+                              "id": "4603520e-de3f-452c-84a9-4f1d6715652c",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/:chainName/tokens/:collectionContract/check_ownership/:walletAddress/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":chainName",
+                                    "tokens",
+                                    ":collectionContract",
+                                    "check_ownership",
+                                    ":walletAddress",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "5ce1a51c-46e3-45b3-b500-007c489edca7",
+                                      "key": "chainName",
+                                      "value": "<string>",
+                                      "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                                    },
+                                    {
+                                      "id": "cb5e701c-b42a-4583-a526-d413a0bd0b34",
+                                      "key": "collectionContract",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "14d30a61-0a56-4abb-aeeb-5cc92c2bf8f5",
+                                      "key": "walletAddress",
+                                      "value": "<string>",
+                                      "description": "(Required) Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "id": "861fb6fd-7bc5-47e2-8065-05c69ad194b2",
+                                  "name": "OK",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/:chainName/tokens/:collectionContract/check_ownership/:walletAddress/",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        ":chainName",
+                                        "tokens",
+                                        ":collectionContract",
+                                        "check_ownership",
+                                        ":walletAddress",
+                                        ""
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "chainName"
+                                        },
+                                        {
+                                          "key": "collectionContract"
+                                        },
+                                        {
+                                          "key": "walletAddress"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:26:41.000Z",
+                                  "updatedAt": "2026-07-28T01:26:41.000Z",
+                                  "uid": "35240-861fb6fd-7bc5-47e2-8065-05c69ad194b2"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:26:41.000Z",
+                              "updatedAt": "2026-07-28T01:26:41.000Z",
+                              "uid": "35240-4603520e-de3f-452c-84a9-4f1d6715652c"
+                            }
+                          ],
+                          "id": "007ebe4f-1a4a-4b6e-978e-64836055993e",
+                          "createdAt": "2026-07-28T01:26:41.000Z",
+                          "updatedAt": "2026-07-28T01:26:41.000Z",
+                          "uid": "35240-007ebe4f-1a4a-4b6e-978e-64836055993e"
+                        }
+                      ],
+                      "id": "982ed7a8-8207-4b46-960e-cfd926bfe019",
+                      "createdAt": "2026-07-28T01:26:41.000Z",
+                      "updatedAt": "2026-07-28T01:26:41.000Z",
+                      "uid": "35240-982ed7a8-8207-4b46-960e-cfd926bfe019"
+                    }
+                  ],
+                  "id": "ca9572e2-fbdc-46f4-848e-14fd8faf52e8",
+                  "createdAt": "2026-07-28T01:26:41.000Z",
+                  "updatedAt": "2026-07-28T01:26:41.000Z",
+                  "uid": "35240-ca9572e2-fbdc-46f4-848e-14fd8faf52e8"
+                }
+              ],
+              "id": "dfa03189-e98d-4184-a6e8-f11ec940e9d5",
+              "createdAt": "2026-07-28T01:26:41.000Z",
+              "updatedAt": "2026-07-28T01:26:41.000Z",
+              "uid": "35240-dfa03189-e98d-4184-a6e8-f11ec940e9d5"
+            }
+          ],
+          "id": "07e68cb7-b86e-4865-8490-52a88b6fb7ca",
+          "createdAt": "2026-07-28T01:26:41.000Z",
+          "updatedAt": "2026-07-28T01:26:41.000Z",
+          "uid": "35240-07e68cb7-b86e-4865-8490-52a88b6fb7ca"
+        }
+      ],
+      "id": "44a1e33b-7577-4279-bf46-55b1f35ab41c",
+      "createdAt": "2026-07-28T01:26:41.000Z",
+      "updatedAt": "2026-07-28T01:26:41.000Z",
+      "uid": "35240-44a1e33b-7577-4279-bf46-55b1f35ab41c"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.covalenthq.com"
+    }
+  ]
+}

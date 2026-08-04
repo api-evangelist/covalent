@@ -1,0 +1,320 @@
+{
+  "info": {
+    "_postman_id": "f58aff80-1672-401e-abab-bec35b2e41d5",
+    "name": "GoldRush Foundational ABI Discovery API",
+    "description": "Structured historical blockchain data across 100+ chains via REST. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs, Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity, Pricing, and Security (token approvals).\n\n\nContact Support:\n Name: GoldRush Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:26:37.000Z",
+    "updatedAt": "2026-07-28T01:26:38.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f58aff80-1672-401e-abab-bec35b2e41d5"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "x402",
+          "item": [
+            {
+              "name": "endpoints",
+              "item": [
+                {
+                  "name": "search",
+                  "item": [
+                    {
+                      "name": "Search X402 Endpoints",
+                      "id": "0106b97d-da29-41dc-a4e0-991c616d459d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/x402/endpoints/search?q=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "x402",
+                            "endpoints",
+                            "search"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) ",
+                              "key": "q",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "35ff59f8-f04c-4dc9-af6b-8547a8068a12",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/x402/endpoints/search?q=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "x402",
+                                "endpoints",
+                                "search"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) ",
+                                  "key": "q",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:26:38.000Z",
+                          "updatedAt": "2026-07-28T01:26:38.000Z",
+                          "uid": "35240-35ff59f8-f04c-4dc9-af6b-8547a8068a12"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:26:38.000Z",
+                      "updatedAt": "2026-07-28T01:26:38.000Z",
+                      "uid": "35240-0106b97d-da29-41dc-a4e0-991c616d459d"
+                    }
+                  ],
+                  "id": "fdd5a6ef-f237-42b6-b971-60eb60758f53",
+                  "createdAt": "2026-07-28T01:26:38.000Z",
+                  "updatedAt": "2026-07-28T01:26:38.000Z",
+                  "uid": "35240-fdd5a6ef-f237-42b6-b971-60eb60758f53"
+                },
+                {
+                  "name": "{endpointId}",
+                  "item": [
+                    {
+                      "name": "Get Details For A Specific X402 Endpoint",
+                      "id": "d06d8a40-b910-440f-b0e2-2be7d01f146c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/x402/endpoints/:endpointId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "x402",
+                            "endpoints",
+                            ":endpointId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "1853a7ec-2203-4bb2-9ed6-8eee97a490c2",
+                              "key": "endpointId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "9f7a3db7-d4b8-4dce-ba5e-fd995c6a3fe2",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/x402/endpoints/:endpointId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "x402",
+                                "endpoints",
+                                ":endpointId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "endpointId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"path\": \"<string>\",\n  \"method\": \"<string>\",\n  \"description\": \"<string>\",\n  \"price\": {\n    \"amount\": \"<string>\",\n    \"asset\": \"<string>\",\n    \"chain\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T01:26:38.000Z",
+                          "updatedAt": "2026-07-28T01:26:38.000Z",
+                          "uid": "35240-9f7a3db7-d4b8-4dce-ba5e-fd995c6a3fe2"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:26:38.000Z",
+                      "updatedAt": "2026-07-28T01:26:38.000Z",
+                      "uid": "35240-d06d8a40-b910-440f-b0e2-2be7d01f146c"
+                    }
+                  ],
+                  "id": "dd6e5cd3-84b1-4902-b5e0-66b85637b572",
+                  "createdAt": "2026-07-28T01:26:38.000Z",
+                  "updatedAt": "2026-07-28T01:26:38.000Z",
+                  "uid": "35240-dd6e5cd3-84b1-4902-b5e0-66b85637b572"
+                },
+                {
+                  "name": "List All Available X402 Endpoints",
+                  "id": "7aac963a-1338-428c-a1bf-3c94ea8c72fa",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/x402/endpoints",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "x402",
+                        "endpoints"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "b49d63ab-0082-4864-a046-89fdc625bc90",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/x402/endpoints",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "x402",
+                            "endpoints"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"path\": \"<string>\",\n      \"method\": \"<string>\",\n      \"description\": \"<string>\",\n      \"price\": {\n        \"amount\": \"<string>\",\n        \"asset\": \"<string>\",\n        \"chain\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"path\": \"<string>\",\n      \"method\": \"<string>\",\n      \"description\": \"<string>\",\n      \"price\": {\n        \"amount\": \"<string>\",\n        \"asset\": \"<string>\",\n        \"chain\": \"<string>\"\n      }\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:26:38.000Z",
+                      "updatedAt": "2026-07-28T01:26:38.000Z",
+                      "uid": "35240-b49d63ab-0082-4864-a046-89fdc625bc90"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:26:38.000Z",
+                  "updatedAt": "2026-07-28T01:26:38.000Z",
+                  "uid": "35240-7aac963a-1338-428c-a1bf-3c94ea8c72fa"
+                }
+              ],
+              "id": "64256ed3-4924-4a8c-9879-71c7c2d515ff",
+              "createdAt": "2026-07-28T01:26:38.000Z",
+              "updatedAt": "2026-07-28T01:26:38.000Z",
+              "uid": "35240-64256ed3-4924-4a8c-9879-71c7c2d515ff"
+            }
+          ],
+          "id": "513676e3-5c25-4ec7-9314-cb3d612666ad",
+          "createdAt": "2026-07-28T01:26:38.000Z",
+          "updatedAt": "2026-07-28T01:26:38.000Z",
+          "uid": "35240-513676e3-5c25-4ec7-9314-cb3d612666ad"
+        }
+      ],
+      "id": "211d6d7f-eec1-474e-8a4a-ece1cdf66eb6",
+      "createdAt": "2026-07-28T01:26:38.000Z",
+      "updatedAt": "2026-07-28T01:26:38.000Z",
+      "uid": "35240-211d6d7f-eec1-474e-8a4a-ece1cdf66eb6"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.covalenthq.com"
+    }
+  ]
+}

@@ -1,0 +1,942 @@
+{
+  "info": {
+    "_postman_id": "ffc100ec-50f6-4706-a23b-9ff25af6bd48",
+    "name": "GoldRush Foundational ABI Balances API",
+    "description": "Structured historical blockchain data across 100+ chains via REST. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs, Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity, Pricing, and Security (token approvals).\n\n\nContact Support:\n Name: GoldRush Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:26:27.000Z",
+    "updatedAt": "2026-07-28T01:26:27.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ffc100ec-50f6-4706-a23b-9ff25af6bd48"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "{chainName}",
+          "item": [
+            {
+              "name": "address",
+              "item": [
+                {
+                  "name": "{walletAddress}",
+                  "item": [
+                    {
+                      "name": "balances_v2",
+                      "item": [
+                        {
+                          "name": "Get Token Balances For Address",
+                          "id": "6bf74eb5-04f6-4b14-8dc4-05abc679500b",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/:chainName/address/:walletAddress/balances_v2/?quote-currency=USD&nft=<boolean>&no-nft-fetch=<boolean>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                ":chainName",
+                                "address",
+                                ":walletAddress",
+                                "balances_v2",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "key": "quote-currency",
+                                  "value": "USD"
+                                },
+                                {
+                                  "key": "nft",
+                                  "value": "<boolean>"
+                                },
+                                {
+                                  "key": "no-nft-fetch",
+                                  "value": "<boolean>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "09453be9-6b67-43a1-8052-c02ca68ca7b4",
+                                  "key": "chainName",
+                                  "value": "<string>",
+                                  "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                                },
+                                {
+                                  "id": "ffe2f525-89e5-42e3-8ab7-14426a84c12d",
+                                  "key": "walletAddress",
+                                  "value": "<string>",
+                                  "description": "(Required) Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+                                }
+                              ]
+                            },
+                            "description": "Returns native + ERC20 token balances for an address on the given chain."
+                          },
+                          "response": [
+                            {
+                              "id": "8ff2767b-c238-4db1-847f-994b79864b25",
+                              "name": "Token balance response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/:chainName/address/:walletAddress/balances_v2/?quote-currency=USD&nft=<boolean>&no-nft-fetch=<boolean>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":chainName",
+                                    "address",
+                                    ":walletAddress",
+                                    "balances_v2",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "quote-currency",
+                                      "value": "USD"
+                                    },
+                                    {
+                                      "key": "nft",
+                                      "value": "<boolean>"
+                                    },
+                                    {
+                                      "key": "no-nft-fetch",
+                                      "value": "<boolean>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "chainName"
+                                    },
+                                    {
+                                      "key": "walletAddress"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"data\": {\n    \"address\": \"<string>\",\n    \"updated_at\": \"<dateTime>\",\n    \"next_update_at\": \"<dateTime>\",\n    \"quote_currency\": \"<string>\",\n    \"chain_id\": \"<integer>\",\n    \"chain_name\": \"<string>\",\n    \"items\": [\n      {\n        \"contract_decimals\": \"<integer>\",\n        \"contract_name\": \"<string>\",\n        \"contract_ticker_symbol\": \"<string>\",\n        \"contract_address\": \"<string>\",\n        \"supports_erc\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"logo_url\": \"<string>\",\n        \"last_transferred_at\": \"<dateTime>\",\n        \"native_token\": \"<boolean>\",\n        \"type\": \"<string>\",\n        \"balance\": \"<string>\",\n        \"balance_24h\": \"<string>\",\n        \"quote_rate\": \"<number>\",\n        \"quote_rate_24h\": \"<number>\",\n        \"quote\": \"<number>\",\n        \"quote_24h\": \"<number>\",\n        \"pretty_quote\": \"<string>\",\n        \"pretty_quote_24h\": \"<string>\"\n      },\n      {\n        \"contract_decimals\": \"<integer>\",\n        \"contract_name\": \"<string>\",\n        \"contract_ticker_symbol\": \"<string>\",\n        \"contract_address\": \"<string>\",\n        \"supports_erc\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"logo_url\": \"<string>\",\n        \"last_transferred_at\": \"<dateTime>\",\n        \"native_token\": \"<boolean>\",\n        \"type\": \"<string>\",\n        \"balance\": \"<string>\",\n        \"balance_24h\": \"<string>\",\n        \"quote_rate\": \"<number>\",\n        \"quote_rate_24h\": \"<number>\",\n        \"quote\": \"<number>\",\n        \"quote_24h\": \"<number>\",\n        \"pretty_quote\": \"<string>\",\n        \"pretty_quote_24h\": \"<string>\"\n      }\n    ]\n  },\n  \"error\": \"<boolean>\",\n  \"error_message\": \"<string>\",\n  \"error_code\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T01:26:28.000Z",
+                              "updatedAt": "2026-07-28T01:26:28.000Z",
+                              "uid": "35240-8ff2767b-c238-4db1-847f-994b79864b25"
+                            },
+                            {
+                              "id": "b513d482-3e60-4311-b862-052253a87fbf",
+                              "name": "Unauthorized - missing or invalid Bearer token",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/:chainName/address/:walletAddress/balances_v2/?quote-currency=USD&nft=<boolean>&no-nft-fetch=<boolean>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":chainName",
+                                    "address",
+                                    ":walletAddress",
+                                    "balances_v2",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "quote-currency",
+                                      "value": "USD"
+                                    },
+                                    {
+                                      "key": "nft",
+                                      "value": "<boolean>"
+                                    },
+                                    {
+                                      "key": "no-nft-fetch",
+                                      "value": "<boolean>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "chainName"
+                                    },
+                                    {
+                                      "key": "walletAddress"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<boolean>\",\n  \"error_message\": \"<string>\",\n  \"error_code\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T01:26:28.000Z",
+                              "updatedAt": "2026-07-28T01:26:28.000Z",
+                              "uid": "35240-b513d482-3e60-4311-b862-052253a87fbf"
+                            },
+                            {
+                              "id": "e08d4796-9e3d-4d5c-87b6-2c190fe24ccd",
+                              "name": "Too Many Requests - rate limit exceeded",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/:chainName/address/:walletAddress/balances_v2/?quote-currency=USD&nft=<boolean>&no-nft-fetch=<boolean>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":chainName",
+                                    "address",
+                                    ":walletAddress",
+                                    "balances_v2",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "quote-currency",
+                                      "value": "USD"
+                                    },
+                                    {
+                                      "key": "nft",
+                                      "value": "<boolean>"
+                                    },
+                                    {
+                                      "key": "no-nft-fetch",
+                                      "value": "<boolean>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "chainName"
+                                    },
+                                    {
+                                      "key": "walletAddress"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<boolean>\",\n  \"error_message\": \"<string>\",\n  \"error_code\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T01:26:28.000Z",
+                              "updatedAt": "2026-07-28T01:26:28.000Z",
+                              "uid": "35240-e08d4796-9e3d-4d5c-87b6-2c190fe24ccd"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:26:28.000Z",
+                          "updatedAt": "2026-07-28T01:26:28.000Z",
+                          "uid": "35240-6bf74eb5-04f6-4b14-8dc4-05abc679500b"
+                        }
+                      ],
+                      "id": "c5b242c5-fcde-4607-84cd-108276a20e9d",
+                      "createdAt": "2026-07-28T01:26:28.000Z",
+                      "updatedAt": "2026-07-28T01:26:28.000Z",
+                      "uid": "35240-c5b242c5-fcde-4607-84cd-108276a20e9d"
+                    },
+                    {
+                      "name": "balances_native",
+                      "item": [
+                        {
+                          "name": "Get Native Token Balance For Address",
+                          "id": "3dac1344-2f3b-4ae9-859f-7098a86195c6",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/:chainName/address/:walletAddress/balances_native/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                ":chainName",
+                                "address",
+                                ":walletAddress",
+                                "balances_native",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "id": "63e6e83d-9e78-4d3f-ac36-29d1dfe406c4",
+                                  "key": "chainName",
+                                  "value": "<string>",
+                                  "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                                },
+                                {
+                                  "id": "3acebed3-22d7-4abc-ab26-c0baee2285f6",
+                                  "key": "walletAddress",
+                                  "value": "<string>",
+                                  "description": "(Required) Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+                                }
+                              ]
+                            },
+                            "description": "Returns the native token balance (e.g., ETH) for an address."
+                          },
+                          "response": [
+                            {
+                              "id": "63404f5e-a72d-428b-b08b-4bc67b7a835c",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/:chainName/address/:walletAddress/balances_native/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":chainName",
+                                    "address",
+                                    ":walletAddress",
+                                    "balances_native",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "chainName"
+                                    },
+                                    {
+                                      "key": "walletAddress"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"data\": {\n    \"address\": \"<string>\",\n    \"updated_at\": \"<dateTime>\",\n    \"next_update_at\": \"<dateTime>\",\n    \"quote_currency\": \"<string>\",\n    \"chain_id\": \"<integer>\",\n    \"chain_name\": \"<string>\",\n    \"items\": [\n      {\n        \"contract_decimals\": \"<integer>\",\n        \"contract_name\": \"<string>\",\n        \"contract_ticker_symbol\": \"<string>\",\n        \"contract_address\": \"<string>\",\n        \"supports_erc\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"logo_url\": \"<string>\",\n        \"last_transferred_at\": \"<dateTime>\",\n        \"native_token\": \"<boolean>\",\n        \"type\": \"<string>\",\n        \"balance\": \"<string>\",\n        \"balance_24h\": \"<string>\",\n        \"quote_rate\": \"<number>\",\n        \"quote_rate_24h\": \"<number>\",\n        \"quote\": \"<number>\",\n        \"quote_24h\": \"<number>\",\n        \"pretty_quote\": \"<string>\",\n        \"pretty_quote_24h\": \"<string>\"\n      },\n      {\n        \"contract_decimals\": \"<integer>\",\n        \"contract_name\": \"<string>\",\n        \"contract_ticker_symbol\": \"<string>\",\n        \"contract_address\": \"<string>\",\n        \"supports_erc\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"logo_url\": \"<string>\",\n        \"last_transferred_at\": \"<dateTime>\",\n        \"native_token\": \"<boolean>\",\n        \"type\": \"<string>\",\n        \"balance\": \"<string>\",\n        \"balance_24h\": \"<string>\",\n        \"quote_rate\": \"<number>\",\n        \"quote_rate_24h\": \"<number>\",\n        \"quote\": \"<number>\",\n        \"quote_24h\": \"<number>\",\n        \"pretty_quote\": \"<string>\",\n        \"pretty_quote_24h\": \"<string>\"\n      }\n    ]\n  },\n  \"error\": \"<boolean>\",\n  \"error_message\": \"<string>\",\n  \"error_code\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T01:26:28.000Z",
+                              "updatedAt": "2026-07-28T01:26:28.000Z",
+                              "uid": "35240-63404f5e-a72d-428b-b08b-4bc67b7a835c"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:26:28.000Z",
+                          "updatedAt": "2026-07-28T01:26:28.000Z",
+                          "uid": "35240-3dac1344-2f3b-4ae9-859f-7098a86195c6"
+                        }
+                      ],
+                      "id": "68401681-1745-4912-a74c-abc9c041a01e",
+                      "createdAt": "2026-07-28T01:26:28.000Z",
+                      "updatedAt": "2026-07-28T01:26:28.000Z",
+                      "uid": "35240-68401681-1745-4912-a74c-abc9c041a01e"
+                    },
+                    {
+                      "name": "historical_balances",
+                      "item": [
+                        {
+                          "name": "Get Historical Token Balances For Address",
+                          "id": "92934d30-0c51-47a2-aa82-f52ba083f41c",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/:chainName/address/:walletAddress/historical_balances/?block-height=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                ":chainName",
+                                "address",
+                                ":walletAddress",
+                                "historical_balances",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "key": "block-height",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "8690ab1b-51a3-4d33-8094-e3f2f00986e2",
+                                  "key": "chainName",
+                                  "value": "<string>",
+                                  "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                                },
+                                {
+                                  "id": "5977465b-dc92-4a80-87cd-a4991b27cf73",
+                                  "key": "walletAddress",
+                                  "value": "<string>",
+                                  "description": "(Required) Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+                                }
+                              ]
+                            },
+                            "description": "Historical token balances at a specific block height or timestamp."
+                          },
+                          "response": [
+                            {
+                              "id": "e41fb1e6-a0f1-4037-b8b1-2155c2fcda65",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/:chainName/address/:walletAddress/historical_balances/?block-height=<integer>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":chainName",
+                                    "address",
+                                    ":walletAddress",
+                                    "historical_balances",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "block-height",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "chainName"
+                                    },
+                                    {
+                                      "key": "walletAddress"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"data\": {\n    \"address\": \"<string>\",\n    \"updated_at\": \"<dateTime>\",\n    \"next_update_at\": \"<dateTime>\",\n    \"quote_currency\": \"<string>\",\n    \"chain_id\": \"<integer>\",\n    \"chain_name\": \"<string>\",\n    \"items\": [\n      {\n        \"contract_decimals\": \"<integer>\",\n        \"contract_name\": \"<string>\",\n        \"contract_ticker_symbol\": \"<string>\",\n        \"contract_address\": \"<string>\",\n        \"supports_erc\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"logo_url\": \"<string>\",\n        \"last_transferred_at\": \"<dateTime>\",\n        \"native_token\": \"<boolean>\",\n        \"type\": \"<string>\",\n        \"balance\": \"<string>\",\n        \"balance_24h\": \"<string>\",\n        \"quote_rate\": \"<number>\",\n        \"quote_rate_24h\": \"<number>\",\n        \"quote\": \"<number>\",\n        \"quote_24h\": \"<number>\",\n        \"pretty_quote\": \"<string>\",\n        \"pretty_quote_24h\": \"<string>\"\n      },\n      {\n        \"contract_decimals\": \"<integer>\",\n        \"contract_name\": \"<string>\",\n        \"contract_ticker_symbol\": \"<string>\",\n        \"contract_address\": \"<string>\",\n        \"supports_erc\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"logo_url\": \"<string>\",\n        \"last_transferred_at\": \"<dateTime>\",\n        \"native_token\": \"<boolean>\",\n        \"type\": \"<string>\",\n        \"balance\": \"<string>\",\n        \"balance_24h\": \"<string>\",\n        \"quote_rate\": \"<number>\",\n        \"quote_rate_24h\": \"<number>\",\n        \"quote\": \"<number>\",\n        \"quote_24h\": \"<number>\",\n        \"pretty_quote\": \"<string>\",\n        \"pretty_quote_24h\": \"<string>\"\n      }\n    ]\n  },\n  \"error\": \"<boolean>\",\n  \"error_message\": \"<string>\",\n  \"error_code\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T01:26:28.000Z",
+                              "updatedAt": "2026-07-28T01:26:28.000Z",
+                              "uid": "35240-e41fb1e6-a0f1-4037-b8b1-2155c2fcda65"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:26:28.000Z",
+                          "updatedAt": "2026-07-28T01:26:28.000Z",
+                          "uid": "35240-92934d30-0c51-47a2-aa82-f52ba083f41c"
+                        }
+                      ],
+                      "id": "3a47dbdd-8182-4aea-a82a-31ccc5afe68e",
+                      "createdAt": "2026-07-28T01:26:28.000Z",
+                      "updatedAt": "2026-07-28T01:26:28.000Z",
+                      "uid": "35240-3a47dbdd-8182-4aea-a82a-31ccc5afe68e"
+                    },
+                    {
+                      "name": "portfolio_v2",
+                      "item": [
+                        {
+                          "name": "Get Historical Portfolio Value Over Time",
+                          "id": "6b4f57d5-ff68-4b27-ae7b-f6007b907a13",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/:chainName/address/:walletAddress/portfolio_v2/?days=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                ":chainName",
+                                "address",
+                                ":walletAddress",
+                                "portfolio_v2",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "key": "days",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "089465e1-365c-4ae5-a79d-cc406288aab7",
+                                  "key": "chainName",
+                                  "value": "<string>",
+                                  "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                                },
+                                {
+                                  "id": "d1f32c4f-89a4-42fc-af6a-525c57967c38",
+                                  "key": "walletAddress",
+                                  "value": "<string>",
+                                  "description": "(Required) Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+                                }
+                              ]
+                            },
+                            "description": "Time-series portfolio value broken down by token holding."
+                          },
+                          "response": [
+                            {
+                              "id": "ea461a1e-5684-43db-8539-40aeddbb737e",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/:chainName/address/:walletAddress/portfolio_v2/?days=<integer>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":chainName",
+                                    "address",
+                                    ":walletAddress",
+                                    "portfolio_v2",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "days",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "chainName"
+                                    },
+                                    {
+                                      "key": "walletAddress"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:26:28.000Z",
+                              "updatedAt": "2026-07-28T01:26:28.000Z",
+                              "uid": "35240-ea461a1e-5684-43db-8539-40aeddbb737e"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:26:28.000Z",
+                          "updatedAt": "2026-07-28T01:26:28.000Z",
+                          "uid": "35240-6b4f57d5-ff68-4b27-ae7b-f6007b907a13"
+                        }
+                      ],
+                      "id": "c4bc54bf-cc57-4d1c-9d78-c55f75501e7a",
+                      "createdAt": "2026-07-28T01:26:28.000Z",
+                      "updatedAt": "2026-07-28T01:26:28.000Z",
+                      "uid": "35240-c4bc54bf-cc57-4d1c-9d78-c55f75501e7a"
+                    },
+                    {
+                      "name": "transfers_v2",
+                      "item": [
+                        {
+                          "name": "Get ERC20 Token Transfers For Address",
+                          "id": "48b783bf-8265-4bc9-b260-284d007571fa",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/:chainName/address/:walletAddress/transfers_v2/?contract-address=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                ":chainName",
+                                "address",
+                                ":walletAddress",
+                                "transfers_v2",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) ",
+                                  "key": "contract-address",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "9d5b5d1b-2aee-4eb6-965d-e76ba8a6e5fe",
+                                  "key": "chainName",
+                                  "value": "<string>",
+                                  "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                                },
+                                {
+                                  "id": "e0940c05-49dc-4ba3-beef-669a6aa51d91",
+                                  "key": "walletAddress",
+                                  "value": "<string>",
+                                  "description": "(Required) Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+                                }
+                              ]
+                            },
+                            "description": "ERC20 transfer history for an address, filterable by contract."
+                          },
+                          "response": [
+                            {
+                              "id": "0fe5189a-7705-4342-9758-f9ab27174414",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/:chainName/address/:walletAddress/transfers_v2/?contract-address=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":chainName",
+                                    "address",
+                                    ":walletAddress",
+                                    "transfers_v2",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) ",
+                                      "key": "contract-address",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "chainName"
+                                    },
+                                    {
+                                      "key": "walletAddress"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:26:28.000Z",
+                              "updatedAt": "2026-07-28T01:26:28.000Z",
+                              "uid": "35240-0fe5189a-7705-4342-9758-f9ab27174414"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:26:28.000Z",
+                          "updatedAt": "2026-07-28T01:26:28.000Z",
+                          "uid": "35240-48b783bf-8265-4bc9-b260-284d007571fa"
+                        }
+                      ],
+                      "id": "d5ca2c19-edd5-463b-a1a6-588fac69c002",
+                      "createdAt": "2026-07-28T01:26:28.000Z",
+                      "updatedAt": "2026-07-28T01:26:28.000Z",
+                      "uid": "35240-d5ca2c19-edd5-463b-a1a6-588fac69c002"
+                    }
+                  ],
+                  "id": "83a18baf-4eb0-4b21-9e8e-de2a8e2f7492",
+                  "createdAt": "2026-07-28T01:26:28.000Z",
+                  "updatedAt": "2026-07-28T01:26:28.000Z",
+                  "uid": "35240-83a18baf-4eb0-4b21-9e8e-de2a8e2f7492"
+                }
+              ],
+              "id": "0e15905a-a192-4036-8508-8b513f986abe",
+              "createdAt": "2026-07-28T01:26:28.000Z",
+              "updatedAt": "2026-07-28T01:26:28.000Z",
+              "uid": "35240-0e15905a-a192-4036-8508-8b513f986abe"
+            },
+            {
+              "name": "tokens",
+              "item": [
+                {
+                  "name": "{tokenAddress}",
+                  "item": [
+                    {
+                      "name": "token_holders_v2",
+                      "item": [
+                        {
+                          "name": "Get Token Holders As Of Any Block Height (v2)",
+                          "id": "aac6ceba-a39d-4cab-b600-9f15e12fdda3",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/:chainName/tokens/:tokenAddress/token_holders_v2/?block-height=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                ":chainName",
+                                "tokens",
+                                ":tokenAddress",
+                                "token_holders_v2",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "key": "block-height",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "66a1fc0d-7056-4307-976c-08f77601a797",
+                                  "key": "chainName",
+                                  "value": "<string>",
+                                  "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                                },
+                                {
+                                  "id": "62e313fd-5f96-4a2b-8a1e-a61fa9c17868",
+                                  "key": "tokenAddress",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "List token holders of an ERC20/721/1155 contract at a block height."
+                          },
+                          "response": [
+                            {
+                              "id": "dc9df008-8f70-412d-bd80-74291efa4859",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/:chainName/tokens/:tokenAddress/token_holders_v2/?block-height=<integer>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":chainName",
+                                    "tokens",
+                                    ":tokenAddress",
+                                    "token_holders_v2",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "block-height",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "chainName"
+                                    },
+                                    {
+                                      "key": "tokenAddress"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:26:28.000Z",
+                              "updatedAt": "2026-07-28T01:26:28.000Z",
+                              "uid": "35240-dc9df008-8f70-412d-bd80-74291efa4859"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:26:28.000Z",
+                          "updatedAt": "2026-07-28T01:26:28.000Z",
+                          "uid": "35240-aac6ceba-a39d-4cab-b600-9f15e12fdda3"
+                        }
+                      ],
+                      "id": "e0f458ae-f372-46c6-8fbb-6372de93fd42",
+                      "createdAt": "2026-07-28T01:26:28.000Z",
+                      "updatedAt": "2026-07-28T01:26:28.000Z",
+                      "uid": "35240-e0f458ae-f372-46c6-8fbb-6372de93fd42"
+                    }
+                  ],
+                  "id": "a4b9ed78-af9b-4fd6-87eb-9c14a46a0dc1",
+                  "createdAt": "2026-07-28T01:26:28.000Z",
+                  "updatedAt": "2026-07-28T01:26:28.000Z",
+                  "uid": "35240-a4b9ed78-af9b-4fd6-87eb-9c14a46a0dc1"
+                }
+              ],
+              "id": "b815a740-d847-4253-b270-0f644abaedfa",
+              "createdAt": "2026-07-28T01:26:28.000Z",
+              "updatedAt": "2026-07-28T01:26:28.000Z",
+              "uid": "35240-b815a740-d847-4253-b270-0f644abaedfa"
+            }
+          ],
+          "id": "863b3e52-4f15-4477-ad40-ecf4cbca06c6",
+          "createdAt": "2026-07-28T01:26:28.000Z",
+          "updatedAt": "2026-07-28T01:26:28.000Z",
+          "uid": "35240-863b3e52-4f15-4477-ad40-ecf4cbca06c6"
+        }
+      ],
+      "id": "f3d5a406-383c-4b17-baff-0091d91e12fc",
+      "createdAt": "2026-07-28T01:26:28.000Z",
+      "updatedAt": "2026-07-28T01:26:28.000Z",
+      "uid": "35240-f3d5a406-383c-4b17-baff-0091d91e12fc"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.covalenthq.com"
+    }
+  ]
+}

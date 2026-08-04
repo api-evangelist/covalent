@@ -1,0 +1,154 @@
+{
+  "info": {
+    "_postman_id": "612e6f0b-07c2-489e-99ef-c101fc051fc1",
+    "name": "GoldRush Foundational ABI Security API",
+    "description": "Structured historical blockchain data across 100+ chains via REST. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs, Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity, Pricing, and Security (token approvals).\n\n\nContact Support:\n Name: GoldRush Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:27:22.000Z",
+    "updatedAt": "2026-07-28T01:27:22.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-612e6f0b-07c2-489e-99ef-c101fc051fc1"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "{chainName}",
+          "item": [
+            {
+              "name": "approvals",
+              "item": [
+                {
+                  "name": "{walletAddress}",
+                  "item": [
+                    {
+                      "name": "Get Token Approvals For Address",
+                      "id": "57654b01-055e-4cc0-91bd-c5847e32f271",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/:chainName/approvals/:walletAddress/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            ":chainName",
+                            "approvals",
+                            ":walletAddress",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "0c64878d-c0a7-4429-8683-9ed7b66c7e3f",
+                              "key": "chainName",
+                              "value": "<string>",
+                              "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                            },
+                            {
+                              "id": "d19eef03-f8a2-4608-9c4d-b71d1b96db01",
+                              "key": "walletAddress",
+                              "value": "<string>",
+                              "description": "(Required) Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "82f1aaf8-f277-46f0-9b3b-1e9c4ef78266",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/:chainName/approvals/:walletAddress/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                ":chainName",
+                                "approvals",
+                                ":walletAddress",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "chainName"
+                                },
+                                {
+                                  "key": "walletAddress"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:27:22.000Z",
+                          "updatedAt": "2026-07-28T01:27:22.000Z",
+                          "uid": "35240-82f1aaf8-f277-46f0-9b3b-1e9c4ef78266"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:27:22.000Z",
+                      "updatedAt": "2026-07-28T01:27:22.000Z",
+                      "uid": "35240-57654b01-055e-4cc0-91bd-c5847e32f271"
+                    }
+                  ],
+                  "id": "6c799f58-8157-4736-a423-3985ea66f4ab",
+                  "createdAt": "2026-07-28T01:27:22.000Z",
+                  "updatedAt": "2026-07-28T01:27:22.000Z",
+                  "uid": "35240-6c799f58-8157-4736-a423-3985ea66f4ab"
+                }
+              ],
+              "id": "bd87b334-90b3-480f-aeb2-884664c29ff9",
+              "createdAt": "2026-07-28T01:27:22.000Z",
+              "updatedAt": "2026-07-28T01:27:22.000Z",
+              "uid": "35240-bd87b334-90b3-480f-aeb2-884664c29ff9"
+            }
+          ],
+          "id": "ff884fe9-0684-44ae-8f29-93192cb60af1",
+          "createdAt": "2026-07-28T01:27:22.000Z",
+          "updatedAt": "2026-07-28T01:27:22.000Z",
+          "uid": "35240-ff884fe9-0684-44ae-8f29-93192cb60af1"
+        }
+      ],
+      "id": "2257e044-8f2e-47c2-8a76-c0e3341a0109",
+      "createdAt": "2026-07-28T01:27:22.000Z",
+      "updatedAt": "2026-07-28T01:27:22.000Z",
+      "uid": "35240-2257e044-8f2e-47c2-8a76-c0e3341a0109"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.covalenthq.com"
+    }
+  ]
+}

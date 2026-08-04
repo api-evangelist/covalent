@@ -1,0 +1,1111 @@
+{
+  "info": {
+    "_postman_id": "4da16be0-59e7-4c36-a79c-9ca69ee5b470",
+    "name": "GoldRush Foundational ABI Transactions API",
+    "description": "Structured historical blockchain data across 100+ chains via REST. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs, Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity, Pricing, and Security (token approvals).\n\n\nContact Support:\n Name: GoldRush Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:27:23.000Z",
+    "updatedAt": "2026-07-28T01:27:23.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4da16be0-59e7-4c36-a79c-9ca69ee5b470"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "{chainName}",
+          "item": [
+            {
+              "name": "address",
+              "item": [
+                {
+                  "name": "{walletAddress}",
+                  "item": [
+                    {
+                      "name": "transfers_v2",
+                      "item": [
+                        {
+                          "name": "Get ERC20 Token Transfers For Address",
+                          "id": "acc29032-8af0-4f1e-9576-a2135df333b0",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/:chainName/address/:walletAddress/transfers_v2/?contract-address=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                ":chainName",
+                                "address",
+                                ":walletAddress",
+                                "transfers_v2",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) ",
+                                  "key": "contract-address",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "57eaeddc-4914-4235-bf57-bfb58e151197",
+                                  "key": "chainName",
+                                  "value": "<string>",
+                                  "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                                },
+                                {
+                                  "id": "1f6768ee-fb11-485e-b086-b15952bc5f20",
+                                  "key": "walletAddress",
+                                  "value": "<string>",
+                                  "description": "(Required) Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+                                }
+                              ]
+                            },
+                            "description": "ERC20 transfer history for an address, filterable by contract."
+                          },
+                          "response": [
+                            {
+                              "id": "4d7c2b5c-b095-4f29-a584-e3af19bda698",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/:chainName/address/:walletAddress/transfers_v2/?contract-address=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":chainName",
+                                    "address",
+                                    ":walletAddress",
+                                    "transfers_v2",
+                                    ""
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) ",
+                                      "key": "contract-address",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "chainName"
+                                    },
+                                    {
+                                      "key": "walletAddress"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:27:23.000Z",
+                              "updatedAt": "2026-07-28T01:27:23.000Z",
+                              "uid": "35240-4d7c2b5c-b095-4f29-a584-e3af19bda698"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:27:23.000Z",
+                          "updatedAt": "2026-07-28T01:27:23.000Z",
+                          "uid": "35240-acc29032-8af0-4f1e-9576-a2135df333b0"
+                        }
+                      ],
+                      "id": "177ba662-d3f0-41a3-bedb-98bbae285ccd",
+                      "createdAt": "2026-07-28T01:27:23.000Z",
+                      "updatedAt": "2026-07-28T01:27:23.000Z",
+                      "uid": "35240-177ba662-d3f0-41a3-bedb-98bbae285ccd"
+                    },
+                    {
+                      "name": "transactions_v3",
+                      "item": [
+                        {
+                          "name": "page",
+                          "item": [
+                            {
+                              "name": "{page}",
+                              "item": [
+                                {
+                                  "name": "Get Paginated Transactions For Address (v3)",
+                                  "id": "efbfbd06-af3f-4fc1-b346-380a24d91ae7",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/:chainName/address/:walletAddress/transactions_v3/page/:page/",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        ":chainName",
+                                        "address",
+                                        ":walletAddress",
+                                        "transactions_v3",
+                                        "page",
+                                        ":page",
+                                        ""
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "aac250cc-25f9-458f-a41b-ab81abc5c7b5",
+                                          "key": "chainName",
+                                          "value": "<string>",
+                                          "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                                        },
+                                        {
+                                          "id": "e4b3e36a-da41-4531-a95b-6490090f7dcd",
+                                          "key": "walletAddress",
+                                          "value": "<string>",
+                                          "description": "(Required) Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+                                        },
+                                        {
+                                          "id": "94dec16f-9e81-4678-81fd-1f8c08940ad2",
+                                          "key": "page",
+                                          "value": "<integer>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "73946040-3ed2-47cb-bcab-af0803735f8d",
+                                      "name": "OK",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/v1/:chainName/address/:walletAddress/transactions_v3/page/:page/",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "v1",
+                                            ":chainName",
+                                            "address",
+                                            ":walletAddress",
+                                            "transactions_v3",
+                                            "page",
+                                            ":page",
+                                            ""
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "chainName"
+                                            },
+                                            {
+                                              "key": "walletAddress"
+                                            },
+                                            {
+                                              "key": "page"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T01:27:23.000Z",
+                                      "updatedAt": "2026-07-28T01:27:23.000Z",
+                                      "uid": "35240-73946040-3ed2-47cb-bcab-af0803735f8d"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T01:27:23.000Z",
+                                  "updatedAt": "2026-07-28T01:27:23.000Z",
+                                  "uid": "35240-efbfbd06-af3f-4fc1-b346-380a24d91ae7"
+                                }
+                              ],
+                              "id": "766019aa-7104-41cb-815b-ae433ae250b6",
+                              "createdAt": "2026-07-28T01:27:23.000Z",
+                              "updatedAt": "2026-07-28T01:27:23.000Z",
+                              "uid": "35240-766019aa-7104-41cb-815b-ae433ae250b6"
+                            }
+                          ],
+                          "id": "350dee02-0f7a-430a-9cca-052eb2c1157d",
+                          "createdAt": "2026-07-28T01:27:23.000Z",
+                          "updatedAt": "2026-07-28T01:27:23.000Z",
+                          "uid": "35240-350dee02-0f7a-430a-9cca-052eb2c1157d"
+                        },
+                        {
+                          "name": "earliest",
+                          "item": [
+                            {
+                              "name": "Get Earliest Transactions For Address (v3)",
+                              "id": "be76e619-a3b5-4ac6-ae21-09a953cbba13",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/:chainName/address/:walletAddress/transactions_v3/earliest/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":chainName",
+                                    "address",
+                                    ":walletAddress",
+                                    "transactions_v3",
+                                    "earliest",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "4bc89b08-eb56-4cb8-9f46-5699c9800bf1",
+                                      "key": "chainName",
+                                      "value": "<string>",
+                                      "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                                    },
+                                    {
+                                      "id": "34f6dd64-7607-48e6-892b-4c80c70f4220",
+                                      "key": "walletAddress",
+                                      "value": "<string>",
+                                      "description": "(Required) Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "id": "7c75c2ee-c01d-449c-ae6f-9b8324b32e3d",
+                                  "name": "OK",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/:chainName/address/:walletAddress/transactions_v3/earliest/",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        ":chainName",
+                                        "address",
+                                        ":walletAddress",
+                                        "transactions_v3",
+                                        "earliest",
+                                        ""
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "chainName"
+                                        },
+                                        {
+                                          "key": "walletAddress"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:27:23.000Z",
+                                  "updatedAt": "2026-07-28T01:27:23.000Z",
+                                  "uid": "35240-7c75c2ee-c01d-449c-ae6f-9b8324b32e3d"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:27:23.000Z",
+                              "updatedAt": "2026-07-28T01:27:23.000Z",
+                              "uid": "35240-be76e619-a3b5-4ac6-ae21-09a953cbba13"
+                            }
+                          ],
+                          "id": "a2fcc766-bb59-41c1-ad30-78d222785161",
+                          "createdAt": "2026-07-28T01:27:23.000Z",
+                          "updatedAt": "2026-07-28T01:27:23.000Z",
+                          "uid": "35240-a2fcc766-bb59-41c1-ad30-78d222785161"
+                        },
+                        {
+                          "name": "Get Recent Transactions For Address (v3)",
+                          "id": "f7815a59-124a-43df-b0e9-60ba606949a9",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/:chainName/address/:walletAddress/transactions_v3/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                ":chainName",
+                                "address",
+                                ":walletAddress",
+                                "transactions_v3",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "id": "9898341b-6595-4279-8865-595621c5ac61",
+                                  "key": "chainName",
+                                  "value": "<string>",
+                                  "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                                },
+                                {
+                                  "id": "18fc40fb-c93f-41b1-9fc8-7d72297e9bf3",
+                                  "key": "walletAddress",
+                                  "value": "<string>",
+                                  "description": "(Required) Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+                                }
+                              ]
+                            },
+                            "description": "Recent transactions for an address."
+                          },
+                          "response": [
+                            {
+                              "id": "deff11e2-62c2-458d-9789-1bfc5b5a3bfc",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/:chainName/address/:walletAddress/transactions_v3/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":chainName",
+                                    "address",
+                                    ":walletAddress",
+                                    "transactions_v3",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "chainName"
+                                    },
+                                    {
+                                      "key": "walletAddress"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"data\": {\n    \"address\": \"<string>\",\n    \"updated_at\": \"<dateTime>\",\n    \"next_update_at\": \"<dateTime>\",\n    \"quote_currency\": \"<string>\",\n    \"chain_id\": \"<integer>\",\n    \"chain_name\": \"<string>\",\n    \"current_page\": \"<integer>\",\n    \"links\": {\n      \"prev\": \"<string>\",\n      \"next\": \"<string>\"\n    },\n    \"items\": [\n      {\n        \"block_signed_at\": \"<dateTime>\",\n        \"block_height\": \"<integer>\",\n        \"block_hash\": \"<string>\",\n        \"tx_hash\": \"<string>\",\n        \"tx_offset\": \"<integer>\",\n        \"successful\": \"<boolean>\",\n        \"from_address\": \"<string>\",\n        \"from_address_label\": \"<string>\",\n        \"to_address\": \"<string>\",\n        \"to_address_label\": \"<string>\",\n        \"value\": \"<string>\",\n        \"value_quote\": \"<number>\",\n        \"pretty_value_quote\": \"<string>\",\n        \"gas_offered\": \"<integer>\",\n        \"gas_spent\": \"<integer>\",\n        \"gas_price\": \"<integer>\",\n        \"gas_quote\": \"<number>\",\n        \"gas_quote_rate\": \"<number>\"\n      },\n      {\n        \"block_signed_at\": \"<dateTime>\",\n        \"block_height\": \"<integer>\",\n        \"block_hash\": \"<string>\",\n        \"tx_hash\": \"<string>\",\n        \"tx_offset\": \"<integer>\",\n        \"successful\": \"<boolean>\",\n        \"from_address\": \"<string>\",\n        \"from_address_label\": \"<string>\",\n        \"to_address\": \"<string>\",\n        \"to_address_label\": \"<string>\",\n        \"value\": \"<string>\",\n        \"value_quote\": \"<number>\",\n        \"pretty_value_quote\": \"<string>\",\n        \"gas_offered\": \"<integer>\",\n        \"gas_spent\": \"<integer>\",\n        \"gas_price\": \"<integer>\",\n        \"gas_quote\": \"<number>\",\n        \"gas_quote_rate\": \"<number>\"\n      }\n    ]\n  }\n}",
+                              "createdAt": "2026-07-28T01:27:23.000Z",
+                              "updatedAt": "2026-07-28T01:27:23.000Z",
+                              "uid": "35240-deff11e2-62c2-458d-9789-1bfc5b5a3bfc"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:27:23.000Z",
+                          "updatedAt": "2026-07-28T01:27:23.000Z",
+                          "uid": "35240-f7815a59-124a-43df-b0e9-60ba606949a9"
+                        }
+                      ],
+                      "id": "7953e95c-1650-421d-b2fa-5e2198531be1",
+                      "createdAt": "2026-07-28T01:27:23.000Z",
+                      "updatedAt": "2026-07-28T01:27:23.000Z",
+                      "uid": "35240-7953e95c-1650-421d-b2fa-5e2198531be1"
+                    },
+                    {
+                      "name": "transactions_summary",
+                      "item": [
+                        {
+                          "name": "Get Transaction Summary For Address",
+                          "id": "68a7d937-c070-49e9-aba1-ca3525550f6c",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/:chainName/address/:walletAddress/transactions_summary/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                ":chainName",
+                                "address",
+                                ":walletAddress",
+                                "transactions_summary",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "id": "660b2391-f65f-49fe-a130-fbab856fa096",
+                                  "key": "chainName",
+                                  "value": "<string>",
+                                  "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                                },
+                                {
+                                  "id": "5c32ebf0-75a5-4427-8402-f757901c1bfb",
+                                  "key": "walletAddress",
+                                  "value": "<string>",
+                                  "description": "(Required) Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "8e1fa323-e813-4bc3-b573-d6e37a582e2b",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/:chainName/address/:walletAddress/transactions_summary/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":chainName",
+                                    "address",
+                                    ":walletAddress",
+                                    "transactions_summary",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "chainName"
+                                    },
+                                    {
+                                      "key": "walletAddress"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:27:23.000Z",
+                              "updatedAt": "2026-07-28T01:27:23.000Z",
+                              "uid": "35240-8e1fa323-e813-4bc3-b573-d6e37a582e2b"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:27:23.000Z",
+                          "updatedAt": "2026-07-28T01:27:23.000Z",
+                          "uid": "35240-68a7d937-c070-49e9-aba1-ca3525550f6c"
+                        }
+                      ],
+                      "id": "b21b41b1-e90b-40e0-a9ea-48479ea36199",
+                      "createdAt": "2026-07-28T01:27:23.000Z",
+                      "updatedAt": "2026-07-28T01:27:23.000Z",
+                      "uid": "35240-b21b41b1-e90b-40e0-a9ea-48479ea36199"
+                    }
+                  ],
+                  "id": "214e672a-cd10-4ff5-83a4-63ff10d32d46",
+                  "createdAt": "2026-07-28T01:27:23.000Z",
+                  "updatedAt": "2026-07-28T01:27:23.000Z",
+                  "uid": "35240-214e672a-cd10-4ff5-83a4-63ff10d32d46"
+                }
+              ],
+              "id": "a82c2f64-ca41-4216-a1c4-4d5fb08a3f44",
+              "createdAt": "2026-07-28T01:27:23.000Z",
+              "updatedAt": "2026-07-28T01:27:23.000Z",
+              "uid": "35240-a82c2f64-ca41-4216-a1c4-4d5fb08a3f44"
+            },
+            {
+              "name": "bulk",
+              "item": [
+                {
+                  "name": "transactions",
+                  "item": [
+                    {
+                      "name": "{walletAddress}",
+                      "item": [
+                        {
+                          "name": "{timeBucket}",
+                          "item": [
+                            {
+                              "name": "Get Bulk Time Bucket Transactions For Address (v3)",
+                              "id": "98d8d8e8-5779-4f37-88e5-771ce44e686d",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/:chainName/bulk/transactions/:walletAddress/:timeBucket/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":chainName",
+                                    "bulk",
+                                    "transactions",
+                                    ":walletAddress",
+                                    ":timeBucket",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "7872fe4c-112d-4518-b1c3-9f0bbbc6412b",
+                                      "key": "chainName",
+                                      "value": "<string>",
+                                      "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                                    },
+                                    {
+                                      "id": "38765081-0c0a-4a5a-8d02-7a9ca605ccc3",
+                                      "key": "walletAddress",
+                                      "value": "<string>",
+                                      "description": "(Required) Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+                                    },
+                                    {
+                                      "id": "3f336c65-922e-416c-a2b5-5d53b723eb90",
+                                      "key": "timeBucket",
+                                      "value": "<integer>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Returns a bulk time-bucketed window of transactions."
+                              },
+                              "response": [
+                                {
+                                  "id": "6ad2c77b-744f-4a57-b1d3-fd69142b6c07",
+                                  "name": "OK",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/:chainName/bulk/transactions/:walletAddress/:timeBucket/",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        ":chainName",
+                                        "bulk",
+                                        "transactions",
+                                        ":walletAddress",
+                                        ":timeBucket",
+                                        ""
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "chainName"
+                                        },
+                                        {
+                                          "key": "walletAddress"
+                                        },
+                                        {
+                                          "key": "timeBucket"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:27:23.000Z",
+                                  "updatedAt": "2026-07-28T01:27:23.000Z",
+                                  "uid": "35240-6ad2c77b-744f-4a57-b1d3-fd69142b6c07"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:27:23.000Z",
+                              "updatedAt": "2026-07-28T01:27:23.000Z",
+                              "uid": "35240-98d8d8e8-5779-4f37-88e5-771ce44e686d"
+                            }
+                          ],
+                          "id": "a7f43078-e236-48d3-88a6-2a17b4344eea",
+                          "createdAt": "2026-07-28T01:27:23.000Z",
+                          "updatedAt": "2026-07-28T01:27:23.000Z",
+                          "uid": "35240-a7f43078-e236-48d3-88a6-2a17b4344eea"
+                        }
+                      ],
+                      "id": "6ff33035-cf9b-423a-9d8b-1390eee19901",
+                      "createdAt": "2026-07-28T01:27:23.000Z",
+                      "updatedAt": "2026-07-28T01:27:23.000Z",
+                      "uid": "35240-6ff33035-cf9b-423a-9d8b-1390eee19901"
+                    }
+                  ],
+                  "id": "c5518445-19c8-4f39-9ea3-be24340ea6e4",
+                  "createdAt": "2026-07-28T01:27:23.000Z",
+                  "updatedAt": "2026-07-28T01:27:23.000Z",
+                  "uid": "35240-c5518445-19c8-4f39-9ea3-be24340ea6e4"
+                }
+              ],
+              "id": "9419fd9b-e2e9-47b3-ba6e-e1f51dcb0876",
+              "createdAt": "2026-07-28T01:27:23.000Z",
+              "updatedAt": "2026-07-28T01:27:23.000Z",
+              "uid": "35240-9419fd9b-e2e9-47b3-ba6e-e1f51dcb0876"
+            },
+            {
+              "name": "transaction_v2",
+              "item": [
+                {
+                  "name": "{txHash}",
+                  "item": [
+                    {
+                      "name": "Get A Transaction",
+                      "id": "3c215680-6e3a-43a8-8a68-f835b4b1337d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/:chainName/transaction_v2/:txHash/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            ":chainName",
+                            "transaction_v2",
+                            ":txHash",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "33789e4c-19fd-49fa-8f08-5a1431611154",
+                              "key": "chainName",
+                              "value": "<string>",
+                              "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                            },
+                            {
+                              "id": "df173a90-8e3d-49fe-8e6b-a801852c3a56",
+                              "key": "txHash",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "fa5f3f39-93ad-48e9-a78d-fa1477cbb7c5",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/:chainName/transaction_v2/:txHash/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                ":chainName",
+                                "transaction_v2",
+                                ":txHash",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "chainName"
+                                },
+                                {
+                                  "key": "txHash"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": {\n    \"address\": \"<string>\",\n    \"updated_at\": \"<dateTime>\",\n    \"next_update_at\": \"<dateTime>\",\n    \"quote_currency\": \"<string>\",\n    \"chain_id\": \"<integer>\",\n    \"chain_name\": \"<string>\",\n    \"current_page\": \"<integer>\",\n    \"links\": {\n      \"prev\": \"<string>\",\n      \"next\": \"<string>\"\n    },\n    \"items\": [\n      {\n        \"block_signed_at\": \"<dateTime>\",\n        \"block_height\": \"<integer>\",\n        \"block_hash\": \"<string>\",\n        \"tx_hash\": \"<string>\",\n        \"tx_offset\": \"<integer>\",\n        \"successful\": \"<boolean>\",\n        \"from_address\": \"<string>\",\n        \"from_address_label\": \"<string>\",\n        \"to_address\": \"<string>\",\n        \"to_address_label\": \"<string>\",\n        \"value\": \"<string>\",\n        \"value_quote\": \"<number>\",\n        \"pretty_value_quote\": \"<string>\",\n        \"gas_offered\": \"<integer>\",\n        \"gas_spent\": \"<integer>\",\n        \"gas_price\": \"<integer>\",\n        \"gas_quote\": \"<number>\",\n        \"gas_quote_rate\": \"<number>\"\n      },\n      {\n        \"block_signed_at\": \"<dateTime>\",\n        \"block_height\": \"<integer>\",\n        \"block_hash\": \"<string>\",\n        \"tx_hash\": \"<string>\",\n        \"tx_offset\": \"<integer>\",\n        \"successful\": \"<boolean>\",\n        \"from_address\": \"<string>\",\n        \"from_address_label\": \"<string>\",\n        \"to_address\": \"<string>\",\n        \"to_address_label\": \"<string>\",\n        \"value\": \"<string>\",\n        \"value_quote\": \"<number>\",\n        \"pretty_value_quote\": \"<string>\",\n        \"gas_offered\": \"<integer>\",\n        \"gas_spent\": \"<integer>\",\n        \"gas_price\": \"<integer>\",\n        \"gas_quote\": \"<number>\",\n        \"gas_quote_rate\": \"<number>\"\n      }\n    ]\n  }\n}",
+                          "createdAt": "2026-07-28T01:27:23.000Z",
+                          "updatedAt": "2026-07-28T01:27:23.000Z",
+                          "uid": "35240-fa5f3f39-93ad-48e9-a78d-fa1477cbb7c5"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:27:23.000Z",
+                      "updatedAt": "2026-07-28T01:27:23.000Z",
+                      "uid": "35240-3c215680-6e3a-43a8-8a68-f835b4b1337d"
+                    }
+                  ],
+                  "id": "6a54f670-3a04-4e71-acb2-eadb38616453",
+                  "createdAt": "2026-07-28T01:27:23.000Z",
+                  "updatedAt": "2026-07-28T01:27:23.000Z",
+                  "uid": "35240-6a54f670-3a04-4e71-acb2-eadb38616453"
+                }
+              ],
+              "id": "1566694f-942f-4d7b-b60f-ea478ebf15e1",
+              "createdAt": "2026-07-28T01:27:23.000Z",
+              "updatedAt": "2026-07-28T01:27:23.000Z",
+              "uid": "35240-1566694f-942f-4d7b-b60f-ea478ebf15e1"
+            },
+            {
+              "name": "block",
+              "item": [
+                {
+                  "name": "{blockHeight}",
+                  "item": [
+                    {
+                      "name": "transactions_v3",
+                      "item": [
+                        {
+                          "name": "page",
+                          "item": [
+                            {
+                              "name": "{page}",
+                              "item": [
+                                {
+                                  "name": "Get All Transactions In A Block By Page (v3)",
+                                  "id": "62eaad64-e061-48c7-830e-7fdc5819bd4c",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/:chainName/block/:blockHeight/transactions_v3/page/:page/",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        ":chainName",
+                                        "block",
+                                        ":blockHeight",
+                                        "transactions_v3",
+                                        "page",
+                                        ":page",
+                                        ""
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "489cb9ee-c484-42ca-9eb1-6fa8411e84d9",
+                                          "key": "chainName",
+                                          "value": "<string>",
+                                          "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                                        },
+                                        {
+                                          "id": "9c825c77-322c-4044-a1ef-09be3d8a50a4",
+                                          "key": "blockHeight",
+                                          "value": "<integer>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "3110bea6-0314-4ee9-9c79-792fbd7befb2",
+                                          "key": "page",
+                                          "value": "<integer>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "1abbb101-e450-46e1-84cd-083c5ebf7ff5",
+                                      "name": "OK",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/v1/:chainName/block/:blockHeight/transactions_v3/page/:page/",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "v1",
+                                            ":chainName",
+                                            "block",
+                                            ":blockHeight",
+                                            "transactions_v3",
+                                            "page",
+                                            ":page",
+                                            ""
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "chainName"
+                                            },
+                                            {
+                                              "key": "blockHeight"
+                                            },
+                                            {
+                                              "key": "page"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T01:27:23.000Z",
+                                      "updatedAt": "2026-07-28T01:27:23.000Z",
+                                      "uid": "35240-1abbb101-e450-46e1-84cd-083c5ebf7ff5"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T01:27:23.000Z",
+                                  "updatedAt": "2026-07-28T01:27:23.000Z",
+                                  "uid": "35240-62eaad64-e061-48c7-830e-7fdc5819bd4c"
+                                }
+                              ],
+                              "id": "9cdbabd6-52a8-4856-8d68-46e3757ba910",
+                              "createdAt": "2026-07-28T01:27:23.000Z",
+                              "updatedAt": "2026-07-28T01:27:23.000Z",
+                              "uid": "35240-9cdbabd6-52a8-4856-8d68-46e3757ba910"
+                            }
+                          ],
+                          "id": "1a62daea-1cfb-4e1f-83c8-aab510cad088",
+                          "createdAt": "2026-07-28T01:27:23.000Z",
+                          "updatedAt": "2026-07-28T01:27:23.000Z",
+                          "uid": "35240-1a62daea-1cfb-4e1f-83c8-aab510cad088"
+                        },
+                        {
+                          "name": "Get All Transactions In A Block (v3)",
+                          "id": "598a6e4c-5fdf-45a5-b623-b1c7bbc22118",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/:chainName/block/:blockHeight/transactions_v3/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                ":chainName",
+                                "block",
+                                ":blockHeight",
+                                "transactions_v3",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "id": "21243846-95a6-4280-8b83-7c471a3dd9c9",
+                                  "key": "chainName",
+                                  "value": "<string>",
+                                  "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                                },
+                                {
+                                  "id": "b01a4501-824b-42d5-bddb-409dbec50c2f",
+                                  "key": "blockHeight",
+                                  "value": "<integer>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "7e94eec8-f7b5-4f40-b361-4507322ec730",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/:chainName/block/:blockHeight/transactions_v3/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    ":chainName",
+                                    "block",
+                                    ":blockHeight",
+                                    "transactions_v3",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "chainName"
+                                    },
+                                    {
+                                      "key": "blockHeight"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:27:23.000Z",
+                              "updatedAt": "2026-07-28T01:27:23.000Z",
+                              "uid": "35240-7e94eec8-f7b5-4f40-b361-4507322ec730"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:27:23.000Z",
+                          "updatedAt": "2026-07-28T01:27:23.000Z",
+                          "uid": "35240-598a6e4c-5fdf-45a5-b623-b1c7bbc22118"
+                        }
+                      ],
+                      "id": "7fcdd5b2-7820-4fd8-b568-b778fb9ed8b3",
+                      "createdAt": "2026-07-28T01:27:23.000Z",
+                      "updatedAt": "2026-07-28T01:27:23.000Z",
+                      "uid": "35240-7fcdd5b2-7820-4fd8-b568-b778fb9ed8b3"
+                    }
+                  ],
+                  "id": "41b385a2-7143-47b2-8ba4-278df8fc4bb3",
+                  "createdAt": "2026-07-28T01:27:23.000Z",
+                  "updatedAt": "2026-07-28T01:27:23.000Z",
+                  "uid": "35240-41b385a2-7143-47b2-8ba4-278df8fc4bb3"
+                }
+              ],
+              "id": "8fce780c-df0e-4be0-8cbc-305f3d376bfd",
+              "createdAt": "2026-07-28T01:27:23.000Z",
+              "updatedAt": "2026-07-28T01:27:23.000Z",
+              "uid": "35240-8fce780c-df0e-4be0-8cbc-305f3d376bfd"
+            }
+          ],
+          "id": "864e3d4b-5296-4619-aac8-afdcfbb73440",
+          "createdAt": "2026-07-28T01:27:23.000Z",
+          "updatedAt": "2026-07-28T01:27:23.000Z",
+          "uid": "35240-864e3d4b-5296-4619-aac8-afdcfbb73440"
+        }
+      ],
+      "id": "403e50d2-e267-4a65-8536-dbbc5d43f757",
+      "createdAt": "2026-07-28T01:27:23.000Z",
+      "updatedAt": "2026-07-28T01:27:23.000Z",
+      "uid": "35240-403e50d2-e267-4a65-8536-dbbc5d43f757"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.covalenthq.com"
+    }
+  ]
+}
