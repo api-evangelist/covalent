@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "GoldRush Foundational ABI Pricing API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pricing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Historical Token Prices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/pricing/historical_by_addresses_v2/:chainName/:quoteCurrency/:contractAddresses/",
+            "params": [
+              {
+                "name": "chainName",
+                "value": "",
+                "type": "path",
+                "description": "Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+              },
+              {
+                "name": "quoteCurrency",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "contractAddresses",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Historical Token Prices"
+        },
+        {
+          "info": {
+            "name": "Get Pool Spot Prices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/:chainName/xy=k/:dexName/pool/:poolAddress/spot_prices/",
+            "params": [
+              {
+                "name": "chainName",
+                "value": "",
+                "type": "path",
+                "description": "Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+              },
+              {
+                "name": "dexName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "poolAddress",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Pool Spot Prices"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,208 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "GoldRush Foundational ABI Balances API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Balances",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Token Balances For Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/:chainName/address/:walletAddress/balances_v2/",
+            "params": [
+              {
+                "name": "chainName",
+                "value": "",
+                "type": "path",
+                "description": "Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+              },
+              {
+                "name": "walletAddress",
+                "value": "",
+                "type": "path",
+                "description": "Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+              },
+              {
+                "name": "quote-currency",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nft",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "no-nft-fetch",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns native + ERC20 token balances for an address on the given chain."
+        },
+        {
+          "info": {
+            "name": "Get Native Token Balance For Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/:chainName/address/:walletAddress/balances_native/",
+            "params": [
+              {
+                "name": "chainName",
+                "value": "",
+                "type": "path",
+                "description": "Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+              },
+              {
+                "name": "walletAddress",
+                "value": "",
+                "type": "path",
+                "description": "Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+              }
+            ]
+          },
+          "docs": "Returns the native token balance (e.g., ETH) for an address."
+        },
+        {
+          "info": {
+            "name": "Get Historical Token Balances For Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/:chainName/address/:walletAddress/historical_balances/",
+            "params": [
+              {
+                "name": "chainName",
+                "value": "",
+                "type": "path",
+                "description": "Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+              },
+              {
+                "name": "walletAddress",
+                "value": "",
+                "type": "path",
+                "description": "Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+              },
+              {
+                "name": "block-height",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Historical token balances at a specific block height or timestamp."
+        },
+        {
+          "info": {
+            "name": "Get Historical Portfolio Value Over Time",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/:chainName/address/:walletAddress/portfolio_v2/",
+            "params": [
+              {
+                "name": "chainName",
+                "value": "",
+                "type": "path",
+                "description": "Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+              },
+              {
+                "name": "walletAddress",
+                "value": "",
+                "type": "path",
+                "description": "Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+              },
+              {
+                "name": "days",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Time-series portfolio value broken down by token holding."
+        },
+        {
+          "info": {
+            "name": "Get ERC20 Token Transfers For Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/:chainName/address/:walletAddress/transfers_v2/",
+            "params": [
+              {
+                "name": "chainName",
+                "value": "",
+                "type": "path",
+                "description": "Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+              },
+              {
+                "name": "walletAddress",
+                "value": "",
+                "type": "path",
+                "description": "Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+              },
+              {
+                "name": "contract-address",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "ERC20 transfer history for an address, filterable by contract."
+        },
+        {
+          "info": {
+            "name": "Get Token Holders As Of Any Block Height (v2)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/:chainName/tokens/:tokenAddress/token_holders_v2/",
+            "params": [
+              {
+                "name": "chainName",
+                "value": "",
+                "type": "path",
+                "description": "Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+              },
+              {
+                "name": "tokenAddress",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "block-height",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List token holders of an ERC20/721/1155 contract at a block height."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

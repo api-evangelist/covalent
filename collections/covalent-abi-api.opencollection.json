@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "GoldRush Foundational ABI API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ABI",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List ABIs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/abis"
+          },
+          "docs": "List ABIs"
+        },
+        {
+          "info": {
+            "name": "Upload ABI",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.covalenthq.com/v1/abis",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upload ABI"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

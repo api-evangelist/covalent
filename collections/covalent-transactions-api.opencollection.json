@@ -1,0 +1,266 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "GoldRush Foundational ABI Transactions API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get ERC20 Token Transfers For Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/:chainName/address/:walletAddress/transfers_v2/",
+            "params": [
+              {
+                "name": "chainName",
+                "value": "",
+                "type": "path",
+                "description": "Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+              },
+              {
+                "name": "walletAddress",
+                "value": "",
+                "type": "path",
+                "description": "Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+              },
+              {
+                "name": "contract-address",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "ERC20 transfer history for an address, filterable by contract."
+        },
+        {
+          "info": {
+            "name": "Get Recent Transactions For Address (v3)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/:chainName/address/:walletAddress/transactions_v3/",
+            "params": [
+              {
+                "name": "chainName",
+                "value": "",
+                "type": "path",
+                "description": "Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+              },
+              {
+                "name": "walletAddress",
+                "value": "",
+                "type": "path",
+                "description": "Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+              }
+            ]
+          },
+          "docs": "Recent transactions for an address."
+        },
+        {
+          "info": {
+            "name": "Get Paginated Transactions For Address (v3)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/:chainName/address/:walletAddress/transactions_v3/page/:page/",
+            "params": [
+              {
+                "name": "chainName",
+                "value": "",
+                "type": "path",
+                "description": "Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+              },
+              {
+                "name": "walletAddress",
+                "value": "",
+                "type": "path",
+                "description": "Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Paginated Transactions For Address (v3)"
+        },
+        {
+          "info": {
+            "name": "Get Earliest Transactions For Address (v3)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/:chainName/address/:walletAddress/transactions_v3/earliest/",
+            "params": [
+              {
+                "name": "chainName",
+                "value": "",
+                "type": "path",
+                "description": "Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+              },
+              {
+                "name": "walletAddress",
+                "value": "",
+                "type": "path",
+                "description": "Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+              }
+            ]
+          },
+          "docs": "Get Earliest Transactions For Address (v3)"
+        },
+        {
+          "info": {
+            "name": "Get Bulk Time Bucket Transactions For Address (v3)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/:chainName/bulk/transactions/:walletAddress/:timeBucket/",
+            "params": [
+              {
+                "name": "chainName",
+                "value": "",
+                "type": "path",
+                "description": "Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+              },
+              {
+                "name": "walletAddress",
+                "value": "",
+                "type": "path",
+                "description": "Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+              },
+              {
+                "name": "timeBucket",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns a bulk time-bucketed window of transactions."
+        },
+        {
+          "info": {
+            "name": "Get Transaction Summary For Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/:chainName/address/:walletAddress/transactions_summary/",
+            "params": [
+              {
+                "name": "chainName",
+                "value": "",
+                "type": "path",
+                "description": "Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+              },
+              {
+                "name": "walletAddress",
+                "value": "",
+                "type": "path",
+                "description": "Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+              }
+            ]
+          },
+          "docs": "Get Transaction Summary For Address"
+        },
+        {
+          "info": {
+            "name": "Get A Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/:chainName/transaction_v2/:txHash/",
+            "params": [
+              {
+                "name": "chainName",
+                "value": "",
+                "type": "path",
+                "description": "Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+              },
+              {
+                "name": "txHash",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get A Transaction"
+        },
+        {
+          "info": {
+            "name": "Get All Transactions In A Block (v3)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/:chainName/block/:blockHeight/transactions_v3/",
+            "params": [
+              {
+                "name": "chainName",
+                "value": "",
+                "type": "path",
+                "description": "Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+              },
+              {
+                "name": "blockHeight",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get All Transactions In A Block (v3)"
+        },
+        {
+          "info": {
+            "name": "Get All Transactions In A Block By Page (v3)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/:chainName/block/:blockHeight/transactions_v3/page/:page/",
+            "params": [
+              {
+                "name": "chainName",
+                "value": "",
+                "type": "path",
+                "description": "Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+              },
+              {
+                "name": "blockHeight",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get All Transactions In A Block By Page (v3)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

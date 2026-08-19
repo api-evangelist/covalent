@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "GoldRush Foundational ABI Security API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Security",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Token Approvals For Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/:chainName/approvals/:walletAddress/",
+            "params": [
+              {
+                "name": "chainName",
+                "value": "",
+                "type": "path",
+                "description": "Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+              },
+              {
+                "name": "walletAddress",
+                "value": "",
+                "type": "path",
+                "description": "Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+              }
+            ]
+          },
+          "docs": "Get Token Approvals For Address"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

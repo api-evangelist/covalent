@@ -1,0 +1,73 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "GoldRush Foundational ABI Cross-Chain API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cross-Chain",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Activity Across All Chains For Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/address/:walletAddress/activity/",
+            "params": [
+              {
+                "name": "walletAddress",
+                "value": "",
+                "type": "path",
+                "description": "Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+              }
+            ]
+          },
+          "docs": "Get Activity Across All Chains For Address"
+        },
+        {
+          "info": {
+            "name": "Get Multichain Balances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/allchains/address/:walletAddress/balances/",
+            "params": [
+              {
+                "name": "walletAddress",
+                "value": "",
+                "type": "path",
+                "description": "Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+              }
+            ]
+          },
+          "docs": "Get Multichain Balances"
+        },
+        {
+          "info": {
+            "name": "Get Multichain Multiaddress Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/allchains/transactions/"
+          },
+          "docs": "Get Multichain Multiaddress Transactions"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

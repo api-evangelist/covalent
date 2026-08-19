@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "GoldRush Foundational ABI Destinations API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Destinations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Destinations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/destinations"
+          },
+          "docs": "List Destinations"
+        },
+        {
+          "info": {
+            "name": "Create Destination",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.covalenthq.com/v1/destinations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Destination"
+        },
+        {
+          "info": {
+            "name": "Get Destination",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/destinations/:destinationId",
+            "params": [
+              {
+                "name": "destinationId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Destination"
+        },
+        {
+          "info": {
+            "name": "Delete Destination",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.covalenthq.com/v1/destinations/:destinationId",
+            "params": [
+              {
+                "name": "destinationId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete Destination"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

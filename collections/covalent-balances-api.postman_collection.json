@@ -1,0 +1,945 @@
+{
+  "item": [
+    {
+      "id": "43f63066-5d56-496b-b6d0-c5bad58eb636",
+      "name": "Balances",
+      "description": {
+        "content": "Native, ERC20, ERC721, ERC1155, and historical token balances.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3986e221-90b0-409e-8231-8f0f47f795b3",
+          "name": "Get Token Balances For Address",
+          "request": {
+            "name": "Get Token Balances For Address",
+            "description": {
+              "content": "Returns native + ERC20 token balances for an address on the given chain.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                ":chainName",
+                "address",
+                ":walletAddress",
+                "balances_v2",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "quote-currency",
+                  "value": "USD"
+                },
+                {
+                  "disabled": false,
+                  "key": "nft",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "no-nft-fetch",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chainName",
+                  "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "walletAddress",
+                  "description": "(Required) Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f0f2946a-f666-4de9-b394-14e2efa7868f",
+              "name": "Token balance response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    ":chainName",
+                    "address",
+                    ":walletAddress",
+                    "balances_v2",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "quote-currency",
+                      "value": "USD"
+                    },
+                    {
+                      "key": "nft",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "no-nft-fetch",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "chainName",
+                      "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "walletAddress",
+                      "description": "(Required) Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"address\": \"string\",\n    \"updated_at\": \"2004-06-08T04:29:46.766Z\",\n    \"next_update_at\": \"1977-04-29T16:44:15.054Z\",\n    \"quote_currency\": \"string\",\n    \"chain_id\": 8820,\n    \"chain_name\": \"string\",\n    \"items\": [\n      {\n        \"contract_decimals\": 5377,\n        \"contract_name\": \"string\",\n        \"contract_ticker_symbol\": \"string\",\n        \"contract_address\": \"string\",\n        \"supports_erc\": [\n          \"string\",\n          \"string\"\n        ],\n        \"logo_url\": \"string\",\n        \"last_transferred_at\": \"1990-01-02T08:00:05.733Z\",\n        \"native_token\": true,\n        \"type\": \"string\",\n        \"balance\": \"string\",\n        \"balance_24h\": \"string\",\n        \"quote_rate\": 2787.666394049824,\n        \"quote_rate_24h\": 866.8446850373124,\n        \"quote\": 8793.514985371627,\n        \"quote_24h\": 1059.1083279039092,\n        \"pretty_quote\": \"string\",\n        \"pretty_quote_24h\": \"string\"\n      },\n      {\n        \"contract_decimals\": 4967,\n        \"contract_name\": \"string\",\n        \"contract_ticker_symbol\": \"string\",\n        \"contract_address\": \"string\",\n        \"supports_erc\": [\n          \"string\",\n          \"string\"\n        ],\n        \"logo_url\": \"string\",\n        \"last_transferred_at\": \"1980-08-25T10:27:20.040Z\",\n        \"native_token\": true,\n        \"type\": \"string\",\n        \"balance\": \"string\",\n        \"balance_24h\": \"string\",\n        \"quote_rate\": 5380.586855574883,\n        \"quote_rate_24h\": 6107.5492669956,\n        \"quote\": 128.32042168652413,\n        \"quote_24h\": 5395.5745604082595,\n        \"pretty_quote\": \"string\",\n        \"pretty_quote_24h\": \"string\"\n      }\n    ]\n  },\n  \"error\": false,\n  \"error_message\": \"string\",\n  \"error_code\": 3519\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e5675608-885e-4504-b5da-233a43e45d93",
+              "name": "Unauthorized - missing or invalid Bearer token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    ":chainName",
+                    "address",
+                    ":walletAddress",
+                    "balances_v2",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "quote-currency",
+                      "value": "USD"
+                    },
+                    {
+                      "key": "nft",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "no-nft-fetch",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "chainName",
+                      "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "walletAddress",
+                      "description": "(Required) Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"error_message\": \"string\",\n  \"error_code\": 8069\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "91dd42ff-4d81-4527-a621-b0709d10d789",
+              "name": "Too Many Requests - rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    ":chainName",
+                    "address",
+                    ":walletAddress",
+                    "balances_v2",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "quote-currency",
+                      "value": "USD"
+                    },
+                    {
+                      "key": "nft",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "no-nft-fetch",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "chainName",
+                      "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "walletAddress",
+                      "description": "(Required) Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": false,\n  \"error_message\": \"string\",\n  \"error_code\": 8069\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d26f9cbb-ac73-4b4e-8171-3940bca720da",
+          "name": "Get Native Token Balance For Address",
+          "request": {
+            "name": "Get Native Token Balance For Address",
+            "description": {
+              "content": "Returns the native token balance (e.g., ETH) for an address.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                ":chainName",
+                "address",
+                ":walletAddress",
+                "balances_native",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chainName",
+                  "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "walletAddress",
+                  "description": "(Required) Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a22f801a-c33e-4e41-b1fe-09f71fc4b2fc",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    ":chainName",
+                    "address",
+                    ":walletAddress",
+                    "balances_native",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "chainName",
+                      "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "walletAddress",
+                      "description": "(Required) Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"address\": \"string\",\n    \"updated_at\": \"2004-06-08T04:29:46.766Z\",\n    \"next_update_at\": \"1977-04-29T16:44:15.054Z\",\n    \"quote_currency\": \"string\",\n    \"chain_id\": 8820,\n    \"chain_name\": \"string\",\n    \"items\": [\n      {\n        \"contract_decimals\": 5377,\n        \"contract_name\": \"string\",\n        \"contract_ticker_symbol\": \"string\",\n        \"contract_address\": \"string\",\n        \"supports_erc\": [\n          \"string\",\n          \"string\"\n        ],\n        \"logo_url\": \"string\",\n        \"last_transferred_at\": \"1990-01-02T08:00:05.733Z\",\n        \"native_token\": true,\n        \"type\": \"string\",\n        \"balance\": \"string\",\n        \"balance_24h\": \"string\",\n        \"quote_rate\": 2787.666394049824,\n        \"quote_rate_24h\": 866.8446850373124,\n        \"quote\": 8793.514985371627,\n        \"quote_24h\": 1059.1083279039092,\n        \"pretty_quote\": \"string\",\n        \"pretty_quote_24h\": \"string\"\n      },\n      {\n        \"contract_decimals\": 4967,\n        \"contract_name\": \"string\",\n        \"contract_ticker_symbol\": \"string\",\n        \"contract_address\": \"string\",\n        \"supports_erc\": [\n          \"string\",\n          \"string\"\n        ],\n        \"logo_url\": \"string\",\n        \"last_transferred_at\": \"1980-08-25T10:27:20.040Z\",\n        \"native_token\": true,\n        \"type\": \"string\",\n        \"balance\": \"string\",\n        \"balance_24h\": \"string\",\n        \"quote_rate\": 5380.586855574883,\n        \"quote_rate_24h\": 6107.5492669956,\n        \"quote\": 128.32042168652413,\n        \"quote_24h\": 5395.5745604082595,\n        \"pretty_quote\": \"string\",\n        \"pretty_quote_24h\": \"string\"\n      }\n    ]\n  },\n  \"error\": false,\n  \"error_message\": \"string\",\n  \"error_code\": 3519\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0a3386ff-80bd-441e-b0b2-05b8a6590083",
+          "name": "Get Historical Token Balances For Address",
+          "request": {
+            "name": "Get Historical Token Balances For Address",
+            "description": {
+              "content": "Historical token balances at a specific block height or timestamp.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                ":chainName",
+                "address",
+                ":walletAddress",
+                "historical_balances",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "block-height",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chainName",
+                  "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "walletAddress",
+                  "description": "(Required) Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "52f8b186-161a-4ba2-83bc-06ca5c85fe99",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    ":chainName",
+                    "address",
+                    ":walletAddress",
+                    "historical_balances",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block-height",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "chainName",
+                      "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "walletAddress",
+                      "description": "(Required) Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"address\": \"string\",\n    \"updated_at\": \"2004-06-08T04:29:46.766Z\",\n    \"next_update_at\": \"1977-04-29T16:44:15.054Z\",\n    \"quote_currency\": \"string\",\n    \"chain_id\": 8820,\n    \"chain_name\": \"string\",\n    \"items\": [\n      {\n        \"contract_decimals\": 5377,\n        \"contract_name\": \"string\",\n        \"contract_ticker_symbol\": \"string\",\n        \"contract_address\": \"string\",\n        \"supports_erc\": [\n          \"string\",\n          \"string\"\n        ],\n        \"logo_url\": \"string\",\n        \"last_transferred_at\": \"1990-01-02T08:00:05.733Z\",\n        \"native_token\": true,\n        \"type\": \"string\",\n        \"balance\": \"string\",\n        \"balance_24h\": \"string\",\n        \"quote_rate\": 2787.666394049824,\n        \"quote_rate_24h\": 866.8446850373124,\n        \"quote\": 8793.514985371627,\n        \"quote_24h\": 1059.1083279039092,\n        \"pretty_quote\": \"string\",\n        \"pretty_quote_24h\": \"string\"\n      },\n      {\n        \"contract_decimals\": 4967,\n        \"contract_name\": \"string\",\n        \"contract_ticker_symbol\": \"string\",\n        \"contract_address\": \"string\",\n        \"supports_erc\": [\n          \"string\",\n          \"string\"\n        ],\n        \"logo_url\": \"string\",\n        \"last_transferred_at\": \"1980-08-25T10:27:20.040Z\",\n        \"native_token\": true,\n        \"type\": \"string\",\n        \"balance\": \"string\",\n        \"balance_24h\": \"string\",\n        \"quote_rate\": 5380.586855574883,\n        \"quote_rate_24h\": 6107.5492669956,\n        \"quote\": 128.32042168652413,\n        \"quote_24h\": 5395.5745604082595,\n        \"pretty_quote\": \"string\",\n        \"pretty_quote_24h\": \"string\"\n      }\n    ]\n  },\n  \"error\": false,\n  \"error_message\": \"string\",\n  \"error_code\": 3519\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c491f941-303c-4685-a540-1803c9b3804f",
+          "name": "Get Historical Portfolio Value Over Time",
+          "request": {
+            "name": "Get Historical Portfolio Value Over Time",
+            "description": {
+              "content": "Time-series portfolio value broken down by token holding.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                ":chainName",
+                "address",
+                ":walletAddress",
+                "portfolio_v2",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "days",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chainName",
+                  "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "walletAddress",
+                  "description": "(Required) Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0e841f02-b212-420e-905f-d3b265b1ef68",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    ":chainName",
+                    "address",
+                    ":walletAddress",
+                    "portfolio_v2",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "days",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "chainName",
+                      "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "walletAddress",
+                      "description": "(Required) Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e49754fc-42d4-4918-97bc-1eb0ba482977",
+          "name": "Get ERC20 Token Transfers For Address",
+          "request": {
+            "name": "Get ERC20 Token Transfers For Address",
+            "description": {
+              "content": "ERC20 transfer history for an address, filterable by contract.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                ":chainName",
+                "address",
+                ":walletAddress",
+                "transfers_v2",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "contract-address",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chainName",
+                  "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "walletAddress",
+                  "description": "(Required) Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "28894841-66d3-4826-94aa-941545f20f24",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    ":chainName",
+                    "address",
+                    ":walletAddress",
+                    "transfers_v2",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "contract-address",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "chainName",
+                      "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "walletAddress",
+                      "description": "(Required) Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "49674ee6-96f3-49a1-9da0-3b137dd6ffb7",
+          "name": "Get Token Holders As Of Any Block Height (v2)",
+          "request": {
+            "name": "Get Token Holders As Of Any Block Height (v2)",
+            "description": {
+              "content": "List token holders of an ERC20/721/1155 contract at a block height.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                ":chainName",
+                "tokens",
+                ":tokenAddress",
+                "token_holders_v2",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "block-height",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chainName",
+                  "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tokenAddress",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c6955f68-a1af-4e99-92d9-7330b59e5a2d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    ":chainName",
+                    "tokens",
+                    ":tokenAddress",
+                    "token_holders_v2",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block-height",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "chainName",
+                      "description": "(Required) Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenAddress",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.covalenthq.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1b136b89-3893-40f8-abcd-75fe621f40ad",
+    "name": "GoldRush Foundational ABI Balances API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Structured historical blockchain data across 100+ chains via REST. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs, Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity, Pricing, and Security (token approvals).\n\n\nContact Support:\n Name: GoldRush Support",
+      "type": "text/plain"
+    }
+  }
+}

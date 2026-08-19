@@ -1,0 +1,678 @@
+{
+  "item": [
+    {
+      "id": "52707d6e-6236-4e56-8348-8c84a4457e23",
+      "name": "Pipelines",
+      "description": {
+        "content": "Create, list, update, and delete data pipelines.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "23ff0d9d-39e3-4a28-85ce-1a4ea67f6c79",
+          "name": "List Pipelines",
+          "request": {
+            "name": "List Pipelines",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "pipelines"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "172a16dc-6211-41f9-9471-08de16c1bdd8",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "pipelines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"name\": \"string\",\n      \"source\": {\n        \"chain\": \"string\",\n        \"startBlock\": 8461,\n        \"endBlock\": 4350,\n        \"contractAddresses\": [\n          \"string\",\n          \"string\"\n        ],\n        \"topics\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"destinationId\": \"string\",\n      \"id\": \"string\",\n      \"description\": \"string\",\n      \"decoder\": {\n        \"abiIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"normalizer\": \"hypercore\"\n      },\n      \"transformIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"state\": \"errored\",\n      \"createdAt\": \"1991-03-02T22:10:23.583Z\"\n    },\n    {\n      \"name\": \"string\",\n      \"source\": {\n        \"chain\": \"string\",\n        \"startBlock\": 1445,\n        \"endBlock\": 2104,\n        \"contractAddresses\": [\n          \"string\",\n          \"string\"\n        ],\n        \"topics\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"destinationId\": \"string\",\n      \"id\": \"string\",\n      \"description\": \"string\",\n      \"decoder\": {\n        \"abiIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"normalizer\": \"evm\"\n      },\n      \"transformIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"state\": \"paused\",\n      \"createdAt\": \"2024-08-04T01:40:43.479Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "295b7cb7-b642-4256-bfa3-70f4712ab955",
+          "name": "Create Pipeline",
+          "request": {
+            "name": "Create Pipeline",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "pipelines"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"source\": {\n    \"chain\": \"<string>\",\n    \"startBlock\": \"<integer>\",\n    \"endBlock\": \"<integer>\",\n    \"contractAddresses\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"topics\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"destinationId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"decoder\": {\n    \"abiIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"normalizer\": \"<string>\"\n  },\n  \"transformIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d74f7c60-9e6c-4248-9b27-960b382d9f03",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "pipelines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"source\": {\n    \"chain\": \"<string>\",\n    \"startBlock\": \"<integer>\",\n    \"endBlock\": \"<integer>\",\n    \"contractAddresses\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"topics\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"destinationId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"decoder\": {\n    \"abiIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"normalizer\": \"<string>\"\n  },\n  \"transformIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"source\": {\n    \"chain\": \"string\",\n    \"startBlock\": 3236,\n    \"endBlock\": 3591,\n    \"contractAddresses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"topics\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"destinationId\": \"string\",\n  \"id\": \"string\",\n  \"description\": \"string\",\n  \"decoder\": {\n    \"abiIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"normalizer\": \"solana\"\n  },\n  \"transformIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"state\": \"draft\",\n  \"createdAt\": \"1952-08-07T21:39:35.781Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85c458b7-2d02-4c8c-8981-3c06d481cca8",
+          "name": "Get Pipeline",
+          "request": {
+            "name": "Get Pipeline",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "pipelines",
+                ":pipelineId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pipelineId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aeee2f01-27e3-4e58-91fe-6d7ce4f7e433",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "pipelines",
+                    ":pipelineId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pipelineId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"source\": {\n    \"chain\": \"string\",\n    \"startBlock\": 3236,\n    \"endBlock\": 3591,\n    \"contractAddresses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"topics\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"destinationId\": \"string\",\n  \"id\": \"string\",\n  \"description\": \"string\",\n  \"decoder\": {\n    \"abiIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"normalizer\": \"solana\"\n  },\n  \"transformIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"state\": \"draft\",\n  \"createdAt\": \"1952-08-07T21:39:35.781Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "47eaf6ae-a68b-43c6-845c-6a7c53be4a85",
+          "name": "Update Pipeline",
+          "request": {
+            "name": "Update Pipeline",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "pipelines",
+                ":pipelineId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pipelineId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"source\": {\n    \"chain\": \"<string>\",\n    \"startBlock\": \"<integer>\",\n    \"endBlock\": \"<integer>\",\n    \"contractAddresses\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"topics\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"destinationId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"decoder\": {\n    \"abiIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"normalizer\": \"<string>\"\n  },\n  \"transformIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "35c2ad2c-4466-4a6b-991b-84eef94a7e9b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "pipelines",
+                    ":pipelineId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pipelineId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"source\": {\n    \"chain\": \"<string>\",\n    \"startBlock\": \"<integer>\",\n    \"endBlock\": \"<integer>\",\n    \"contractAddresses\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"topics\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"destinationId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"decoder\": {\n    \"abiIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"normalizer\": \"<string>\"\n  },\n  \"transformIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c6e1419d-e720-48d6-a387-2896b349fe3f",
+          "name": "Delete Pipeline",
+          "request": {
+            "name": "Delete Pipeline",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "pipelines",
+                ":pipelineId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pipelineId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6cc57d87-9293-4f78-9039-b71aa7e4c832",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "pipelines",
+                    ":pipelineId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pipelineId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3f9bbef3-2d89-4ad3-9aa9-1d56d86122f1",
+          "name": "Start Pipeline",
+          "request": {
+            "name": "Start Pipeline",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "pipelines",
+                ":pipelineId",
+                "start"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pipelineId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "76f6b573-9793-4027-8d97-7574de9f5020",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "pipelines",
+                    ":pipelineId",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pipelineId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ffb7cb7f-7dd8-43a5-ab3c-ba57b717b868",
+          "name": "Pause Pipeline",
+          "request": {
+            "name": "Pause Pipeline",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "pipelines",
+                ":pipelineId",
+                "pause"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pipelineId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c09b5da6-1ae2-4250-b8f8-1c0158e52b98",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "pipelines",
+                    ":pipelineId",
+                    "pause"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pipelineId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.covalenthq.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e183d1b4-7c8f-47db-a3c4-947a40eb7fc3",
+    "name": "GoldRush Foundational ABI Pipelines API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Structured historical blockchain data across 100+ chains via REST. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs, Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity, Pricing, and Security (token approvals).\n\n\nContact Support:\n Name: GoldRush Support",
+      "type": "text/plain"
+    }
+  }
+}

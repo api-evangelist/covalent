@@ -1,0 +1,100 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "GoldRush Foundational ABI Bitcoin API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Bitcoin",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Bitcoin Balance For Non-HD Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/bitcoin-mainnet/address/:walletAddress/balances_v2/",
+            "params": [
+              {
+                "name": "walletAddress",
+                "value": "",
+                "type": "path",
+                "description": "Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+              }
+            ]
+          },
+          "docs": "Get Bitcoin Balance For Non-HD Address"
+        },
+        {
+          "info": {
+            "name": "Get Bitcoin Balances For HD Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/bitcoin-hd-mainnet/address/:walletAddress/balances_v2/",
+            "params": [
+              {
+                "name": "walletAddress",
+                "value": "",
+                "type": "path",
+                "description": "Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+              }
+            ]
+          },
+          "docs": "Get Bitcoin Balances For HD Address"
+        },
+        {
+          "info": {
+            "name": "Get Historical Bitcoin Balance For Non-HD Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/bitcoin-mainnet/address/:walletAddress/historical_balances/",
+            "params": [
+              {
+                "name": "walletAddress",
+                "value": "",
+                "type": "path",
+                "description": "Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+              }
+            ]
+          },
+          "docs": "Get Historical Bitcoin Balance For Non-HD Address"
+        },
+        {
+          "info": {
+            "name": "Get Bitcoin Transactions For Non-HD Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/bitcoin-mainnet/address/:walletAddress/transactions_v2/",
+            "params": [
+              {
+                "name": "walletAddress",
+                "value": "",
+                "type": "path",
+                "description": "Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service."
+              }
+            ]
+          },
+          "docs": "Get Bitcoin Transactions For Non-HD Address"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

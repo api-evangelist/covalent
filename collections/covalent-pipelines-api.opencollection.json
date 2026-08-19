@@ -1,0 +1,144 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "GoldRush Foundational ABI Pipelines API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pipelines",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Pipelines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/pipelines"
+          },
+          "docs": "List Pipelines"
+        },
+        {
+          "info": {
+            "name": "Create Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.covalenthq.com/v1/pipelines",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Pipeline"
+        },
+        {
+          "info": {
+            "name": "Get Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/pipelines/:pipelineId",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Pipeline"
+        },
+        {
+          "info": {
+            "name": "Update Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.covalenthq.com/v1/pipelines/:pipelineId",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Pipeline"
+        },
+        {
+          "info": {
+            "name": "Delete Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.covalenthq.com/v1/pipelines/:pipelineId",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete Pipeline"
+        },
+        {
+          "info": {
+            "name": "Start Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.covalenthq.com/v1/pipelines/:pipelineId/start",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Start Pipeline"
+        },
+        {
+          "info": {
+            "name": "Pause Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.covalenthq.com/v1/pipelines/:pipelineId/pause",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Pause Pipeline"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

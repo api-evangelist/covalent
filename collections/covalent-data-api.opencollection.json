@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "GoldRush Foundational ABI Data API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Token Balances For Address (X402)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/x402/:chainName/address/:walletAddress/balances_v2/",
+            "params": [
+              {
+                "name": "chainName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "walletAddress",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Token Balances For Address (X402)"
+        },
+        {
+          "info": {
+            "name": "Get Recent Transactions For Address (X402)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/x402/:chainName/address/:walletAddress/transactions_v3/",
+            "params": [
+              {
+                "name": "chainName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "walletAddress",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Recent Transactions For Address (X402)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

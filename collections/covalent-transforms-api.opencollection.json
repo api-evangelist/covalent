@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "GoldRush Foundational ABI Transforms API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transforms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List SQL Transforms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/transforms"
+          },
+          "docs": "List SQL Transforms"
+        },
+        {
+          "info": {
+            "name": "Create SQL Transform",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.covalenthq.com/v1/transforms",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create SQL Transform"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,214 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "GoldRush Foundational ABI Base API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Base",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get A Block",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/:chainName/block_v2/:blockHeight/",
+            "params": [
+              {
+                "name": "chainName",
+                "value": "",
+                "type": "path",
+                "description": "Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+              },
+              {
+                "name": "blockHeight",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get A Block"
+        },
+        {
+          "info": {
+            "name": "Get Block Heights",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/:chainName/block_v2/:startDate/:endDate/",
+            "params": [
+              {
+                "name": "chainName",
+                "value": "",
+                "type": "path",
+                "description": "Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Block Heights"
+        },
+        {
+          "info": {
+            "name": "Get All Chains",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/chains/"
+          },
+          "docs": "Get All Chains"
+        },
+        {
+          "info": {
+            "name": "Get All Chain Statuses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/chains/status/"
+          },
+          "docs": "Get All Chain Statuses"
+        },
+        {
+          "info": {
+            "name": "Get Log Events By Topic Hash(es)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/:chainName/event/topics/:topicHash/",
+            "params": [
+              {
+                "name": "chainName",
+                "value": "",
+                "type": "path",
+                "description": "Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+              },
+              {
+                "name": "topicHash",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Log Events By Topic Hash(es)"
+        },
+        {
+          "info": {
+            "name": "Get Log Events By Contract Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/:chainName/events/address/:contractAddress/",
+            "params": [
+              {
+                "name": "chainName",
+                "value": "",
+                "type": "path",
+                "description": "Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+              },
+              {
+                "name": "contractAddress",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Log Events By Contract Address"
+        },
+        {
+          "info": {
+            "name": "Get Logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/:chainName/events/",
+            "params": [
+              {
+                "name": "chainName",
+                "value": "",
+                "type": "path",
+                "description": "Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+              }
+            ]
+          },
+          "docs": "Get Logs"
+        },
+        {
+          "info": {
+            "name": "Get Gas Prices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/:chainName/gas_prices/:eventType/",
+            "params": [
+              {
+                "name": "chainName",
+                "value": "",
+                "type": "path",
+                "description": "Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+              },
+              {
+                "name": "eventType",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Gas Prices"
+        },
+        {
+          "info": {
+            "name": "Get Resolved Address For Registered Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.covalenthq.com/v1/:chainName/address/:addressName/resolve_address/",
+            "params": [
+              {
+                "name": "chainName",
+                "value": "",
+                "type": "path",
+                "description": "Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID."
+              },
+              {
+                "name": "addressName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Resolved Address For Registered Address"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
