@@ -1,5 +1,6 @@
 aid: covalent
 url: https://raw.githubusercontent.com/api-evangelist/covalent/refs/heads/main/apis.yml
+specificationVersion: '0.23'
 accessModel:
   pricing: freemium
   onboarding: self-serve
