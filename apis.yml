@@ -775,6 +775,8 @@ apis:
   humanURL: https://goldrush.dev/docs/api-reference/foundational-api/
   baseURL: https://api.covalenthq.com
   tags:
+  - Query
+  tags_raw:
   - Queries
   properties:
   - type: OpenAPI
@@ -887,6 +889,8 @@ apis:
   humanURL: https://goldrush.dev/docs/api-reference/foundational-api/
   baseURL: https://api.covalenthq.com
   tags:
+  - Transaction
+  tags_raw:
   - Transactions
   properties:
   - type: OpenAPI
