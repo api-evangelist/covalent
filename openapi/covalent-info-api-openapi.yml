@@ -1,19 +1,16 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: GoldRush Foundational ABI Info API
-  description: 'Structured historical blockchain data across 100+ chains via REST. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs, Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity, Pricing, and Security (token approvals).
+  title: GoldRush Hyperliquid Info API
+  description: 'Drop-in replacement for the public Hyperliquid `/info` endpoint hosted at `hypercore.goldrushdata.com`. The API uses a single POST endpoint that dispatches by the request body''s `type` discriminator. Supports 18 info types covering clearinghouse state, spot clearinghouse state, asset contexts, frontend orders, user fills, funding history, ledger updates, delegator history/rewards/summary, sub-accounts, outcome meta, and TWAP slice fills.
 
     '
   version: v1
   contact:
     name: GoldRush Support
     url: https://goldrush.dev/support/
-  license:
-    name: Covalent Terms of Service
-    url: https://www.covalenthq.com/terms-of-service/
 servers:
-- url: https://api.covalenthq.com
-  description: GoldRush production server
+- url: https://hypercore.goldrushdata.com
+  description: GoldRush-hosted Hyperliquid Info endpoint
 security:
 - BearerAuth: []
 tags:

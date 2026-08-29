@@ -1,21 +1,18 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: GoldRush Foundational ABI Pipelines API
-  description: 'Structured historical blockchain data across 100+ chains via REST. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs, Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity, Pricing, and Security (token approvals).
+  title: GoldRush Pipeline Pipelines API
+  description: 'Managed pipeline that streams decoded blockchain data into customer destinations (ClickHouse, Kafka, S3/GCS/R2, Postgres, AWS SQS, Webhook). Pipelines configure source chains, ABI decoding for events and functions, SQL transforms, and destination connection settings. Service Keys are the credential type used for programmatic pipeline management.
 
     '
   version: v1
   contact:
     name: GoldRush Support
     url: https://goldrush.dev/support/
-  license:
-    name: Covalent Terms of Service
-    url: https://www.covalenthq.com/terms-of-service/
 servers:
-- url: https://api.covalenthq.com
-  description: GoldRush production server
+- url: https://pipeline.goldrush.dev
+  description: Pipeline REST API
 security:
-- BearerAuth: []
+- ServiceKeyAuth: []
 tags:
 - name: Pipelines
   description: Create, list, update, and delete data pipelines.
@@ -196,7 +193,7 @@ components:
           format: date-time
           readOnly: true
   securitySchemes:
-    BearerAuth:
+    ServiceKeyAuth:
       type: http
       scheme: bearer
-      description: 'GoldRush API key, sent as `Authorization: Bearer <key>`.'
+      description: 'Pipeline Service Key, sent as `Authorization: Bearer <service-key>`.'

@@ -1,19 +1,16 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: GoldRush Foundational ABI Data API
-  description: 'Structured historical blockchain data across 100+ chains via REST. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs, Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity, Pricing, and Security (token approvals).
+  title: GoldRush x402 Data API
+  description: 'Pay-per-request HTTP 402 endpoints for autonomous AI agents and onchain micropayments. Discover available x402 endpoints, search the directory, and call balance / transaction lookups with a 402 settlement flow.
 
     '
   version: v1
   contact:
     name: GoldRush Support
     url: https://goldrush.dev/support/
-  license:
-    name: Covalent Terms of Service
-    url: https://www.covalenthq.com/terms-of-service/
 servers:
 - url: https://api.covalenthq.com
-  description: GoldRush production server
+  description: GoldRush x402 endpoints
 security:
 - BearerAuth: []
 tags:
@@ -97,4 +94,4 @@ components:
     BearerAuth:
       type: http
       scheme: bearer
-      description: 'GoldRush API key, sent as `Authorization: Bearer <key>`.'
+      description: Optional bearer key; pay-per-request endpoints accept an x402 settlement header in lieu of a long-lived key.
