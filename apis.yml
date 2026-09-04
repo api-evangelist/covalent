@@ -20,11 +20,12 @@ accessModel:
   try_now: true
   public: false
   label: Freemium (free trial) · Self-serve signup
-  confidence: high
+  confidence: medium
   source:
   - plans
   - authentication
-  generated: '2026-07-22'
+  - security
+  generated: '2026-09-03'
   method: derived
 modified: 2026-06-14
 apis:
