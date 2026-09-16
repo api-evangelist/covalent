@@ -27,7 +27,7 @@ accessModel:
   - security
   generated: '2026-09-03'
   method: derived
-modified: 2026-06-14
+modified: '2026-09-15'
 apis:
 - aid: covalent:goldrush-hyperliquid-websocket-api
   name: GoldRush Hyperliquid WebSocket API
@@ -49,11 +49,10 @@ apis:
     type: Documentation
   - url: https://goldrush.dev/docs/api-reference/hyperliquid/websocket-api/l4-order-book
     type: Documentation
-  description: >-
-    WebSocket channels for Hyperliquid markets including l2Book (wire-equal to the public feed), l2BookDiff
-    (GoldRush-exclusive differential updates), and l4Book (order-level GoldRush-exclusive channel) plus
-    wallet firehose, liquidations and vault events, HIP-3 markets, and HIP-4 outcome market streams. Hosted
-    at wss://hypercore.goldrushdata.com/ws for ultra-low-latency trading and analytics.
+  description: WebSocket channels for Hyperliquid markets including l2Book (wire-equal to the public feed),
+    l2BookDiff (GoldRush-exclusive differential updates), and l4Book (order-level GoldRush-exclusive channel)
+    plus wallet firehose, liquidations and vault events, HIP-3 markets, and HIP-4 outcome market streams.
+    Hosted at wss://hypercore.goldrushdata.com/ws for ultra-low-latency trading and analytics.
 - aid: covalent:covalent-abi-api
   name: Covalent ABI API
   description: Manage ABI definitions used for log and function decoding.
@@ -1199,9 +1198,8 @@ common:
   data:
   - id: bearer
     name: Bearer Token
-    description: >-
-      Send your GoldRush API key as a bearer token in the Authorization header — `Authorization: Bearer
-      cqt_xxxxxxxxxxxxxxxxxxxx`. Keys are minted in the GoldRush Platform dashboard.
+    description: 'Send your GoldRush API key as a bearer token in the Authorization header — `Authorization:
+      Bearer cqt_xxxxxxxxxxxxxxxxxxxx`. Keys are minted in the GoldRush Platform dashboard.'
 - name: Supported Chains
   type: Documentation
   data:
@@ -1210,15 +1208,13 @@ common:
     description: Base, BNB Smart Chain (BSC), Ethereum, Gnosis, Optimism, Polygon.
   - id: frontier
     name: Frontier Support
-    description: >-
-      ADI Chain, ApeChain, Arbitrum, Arbitrum Nova, Arc Testnet, Avalanche C-Chain, Axie/Ronin, Berachain, Bitcoin,
-      HyperCore, HyperEVM, Ink, Linea, Mantle, MegaETH, Monad, Oasis Sapphire, Plasma, Scroll, Sei, Solana, Sonic,
-      Taiko, Unichain, Viction, World Chain, zkSync Era.
+    description: ADI Chain, ApeChain, Arbitrum, Arbitrum Nova, Arc Testnet, Avalanche C-Chain, Axie/Ronin,
+      Berachain, Bitcoin, HyperCore, HyperEVM, Ink, Linea, Mantle, MegaETH, Monad, Oasis Sapphire, Plasma,
+      Scroll, Sei, Solana, Sonic, Taiko, Unichain, Viction, World Chain, zkSync Era.
   - id: community
     name: Community Support
-    description: >-
-      Blast, Canto, Celo, Cronos zkEVM, Fantom, Manta Pacific Testnet, Moonbeam, Moonriver, Oasis, opBNB, Redstone,
-      ZetaChain.
+    description: Blast, Canto, Celo, Cronos zkEVM, Fantom, Manta Pacific Testnet, Moonbeam, Moonriver,
+      Oasis, opBNB, Redstone, ZetaChain.
   - id: archived
     name: Archived Support
     description: Cronos, Harmony.
@@ -1234,3 +1230,6 @@ maintainers:
 - FN: Covalent
   email: support@covalenthq.com
   url: https://goldrush.dev/support/
+description: Covalent provides multi-chain blockchain data infrastructure, published as the GoldRush APIs.
+  Its API covers token balances, transactions, transfers, ABIs, NFTs, DeFi positions and cross-chain queries
+  across supported networks, including Bitcoin and Hyperliquid.
