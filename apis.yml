@@ -396,6 +396,8 @@ apis:
   humanURL: https://goldrush.dev/docs/api-reference/foundational-api/
   baseURL: https://api.covalenthq.com
   tags:
+  - Destination
+  tags_raw:
   - Destinations
   properties:
   - type: OpenAPI
@@ -902,6 +904,8 @@ apis:
   humanURL: https://goldrush.dev/docs/api-reference/hyperliquid/websocket-api/
   baseURL: wss://hypercore.goldrushdata.com/ws
   tags:
+  - GraphQL
+  tags_raw:
   - Graph QL
   properties:
   - type: OpenAPI
