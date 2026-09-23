@@ -1,9 +1,7 @@
 openapi: 3.2.0
 info:
   title: GoldRush Hyperliquid Info API
-  description: 'Drop-in replacement for the public Hyperliquid `/info` endpoint hosted at `hypercore.goldrushdata.com`. The API uses a single POST endpoint that dispatches by the request body''s `type` discriminator. Supports 18 info types covering clearinghouse state, spot clearinghouse state, asset contexts, frontend orders, user fills, funding history, ledger updates, delegator history/rewards/summary, sub-accounts, outcome meta, and TWAP slice fills.
-
-    '
+  description: Drop-in replacement for the public Hyperliquid `/info` endpoint hosted at `hypercore.goldrushdata.com`. The API uses a single POST endpoint that dispatches by the request body's `type` discriminator. Supports 18 info types covering clearinghouse state, spot clearinghouse state, asset contexts, frontend orders, user fills, funding history, ledger updates, delegator history/rewards/summary, sub-accounts, outcome meta, and TWAP slice fills.
   version: v1
   contact:
     name: GoldRush Support
@@ -20,9 +18,7 @@ paths:
   /info:
     post:
       summary: Query Hyperliquid Info Endpoint
-      description: 'POSTs a JSON body with a required `type` discriminator. Supported types include `clearinghouseState`, `batchClearinghouseState`, `spotClearinghouseState`, `batchSpotClearinghouseState`, `metaAndAssetCtxs`, `spotMetaAndAssetCtxs`, `frontendOpenOrders`, `userFills`, `userFillsByTime`, `userFunding`, `userNonFundingLedgerUpdates`, `userTwapSliceFills`, `userVaultEquities`, `delegatorHistory`, `delegatorRewards`, `delegatorSummary`, `subAccounts`, and `outcomeMeta`.
-
-        '
+      description: POSTs a JSON body with a required `type` discriminator. Supported types include `clearinghouseState`, `batchClearinghouseState`, `spotClearinghouseState`, `batchSpotClearinghouseState`, `metaAndAssetCtxs`, `spotMetaAndAssetCtxs`, `frontendOpenOrders`, `userFills`, `userFillsByTime`, `userFunding`, `userNonFundingLedgerUpdates`, `userTwapSliceFills`, `userVaultEquities`, `delegatorHistory`, `delegatorRewards`, `delegatorSummary`, `subAccounts`, and `outcomeMeta`.
       operationId: queryHyperliquidInfo
       tags:
       - Info

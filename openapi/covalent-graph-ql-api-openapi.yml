@@ -1,9 +1,7 @@
 openapi: 3.2.0
 info:
   title: GoldRush Streaming Graph QL API
-  description: 'GraphQL-over-WebSocket interface for sub-second blockchain events. Exposes one-shot queries (OHLCV pairs/tokens, token search, top trader wallets, wallet PnL) and live subscriptions (new DEX pairs, OHLCV pairs/tokens, update pairs/tokens, wallet activity). Documented here as a single REST GraphQL endpoint; subscriptions upgrade the same path to WebSocket.
-
-    '
+  description: GraphQL-over-WebSocket interface for sub-second blockchain events. Exposes one-shot queries (OHLCV pairs/tokens, token search, top trader wallets, wallet PnL) and live subscriptions (new DEX pairs, OHLCV pairs/tokens, update pairs/tokens, wallet activity). Documented here as a single REST GraphQL endpoint; subscriptions upgrade the same path to WebSocket.
   version: v1
   contact:
     name: GoldRush Support
@@ -16,18 +14,16 @@ servers:
 security:
 - BearerAuth: []
 tags:
-- name: GraphQL
+- name: Graph QL
   description: Single GraphQL endpoint serving queries and subscriptions.
 paths:
   /graphql:
     post:
       summary: Execute Streaming GraphQL Operation
-      description: 'Executes a GraphQL `query` or `subscription` operation. Supported queries: `ohlcvPairs`, `ohlcvTokens`, `tokenSearch`, `topTraderWalletsForToken`, `walletPnlByToken`. Supported subscriptions (upgrade to WebSocket on the same path): `newDexPairs`, `ohlcvPairs`, `ohlcvTokens`, `updatePairs`, `updateTokens`, `walletActivity`.
-
-        '
+      description: 'Executes a GraphQL `query` or `subscription` operation. Supported queries: `ohlcvPairs`, `ohlcvTokens`, `tokenSearch`, `topTraderWalletsForToken`, `walletPnlByToken`. Supported subscriptions (upgrade to WebSocket on the same path): `newDexPairs`, `ohlcvPairs`, `ohlcvTokens`, `updatePairs`, `updateTokens`, `walletActivity`.'
       operationId: executeStreamingGraphQLOperation
       tags:
-      - GraphQL
+      - Graph QL
       requestBody:
         required: true
         content:
@@ -61,6 +57,19 @@ paths:
         '429':
           $ref: '#/components/responses/RateLimited'
 components:
+  responses:
+    RateLimited:
+      description: Too Many Requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GraphQLResponse'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GraphQLResponse'
   schemas:
     GraphQLRequest:
       type: object
@@ -97,19 +106,6 @@ components:
               extensions:
                 type: object
                 additionalProperties: true
-  responses:
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/GraphQLResponse'
-    RateLimited:
-      description: Too Many Requests
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/GraphQLResponse'
   securitySchemes:
     BearerAuth:
       type: http

@@ -1,9 +1,7 @@
 openapi: 3.2.0
 info:
   title: GoldRush Pipeline Pipelines API
-  description: 'Managed pipeline that streams decoded blockchain data into customer destinations (ClickHouse, Kafka, S3/GCS/R2, Postgres, AWS SQS, Webhook). Pipelines configure source chains, ABI decoding for events and functions, SQL transforms, and destination connection settings. Service Keys are the credential type used for programmatic pipeline management.
-
-    '
+  description: Managed pipeline that streams decoded blockchain data into customer destinations (ClickHouse, Kafka, S3/GCS/R2, Postgres, AWS SQS, Webhook). Pipelines configure source chains, ABI decoding for events and functions, SQL transforms, and destination connection settings. Service Keys are the credential type used for programmatic pipeline management.
   version: v1
   contact:
     name: GoldRush Support
@@ -112,21 +110,7 @@ paths:
         '202':
           description: Accepted
 components:
-  parameters:
-    PipelineId:
-      name: pipelineId
-      in: path
-      required: true
-      schema:
-        type: string
   schemas:
-    PipelineList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Pipeline'
     Pipeline:
       type: object
       required:
@@ -192,6 +176,20 @@ components:
           type: string
           format: date-time
           readOnly: true
+    PipelineList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Pipeline'
+  parameters:
+    PipelineId:
+      name: pipelineId
+      in: path
+      required: true
+      schema:
+        type: string
   securitySchemes:
     ServiceKeyAuth:
       type: http

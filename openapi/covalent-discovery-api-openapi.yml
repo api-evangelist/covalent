@@ -1,9 +1,7 @@
 openapi: 3.2.0
 info:
   title: GoldRush x402 Discovery API
-  description: 'Pay-per-request HTTP 402 endpoints for autonomous AI agents and onchain micropayments. Discover available x402 endpoints, search the directory, and call balance / transaction lookups with a 402 settlement flow.
-
-    '
+  description: Pay-per-request HTTP 402 endpoints for autonomous AI agents and onchain micropayments. Discover available x402 endpoints, search the directory, and call balance / transaction lookups with a 402 settlement flow.
   version: v1
   contact:
     name: GoldRush Support

@@ -1,9 +1,7 @@
 openapi: 3.2.0
 info:
   title: GoldRush Foundational Balances API
-  description: 'Structured historical blockchain data across 100+ chains via REST. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs, Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity, Pricing, and Security (token approvals).
-
-    '
+  description: Structured historical blockchain data across 100+ chains via REST. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs, Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity, Pricing, and Security (token approvals).
   version: v1
   contact:
     name: GoldRush Support
@@ -237,6 +235,19 @@ components:
         error_code:
           type: integer
           nullable: true
+  responses:
+    RateLimited:
+      description: Too Many Requests - rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized - missing or invalid Bearer token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     WalletAddress:
       name: walletAddress
@@ -252,19 +263,6 @@ components:
       description: Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID.
       schema:
         type: string
-  responses:
-    RateLimited:
-      description: Too Many Requests - rate limit exceeded
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Unauthorized - missing or invalid Bearer token
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     BearerAuth:
       type: http

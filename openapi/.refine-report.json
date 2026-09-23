@@ -25,7 +25,9 @@
     "covalent-data-api-openapi.yml",
     "covalent-discovery-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
   "notes": [
@@ -35,7 +37,9 @@
     "covalent-pipeline-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "covalent-streaming-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "covalent-streaming-api-openapi.yml: multi-axis tagging (2 tags, 1 first tags, 2.00x duplication over 1 operations) \u2014 split on first tag, 1 operations narrowed",
-    "covalent-x402-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0"
+    "covalent-x402-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "superseded outputs removed: covalent-graph-ql-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 17 total)"
   ],
   "skipped": [
     "covalent-abi-api-openapi.yml: previously refined output, superseded by openapi/_original/",
@@ -46,12 +50,11 @@
     "covalent-data-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "covalent-destinations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "covalent-discovery-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "covalent-graphql-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "covalent-graph-ql-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "covalent-info-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "covalent-nft-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "covalent-pipelines-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "covalent-pricing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "covalent-queries-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "covalent-security-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "covalent-transactions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "covalent-transforms-api-openapi.yml: previously refined output, superseded by openapi/_original/"
