@@ -60,6 +60,13 @@ paths:
         '204':
           description: No Content
 components:
+  parameters:
+    DestinationId:
+      name: destinationId
+      in: path
+      required: true
+      schema:
+        type: string
   schemas:
     Destination:
       type: object
@@ -86,13 +93,6 @@ components:
           type: object
           additionalProperties: true
           description: Connection config (host, bucket, topic, queue URL, webhook URL, credentials, format).
-  parameters:
-    DestinationId:
-      name: destinationId
-      in: path
-      required: true
-      schema:
-        type: string
   securitySchemes:
     ServiceKeyAuth:
       type: http

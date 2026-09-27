@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: GoldRush Streaming Graph QL API
+  title: GoldRush Streaming GraphQL API
   description: GraphQL-over-WebSocket interface for sub-second blockchain events. Exposes one-shot queries (OHLCV pairs/tokens, token search, top trader wallets, wallet PnL) and live subscriptions (new DEX pairs, OHLCV pairs/tokens, update pairs/tokens, wallet activity). Documented here as a single REST GraphQL endpoint; subscriptions upgrade the same path to WebSocket.
   version: v1
   contact:
@@ -71,20 +71,6 @@ components:
           schema:
             $ref: '#/components/schemas/GraphQLResponse'
   schemas:
-    GraphQLRequest:
-      type: object
-      required:
-      - query
-      properties:
-        query:
-          type: string
-          description: GraphQL operation document.
-        variables:
-          type: object
-          additionalProperties: true
-        operationName:
-          type: string
-          nullable: true
     GraphQLResponse:
       type: object
       properties:
@@ -106,6 +92,20 @@ components:
               extensions:
                 type: object
                 additionalProperties: true
+    GraphQLRequest:
+      type: object
+      required:
+      - query
+      properties:
+        query:
+          type: string
+          description: GraphQL operation document.
+        variables:
+          type: object
+          additionalProperties: true
+        operationName:
+          type: string
+          nullable: true
   securitySchemes:
     BearerAuth:
       type: http

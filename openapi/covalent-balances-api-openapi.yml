@@ -147,16 +147,67 @@ paths:
         '200':
           description: OK
 components:
+  responses:
+    RateLimited:
+      description: Too Many Requests - rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized - missing or invalid Bearer token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    WalletAddress:
+      name: walletAddress
+      in: path
+      required: true
+      description: Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service.
+      schema:
+        type: string
+    ChainName:
+      name: chainName
+      in: path
+      required: true
+      description: Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID.
+      schema:
+        type: string
   schemas:
-    Error:
+    BalanceResponse:
       type: object
       properties:
+        data:
+          type: object
+          properties:
+            address:
+              type: string
+            updated_at:
+              type: string
+              format: date-time
+            next_update_at:
+              type: string
+              format: date-time
+            quote_currency:
+              type: string
+            chain_id:
+              type: integer
+            chain_name:
+              type: string
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/BalanceItem'
         error:
           type: boolean
         error_message:
           type: string
+          nullable: true
         error_code:
           type: integer
+          nullable: true
     BalanceItem:
       type: object
       properties:
@@ -203,66 +254,15 @@ components:
         pretty_quote_24h:
           type: string
           nullable: true
-    BalanceResponse:
+    Error:
       type: object
       properties:
-        data:
-          type: object
-          properties:
-            address:
-              type: string
-            updated_at:
-              type: string
-              format: date-time
-            next_update_at:
-              type: string
-              format: date-time
-            quote_currency:
-              type: string
-            chain_id:
-              type: integer
-            chain_name:
-              type: string
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/BalanceItem'
         error:
           type: boolean
         error_message:
           type: string
-          nullable: true
         error_code:
           type: integer
-          nullable: true
-  responses:
-    RateLimited:
-      description: Too Many Requests - rate limit exceeded
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Unauthorized - missing or invalid Bearer token
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    WalletAddress:
-      name: walletAddress
-      in: path
-      required: true
-      description: Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service.
-      schema:
-        type: string
-    ChainName:
-      name: chainName
-      in: path
-      required: true
-      description: Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID.
-      schema:
-        type: string
   securitySchemes:
     BearerAuth:
       type: http

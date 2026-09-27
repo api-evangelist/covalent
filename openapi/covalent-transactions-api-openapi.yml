@@ -253,18 +253,18 @@ components:
           items:
             type: object
   parameters:
-    ChainName:
-      name: chainName
-      in: path
-      required: true
-      description: Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID.
-      schema:
-        type: string
     WalletAddress:
       name: walletAddress
       in: path
       required: true
       description: Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service.
+      schema:
+        type: string
+    ChainName:
+      name: chainName
+      in: path
+      required: true
+      description: Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID.
       schema:
         type: string
   securitySchemes:

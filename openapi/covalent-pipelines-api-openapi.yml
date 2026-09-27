@@ -110,7 +110,21 @@ paths:
         '202':
           description: Accepted
 components:
+  parameters:
+    PipelineId:
+      name: pipelineId
+      in: path
+      required: true
+      schema:
+        type: string
   schemas:
+    PipelineList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Pipeline'
     Pipeline:
       type: object
       required:
@@ -176,20 +190,6 @@ components:
           type: string
           format: date-time
           readOnly: true
-    PipelineList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Pipeline'
-  parameters:
-    PipelineId:
-      name: pipelineId
-      in: path
-      required: true
-      schema:
-        type: string
   securitySchemes:
     ServiceKeyAuth:
       type: http
