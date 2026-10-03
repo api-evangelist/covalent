@@ -171,41 +171,6 @@ paths:
           description: OK
 components:
   schemas:
-    TransactionResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            address:
-              type: string
-            updated_at:
-              type: string
-              format: date-time
-            next_update_at:
-              type: string
-              format: date-time
-            quote_currency:
-              type: string
-            chain_id:
-              type: integer
-            chain_name:
-              type: string
-            current_page:
-              type: integer
-            links:
-              type: object
-              properties:
-                prev:
-                  type: string
-                  nullable: true
-                next:
-                  type: string
-                  nullable: true
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/TransactionItem'
     TransactionItem:
       type: object
       properties:
@@ -252,19 +217,54 @@ components:
           type: array
           items:
             type: object
+    TransactionResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            address:
+              type: string
+            updated_at:
+              type: string
+              format: date-time
+            next_update_at:
+              type: string
+              format: date-time
+            quote_currency:
+              type: string
+            chain_id:
+              type: integer
+            chain_name:
+              type: string
+            current_page:
+              type: integer
+            links:
+              type: object
+              properties:
+                prev:
+                  type: string
+                  nullable: true
+                next:
+                  type: string
+                  nullable: true
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/TransactionItem'
   parameters:
-    WalletAddress:
-      name: walletAddress
-      in: path
-      required: true
-      description: Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service.
-      schema:
-        type: string
     ChainName:
       name: chainName
       in: path
       required: true
       description: Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID.
+      schema:
+        type: string
+    WalletAddress:
+      name: walletAddress
+      in: path
+      required: true
+      description: Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service.
       schema:
         type: string
   securitySchemes:
