@@ -57,19 +57,6 @@ paths:
         '429':
           $ref: '#/components/responses/RateLimited'
 components:
-  responses:
-    RateLimited:
-      description: Too Many Requests
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/GraphQLResponse'
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/GraphQLResponse'
   schemas:
     GraphQLResponse:
       type: object
@@ -106,6 +93,19 @@ components:
         operationName:
           type: string
           nullable: true
+  responses:
+    RateLimited:
+      description: Too Many Requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GraphQLResponse'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GraphQLResponse'
   securitySchemes:
     BearerAuth:
       type: http

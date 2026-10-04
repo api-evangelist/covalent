@@ -147,21 +147,6 @@ paths:
         '200':
           description: OK
 components:
-  parameters:
-    WalletAddress:
-      name: walletAddress
-      in: path
-      required: true
-      description: Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service.
-      schema:
-        type: string
-    ChainName:
-      name: chainName
-      in: path
-      required: true
-      description: Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID.
-      schema:
-        type: string
   responses:
     RateLimited:
       description: Too Many Requests - rate limit exceeded
@@ -176,38 +161,6 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
-    BalanceResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            address:
-              type: string
-            updated_at:
-              type: string
-              format: date-time
-            next_update_at:
-              type: string
-              format: date-time
-            quote_currency:
-              type: string
-            chain_id:
-              type: integer
-            chain_name:
-              type: string
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/BalanceItem'
-        error:
-          type: boolean
-        error_message:
-          type: string
-          nullable: true
-        error_code:
-          type: integer
-          nullable: true
     BalanceItem:
       type: object
       properties:
@@ -263,6 +216,53 @@ components:
           type: string
         error_code:
           type: integer
+    BalanceResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            address:
+              type: string
+            updated_at:
+              type: string
+              format: date-time
+            next_update_at:
+              type: string
+              format: date-time
+            quote_currency:
+              type: string
+            chain_id:
+              type: integer
+            chain_name:
+              type: string
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/BalanceItem'
+        error:
+          type: boolean
+        error_message:
+          type: string
+          nullable: true
+        error_code:
+          type: integer
+          nullable: true
+  parameters:
+    ChainName:
+      name: chainName
+      in: path
+      required: true
+      description: Chain slug (e.g., `eth-mainnet`, `base-mainnet`, `solana-mainnet`, `polygon-mainnet`) or numeric chain ID.
+      schema:
+        type: string
+    WalletAddress:
+      name: walletAddress
+      in: path
+      required: true
+      description: Wallet address. EVM 0x-prefixed; ENS / Lens / Unstoppable names also accepted on Base service.
+      schema:
+        type: string
   securitySchemes:
     BearerAuth:
       type: http
