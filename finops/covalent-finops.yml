@@ -1,3 +1,8 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (dated 2026-05-25 by the file itself), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
+generated: '2026-05-25'
 specification: FinOps Framework
 specificationVersion: '1.0'
 schema: https://www.finops.org/framework/
@@ -90,13 +95,10 @@ discountModels:
 unitEconomics:
   - name: Cost per 1k API requests
     metric: billed_cost / (api_requests / 1000)
-    target: <$0.50
   - name: Credit efficiency
     metric: credits_consumed / api_requests
-    target: '~0.5'
   - name: Flex-credit overage ratio
     metric: flex_credits_consumed / (flex_credits_consumed + credits_consumed)
-    target: '<25%'
 principles:
   - name: Visibility
     description: Use the GoldRush Platform dashboard to monitor credit burn per key and endpoint family in near real-time.

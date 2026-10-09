@@ -1,3 +1,8 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (dated 2026-05-25 by the file itself), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
+generated: '2026-05-25'
 specification: API Commons Plans
 specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
@@ -149,3 +154,55 @@ plans:
 notes:
   - Credit costs vary per endpoint (most Foundational endpoints cost 0.5 credit per call; some heavier endpoints cost more).
   - Flex credits scale paid plans beyond the included allotment without service interruption.
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - subscription
+  units:
+  - credit
+  - period
+  plans:
+  - name: Free Trial
+    access: free
+    model: free
+    model_how: derived
+    units:
+    - credit
+    - other
+    periods:
+    - month
+    - second
+  - name: Vibe Coding
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - credit
+    - other
+    - period
+    periods:
+    - month
+    - per-use
+    - second
+  - name: Professional
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - credit
+    - other
+    - period
+    periods:
+    - month
+    - per-use
+    - second
+  - name: Inner Circle (Enterprise)
+    access: enterprise
+    model: subscription
+    model_how: derived
+    units:
+    - period
+    periods:
+    - month
