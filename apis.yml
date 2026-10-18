@@ -904,6 +904,8 @@ apis:
   humanURL: https://goldrush.dev/docs/api-reference/hyperliquid/websocket-api/
   baseURL: wss://hypercore.goldrushdata.com/ws
   tags:
+  - GraphQL
+  tags_raw:
   - Graph QL
   properties:
   - type: OpenAPI
@@ -956,6 +958,19 @@ apis:
     url: https://goldrush.dev/docs/api-reference/foundational-api/x402
 name: Covalent
 tags:
+- Blockchain
+- Web3
+- Multi-Chain
+- Data Infrastructure
+- Cryptocurrency
+- DeFi
+- NFT
+- Hyperliquid
+- GoldRush
+- AI Agents
+- Real-Time
+- Ethereum
+tags_raw:
 - Blockchain
 - Web3
 - Multi-Chain
