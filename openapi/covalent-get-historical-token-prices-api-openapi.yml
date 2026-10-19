@@ -1,0 +1,128 @@
+openapi: 3.2.0
+info:
+  title: GoldRush Multichain Data Get Historical Token Prices API
+  version: 1.0.0
+  description: Covalent's GoldRush Multichain Data APIs OpenAPI Schema.
+servers:
+- url: https://api.covalenthq.com
+security:
+- bearerAuth: []
+tags:
+- name: get-historical-token-prices
+paths:
+  /v1/pricing/historical_by_addresses_v2/{chainName}/{quoteCurrency}/{contractAddress}/:
+    get:
+      tags:
+      - get-historical-token-prices
+      description: Get the historical prices of one (or many) large cap ERC20 tokens between specified date ranges. Also supports native tokens.
+      operationId: getTokenPrices
+      parameters:
+      - name: chainName
+        in: path
+        description: 'The chain name eg: `eth-mainnet`.'
+        required: true
+        schema:
+          type: string
+      - name: quoteCurrency
+        in: path
+        description: The currency to convert. Supports `USD`, `CAD`, `EUR`, `SGD`, `INR`, `JPY`, `VND`, `CNY`, `KRW`, `RUB`, `TRY`, `NGN`, `ARS`, `AUD`, `CHF`, and `GBP`.
+        required: true
+        schema:
+          type: string
+      - name: contractAddress
+        in: path
+        description: Contract address for the token. Passing in an `ENS`, `RNS`, `Lens Handle`, or an `Unstoppable Domain` resolves automatically. Supports multiple contract addresses separated by commas.
+        required: true
+        schema:
+          type: string
+      - name: from
+        in: query
+        description: The start day of the historical price range (YYYY-MM-DD).
+        required: false
+        schema:
+          type: string
+      - name: to
+        in: query
+        description: The end day of the historical price range (YYYY-MM-DD).
+        required: false
+        schema:
+          type: string
+      - name: prices-at-asc
+        in: query
+        description: Sort the prices in chronological ascending order. By default, it's set to `false` and returns prices in chronological descending order.
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  contract_decimals:
+                    type: integer
+                    description: Use contract decimals to format the token balance for display purposes - divide the balance by `10^{contract_decimals}`.
+                  contract_name:
+                    type: string
+                    description: The string returned by the `name()` method.
+                  contract_ticker_symbol:
+                    type: string
+                    description: The ticker symbol for this contract. This field is set by a developer and non-unique across a network.
+                  contract_address:
+                    type: string
+                    description: Use the relevant `contract_address` to lookup prices, logos, token transfers, etc.
+                  supports_erc:
+                    type: array
+                    items:
+                      type: string
+                    description: 'A list of supported standard ERC interfaces, eg: `ERC20` and `ERC721`.'
+                  update_at:
+                    type: string
+                    format: date-time
+                  quote_currency:
+                    type: string
+                    description: 'The requested quote currency eg: `USD`.'
+                  logo_urls:
+                    type: object
+                    properties:
+                      token_logo_url:
+                        type: string
+                        description: The token logo URL.
+                      protocol_logo_url:
+                        type: string
+                        description: The protocol logo URL.
+                      chain_logo_url:
+                        type: string
+                        description: The chain logo URL.
+                    description: The contract logo URLs.
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        date:
+                          type: string
+                          format: date-time
+                          description: The date of the price capture.
+                        price:
+                          type: number
+                          format: double
+                          description: The price in the requested `quote-currency`.
+                        pretty_price:
+                          type: string
+                          description: A prettier version of the price for rendering purposes.
+                    description: List of response items.
+      x-codeSamples:
+      - lang: TypeScript
+        label: GoldRush SDK
+        source: "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst ApiServices = async () => {\n    const client = new GoldRushClient(\"<GOLDRUSH_API_KEY>\");\n    const resp = await client.PricingService.getTokenPrices({chainName: \"chainName\", walletAddress: \"walletAddress\"});\n    console.log(resp.data);\n};\n\nApiServices();"
+      summary: Get token prices
+      x-summary-source: derived
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer authentication header of the form: `Bearer <token>`, where `<token>` is your GoldRush API Key.'

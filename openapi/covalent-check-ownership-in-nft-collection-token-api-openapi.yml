@@ -1,0 +1,200 @@
+openapi: 3.2.0
+info:
+  title: GoldRush Multichain Data Check Ownership In Nft Collection…
+  version: 1.0.0
+  description: Covalent's GoldRush Multichain Data APIs OpenAPI Schema.
+servers:
+- url: https://api.covalenthq.com
+security:
+- bearerAuth: []
+tags:
+- name: check-ownership-in-nft-collection-token
+paths:
+  /v1/{chainName}/address/{walletAddress}/collection/{collectionContract}/token/{tokenId}/:
+    get:
+      tags:
+      - check-ownership-in-nft-collection-token
+      description: Verifies ownership of a specific token (ERC-721 or ERC-1155) within a collection.
+      operationId: checkOwnershipInNftForSpecificTokenId
+      parameters:
+      - name: chainName
+        in: path
+        description: 'The chain name eg: `eth-mainnet`.'
+        required: true
+        schema:
+          type: string
+      - name: walletAddress
+        in: path
+        description: The requested address. Passing in an `ENS`, `RNS`, `Lens Handle`, or an `Unstoppable Domain` resolves automatically.
+        required: true
+        schema:
+          type: string
+      - name: collectionContract
+        in: path
+        description: The requested collection address. Passing in an `ENS`, `RNS`, `Lens Handle`, or an `Unstoppable Domain` resolves automatically.
+        required: true
+        schema:
+          type: string
+      - name: tokenId
+        in: path
+        description: The requested token ID.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: The timestamp when the response was generated. Useful to show data staleness to users.
+                  address:
+                    type: string
+                    description: The requested address.
+                  collection:
+                    type: string
+                    description: The requested collection.
+                  is_spam:
+                    type: boolean
+                    description: Denotes whether the token is suspected spam. Supported on all Foundational Chains.
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        contract_name:
+                          type: string
+                          description: The string returned by the `name()` method.
+                        contract_ticker_symbol:
+                          type: string
+                          description: The ticker symbol for this contract. This field is set by a developer and non-unique across a network.
+                        contract_address:
+                          type: string
+                          description: Use the relevant `contract_address` to lookup prices, logos, token transfers, etc.
+                        token_id:
+                          type: string
+                          description: b;The token's id.
+                        supports_erc:
+                          type: array
+                          items:
+                            type: string
+                          description: 'A list of supported standard ERC interfaces, eg: `ERC20` and `ERC721`.'
+                        last_transfered_at:
+                          type: string
+                          format: date-time
+                        balance:
+                          type: string
+                          description: b;Nft balance.
+                        balance_24h:
+                          type: string
+                        type:
+                          type: string
+                        nft_data:
+                          type: object
+                          properties:
+                            token_id:
+                              type: string
+                              description: b;The token's id.
+                            token_url:
+                              type: string
+                            original_owner:
+                              type: string
+                              description: The original minter.
+                            current_owner:
+                              type: string
+                              description: The current holder of this NFT.
+                            external_data:
+                              type: object
+                              properties:
+                                name:
+                                  type: string
+                                description:
+                                  type: string
+                                asset_url:
+                                  type: string
+                                asset_file_extension:
+                                  type: string
+                                asset_mime_type:
+                                  type: string
+                                asset_size_bytes:
+                                  type: string
+                                image:
+                                  type: string
+                                image_256:
+                                  type: string
+                                image_512:
+                                  type: string
+                                image_1024:
+                                  type: string
+                                animation_url:
+                                  type: string
+                                external_url:
+                                  type: string
+                                attributes:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      trait_type:
+                                        type: string
+                                      value:
+                                        type: string
+                                thumbnails:
+                                  type: object
+                                  properties:
+                                    image_256:
+                                      type: string
+                                      description: Resized 256x256 image of the asset.
+                                    image_512:
+                                      type: string
+                                      description: Resized 512x512 image of the asset.
+                                    image_1024:
+                                      type: string
+                                      description: Resized 1024x1024 image of the asset.
+                                    image_opengraph_url:
+                                      type: string
+                                      description: Resized image of the asset for OpenGraph.
+                                    thumbhash:
+                                      type: string
+                                      description: Base64 encoded hash of the thumbnail.
+                                  description: Various thumbnails of the asset.
+                                image_preview:
+                                  type: string
+                                  description: The image preview URL.
+                                asset_properties:
+                                  type: object
+                                  properties:
+                                    asset_width:
+                                      type: integer
+                                      description: The width of the asset.
+                                    asset_height:
+                                      type: integer
+                                      description: The height of the asset.
+                                    dominant_color:
+                                      type: string
+                                      description: The dominant color of the asset.
+                                  description: The asset properties.
+                            asset_cached:
+                              type: boolean
+                              description: If `true`, the asset data is available from the Covalent CDN.
+                            image_cached:
+                              type: boolean
+                              description: If `true`, the image data is available from the Covalent CDN.
+                    description: List of response items.
+      x-codeSamples:
+      - lang: TypeScript
+        label: GoldRush SDK
+        source: "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst ApiServices = async () => {\n    const client = new GoldRushClient(\"<GOLDRUSH_API_KEY>\");\n    const resp = await client.NftService.checkOwnershipInNftForSpecificTokenId({chainName: \"chainName\", walletAddress: \"walletAddress\"});\n    console.log(resp.data);\n};\n\nApiServices();"
+      summary: Check ownership in nft for specific token id
+      x-summary-source: derived
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer authentication header of the form: `Bearer <token>`, where `<token>` is your GoldRush API Key.'

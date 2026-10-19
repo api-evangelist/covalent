@@ -1,0 +1,142 @@
+openapi: 3.2.0
+info:
+  title: GoldRush Multichain Data Get Transactions For Bitcoin…
+  version: 1.0.0
+  description: Covalent's GoldRush Multichain Data APIs OpenAPI Schema.
+servers:
+- url: https://api.covalenthq.com
+security:
+- bearerAuth: []
+tags:
+- name: get-transactions-for-bitcoin-address
+paths:
+  /v1/cq/covalent/app/bitcoin/transactions/:
+    get:
+      tags:
+      - get-transactions-for-bitcoin-address
+      description: Fetches the full transaction history of a Bitcoin non-HD wallet address.
+      operationId: getTransactionsForBtcAddress
+      parameters:
+      - name: address
+        in: query
+        description: The bitcoin address to query.
+        required: false
+        schema:
+          type: string
+      - name: page-size
+        in: query
+        description: Number of items per page. Omitting this parameter defaults to 100.
+        required: false
+        schema:
+          type: integer
+      - name: page-number
+        in: query
+        description: 0-indexed page number to begin pagination.
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: The timestamp when the response was generated. Useful to show data staleness to users.
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        chain_id:
+                          type: integer
+                          description: 'The requested chain ID eg: `20090103`.'
+                        chain_name:
+                          type: string
+                          description: 'The requested chain name eg: `btc-mainnet`.'
+                        contract_decimals:
+                          type: integer
+                          description: Use contract decimals to format the token balance for display purposes - divide the balance by `10^{contract_decimals}`.
+                        block_signed_at:
+                          type: string
+                          format: date-time
+                          description: The block signed timestamp in UTC.
+                        block_height:
+                          type: integer
+                          description: The height of the block.
+                        block_hash:
+                          type: string
+                          description: The hash of the block.
+                        tx_hash:
+                          type: string
+                          description: The requested transaction hash.
+                        tx_idx:
+                          type: integer
+                          description: The position index of the tx in the block.
+                        type:
+                          type: string
+                          description: Either 'input' as the sender or 'output' as the receiver of btc.
+                        address:
+                          type: string
+                          description: The wallet address.
+                        value:
+                          type: string
+                          description: b;The value attached to this tx in satoshi.
+                        quote:
+                          type: number
+                          format: double
+                          description: The value attached to this tx in USD.
+                        quote_rate:
+                          type: number
+                          format: double
+                          description: The value token exchange rate in USD.
+                        fees_paid:
+                          type: string
+                          description: b;The total transaction fees denoted in satoshi.
+                        gas_quote:
+                          type: number
+                          format: double
+                          description: The gas spent in USD.
+                        gas_quote_rate:
+                          type: number
+                          format: double
+                          description: The native gas token exchange rate in USD.
+                        coinbase:
+                          type: boolean
+                          description: Indicates if this is a coinbase tx where btc is rewarded to a miner for validating the block.
+                        locktime:
+                          type: integer
+                          description: The earliest Unix timestamp or block height at which the tx is valid and can be included. Is `0` if no restriction.
+                        weight:
+                          type: integer
+                          description: A measure that reflects impact on the block size limit. Used to determine fees.
+                    description: List of response items.
+                  pagination:
+                    type: object
+                    properties:
+                      has_more:
+                        type: boolean
+                        description: True if there is another page.
+                      page_number:
+                        type: integer
+                        description: The requested page number.
+                      page_size:
+                        type: integer
+                        description: The requested number of items on the current page.
+                      total_count:
+                        type: integer
+                        description: The total number of items across all pages for this request.
+                    description: Pagination metadata.
+      x-codeSamples: []
+      summary: Get transactions for btc address
+      x-summary-source: derived
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer authentication header of the form: `Bearer <token>`, where `<token>` is your GoldRush API Key.'

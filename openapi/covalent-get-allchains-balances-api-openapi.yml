@@ -1,0 +1,174 @@
+openapi: 3.2.0
+info:
+  title: GoldRush Multichain Data Get Allchains Balances API
+  version: 1.0.0
+  description: Covalent's GoldRush Multichain Data APIs OpenAPI Schema.
+servers:
+- url: https://api.covalenthq.com
+security:
+- bearerAuth: []
+tags:
+- name: get-allchains-balances
+paths:
+  /v1/allchains/address/{walletAddress}/balances/:
+    get:
+      tags:
+      - get-allchains-balances
+      description: Fetch paginated spot & historical native and token balances for a single address on up to 10 EVM chains with one API call.
+      operationId: getTokenBalances
+      parameters:
+      - name: walletAddress
+        in: path
+        description: The requested address. Domain names (e.g. `demo.eth`) NOT supported.
+        required: true
+        schema:
+          type: string
+      - name: chains
+        in: query
+        description: Comma separated list of chain names or IDs to retrieve token balances from. Defaults to all foundational chains.
+        required: false
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Number of token balances to return per page, up to the default max of 100 items.
+        required: false
+        schema:
+          type: integer
+      - name: before
+        in: query
+        description: Pagination cursor pointing to fetch token balances before a certain point.
+        required: false
+        schema:
+          type: string
+      - name: cutoff-timestamp
+        in: query
+        description: UNIX timestamp to retrieve the balance snapshot from the nearest block before the specified cutoff time.
+        required: false
+        schema:
+          type: integer
+      - name: quote-currency
+        in: query
+        description: The currency to convert. Supports `USD`, `CAD`, `EUR`, `SGD`, `INR`, `JPY`, `VND`, `CNY`, `KRW`, `RUB`, `TRY`, `NGN`, `ARS`, `AUD`, `CHF`, `GBP`, `BTC` and `ETH`.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: Timestamp for when the data was last updated.
+                  cursor_before:
+                    type: string
+                    description: Pagination cursor pointing to the previous page.
+                  quote_currency:
+                    type: string
+                    description: 'The requested quote currency eg: `USD`.'
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        contract_decimals:
+                          type: integer
+                          description: Use contract decimals to format the balance for display purposes - divide the balance by `10^{contract_decimals}`.
+                        contract_name:
+                          type: string
+                          description: The string returned by the `name()` method.
+                        contract_ticker_symbol:
+                          type: string
+                          description: The ticker symbol for this contract. This field is set by a developer and non-unique across a network.
+                        contract_address:
+                          type: string
+                          description: Use the relevant `contract_address` to lookup prices, logos, token transfers, etc.
+                        contract_display_name:
+                          type: string
+                          description: A display-friendly name for the contract.
+                        supports_erc:
+                          type: array
+                          items:
+                            type: string
+                          description: 'A list of supported standard ERC interfaces, eg: `ERC20` and `ERC721`.'
+                        logo_urls:
+                          type: object
+                          properties:
+                            token_logo_url:
+                              type: string
+                              description: The token logo URL.
+                            protocol_logo_url:
+                              type: string
+                              description: The protocol logo URL.
+                            chain_logo_url:
+                              type: string
+                              description: The chain logo URL.
+                          description: The contract logo URLs.
+                        last_transferred_at:
+                          type: string
+                          format: date-time
+                          description: The timestamp when the token was transferred.
+                        is_native_token:
+                          type: boolean
+                          description: 'Indicates if a token is the chain''s native gas token, eg: ETH on Ethereum.'
+                        type:
+                          type: string
+                          description: One of `cryptocurrency`, `stablecoin`, `nft` or `dust`.
+                        is_spam:
+                          type: boolean
+                          description: Denotes whether the token is suspected spam.
+                        balance:
+                          type: string
+                          description: b;The asset balance. Use `contract_decimals` to scale this balance for display purposes.
+                        balance_24h:
+                          type: string
+                          description: b;The 24h asset balance. Use `contract_decimals` to scale this balance for display purposes.
+                        quote_rate:
+                          type: number
+                          format: double
+                          description: The exchange rate for the requested quote currency.
+                        quote_rate_24h:
+                          type: number
+                          format: double
+                          description: The 24h exchange rate for the requested quote currency.
+                        quote:
+                          type: number
+                          format: double
+                          description: The current balance converted to fiat in `quote-currency`.
+                        quote_24h:
+                          type: number
+                          format: double
+                          description: The 24h balance converted to fiat in `quote-currency`.
+                        pretty_quote:
+                          type: string
+                          description: A prettier version of the quote for rendering purposes.
+                        pretty_quote_24h:
+                          type: string
+                          description: A prettier version of the 24h quote for rendering purposes.
+                        chain_id:
+                          type: integer
+                          description: 'The chain ID that this balance is on. eg: `1`.'
+                        chain_name:
+                          type: string
+                          description: 'The chain name that this balance is on. eg: `eth-mainnet`.'
+                        chain_display_name:
+                          type: string
+                          description: A display-friendly name for the chain.
+                    description: List of token balances returned by the API.
+      x-codeSamples:
+      - lang: TypeScript
+        label: GoldRush SDK
+        source: "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst ApiServices = async () => {\n    const client = new GoldRushClient(\"<GOLDRUSH_API_KEY>\");\n    const resp = await client.AllChainsService.getTokenBalances({chainName: \"chainName\", walletAddress: \"walletAddress\"});\n    console.log(resp.data);\n};\n\nApiServices();"
+      summary: Get token balances
+      x-summary-source: derived
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer authentication header of the form: `Bearer <token>`, where `<token>` is your GoldRush API Key.'

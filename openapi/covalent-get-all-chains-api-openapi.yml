@@ -1,0 +1,105 @@
+openapi: 3.2.0
+info:
+  title: GoldRush Multichain Data Get All Chains API
+  version: 1.0.0
+  description: Covalent's GoldRush Multichain Data APIs OpenAPI Schema.
+servers:
+- url: https://api.covalenthq.com
+security:
+- bearerAuth: []
+tags:
+- name: get-all-chains
+paths:
+  /v1/chains/:
+    get:
+      tags:
+      - get-all-chains
+      description: Returns all supported chains. Useful for building internal dashboards.
+      operationId: getAllChains
+      parameters: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: The timestamp when the response was generated. Useful to show data staleness to users.
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          description: 'The chain name eg: `eth-mainnet`.'
+                        chain_id:
+                          type: string
+                          description: 'The requested chain ID eg: `1`.'
+                        is_testnet:
+                          type: boolean
+                          description: True if the chain is a testnet.
+                        db_schema_name:
+                          type: string
+                          description: Schema name to use for direct SQL.
+                        label:
+                          type: string
+                          description: 'The chains label eg: `Ethereum Mainnet`.'
+                        category_label:
+                          type: string
+                          description: 'The category label eg: `Ethereum`.'
+                        logo_url:
+                          type: string
+                          description: A png logo url for the chain.
+                        black_logo_url:
+                          type: string
+                          description: A black png logo url for the chain.
+                        white_logo_url:
+                          type: string
+                          description: A white png logo url for the chain.
+                        color_theme:
+                          type: object
+                          properties:
+                            red:
+                              type: integer
+                              description: The red color code.
+                            green:
+                              type: integer
+                              description: The green color code.
+                            blue:
+                              type: integer
+                              description: The blue color code.
+                            alpha:
+                              type: integer
+                              description: The alpha color code.
+                            hex:
+                              type: string
+                              description: The hexadecimal color code.
+                            css_rgb:
+                              type: string
+                              description: The color represented in css rgb() functional notation.
+                          description: The color theme for the chain.
+                        is_appchain:
+                          type: boolean
+                          description: True if the chain is an AppChain.
+                        appchain_of:
+                          type: object
+                          properties: {}
+                          description: The ChainItem the appchain is a part of.
+                    description: List of response items.
+      x-codeSamples:
+      - lang: TypeScript
+        label: GoldRush SDK
+        source: "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst ApiServices = async () => {\n    const client = new GoldRushClient(\"<GOLDRUSH_API_KEY>\");\n    const resp = await client.BaseService.getAllChains({chainName: \"chainName\", walletAddress: \"walletAddress\"});\n    console.log(resp.data);\n};\n\nApiServices();"
+      summary: Get all chains
+      x-summary-source: derived
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer authentication header of the form: `Bearer <token>`, where `<token>` is your GoldRush API Key.'

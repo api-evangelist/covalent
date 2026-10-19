@@ -1,0 +1,109 @@
+openapi: 3.2.0
+info:
+  title: GoldRush Multichain Data Get Pool Spot Prices API
+  version: 1.0.0
+  description: Covalent's GoldRush Multichain Data APIs OpenAPI Schema.
+servers:
+- url: https://api.covalenthq.com
+security:
+- bearerAuth: []
+tags:
+- name: get-pool-spot-prices
+paths:
+  /v1/pricing/spot_prices/{chainName}/pools/{contractAddress}/:
+    get:
+      tags:
+      - get-pool-spot-prices
+      description: Get the spot token pair prices for a specified pool contract address. Supports pools on Uniswap V2, V3 and their forks.
+      operationId: getPoolSpotPrices
+      parameters:
+      - name: chainName
+        in: path
+        description: 'The chain name eg: `eth-mainnet`.'
+        required: true
+        schema:
+          type: string
+      - name: contractAddress
+        in: path
+        description: The pool contract address.
+        required: true
+        schema:
+          type: string
+      - name: quote-currency
+        in: query
+        description: The currency to convert. Supports `USD`, `CAD`, `EUR`, `SGD`, `INR`, `JPY`, `VND`, `CNY`, `KRW`, `RUB`, `TRY`, `NGN`, `ARS`, `AUD`, `CHF`, and `GBP`.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: The timestamp when the response was generated.
+                  pool_address:
+                    type: string
+                    description: The deployed pool contract address.
+                  token_0_address:
+                    type: string
+                    description: The deployed contract address of `token_0` in the token pair making up the pool.
+                  token_0_name:
+                    type: string
+                    description: The deployed contract name of `token_0` in the token pair making up the pool.
+                  token_0_ticker:
+                    type: string
+                    description: The deployed contract symbol of `token_0` in the token pair making up the pool.
+                  token_0_price:
+                    type: string
+                    description: Price of `token_0` in units of `token_1`.
+                  token_0_price_24h:
+                    type: string
+                    description: Price of `token_0` in units of `token_1` as of 24 hours ago.
+                  token_0_price_quote:
+                    type: string
+                    description: Price of `token_0` in the selected quote currency (defaults to USD).
+                  token_0_price_24h_quote:
+                    type: string
+                    description: Price of `token_0` in the selected quote currency (defaults to USD) as of 24 hours ago.
+                  token_1_address:
+                    type: string
+                    description: The deployed contract address of `token_1` in the token pair making up the pool.
+                  token_1_name:
+                    type: string
+                    description: The deployed contract name of `token_1` in the token pair making up the pool.
+                  token_1_ticker:
+                    type: string
+                    description: The deployed contract symbol of `token_1` in the token pair making up the pool.
+                  token_1_price:
+                    type: string
+                    description: Price of `token_1` in units of `token_0`.
+                  token_1_price_24h:
+                    type: string
+                    description: Price of `token_1` in units of `token_0` as of 24 hours ago.
+                  token_1_price_quote:
+                    type: string
+                    description: Price of `token_1` in the selected quote currency (defaults to USD).
+                  token_1_price_24h_quote:
+                    type: string
+                    description: Price of `token_1` in the selected quote currency (defaults to USD) as of 24 hours ago.
+                  quote_currency:
+                    type: string
+                    description: The currency to convert. Supports `USD`, `CAD`, `EUR`, `SGD`, `INR`, `JPY`, `VND`, `CNY`, `KRW`, `RUB`, `TRY`, `NGN`, `ARS`, `AUD`, `CHF`, `GBP`, `BTC` and `ETH`.
+      x-codeSamples:
+      - lang: TypeScript
+        label: GoldRush SDK
+        source: "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst ApiServices = async () => {\n    const client = new GoldRushClient(\"<GOLDRUSH_API_KEY>\");\n    const resp = await client.PricingService.getPoolSpotPrices({chainName: \"chainName\", walletAddress: \"walletAddress\"});\n    console.log(resp.data);\n};\n\nApiServices();"
+      summary: Get pool spot prices
+      x-summary-source: derived
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer authentication header of the form: `Bearer <token>`, where `<token>` is your GoldRush API Key.'

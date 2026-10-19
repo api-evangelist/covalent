@@ -1,0 +1,149 @@
+openapi: 3.2.0
+info:
+  title: GoldRush Multichain Data Get Historical Bitcoin Balance For…
+  version: 1.0.0
+  description: Covalent's GoldRush Multichain Data APIs OpenAPI Schema.
+servers:
+- url: https://api.covalenthq.com
+security:
+- bearerAuth: []
+tags:
+- name: get-historical-bitcoin-balance-for-address
+paths:
+  /v1/btc-mainnet/address/{walletAddress}/historical_balances/:
+    get:
+      tags:
+      - get-historical-bitcoin-balance-for-address
+      description: Fetches the historical Bitcoin balance held by an address at a given block height or date. Response includes daily prices and other metadata.
+      operationId: getHistoricalBitcoinBalanceForWalletAddress
+      parameters:
+      - name: walletAddress
+        in: path
+        description: Only Bitcoin non-HD addresses are supported.
+        required: true
+        schema:
+          type: string
+      - name: quote-currency
+        in: query
+        description: The currency to convert. Supports `USD`, `CAD`, `EUR`, `SGD`, `INR`, `JPY`, `VND`, `CNY`, `KRW`, `RUB`, `TRY`, `NGN`, `ARS`, `AUD`, `CHF`, and `GBP`.
+        required: false
+        schema:
+          type: string
+      - name: block-height
+        in: query
+        description: Ending block to define a block range. Omitting this parameter defaults to the latest block height.
+        required: false
+        schema:
+          type: integer
+      - name: date
+        in: query
+        description: Ending date to define a block range (YYYY-MM-DD). Omitting this parameter defaults to the current date.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  address:
+                    type: string
+                    description: The requested address.
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: The timestamp when the response was generated. Useful to show data staleness to users.
+                  quote_currency:
+                    type: string
+                    description: 'The requested quote currency eg: `USD`.'
+                  chain_id:
+                    type: integer
+                    description: 'The requested chain ID eg: `1`.'
+                  chain_name:
+                    type: string
+                    description: 'The requested chain name eg: `eth-mainnet`.'
+                  chain_tip_height:
+                    type: integer
+                    description: The latest block height of the blockchain at the time this response was provided.
+                  chain_tip_signed_at:
+                    type: string
+                    format: date-time
+                    description: The timestamp of the latest signed block at the time this response was provided.
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        contract_decimals:
+                          type: integer
+                          description: Use contract decimals to format the token balance for display purposes - divide the balance by `10^{contract_decimals}`.
+                        contract_name:
+                          type: string
+                          description: The string returned by the `name()` method.
+                        contract_ticker_symbol:
+                          type: string
+                          description: The ticker symbol for this contract. This field is set by a developer and non-unique across a network.
+                        contract_address:
+                          type: string
+                          description: Use the relevant `contract_address` to lookup prices, logos, token transfers, etc.
+                        supports_erc:
+                          type: array
+                          items:
+                            type: string
+                          description: 'A list of supported standard ERC interfaces, eg: `ERC20` and `ERC721`.'
+                        logo_url:
+                          type: string
+                          description: The contract logo URL.
+                        block_height:
+                          type: integer
+                          format: int64
+                          description: The height of the block.
+                        last_transferred_block_height:
+                          type: integer
+                          format: int64
+                          description: The block height when the token was last transferred.
+                        contract_display_name:
+                          type: string
+                        last_transferred_at:
+                          type: string
+                          format: date-time
+                          description: The timestamp when the token was transferred.
+                        is_native_token:
+                          type: boolean
+                          description: 'Indicates if a token is the chain''s native gas token, eg: ETH on Ethereum.'
+                        type:
+                          type: string
+                          description: One of `cryptocurrency`, `stablecoin`, `nft` or `dust`.
+                        is_spam:
+                          type: boolean
+                          description: Denotes whether the token is suspected spam.
+                        balance:
+                          type: string
+                          description: b;The asset balance. Use `contract_decimals` to scale this balance for display purposes.
+                        quote_rate:
+                          type: number
+                          format: double
+                          description: The exchange rate for the requested quote currency.
+                        quote:
+                          type: number
+                          format: double
+                          description: The current balance converted to fiat in `quote-currency`.
+                        pretty_quote:
+                          type: string
+                          description: A prettier version of the quote for rendering purposes.
+                    description: List of response items.
+      x-codeSamples:
+      - lang: TypeScript
+        label: GoldRush SDK
+        source: "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst ApiServices = async () => {\n    const client = new GoldRushClient(\"<GOLDRUSH_API_KEY>\");\n    const resp = await client.BalanceService.getHistoricalBitcoinBalanceForWalletAddress({chainName: \"chainName\", walletAddress: \"walletAddress\"});\n    console.log(resp.data);\n};\n\nApiServices();"
+      summary: Get historical bitcoin balance for wallet address
+      x-summary-source: derived
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer authentication header of the form: `Bearer <token>`, where `<token>` is your GoldRush API Key.'

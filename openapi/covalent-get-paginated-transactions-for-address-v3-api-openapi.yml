@@ -1,0 +1,315 @@
+openapi: 3.2.0
+info:
+  title: GoldRush Multichain Data Get Paginated Transactions For…
+  version: 1.0.0
+  description: Covalent's GoldRush Multichain Data APIs OpenAPI Schema.
+servers:
+- url: https://api.covalenthq.com
+security:
+- bearerAuth: []
+tags:
+- name: get-paginated-transactions-for-address-v3
+paths:
+  /v1/{chainName}/address/{walletAddress}/transactions_v3/page/{page}/:
+    get:
+      tags:
+      - get-paginated-transactions-for-address-v3
+      description: Fetches the transactions involving an address, including the decoded log events, in a paginated fashion.
+      operationId: getTransactionsForAddressV3
+      parameters:
+      - name: chainName
+        in: path
+        description: 'The chain name eg: `eth-mainnet`.'
+        required: true
+        schema:
+          type: string
+      - name: walletAddress
+        in: path
+        description: The requested address. Passing in an `ENS`, `RNS`, `Lens Handle`, or an `Unstoppable Domain` resolves automatically.
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: path
+        description: The requested page, 0-indexed.
+        required: true
+        schema:
+          type: integer
+      - name: quote-currency
+        in: query
+        description: The currency to convert. Supports `USD`, `CAD`, `EUR`, `SGD`, `INR`, `JPY`, `VND`, `CNY`, `KRW`, `RUB`, `TRY`, `NGN`, `ARS`, `AUD`, `CHF`, and `GBP`.
+        required: false
+        schema:
+          type: string
+      - name: no-logs
+        in: query
+        description: Omit log events.
+        required: false
+        schema:
+          type: boolean
+      - name: block-signed-at-asc
+        in: query
+        description: Sort the transactions in ascending chronological order. By default, it's set to `false` and returns transactions in descending chronological order.
+        required: false
+        schema:
+          type: boolean
+      - name: with-internal
+        in: query
+        description: Whether to include internal transfers/transactions.
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  address:
+                    type: string
+                    description: The requested address.
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: The timestamp when the response was generated. Useful to show data staleness to users.
+                  quote_currency:
+                    type: string
+                    description: 'The requested quote currency eg: `USD`.'
+                  chain_id:
+                    type: integer
+                    description: 'The requested chain ID eg: `1`.'
+                  chain_name:
+                    type: string
+                    description: 'The requested chain name eg: `eth-mainnet`.'
+                  chain_tip_height:
+                    type: integer
+                    description: The latest block height of the blockchain at the time this response was provided.
+                  chain_tip_signed_at:
+                    type: string
+                    format: date-time
+                    description: The timestamp of the latest signed block at the time this response was provided.
+                  current_page:
+                    type: integer
+                    description: The current page of the response.
+                  links:
+                    type: object
+                    properties:
+                      prev:
+                        type: string
+                        description: URL link to the next page.
+                      next:
+                        type: string
+                        description: URL link to the previous page.
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        block_signed_at:
+                          type: string
+                          format: date-time
+                          description: The block signed timestamp in UTC.
+                        block_height:
+                          type: integer
+                          description: The height of the block.
+                        block_hash:
+                          type: string
+                          description: The hash of the block. Use it to remove transactions from re-org-ed blocks.
+                        tx_hash:
+                          type: string
+                          description: The requested transaction hash.
+                        tx_offset:
+                          type: integer
+                          description: The offset is the position of the tx in the block.
+                        successful:
+                          type: boolean
+                          description: Indicates whether a transaction failed or succeeded.
+                        from_address:
+                          type: string
+                          description: The sender's wallet address.
+                        miner_address:
+                          type: string
+                          description: The address of the miner.
+                        to_address:
+                          type: string
+                          description: The receiver's wallet address.
+                        value:
+                          type: string
+                          description: b;The value attached to this tx.
+                        value_quote:
+                          type: number
+                          format: double
+                          description: The value attached in `quote-currency` to this tx.
+                        pretty_value_quote:
+                          type: string
+                          description: A prettier version of the quote for rendering purposes.
+                        gas_metadata:
+                          type: object
+                          properties:
+                            contract_decimals:
+                              type: integer
+                              description: Use contract decimals to format the token balance for display purposes - divide the balance by `10^{contract_decimals}`.
+                            contract_name:
+                              type: string
+                              description: The string returned by the `name()` method.
+                            contract_ticker_symbol:
+                              type: string
+                              description: The ticker symbol for this contract. This field is set by a developer and non-unique across a network.
+                            contract_address:
+                              type: string
+                              description: Use the relevant `contract_address` to lookup prices, logos, token transfers, etc.
+                            supports_erc:
+                              type: array
+                              items:
+                                type: string
+                              description: 'A list of supported standard ERC interfaces, eg: `ERC20` and `ERC721`.'
+                            logo_url:
+                              type: string
+                              description: The contract logo URL.
+                          description: The requested chain native gas token metadata.
+                        gas_offered:
+                          type: integer
+                          format: int64
+                        gas_spent:
+                          type: integer
+                          format: int64
+                          description: The gas spent for this tx.
+                        gas_price:
+                          type: integer
+                          format: int64
+                          description: The gas price at the time of this tx.
+                        fees_paid:
+                          type: string
+                          description: b;The total transaction fees (`gas_price` * `gas_spent`) paid for this tx, denoted in wei.
+                        gas_quote:
+                          type: number
+                          format: double
+                          description: The gas spent in `quote-currency` denomination.
+                        pretty_gas_quote:
+                          type: string
+                          description: A prettier version of the quote for rendering purposes.
+                        gas_quote_rate:
+                          type: number
+                          format: double
+                          description: The native gas exchange rate for the requested `quote-currency`.
+                        explorers:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              label:
+                                type: string
+                                description: The name of the explorer.
+                              url:
+                                type: string
+                                description: The URL of the explorer.
+                          description: The explorer links for this transaction.
+                        log_events:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              block_signed_at:
+                                type: string
+                                format: date-time
+                                description: The block signed timestamp in UTC.
+                              block_height:
+                                type: integer
+                                format: int64
+                                description: The height of the block.
+                              tx_offset:
+                                type: integer
+                                format: int64
+                                description: The offset is the position of the tx in the block.
+                              log_offset:
+                                type: integer
+                                format: int64
+                                description: The offset is the position of the log entry within an event log.
+                              tx_hash:
+                                type: string
+                                description: The requested transaction hash.
+                              raw_log_topics:
+                                type: array
+                                items:
+                                  type: string
+                                description: The log topics in raw data.
+                              sender_contract_decimals:
+                                type: integer
+                                description: Use contract decimals to format the token balance for display purposes - divide the balance by `10^{contract_decimals}`.
+                              sender_name:
+                                type: string
+                                description: The name of the sender.
+                              sender_contract_ticker_symbol:
+                                type: string
+                              sender_address:
+                                type: string
+                                description: The address of the sender.
+                              sender_logo_url:
+                                type: string
+                                description: The contract logo URL.
+                              supports_erc:
+                                type: array
+                                items:
+                                  type: string
+                                description: 'A list of supported standard ERC interfaces, eg: `ERC20` and `ERC721`.'
+                              sender_factory_address:
+                                type: string
+                                description: The address of the deployed UniswapV2 like factory contract for this DEX.
+                              raw_log_data:
+                                type: string
+                                description: The log events in raw.
+                              decoded:
+                                type: object
+                                properties:
+                                  name:
+                                    type: string
+                                  signature:
+                                    type: string
+                                  params:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        name:
+                                          type: string
+                                        type:
+                                          type: string
+                                        indexed:
+                                          type: boolean
+                                        decoded:
+                                          type: boolean
+                                        value:
+                                          type: string
+                                description: The decoded item.
+                          description: The log events.
+                        internal_transfers:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              from_address:
+                                type: string
+                                description: The contract address sending the native token.
+                              to_address:
+                                type: string
+                                description: The internal transfer recipient wallet address.
+                              value:
+                                type: string
+                                description: b;The value of the internal transfer in wei.
+                              gas_limit:
+                                type: integer
+                                format: int64
+                                description: The gas available from the parent transaction or contract call.
+                          description: List of internal transfers/transactions associated with the wallet address.
+                    description: List of response items.
+      x-codeSamples: []
+      summary: Get transactions for address V3
+      x-summary-source: derived
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer authentication header of the form: `Bearer <token>`, where `<token>` is your GoldRush API Key.'

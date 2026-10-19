@@ -1,0 +1,162 @@
+openapi: 3.2.0
+info:
+  title: GoldRush Multichain Data Get Token Approvals For Address API
+  version: 1.0.0
+  description: Covalent's GoldRush Multichain Data APIs OpenAPI Schema.
+servers:
+- url: https://api.covalenthq.com
+security:
+- bearerAuth: []
+tags:
+- name: get-token-approvals-for-address
+paths:
+  /v1/{chainName}/approvals/{walletAddress}/:
+    get:
+      tags:
+      - get-token-approvals-for-address
+      description: Returns a list of approvals across all token contracts, categorized by spenders, for a wallet’s assets.
+      operationId: getApprovals
+      parameters:
+      - name: chainName
+        in: path
+        description: 'The chain name eg: `eth-mainnet`.'
+        required: true
+        schema:
+          type: string
+      - name: walletAddress
+        in: path
+        description: The requested address. Passing in an `ENS`, `RNS`, `Lens Handle`, or an `Unstoppable Domain` resolves automatically.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  address:
+                    type: string
+                    description: The requested address.
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: The timestamp when the response was generated. Useful to show data staleness to users.
+                  quote_currency:
+                    type: string
+                    description: 'The requested quote currency eg: `USD`.'
+                  chain_id:
+                    type: integer
+                    description: 'The requested chain ID eg: `1`.'
+                  chain_name:
+                    type: string
+                    description: 'The requested chain name eg: `eth-mainnet`.'
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        token_address:
+                          type: string
+                          description: The address for the token that has approvals.
+                        token_address_label:
+                          type: string
+                          description: The name for the token that has approvals.
+                        ticker_symbol:
+                          type: string
+                          description: The ticker symbol for this contract. This field is set by a developer and non-unique across a network.
+                        contract_decimals:
+                          type: integer
+                          description: Use contract decimals to format the token balance for display purposes - divide the balance by `10^{contract_decimals}`.
+                        logo_url:
+                          type: string
+                          description: The contract logo URL.
+                        quote_rate:
+                          type: number
+                          format: double
+                          description: The exchange rate for the requested quote currency.
+                        balance:
+                          type: string
+                          description: b;Wallet balance of the token.
+                        balance_quote:
+                          type: number
+                          format: double
+                          description: Value of the wallet balance of the token.
+                        pretty_balance_quote:
+                          type: string
+                          description: A prettier version of the quote for rendering purposes.
+                        value_at_risk:
+                          type: string
+                          description: Total amount at risk across all spenders.
+                        value_at_risk_quote:
+                          type: number
+                          format: double
+                          description: Value of total amount at risk across all spenders.
+                        pretty_value_at_risk_quote:
+                          type: string
+                          description: A prettier version of the quote for rendering purposes.
+                        spenders:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              block_height:
+                                type: integer
+                                format: int64
+                                description: The height of the block.
+                              tx_offset:
+                                type: integer
+                                format: int64
+                                description: The offset is the position of the tx in the block.
+                              log_offset:
+                                type: integer
+                                format: int64
+                                description: The offset is the position of the log entry within an event log."
+                              block_signed_at:
+                                type: string
+                                format: date-time
+                                description: The block signed timestamp in UTC.
+                              tx_hash:
+                                type: string
+                                description: Most recent transaction that updated approval amounts for the token.
+                              spender_address:
+                                type: string
+                                description: Address of the contract with approval for the token.
+                              allowance:
+                                type: string
+                                description: Remaining number of tokens granted to the spender by the approval.
+                              allowance_quote:
+                                type: number
+                                format: double
+                                description: Value of the remaining allowance specified by the approval.
+                              pretty_allowance_quote:
+                                type: string
+                                description: A prettier version of the quote for rendering purposes.
+                              value_at_risk:
+                                type: string
+                                description: Amount at risk for spender.
+                              value_at_risk_quote:
+                                type: number
+                                format: double
+                                description: Value of amount at risk for spender.
+                              pretty_value_at_risk_quote:
+                                type: string
+                                description: A prettier version of the quote for rendering purposes.
+                              risk_factor:
+                                type: string
+                          description: Contracts with non-zero approvals for this token.
+                    description: List of response items.
+      x-codeSamples:
+      - lang: TypeScript
+        label: GoldRush SDK
+        source: "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst ApiServices = async () => {\n    const client = new GoldRushClient(\"<GOLDRUSH_API_KEY>\");\n    const resp = await client.SecurityService.getApprovals({chainName: \"chainName\", walletAddress: \"walletAddress\"});\n    console.log(resp.data);\n};\n\nApiServices();"
+      summary: Get approvals
+      x-summary-source: derived
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer authentication header of the form: `Bearer <token>`, where `<token>` is your GoldRush API Key.'

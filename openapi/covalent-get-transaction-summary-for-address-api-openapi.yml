@@ -1,0 +1,163 @@
+openapi: 3.2.0
+info:
+  title: GoldRush Multichain Data Get Transaction Summary For…
+  version: 1.0.0
+  description: Covalent's GoldRush Multichain Data APIs OpenAPI Schema.
+servers:
+- url: https://api.covalenthq.com
+security:
+- bearerAuth: []
+tags:
+- name: get-transaction-summary-for-address
+paths:
+  /v1/{chainName}/address/{walletAddress}/transactions_summary/:
+    get:
+      tags:
+      - get-transaction-summary-for-address
+      description: Fetches the earliest and latest transactions, and the transaction count, for a wallet. Also enriched with gas expenditure details and total ERC20 token transfers count.
+      operationId: getTransactionSummary
+      parameters:
+      - name: chainName
+        in: path
+        description: 'The chain name eg: `eth-mainnet`.'
+        required: true
+        schema:
+          type: string
+      - name: walletAddress
+        in: path
+        description: The requested address. Passing in an `ENS`, `RNS`, `Lens Handle`, or an `Unstoppable Domain` resolves automatically.
+        required: true
+        schema:
+          type: string
+      - name: quote-currency
+        in: query
+        description: The currency to convert. Supports `USD`, `CAD`, `EUR`, `SGD`, `INR`, `JPY`, `VND`, `CNY`, `KRW`, `RUB`, `TRY`, `NGN`, `ARS`, `AUD`, `CHF`, and `GBP`.
+        required: false
+        schema:
+          type: string
+      - name: with-gas
+        in: query
+        description: Include gas summary details. Response times may be impacted for wallets with large number of transactions.
+        required: false
+        schema:
+          type: boolean
+      - name: with-transfer-count
+        in: query
+        description: Represents the total count of ERC-20 token movement events, including `Transfer`, `Deposit` and `Withdraw`. Response times may be impacted for wallets with large number of transactions.
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: The timestamp when the response was generated. Useful to show data staleness to users.
+                  address:
+                    type: string
+                    description: The requested address.
+                  chain_id:
+                    type: integer
+                    description: 'The requested chain ID eg: `1`.'
+                  chain_name:
+                    type: string
+                    description: 'The requested chain name eg: `eth-mainnet`.'
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        total_count:
+                          type: integer
+                          format: int64
+                          description: The total number of transactions.
+                        transfer_count:
+                          type: integer
+                          format: int64
+                          description: Represents the total count of ERC-20 token movement events, including `Transfer`, `Deposit` and `Withdraw`.
+                        earliest_transaction:
+                          type: object
+                          properties:
+                            block_signed_at:
+                              type: string
+                              format: date-time
+                              description: The block signed timestamp in UTC.
+                            tx_hash:
+                              type: string
+                              description: The requested transaction hash.
+                            tx_detail_link:
+                              type: string
+                              description: The link to the transaction details using the Covalent API.
+                          description: The earliest transaction detected.
+                        latest_transaction:
+                          type: object
+                          properties: {}
+                          description: The latest transaction detected.
+                        gas_summary:
+                          type: object
+                          properties:
+                            total_sent_count:
+                              type: integer
+                              format: int64
+                              description: The total number of transactions sent by the address.
+                            total_fees_paid:
+                              type: string
+                              description: b;The total transaction fees paid by the address, denoted in wei.
+                            total_gas_quote:
+                              type: number
+                              format: double
+                              description: The total transaction fees paid by the address, denoted in `quote-currency`.
+                            pretty_total_gas_quote:
+                              type: string
+                              description: A prettier version of the quote for rendering purposes.
+                            average_gas_quote_per_tx:
+                              type: number
+                              format: double
+                              description: The average gas quote per transaction.
+                            pretty_average_gas_quote_per_tx:
+                              type: string
+                              description: A prettier version of the quote for rendering purposes.
+                            gas_metadata:
+                              type: object
+                              properties:
+                                contract_decimals:
+                                  type: integer
+                                  description: Use contract decimals to format the token balance for display purposes - divide the balance by `10^{contract_decimals}`.
+                                contract_name:
+                                  type: string
+                                  description: The string returned by the `name()` method.
+                                contract_ticker_symbol:
+                                  type: string
+                                  description: The ticker symbol for this contract. This field is set by a developer and non-unique across a network.
+                                contract_address:
+                                  type: string
+                                  description: Use the relevant `contract_address` to lookup prices, logos, token transfers, etc.
+                                supports_erc:
+                                  type: array
+                                  items:
+                                    type: string
+                                  description: 'A list of supported standard ERC interfaces, eg: `ERC20` and `ERC721`.'
+                                logo_url:
+                                  type: string
+                                  description: The contract logo URL.
+                              description: The requested chain native gas token metadata.
+                          description: The gas summary for the transactions.
+                    description: List of response items.
+      x-codeSamples:
+      - lang: TypeScript
+        label: GoldRush SDK
+        source: "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst ApiServices = async () => {\n    const client = new GoldRushClient(\"<GOLDRUSH_API_KEY>\");\n    const resp = await client.TransactionService.getTransactionSummary({chainName: \"chainName\", walletAddress: \"walletAddress\"});\n    console.log(resp.data);\n};\n\nApiServices();"
+      summary: Get transaction summary
+      x-summary-source: derived
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer authentication header of the form: `Bearer <token>`, where `<token>` is your GoldRush API Key.'

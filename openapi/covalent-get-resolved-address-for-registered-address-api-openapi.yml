@@ -1,0 +1,72 @@
+openapi: 3.2.0
+info:
+  title: GoldRush Multichain Data Get Resolved Address For…
+  version: 1.0.0
+  description: Covalent's GoldRush Multichain Data APIs OpenAPI Schema.
+servers:
+- url: https://api.covalenthq.com
+security:
+- bearerAuth: []
+tags:
+- name: get-resolved-address-for-registered-address
+paths:
+  /v1/{chainName}/address/{walletAddress}/resolve_address/:
+    get:
+      tags:
+      - get-resolved-address-for-registered-address
+      description: Resolves ENS, RNS and Unstoppable Domains addresses. Only supports the resolution of a registered domain to an address.
+      operationId: getResolvedAddress
+      parameters:
+      - name: chainName
+        in: path
+        description: 'The chain name eg: `eth-mainnet`.'
+        required: true
+        schema:
+          type: string
+      - name: walletAddress
+        in: path
+        description: The requested address. Passing in an `ENS`, `RNS`, `Lens Handle`, or an `Unstoppable Domain` resolves automatically.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: The timestamp when the response was generated. Useful to show data staleness to users.
+                  chain_id:
+                    type: integer
+                    description: 'The requested chain ID eg: `1`.'
+                  chain_name:
+                    type: string
+                    description: 'The requested chain name eg: `eth-mainnet`.'
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        address:
+                          type: string
+                          description: The requested address.
+                        name:
+                          type: string
+                    description: List of response items.
+      x-codeSamples:
+      - lang: TypeScript
+        label: GoldRush SDK
+        source: "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst ApiServices = async () => {\n    const client = new GoldRushClient(\"<GOLDRUSH_API_KEY>\");\n    const resp = await client.BaseService.getResolvedAddress({chainName: \"chainName\", walletAddress: \"walletAddress\"});\n    console.log(resp.data);\n};\n\nApiServices();"
+      summary: Get resolved address
+      x-summary-source: derived
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer authentication header of the form: `Bearer <token>`, where `<token>` is your GoldRush API Key.'

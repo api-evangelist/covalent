@@ -1,0 +1,134 @@
+openapi: 3.2.0
+info:
+  title: GoldRush Multichain Data Get Historical Portfolio Value…
+  version: 1.0.0
+  description: Covalent's GoldRush Multichain Data APIs OpenAPI Schema.
+servers:
+- url: https://api.covalenthq.com
+security:
+- bearerAuth: []
+tags:
+- name: get-historical-portfolio-value-over-time
+paths:
+  /v1/{chainName}/address/{walletAddress}/portfolio_v2/:
+    get:
+      tags:
+      - get-historical-portfolio-value-over-time
+      description: Returns a daily portfolio balance for an address, broken down by token. The timeframe is user-configurable and defaults to 30 days.
+      operationId: getHistoricalPortfolioForWalletAddress
+      parameters:
+      - name: chainName
+        in: path
+        description: 'The chain name eg: `eth-mainnet`.'
+        required: true
+        schema:
+          type: string
+      - name: walletAddress
+        in: path
+        description: The requested address. Passing in an `ENS`, `RNS`, `Lens Handle`, or an `Unstoppable Domain` resolves automatically.
+        required: true
+        schema:
+          type: string
+      - name: quote-currency
+        in: query
+        description: The currency to convert. Supports `USD`, `CAD`, `EUR`, `SGD`, `INR`, `JPY`, `VND`, `CNY`, `KRW`, `RUB`, `TRY`, `NGN`, `ARS`, `AUD`, `CHF`, and `GBP`.
+        required: false
+        schema:
+          type: string
+      - name: days
+        in: query
+        description: The number of days to return data for. Defaults to 30 days.
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  address:
+                    type: string
+                    description: The requested address.
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: The timestamp when the response was generated. Useful to show data staleness to users.
+                  quote_currency:
+                    type: string
+                    description: 'The requested quote currency eg: `USD`.'
+                  chain_id:
+                    type: integer
+                    description: 'The requested chain ID eg: `1`.'
+                  chain_name:
+                    type: string
+                    description: 'The requested chain name eg: `eth-mainnet`.'
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        contract_address:
+                          type: string
+                          description: Use the relevant `contract_address` to lookup prices, logos, token transfers, etc.
+                        contract_decimals:
+                          type: integer
+                          description: Use contract decimals to format the token balance for display purposes - divide the balance by `10^{contract_decimals}`.
+                        contract_name:
+                          type: string
+                          description: The string returned by the `name()` method.
+                        contract_ticker_symbol:
+                          type: string
+                          description: The ticker symbol for this contract. This field is set by a developer and non-unique across a network.
+                        logo_url:
+                          type: string
+                          description: The contract logo URL.
+                        holdings:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              quote_rate:
+                                type: number
+                                format: double
+                                description: The exchange rate for the requested quote currency.
+                              timestamp:
+                                type: string
+                                format: date-time
+                              close:
+                                type: object
+                                properties:
+                                  balance:
+                                    type: string
+                                    description: b;The asset balance. Use `contract_decimals` to scale this balance for display purposes.
+                                  quote:
+                                    type: number
+                                    format: double
+                                    description: The current balance converted to fiat in `quote-currency`.
+                                  pretty_quote:
+                                    type: string
+                                    description: A prettier version of the quote for rendering purposes.
+                              high:
+                                type: object
+                                properties: {}
+                              low:
+                                type: object
+                                properties: {}
+                              open:
+                                type: object
+                                properties: {}
+                    description: List of response items.
+      x-codeSamples:
+      - lang: TypeScript
+        label: GoldRush SDK
+        source: "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst ApiServices = async () => {\n    const client = new GoldRushClient(\"<GOLDRUSH_API_KEY>\");\n    const resp = await client.BalanceService.getHistoricalPortfolioForWalletAddress({chainName: \"chainName\", walletAddress: \"walletAddress\"});\n    console.log(resp.data);\n};\n\nApiServices();"
+      summary: Get historical portfolio for wallet address
+      x-summary-source: derived
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer authentication header of the form: `Bearer <token>`, where `<token>` is your GoldRush API Key.'

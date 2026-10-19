@@ -1,0 +1,101 @@
+openapi: 3.2.0
+info:
+  title: GoldRush Multichain Data Get A Block API
+  version: 1.0.0
+  description: Covalent's GoldRush Multichain Data APIs OpenAPI Schema.
+servers:
+- url: https://api.covalenthq.com
+security:
+- bearerAuth: []
+tags:
+- name: get-a-block
+paths:
+  /v1/{chainName}/block_v2/{blockHeight}/:
+    get:
+      tags:
+      - get-a-block
+      description: Fetches a single block, for example to render it in a block explorer.
+      operationId: getBlock
+      parameters:
+      - name: chainName
+        in: path
+        description: 'The chain name eg: `eth-mainnet`.'
+        required: true
+        schema:
+          type: string
+      - name: blockHeight
+        in: path
+        description: The block height or `latest` for the latest block available.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: The timestamp when the response was generated. Useful to show data staleness to users.
+                  chain_id:
+                    type: integer
+                    description: 'The requested chain ID eg: `1`.'
+                  chain_name:
+                    type: string
+                    description: 'The requested chain name eg: `eth-mainnet`.'
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        block_hash:
+                          type: string
+                          description: The hash of the block.
+                        signed_at:
+                          type: string
+                          format: date-time
+                          description: The block signed timestamp in UTC.
+                        height:
+                          type: integer
+                          description: The block height.
+                        block_parent_hash:
+                          type: string
+                          description: The parent block hash.
+                        extra_data:
+                          type: string
+                          description: Extra data written to the block.
+                        miner_address:
+                          type: string
+                          description: The address of the miner.
+                        mining_cost:
+                          type: integer
+                          format: int64
+                          description: The associated mining cost.
+                        gas_used:
+                          type: integer
+                          format: int64
+                          description: The associated gas used.
+                        gas_limit:
+                          type: integer
+                          format: int64
+                          description: The associated gas limit.
+                        transactions_link:
+                          type: string
+                          description: The link to the related tx by block endpoint.
+                    description: List of response items.
+      x-codeSamples:
+      - lang: TypeScript
+        label: GoldRush SDK
+        source: "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst ApiServices = async () => {\n    const client = new GoldRushClient(\"<GOLDRUSH_API_KEY>\");\n    const resp = await client.BaseService.getBlock({chainName: \"chainName\", walletAddress: \"walletAddress\"});\n    console.log(resp.data);\n};\n\nApiServices();"
+      summary: Get block
+      x-summary-source: derived
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer authentication header of the form: `Bearer <token>`, where `<token>` is your GoldRush API Key.'

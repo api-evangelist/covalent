@@ -1,0 +1,114 @@
+openapi: 3.2.0
+info:
+  title: GoldRush Multichain Data Get Gas Prices API
+  version: 1.0.0
+  description: Covalent's GoldRush Multichain Data APIs OpenAPI Schema.
+servers:
+- url: https://api.covalenthq.com
+security:
+- bearerAuth: []
+tags:
+- name: get-gas-prices
+paths:
+  /v1/{chainName}/event/{eventType}/gas_prices/:
+    get:
+      tags:
+      - get-gas-prices
+      description: Get real-time gas estimates for different transaction speeds on a specific network, enabling users to optimize transaction costs and confirmation times.
+      operationId: getGasPrices
+      parameters:
+      - name: chainName
+        in: path
+        description: 'The chain name eg: `eth-mainnet`.'
+        required: true
+        schema:
+          type: string
+      - name: eventType
+        in: path
+        description: The desired event type to retrieve gas prices for. Supports `erc20` transfer events, `uniswapv3` swap events and `nativetokens` transfers.
+        required: true
+        schema:
+          type: string
+      - name: quote-currency
+        in: query
+        description: The currency to convert. Supports `USD`, `CAD`, `EUR`, `SGD`, `INR`, `JPY`, `VND`, `CNY`, `KRW`, `RUB`, `TRY`, `NGN`, `ARS`, `AUD`, `CHF`, and `GBP`.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  chain_id:
+                    type: integer
+                    description: 'The requested chain ID eg: `1`.'
+                  chain_name:
+                    type: string
+                    description: 'The requested chain name eg: `eth-mainnet`.'
+                  quote_currency:
+                    type: string
+                    description: 'The requested quote currency eg: `USD`.'
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: The timestamp when the response was generated. Useful to show data staleness to users.
+                  event_type:
+                    type: string
+                    description: The requested event type.
+                  gas_quote_rate:
+                    type: number
+                    format: double
+                    description: The exchange rate for the requested quote currency.
+                  base_fee:
+                    type: string
+                    description: b;The lowest gas fee for the latest block height.
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        gas_price:
+                          type: string
+                          description: The average gas price, in WEI, for the time interval.
+                        gas_spent:
+                          type: string
+                          description: The average gas spent for the time interval.
+                        gas_quote:
+                          type: number
+                          format: double
+                          description: The average gas spent in `quote-currency` denomination for the time interval.
+                        other_fees:
+                          type: object
+                          properties:
+                            l_1_gas_quote:
+                              type: number
+                              format: double
+                              description: The calculated L1 gas spent, when applicable, in quote-currency, for the specified time interval.
+                          description: 'Other fees, when applicable. For example: OP chain L1 fees.'
+                        total_gas_quote:
+                          type: number
+                          format: double
+                          description: The sum of the L1 and L2 gas spent, in quote-currency, for the specified time interval.
+                        pretty_total_gas_quote:
+                          type: string
+                          description: A prettier version of the total average gas spent, in quote-currency, for the specified time interval, for rendering purposes.
+                        interval:
+                          type: string
+                          description: The specified time interval.
+                    description: List of response items.
+      x-codeSamples:
+      - lang: TypeScript
+        label: GoldRush SDK
+        source: "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst ApiServices = async () => {\n    const client = new GoldRushClient(\"<GOLDRUSH_API_KEY>\");\n    const resp = await client.BaseService.getGasPrices({chainName: \"chainName\", walletAddress: \"walletAddress\"});\n    console.log(resp.data);\n};\n\nApiServices();"
+      summary: Get gas prices
+      x-summary-source: derived
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer authentication header of the form: `Bearer <token>`, where `<token>` is your GoldRush API Key.'

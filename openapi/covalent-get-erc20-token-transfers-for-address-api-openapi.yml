@@ -1,0 +1,299 @@
+openapi: 3.2.0
+info:
+  title: GoldRush Multichain Data Get Erc20 Token Transfers For…
+  version: 1.0.0
+  description: Covalent's GoldRush Multichain Data APIs OpenAPI Schema.
+servers:
+- url: https://api.covalenthq.com
+security:
+- bearerAuth: []
+tags:
+- name: get-erc20-token-transfers-for-address
+paths:
+  /v1/{chainName}/address/{walletAddress}/transfers_v2/:
+    get:
+      tags:
+      - get-erc20-token-transfers-for-address
+      description: Returns the transfer-in and transfer-out of a token for an address, along with historical prices.
+      operationId: getErc20TransfersForWalletAddress
+      parameters:
+      - name: chainName
+        in: path
+        description: 'The chain name eg: `eth-mainnet`.'
+        required: true
+        schema:
+          type: string
+      - name: walletAddress
+        in: path
+        description: The requested address. Passing in an `ENS`, `RNS`, `Lens Handle`, or an `Unstoppable Domain` resolves automatically.
+        required: true
+        schema:
+          type: string
+      - name: quote-currency
+        in: query
+        description: The currency to convert. Supports `USD`, `CAD`, `EUR`, `SGD`, `INR`, `JPY`, `VND`, `CNY`, `KRW`, `RUB`, `TRY`, `NGN`, `ARS`, `AUD`, `CHF`, and `GBP`.
+        required: false
+        schema:
+          type: string
+      - name: contract-address
+        in: query
+        description: The requested contract address. Passing in an `ENS`, `RNS`, `Lens Handle`, or an `Unstoppable Domain` resolves automatically.
+        required: true
+        schema:
+          type: string
+      - name: starting-block
+        in: query
+        description: The block height to start from, defaults to `0`.
+        required: false
+        schema:
+          type: integer
+      - name: ending-block
+        in: query
+        description: The block height to end at, defaults to current block height.
+        required: false
+        schema:
+          type: integer
+      - name: page-size
+        in: query
+        description: Number of items per page. Omitting this parameter defaults to 100.
+        required: false
+        schema:
+          type: integer
+      - name: page-number
+        in: query
+        description: 0-indexed page number to begin pagination.
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  address:
+                    type: string
+                    description: The requested address.
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: The timestamp when the response was generated. Useful to show data staleness to users.
+                  quote_currency:
+                    type: string
+                    description: 'The requested quote currency eg: `USD`.'
+                  chain_id:
+                    type: integer
+                    description: 'The requested chain ID eg: `1`.'
+                  chain_name:
+                    type: string
+                    description: 'The requested chain name eg: `eth-mainnet`.'
+                  chain_tip_height:
+                    type: integer
+                    description: The latest block height of the blockchain at the time this response was provided.
+                  chain_tip_signed_at:
+                    type: string
+                    format: date-time
+                    description: The timestamp of the latest signed block at the time this response was provided.
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        block_signed_at:
+                          type: string
+                          format: date-time
+                          description: The block signed timestamp in UTC.
+                        block_height:
+                          type: integer
+                          description: The height of the block.
+                        block_hash:
+                          type: string
+                          description: The hash of the block. Use it to remove transactions from re-org-ed blocks.
+                        tx_hash:
+                          type: string
+                          description: The requested transaction hash.
+                        tx_offset:
+                          type: integer
+                          description: The offset is the position of the tx in the block.
+                        successful:
+                          type: boolean
+                          description: Whether or not transaction is successful.
+                        miner_address:
+                          type: string
+                          description: The address of the miner.
+                        from_address:
+                          type: string
+                          description: The sender's wallet address.
+                        to_address:
+                          type: string
+                          description: The receiver's wallet address.
+                        value:
+                          type: string
+                          description: b;The value attached to this tx.
+                        value_quote:
+                          type: number
+                          format: double
+                          description: The value attached in `quote-currency` to this tx.
+                        pretty_value_quote:
+                          type: string
+                          description: A prettier version of the quote for rendering purposes.
+                        gas_metadata:
+                          type: object
+                          properties:
+                            contract_decimals:
+                              type: integer
+                              description: Use contract decimals to format the token balance for display purposes - divide the balance by `10^{contract_decimals}`.
+                            contract_name:
+                              type: string
+                              description: The string returned by the `name()` method.
+                            contract_ticker_symbol:
+                              type: string
+                              description: The ticker symbol for this contract. This field is set by a developer and non-unique across a network.
+                            contract_address:
+                              type: string
+                              description: Use the relevant `contract_address` to lookup prices, logos, token transfers, etc.
+                            supports_erc:
+                              type: array
+                              items:
+                                type: string
+                              description: 'A list of supported standard ERC interfaces, eg: `ERC20` and `ERC721`.'
+                            logo_url:
+                              type: string
+                              description: The contract logo URL.
+                          description: The requested chain native gas token metadata.
+                        gas_offered:
+                          type: integer
+                          format: int64
+                        gas_spent:
+                          type: integer
+                          format: int64
+                          description: The gas spent for this tx.
+                        gas_price:
+                          type: integer
+                          format: int64
+                          description: The gas price at the time of this tx.
+                        fees_paid:
+                          type: string
+                          description: b;The transaction's gas_price * gas_spent, denoted in wei.
+                        gas_quote:
+                          type: number
+                          format: double
+                          description: The gas spent in `quote-currency` denomination.
+                        pretty_gas_quote:
+                          type: string
+                          description: A prettier version of the quote for rendering purposes.
+                        gas_quote_rate:
+                          type: number
+                          format: double
+                          description: The native gas exchange rate for the requested `quote-currency`.
+                        transfers:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              block_signed_at:
+                                type: string
+                                format: date-time
+                                description: The block signed timestamp in UTC.
+                              tx_hash:
+                                type: string
+                                description: The requested transaction hash.
+                              from_address:
+                                type: string
+                                description: The sender's wallet address.
+                              to_address:
+                                type: string
+                                description: The receiver's wallet address.
+                              contract_decimals:
+                                type: integer
+                                description: Use contract decimals to format the token balance for display purposes - divide the balance by `10^{contract_decimals}`.
+                              contract_name:
+                                type: string
+                                description: The string returned by the `name()` method.
+                              contract_ticker_symbol:
+                                type: string
+                                description: The ticker symbol for this contract. This field is set by a developer and non-unique across a network.
+                              contract_address:
+                                type: string
+                                description: Use the relevant `contract_address` to lookup prices, logos, token transfers, etc.
+                              logo_url:
+                                type: string
+                                description: The contract logo URL.
+                              transfer_type:
+                                type: string
+                                description: Categorizes token transactions as either `transfer-in` or `transfer-out`, indicating whether tokens are being received or sent from an account.
+                              delta:
+                                type: string
+                                description: b;The delta attached to this transfer.
+                              balance:
+                                type: string
+                                description: b;The asset balance. Use `contract_decimals` to scale this balance for display purposes.
+                              quote_rate:
+                                type: number
+                                format: double
+                                description: The exchange rate for the requested quote currency.
+                              delta_quote:
+                                type: number
+                                format: double
+                                description: The current delta converted to fiat in `quote-currency`.
+                              pretty_delta_quote:
+                                type: string
+                                description: A prettier version of the quote for rendering purposes.
+                              balance_quote:
+                                type: number
+                                format: double
+                                description: The current balance converted to fiat in `quote-currency`.
+                              method_calls:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    sender_address:
+                                      type: string
+                                      description: The address of the sender.
+                                    method:
+                                      type: string
+                                description: Additional details on which transfer events were invoked. Defaults to `true`.
+                              explorers:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    label:
+                                      type: string
+                                      description: The name of the explorer.
+                                    url:
+                                      type: string
+                                      description: The URL of the explorer.
+                                description: The explorer links for this transaction.
+                    description: List of response items.
+                  pagination:
+                    type: object
+                    properties:
+                      has_more:
+                        type: boolean
+                        description: True if there is another page.
+                      page_number:
+                        type: integer
+                        description: The requested page number.
+                      page_size:
+                        type: integer
+                        description: The requested number of items on the current page.
+                      total_count:
+                        type: integer
+                        description: The total number of items across all pages for this request.
+                    description: Pagination metadata.
+      x-codeSamples:
+      - lang: TypeScript
+        label: GoldRush SDK
+        source: "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst ApiServices = async () => {\n    const client = new GoldRushClient(\"<GOLDRUSH_API_KEY>\");\n    const resp = await client.BalanceService.getErc20TransfersForWalletAddress({chainName: \"chainName\", walletAddress: \"walletAddress\"});\n    console.log(resp.data);\n};\n\nApiServices();"
+      summary: Get erc20 transfers for wallet address
+      x-summary-source: derived
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer authentication header of the form: `Bearer <token>`, where `<token>` is your GoldRush API Key.'

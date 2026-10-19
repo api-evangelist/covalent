@@ -1,0 +1,157 @@
+openapi: 3.2.0
+info:
+  title: GoldRush Multichain Data Get Bitcoin Balances For Hd…
+  version: 1.0.0
+  description: Covalent's GoldRush Multichain Data APIs OpenAPI Schema.
+servers:
+- url: https://api.covalenthq.com
+security:
+- bearerAuth: []
+tags:
+- name: get-bitcoin-balances-for-hd-address
+paths:
+  /v1/btc-mainnet/address/{walletAddress}/hd_wallets/:
+    get:
+      tags:
+      - get-bitcoin-balances-for-hd-address
+      description: Fetch balances for each active child address derived from a Bitcoin HD wallet.
+      operationId: getBitcoinHdWalletBalances
+      parameters:
+      - name: walletAddress
+        in: path
+        description: The extended public key (xPub/yPub/zPub) of the HD wallet.
+        required: true
+        schema:
+          type: string
+      - name: quote-currency
+        in: query
+        description: The currency to convert the balance to. Supports `USD`, `CAD`, `EUR`, etc.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  address:
+                    type: string
+                    description: The extended public key (xPub/yPub/zPub) or HD wallet address.
+                  chain_id:
+                    type: integer
+                    description: 'The requested chain ID eg: `20090103`.'
+                  chain_name:
+                    type: string
+                    description: 'The requested chain name eg: `btc-mainnet`.'
+                  chain_tip_height:
+                    type: integer
+                    description: The latest block height of the blockchain at the time this response was provided.
+                  chain_tip_signed_at:
+                    type: string
+                    format: date-time
+                    description: The timestamp of the latest signed block at the time this response was provided.
+                  quote_currency:
+                    type: string
+                    description: 'The requested quote currency eg: `USD`.'
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: The timestamp when the response was generated. Useful to show data staleness to users.
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        child_address:
+                          type: string
+                          description: The specific Bitcoin address derived from the HD wallet.
+                        address_path:
+                          type: string
+                          description: Derivation path used to derive the specific Bitcoin address, e.g., `M/0H/0/0`.
+                        contract_decimals:
+                          type: integer
+                          description: Use contract decimals to format the token balance for display purposes - divide the balance by `10^{contract_decimals}`.
+                        contract_name:
+                          type: string
+                          description: The name of the token, e.g., `Bitcoin`.
+                        contract_ticker_symbol:
+                          type: string
+                          description: The ticker symbol for the token, e.g., `BTC`.
+                        contract_address:
+                          type: string
+                          description: Address placeholder for native tokens like BTC.
+                        contract_display_name:
+                          type: string
+                          description: A display-friendly name for the token, e.g., `Bitcoin`.
+                        supports_erc:
+                          type: array
+                          items:
+                            type: string
+                          description: Typically null for Bitcoin, but left for compatibility.
+                        logo_urls:
+                          type: object
+                          properties:
+                            token_logo_url:
+                              type: string
+                              description: The token logo URL.
+                            protocol_logo_url:
+                              type: string
+                              description: The protocol logo URL.
+                            chain_logo_url:
+                              type: string
+                              description: The chain logo URL.
+                          description: The contract logo URLs.
+                        last_transferred_at:
+                          type: string
+                          format: date-time
+                          description: The timestamp when the token was last transferred.
+                        is_native_token:
+                          type: boolean
+                          description: 'Indicates if a token is the chain''s native gas token, eg: BTC on Bitcoin.'
+                        type:
+                          type: string
+                          description: One of `cryptocurrency`, `stablecoin`, `nft` or `dust`.
+                        is_spam:
+                          type: boolean
+                          description: Denotes whether the token is suspected spam.
+                        balance:
+                          type: string
+                          description: b;The asset balance. Use `contract_decimals` to scale this balance for display purposes.
+                        balance_24h:
+                          type: string
+                          description: b;The 24h asset balance. Use `contract_decimals` to scale this balance for display purposes.
+                        quote_rate:
+                          type: number
+                          format: double
+                          description: The exchange rate for the requested quote currency.
+                        quote_rate_24h:
+                          type: number
+                          format: double
+                          description: The 24h exchange rate for the requested quote currency.
+                        quote:
+                          type: number
+                          format: double
+                          description: The current balance converted to fiat in `quote-currency`.
+                        quote_24h:
+                          type: number
+                          format: double
+                          description: The 24h balance converted to fiat in `quote-currency`.
+                        pretty_quote:
+                          type: string
+                          description: A prettier version of the quote for rendering purposes.
+                        pretty_quote_24h:
+                          type: string
+                          description: A prettier version of the 24h quote for rendering purposes.
+                    description: List of HD wallet balance items, each containing derived addresses and balances.
+      x-codeSamples: []
+      summary: Get bitcoin hd wallet balances
+      x-summary-source: derived
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer authentication header of the form: `Bearer <token>`, where `<token>` is your GoldRush API Key.'

@@ -1,0 +1,178 @@
+openapi: 3.2.0
+info:
+  title: GoldRush Multichain Data Get Logs API
+  version: 1.0.0
+  description: Covalent's GoldRush Multichain Data APIs OpenAPI Schema.
+servers:
+- url: https://api.covalenthq.com
+security:
+- bearerAuth: []
+tags:
+- name: get-logs
+paths:
+  /v1/{chainName}/events/:
+    get:
+      tags:
+      - get-logs
+      description: Returns all the event logs of the latest block, or for a range of blocks. Includes sender contract metadata as well as decoded logs.
+      operationId: getLogs
+      parameters:
+      - name: chainName
+        in: path
+        description: 'The chain name eg: `eth-mainnet`.'
+        required: true
+        schema:
+          type: string
+      - name: starting-block
+        in: query
+        description: The first block to retrieve log events with. Accepts decimals, hexadecimals, or the strings `earliest` and `latest`.
+        required: false
+        schema:
+          type: integer
+      - name: ending-block
+        in: query
+        description: The last block to retrieve log events with. Accepts decimals, hexadecimals, or the strings `earliest` and `latest`.
+        required: false
+        schema:
+          type: string
+      - name: address
+        in: query
+        description: The address of the log events sender contract.
+        required: false
+        schema:
+          type: string
+      - name: topics
+        in: query
+        description: The topic hash(es) to retrieve logs with.
+        required: false
+        schema:
+          type: string
+      - name: block-hash
+        in: query
+        description: The block hash to retrieve logs for.
+        required: false
+        schema:
+          type: string
+      - name: skip-decode
+        in: query
+        description: Omit decoded log events.
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: The timestamp when the response was generated. Useful to show data staleness to users.
+                  chain_id:
+                    type: integer
+                    description: 'The requested chain ID eg: `1`.'
+                  chain_name:
+                    type: string
+                    description: 'The requested chain name eg: `eth-mainnet`.'
+                  chain_tip_height:
+                    type: integer
+                    description: The latest block height of the blockchain at the time this response was provided.
+                  chain_tip_signed_at:
+                    type: string
+                    format: date-time
+                    description: The timestamp of the latest signed block at the time this response was provided.
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        block_signed_at:
+                          type: string
+                          format: date-time
+                          description: The block signed timestamp in UTC.
+                        block_height:
+                          type: integer
+                          format: int64
+                          description: The height of the block.
+                        block_hash:
+                          type: string
+                          description: The hash of the block.
+                        tx_offset:
+                          type: integer
+                          description: The offset is the position of the tx in the block.
+                        log_offset:
+                          type: integer
+                          description: The offset is the position of the log entry within an event log.
+                        tx_hash:
+                          type: string
+                          description: The requested transaction hash.
+                        raw_log_topics:
+                          type: array
+                          items:
+                            type: string
+                          description: The log topics in raw data.
+                        sender_contract_decimals:
+                          type: integer
+                          description: Use contract decimals to format the token balance for display purposes - divide the balance by `10^{contract_decimals}`.
+                        sender_name:
+                          type: string
+                          description: The name of the sender.
+                        sender_contract_ticker_symbol:
+                          type: string
+                          description: The ticker symbol for the sender. This field is set by a developer and non-unique across a network.
+                        sender_address:
+                          type: string
+                          description: The address of the sender.
+                        supports_erc:
+                          type: array
+                          items:
+                            type: string
+                          description: 'A list of supported standard ERC interfaces, eg: `ERC20` and `ERC721`.'
+                        sender_logo_url:
+                          type: string
+                          description: The contract logo URL.
+                        sender_factory_address:
+                          type: string
+                          description: The address of the deployed UniswapV2 like factory contract for this DEX.
+                        raw_log_data:
+                          type: string
+                          description: The log events in raw.
+                        decoded:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            signature:
+                              type: string
+                            params:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  name:
+                                    type: string
+                                  type:
+                                    type: string
+                                  indexed:
+                                    type: boolean
+                                  decoded:
+                                    type: boolean
+                                  value:
+                                    type: string
+                          description: The decoded item.
+                    description: List of response items.
+      x-codeSamples:
+      - lang: TypeScript
+        label: GoldRush SDK
+        source: "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst ApiServices = async () => {\n    const client = new GoldRushClient(\"<GOLDRUSH_API_KEY>\");\n    const resp = await client.BaseService.getLogs({chainName: \"chainName\", walletAddress: \"walletAddress\"});\n    console.log(resp.data);\n};\n\nApiServices();"
+      summary: Get logs
+      x-summary-source: derived
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer authentication header of the form: `Bearer <token>`, where `<token>` is your GoldRush API Key.'

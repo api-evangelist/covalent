@@ -1,0 +1,153 @@
+openapi: 3.2.0
+info:
+  title: GoldRush Multichain Data Get Token Holders As Of Any Block…
+  version: 1.0.0
+  description: Covalent's GoldRush Multichain Data APIs OpenAPI Schema.
+servers:
+- url: https://api.covalenthq.com
+security:
+- bearerAuth: []
+tags:
+- name: get-token-holders-as-of-any-block-height-v2
+paths:
+  /v1/{chainName}/tokens/{tokenAddress}/token_holders_v2/:
+    get:
+      tags:
+      - get-token-holders-as-of-any-block-height-v2
+      description: Returns a paginated list of current or historical token holders for a specified ERC20 or ERC721 token.
+      operationId: getTokenHoldersV2ForTokenAddress
+      parameters:
+      - name: chainName
+        in: path
+        description: 'The chain name eg: `eth-mainnet`.'
+        required: true
+        schema:
+          type: string
+      - name: tokenAddress
+        in: path
+        description: The requested address. Passing in an `ENS`, `RNS`, `Lens Handle`, or an `Unstoppable Domain` resolves automatically.
+        required: true
+        schema:
+          type: string
+      - name: no-snapshot
+        in: query
+        description: Defaults to `false`. Set to `true` to bypass last snapshot and get the latest token holders list.
+        required: false
+        schema:
+          type: boolean
+      - name: block-height
+        in: query
+        description: Ending block to define a block range. Omitting this parameter defaults to the latest block height.
+        required: false
+        schema:
+          type: integer
+      - name: date
+        in: query
+        description: Ending date to define a block range (YYYY-MM-DD). Omitting this parameter defaults to the current date.
+        required: false
+        schema:
+          type: string
+      - name: page-size
+        in: query
+        description: 'Number of items per page. Note: Currently, only values of `100` and `1000` are supported. Omitting this parameter defaults to 100.'
+        required: false
+        schema:
+          type: integer
+      - name: page-number
+        in: query
+        description: 0-indexed page number to begin pagination.
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: The timestamp when the response was generated. Useful to show data staleness to users.
+                  chain_id:
+                    type: integer
+                    description: 'The requested chain ID eg: `1`.'
+                  chain_name:
+                    type: string
+                    description: 'The requested chain name eg: `eth-mainnet`.'
+                  chain_tip_height:
+                    type: integer
+                    description: The latest block height of the blockchain at the time this response was provided.
+                  chain_tip_signed_at:
+                    type: string
+                    format: date-time
+                    description: The timestamp of the latest signed block at the time this response was provided.
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        contract_decimals:
+                          type: integer
+                          description: Use contract decimals to format the token balance for display purposes - divide the balance by `10^{contract_decimals}`.
+                        contract_name:
+                          type: string
+                          description: The string returned by the `name()` method.
+                        contract_ticker_symbol:
+                          type: string
+                          description: The ticker symbol for this contract. This field is set by a developer and non-unique across a network.
+                        contract_address:
+                          type: string
+                          description: Use the relevant `contract_address` to lookup prices, logos, token transfers, etc.
+                        supports_erc:
+                          type: array
+                          items:
+                            type: string
+                          description: 'A list of supported standard ERC interfaces, eg: `ERC20` and `ERC721`.'
+                        logo_url:
+                          type: string
+                          description: The contract logo URL.
+                        address:
+                          type: string
+                          description: The requested address.
+                        balance:
+                          type: string
+                          description: b;The asset balance. Use `contract_decimals` to scale this balance for display purposes.
+                        total_supply:
+                          type: string
+                          description: b;Total supply of this token.
+                        block_height:
+                          type: integer
+                          format: int64
+                          description: The height of the block.
+                    description: List of response items.
+                  pagination:
+                    type: object
+                    properties:
+                      has_more:
+                        type: boolean
+                        description: True if there is another page.
+                      page_number:
+                        type: integer
+                        description: The requested page number.
+                      page_size:
+                        type: integer
+                        description: The requested number of items on the current page.
+                      total_count:
+                        type: integer
+                        description: The total number of items across all pages for this request.
+                    description: Pagination metadata.
+      x-codeSamples:
+      - lang: TypeScript
+        label: GoldRush SDK
+        source: "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst ApiServices = async () => {\n    const client = new GoldRushClient(\"<GOLDRUSH_API_KEY>\");\n    const resp = await client.BalanceService.getTokenHoldersV2ForTokenAddress({chainName: \"chainName\", walletAddress: \"walletAddress\"});\n    console.log(resp.data);\n};\n\nApiServices();"
+      summary: Get token holders V2For token address
+      x-summary-source: derived
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer authentication header of the form: `Bearer <token>`, where `<token>` is your GoldRush API Key.'

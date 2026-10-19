@@ -1,0 +1,80 @@
+openapi: 3.2.0
+info:
+  title: GoldRush Multichain Data Get All Chain Statuses API
+  version: 1.0.0
+  description: Covalent's GoldRush Multichain Data APIs OpenAPI Schema.
+servers:
+- url: https://api.covalenthq.com
+security:
+- bearerAuth: []
+tags:
+- name: get-all-chain-statuses
+paths:
+  /v1/chains/status/:
+    get:
+      tags:
+      - get-all-chain-statuses
+      description: Returns the status of all supported chains. Useful for building internal status dashboards.
+      operationId: getAllChainStatus
+      parameters: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: The timestamp when the response was generated. Useful to show data staleness to users.
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          description: 'The chain name eg: `eth-mainnet`.'
+                        chain_id:
+                          type: string
+                          description: 'The requested chain ID eg: `1`.'
+                        is_testnet:
+                          type: boolean
+                          description: True if the chain is a testnet.
+                        logo_url:
+                          type: string
+                          description: A png logo url for the chain.
+                        black_logo_url:
+                          type: string
+                          description: A black png logo url for the chain.
+                        white_logo_url:
+                          type: string
+                          description: A white png logo url for the chain.
+                        is_appchain:
+                          type: boolean
+                          description: True if the chain is an AppChain.
+                        chain_tip_height:
+                          type: integer
+                          description: The height of the lastest block available.
+                        chain_tip_signed_at:
+                          type: string
+                          format: date-time
+                          description: The signed timestamp of lastest block available.
+                        has_data:
+                          type: boolean
+                          description: True if the chain has data and ready for querying.
+                    description: List of response items.
+      x-codeSamples:
+      - lang: TypeScript
+        label: GoldRush SDK
+        source: "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst ApiServices = async () => {\n    const client = new GoldRushClient(\"<GOLDRUSH_API_KEY>\");\n    const resp = await client.BaseService.getAllChainStatus({chainName: \"chainName\", walletAddress: \"walletAddress\"});\n    console.log(resp.data);\n};\n\nApiServices();"
+      summary: Get all chain status
+      x-summary-source: derived
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer authentication header of the form: `Bearer <token>`, where `<token>` is your GoldRush API Key.'

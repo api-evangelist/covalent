@@ -1,0 +1,179 @@
+openapi: 3.2.0
+info:
+  title: GoldRush Multichain Data Get Log Events By Contract Address…
+  version: 1.0.0
+  description: Covalent's GoldRush Multichain Data APIs OpenAPI Schema.
+servers:
+- url: https://api.covalenthq.com
+security:
+- bearerAuth: []
+tags:
+- name: get-log-events-by-contract-address
+paths:
+  /v1/{chainName}/events/address/{contractAddress}/:
+    get:
+      tags:
+      - get-log-events-by-contract-address
+      description: Returns all the event logs emitted from a particular contract address. Useful for building dashboards that examine on-chain interactions.
+      operationId: getLogEventsByAddress
+      parameters:
+      - name: chainName
+        in: path
+        description: 'The chain name eg: `eth-mainnet`.'
+        required: true
+        schema:
+          type: string
+      - name: contractAddress
+        in: path
+        description: The requested contract address. Passing in an `ENS`, `RNS`, `Lens Handle`, or an `Unstoppable Domain` resolves automatically.
+        required: true
+        schema:
+          type: string
+      - name: starting-block
+        in: query
+        description: The first block to retrieve log events with. Accepts decimals, hexadecimals, or the strings `earliest` and `latest`.
+        required: false
+        schema:
+          type: integer
+      - name: ending-block
+        in: query
+        description: The last block to retrieve log events with. Accepts decimals, hexadecimals, or the strings `earliest` and `latest`.
+        required: false
+        schema:
+          type: string
+      - name: page-size
+        in: query
+        description: Number of items per page. Omitting this parameter defaults to 100.
+        required: false
+        schema:
+          type: integer
+      - name: page-number
+        in: query
+        description: 0-indexed page number to begin pagination.
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: The timestamp when the response was generated. Useful to show data staleness to users.
+                  chain_id:
+                    type: integer
+                    description: 'The requested chain ID eg: `1`.'
+                  chain_name:
+                    type: string
+                    description: 'The requested chain name eg: `eth-mainnet`.'
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        block_signed_at:
+                          type: string
+                          format: date-time
+                          description: The block signed timestamp in UTC.
+                        block_height:
+                          type: integer
+                          format: int64
+                          description: The height of the block.
+                        tx_offset:
+                          type: integer
+                          format: int64
+                          description: The offset is the position of the tx in the block.
+                        log_offset:
+                          type: integer
+                          format: int64
+                          description: The offset is the position of the log entry within an event log.
+                        tx_hash:
+                          type: string
+                          description: The requested transaction hash.
+                        raw_log_topics:
+                          type: array
+                          items:
+                            type: string
+                          description: The log topics in raw data.
+                        sender_contract_decimals:
+                          type: integer
+                          description: Use contract decimals to format the token balance for display purposes - divide the balance by `10^{contract_decimals}`.
+                        sender_name:
+                          type: string
+                          description: The name of the sender.
+                        sender_contract_ticker_symbol:
+                          type: string
+                        sender_address:
+                          type: string
+                          description: The address of the sender.
+                        sender_logo_url:
+                          type: string
+                          description: The contract logo URL.
+                        supports_erc:
+                          type: array
+                          items:
+                            type: string
+                          description: 'A list of supported standard ERC interfaces, eg: `ERC20` and `ERC721`.'
+                        sender_factory_address:
+                          type: string
+                          description: The address of the deployed UniswapV2 like factory contract for this DEX.
+                        raw_log_data:
+                          type: string
+                          description: The log events in raw.
+                        decoded:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            signature:
+                              type: string
+                            params:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  name:
+                                    type: string
+                                  type:
+                                    type: string
+                                  indexed:
+                                    type: boolean
+                                  decoded:
+                                    type: boolean
+                                  value:
+                                    type: string
+                          description: The decoded item.
+                    description: List of response items.
+                  pagination:
+                    type: object
+                    properties:
+                      has_more:
+                        type: boolean
+                        description: True if there is another page.
+                      page_number:
+                        type: integer
+                        description: The requested page number.
+                      page_size:
+                        type: integer
+                        description: The requested number of items on the current page.
+                      total_count:
+                        type: integer
+                        description: The total number of items across all pages for this request.
+                    description: Pagination metadata.
+      x-codeSamples:
+      - lang: TypeScript
+        label: GoldRush SDK
+        source: "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst ApiServices = async () => {\n    const client = new GoldRushClient(\"<GOLDRUSH_API_KEY>\");\n    const resp = await client.BaseService.getLogEventsByAddress({chainName: \"chainName\", walletAddress: \"walletAddress\"});\n    console.log(resp.data);\n};\n\nApiServices();"
+      summary: Get log events by address
+      x-summary-source: derived
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer authentication header of the form: `Bearer <token>`, where `<token>` is your GoldRush API Key.'
