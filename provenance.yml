@@ -19,29 +19,29 @@ artifacts:
     method: derived
     evidence: openapi/covalent-abi-api
   collections/covalent-balances-api.opencollection.json:
-    method: derived
-    evidence: openapi/covalent-balances-api
+    method: unknown
+    evidence: no authorship recorded
   collections/covalent-balances-api.postman_collection.json:
-    method: derived
-    evidence: openapi/covalent-balances-api
+    method: unknown
+    evidence: no authorship recorded
   collections/covalent-base-api.opencollection.json:
-    method: derived
-    evidence: openapi/covalent-base-api
+    method: unknown
+    evidence: no authorship recorded
   collections/covalent-base-api.postman_collection.json:
-    method: derived
-    evidence: openapi/covalent-base-api
+    method: unknown
+    evidence: no authorship recorded
   collections/covalent-bitcoin-api.opencollection.json:
-    method: derived
-    evidence: openapi/covalent-bitcoin-api
+    method: unknown
+    evidence: no authorship recorded
   collections/covalent-bitcoin-api.postman_collection.json:
-    method: derived
-    evidence: openapi/covalent-bitcoin-api
+    method: unknown
+    evidence: no authorship recorded
   collections/covalent-cross-chain-api.opencollection.json:
-    method: derived
-    evidence: openapi/covalent-cross-chain-api
+    method: unknown
+    evidence: no authorship recorded
   collections/covalent-cross-chain-api.postman_collection.json:
-    method: derived
-    evidence: openapi/covalent-cross-chain-api
+    method: unknown
+    evidence: no authorship recorded
   collections/covalent-data-api.opencollection.json:
     method: derived
     evidence: openapi/covalent-data-api
@@ -85,11 +85,11 @@ artifacts:
     method: derived
     evidence: openapi/covalent-info-api
   collections/covalent-nft-api.opencollection.json:
-    method: derived
-    evidence: openapi/covalent-nft-api
+    method: unknown
+    evidence: no authorship recorded
   collections/covalent-nft-api.postman_collection.json:
-    method: derived
-    evidence: openapi/covalent-nft-api
+    method: unknown
+    evidence: no authorship recorded
   collections/covalent-pipeline-api.opencollection.json:
     method: unknown
     evidence: no authorship recorded
@@ -103,11 +103,11 @@ artifacts:
     method: derived
     evidence: openapi/covalent-pipelines-api
   collections/covalent-pricing-api.opencollection.json:
-    method: derived
-    evidence: openapi/covalent-pricing-api
+    method: unknown
+    evidence: no authorship recorded
   collections/covalent-pricing-api.postman_collection.json:
-    method: derived
-    evidence: openapi/covalent-pricing-api
+    method: unknown
+    evidence: no authorship recorded
   collections/covalent-queries-api.opencollection.json:
     method: unknown
     evidence: no authorship recorded
@@ -115,11 +115,11 @@ artifacts:
     method: unknown
     evidence: no authorship recorded
   collections/covalent-security-api.opencollection.json:
-    method: derived
-    evidence: openapi/covalent-security-api
+    method: unknown
+    evidence: no authorship recorded
   collections/covalent-security-api.postman_collection.json:
-    method: derived
-    evidence: openapi/covalent-security-api
+    method: unknown
+    evidence: no authorship recorded
   collections/covalent-streaming-api.opencollection.json:
     method: unknown
     evidence: no authorship recorded
@@ -127,11 +127,11 @@ artifacts:
     method: unknown
     evidence: no authorship recorded
   collections/covalent-transactions-api.opencollection.json:
-    method: derived
-    evidence: openapi/covalent-transactions-api
+    method: unknown
+    evidence: no authorship recorded
   collections/covalent-transactions-api.postman_collection.json:
-    method: derived
-    evidence: openapi/covalent-transactions-api
+    method: unknown
+    evidence: no authorship recorded
   collections/covalent-transforms-api.opencollection.json:
     method: derived
     evidence: openapi/covalent-transforms-api
@@ -154,8 +154,8 @@ artifacts:
     method: unknown
     evidence: no authorship recorded
   finops/covalent-finops.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: generated
+    evidence: declared in the artifact
   front-door-ai/2026-09-17.yml:
     method: unknown
     evidence: no authorship recorded
@@ -171,127 +171,7 @@ artifacts:
   json-schema/covalent-transaction-schema.json:
     method: unknown
     evidence: no authorship recorded
-  kin/checks-2026-09-24T161608.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T125852.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T133943.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T143147.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T154045.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-26T215308.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T094438.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T103455.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T123021.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T132314.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T140727.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-28T221322.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-29T213958.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-29T230545.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-30T203505.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-30T220315.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-31T223420.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T063623.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T210448.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T222808.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-02T211804.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-02T224043.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-03T161828.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-03T174231.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T062714.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T212454.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T224856.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T055819.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T072335.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T144739.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T195450.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T211839.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T011047.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T211804.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T224210.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-07T200636.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-07T213054.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-08T214843.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-08T232836.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-10T204815.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-10T222408.yml:
+  kin/checks-2026-10-11T110117.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-12T062655.yml:
@@ -375,14 +255,28 @@ artifacts:
   kin/score-2026-09-24T161608.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  openapi/_original/covalent-foundational-api-openapi.yml:
-    method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+  kin/score-2026-09-25T210408.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-25T232841.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-03T000835.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-03T024842.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-11T110117.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
   openapi/_original/covalent-hyperliquid-info-api-openapi.yml:
     method: harvested
     evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
       to the provider's source is unverified
+  openapi/_original/covalent-openapi.json:
+    method: harvested
+    evidence: byte-identical to https://goldrush.dev/openapi.json (sha256 ae1c0875a6fc, fetched 2026-10-19)
   openapi/_original/covalent-pipeline-api-openapi.yml:
     method: harvested
     evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
@@ -398,16 +292,10 @@ artifacts:
   openapi/covalent-abi-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/covalent-balances-api-openapi.yml:
+  openapi/covalent-check-ownership-in-nft-collection-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/covalent-base-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/covalent-bitcoin-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/covalent-cross-chain-api-openapi.yml:
+  openapi/covalent-check-ownership-in-nft-collection-token-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/covalent-data-api-openapi.yml:
@@ -419,48 +307,138 @@ artifacts:
   openapi/covalent-discovery-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/covalent-get-a-block-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/covalent-get-a-transaction-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/covalent-get-address-activity-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/covalent-get-all-chain-statuses-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/covalent-get-all-chains-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/covalent-get-all-transactions-in-a-block-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/covalent-get-all-transactions-in-a-block-by-page-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/covalent-get-allchains-balances-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/covalent-get-allchains-transactions-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/covalent-get-bitcoin-balance-for-address-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/covalent-get-bitcoin-balances-for-hd-address-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/covalent-get-block-heights-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/covalent-get-earliest-transactions-for-address-v3-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/covalent-get-erc20-token-transfers-for-address-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/covalent-get-gas-prices-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/covalent-get-historical-bitcoin-balance-for-address-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/covalent-get-historical-portfolio-value-over-time-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/covalent-get-historical-token-balances-for-address-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/covalent-get-historical-token-prices-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/covalent-get-log-events-by-contract-address-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/covalent-get-log-events-by-topic-hash-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/covalent-get-logs-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/covalent-get-native-token-balance-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/covalent-get-nfts-for-address-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/covalent-get-paginated-transactions-for-address-v3-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/covalent-get-pool-spot-prices-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/covalent-get-recent-transactions-for-address-v3-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/covalent-get-resolved-address-for-registered-address-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/covalent-get-time-bucket-transactions-for-address-v3-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/covalent-get-token-approvals-for-address-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/covalent-get-token-balances-for-address-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/covalent-get-token-holders-as-of-any-block-height-v2-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/covalent-get-transaction-summary-for-address-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/covalent-get-transactions-for-bitcoin-address-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/covalent-graph-ql-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/covalent-info-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/covalent-nft-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/covalent-pipelines-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/covalent-pricing-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/covalent-security-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/covalent-transactions-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/covalent-transforms-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   plans/covalent-plans-pricing.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: generated
+    evidence: declared in the artifact
   postman/covalent-abi-api.postman_collection.json:
     method: derived
     evidence: openapi/covalent-abi-api
   postman/covalent-balances-api.postman_collection.json:
-    method: derived
-    evidence: openapi/covalent-balances-api
+    method: unknown
+    evidence: no authorship recorded
   postman/covalent-base-api.postman_collection.json:
-    method: derived
-    evidence: openapi/covalent-base-api
+    method: unknown
+    evidence: no authorship recorded
   postman/covalent-bitcoin-api.postman_collection.json:
-    method: derived
-    evidence: openapi/covalent-bitcoin-api
+    method: unknown
+    evidence: no authorship recorded
   postman/covalent-cross-chain-api.postman_collection.json:
-    method: derived
-    evidence: openapi/covalent-cross-chain-api
+    method: unknown
+    evidence: no authorship recorded
   postman/covalent-data-api.postman_collection.json:
     method: derived
     evidence: openapi/covalent-data-api
@@ -477,29 +455,29 @@ artifacts:
     method: derived
     evidence: openapi/covalent-info-api
   postman/covalent-nft-api.postman_collection.json:
-    method: derived
-    evidence: openapi/covalent-nft-api
+    method: unknown
+    evidence: no authorship recorded
   postman/covalent-pipelines-api.postman_collection.json:
     method: derived
     evidence: openapi/covalent-pipelines-api
   postman/covalent-pricing-api.postman_collection.json:
-    method: derived
-    evidence: openapi/covalent-pricing-api
+    method: unknown
+    evidence: no authorship recorded
   postman/covalent-queries-api.postman_collection.json:
     method: unknown
     evidence: no authorship recorded
   postman/covalent-security-api.postman_collection.json:
-    method: derived
-    evidence: openapi/covalent-security-api
+    method: unknown
+    evidence: no authorship recorded
   postman/covalent-transactions-api.postman_collection.json:
-    method: derived
-    evidence: openapi/covalent-transactions-api
+    method: unknown
+    evidence: no authorship recorded
   postman/covalent-transforms-api.postman_collection.json:
     method: derived
     evidence: openapi/covalent-transforms-api
   rate-limits/covalent-rate-limits.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: generated
+    evidence: declared in the artifact
   rules/covalent-asyncapi-spectral-rules.yml:
     method: generated
     evidence: declared in the artifact
