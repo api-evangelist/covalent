@@ -1,4 +1,4 @@
-# Covalent (covalent)
+# Covalent
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,240 +64,209 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/covalent/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/covalent/refs/heads/main/apis.yml)
+Covalent provides multi-chain blockchain data infrastructure, published as the GoldRush APIs. Its API covers token balances, transactions, transfers, ABIs, NFTs, DeFi positions and cross-chain queries across supported networks, including Bitcoin and Hyperliquid.
 
-## Scope
+**Areas:** Blockchain · Web3 · Multi-Chain · Data Infrastructure · Cryptocurrency · DeFi · NFT · Hyperliquid · GoldRush · AI Agents · Real-Time · Ethereum
 
-- **Access:** 3rd-Party
+## Covalent on APIs.io
 
-## Tags
+Everything profiled for Covalent is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/covalent/](https://apis.io/providers/covalent/)** — or go straight to one of the APIs or properties below.
 
-- Blockchain
-- Web3
-- Multi-Chain
-- Data Infrastructure
-- Crypto
-- DeFi
-- NFT
-- Hyperliquid
-- GoldRush
-- AI Agents
+### APIs (17)
 
-## APIs
+- [GoldRush Hyperliquid WebSocket API](https://apis.io/apis/covalent/goldrush-hyperliquid-websocket-api/) — WebSocket channels for Hyperliquid markets including l2Book (wire-equal to the public feed), l2BookDiff (GoldRush-exclusive differential updates), and…
+- [Covalent ABI API](https://apis.io/apis/covalent/covalent-abi-api/) — Manage ABI definitions used for log and function decoding.
+- [Covalent Balances API](https://apis.io/apis/covalent/covalent-balances-api/) — Native, ERC20, ERC721, ERC1155, and historical token balances.
+- [Covalent Base API](https://apis.io/apis/covalent/covalent-base-api/) — Blocks, gas prices, log events, address resolution, chain status.
+- [Covalent Bitcoin API](https://apis.io/apis/covalent/covalent-bitcoin-api/) — Bitcoin balance and transaction lookups (HD and non-HD).
+- [Covalent Cross-Chain API](https://apis.io/apis/covalent/covalent-cross-chain-api/) — Discover an address's activity across all supported chains.
+- [Covalent Data API](https://apis.io/apis/covalent/covalent-data-api/) — x402-priced data endpoints.
+- [Covalent Destinations API](https://apis.io/apis/covalent/covalent-destinations-api/) — Manage destination connections (ClickHouse, Kafka, S3/GCS/R2, Postgres, SQS, Webhook).
+- [Covalent Discovery API](https://apis.io/apis/covalent/covalent-discovery-api/) — List and search x402 endpoints exposed by GoldRush.
+- [Covalent Info API](https://apis.io/apis/covalent/covalent-info-api/) — Dispatching POST endpoint for Hyperliquid info types.
+- [Covalent NFT API](https://apis.io/apis/covalent/covalent-nft-api/) — NFTs held by an address and collection ownership checks.
+- [Covalent Pipelines API](https://apis.io/apis/covalent/covalent-pipelines-api/) — Create, list, update, and delete data pipelines.
+- [Covalent Pricing API](https://apis.io/apis/covalent/covalent-pricing-api/) — Historical token prices and pool spot prices.
+- [Covalent Security API](https://apis.io/apis/covalent/covalent-security-api/) — Token approvals across ERC20 and NFT contracts.
+- [Covalent Transactions API](https://apis.io/apis/covalent/covalent-transactions-api/) — Transaction lookups by address, block, and time bucket.
+- [Covalent Transforms API](https://apis.io/apis/covalent/covalent-transforms-api/) — Manage SQL transforms applied to decoded events before delivery.
+- [Covalent Graph QL API](https://apis.io/apis/covalent/covalent-graph-ql-api/) — Single GraphQL endpoint serving queries and subscriptions.
 
-### GoldRush Foundational API
+### Published properties
 
-REST API providing structured historical blockchain data across 100+ chains. Resource families include Balances (native, ERC20, ERC721, ERC1155, historical portfolios, token holders), Transactions (v3 paginated, time-bucketed, by-block), NFTs (ownership, holdings, metadata), Base service (blocks, logs, gas prices, address resolution), Cross-Chain Activity (locate active chains for an address in one call), Pricing (historical token prices, pool spot prices), and Security (token approvals). Bearer-token authentication, credit-metered, realtime processing.
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-- **Human URL:** [https://goldrush.dev/docs/api-reference/foundational-api/](https://goldrush.dev/docs/api-reference/foundational-api/)
-- **Base URL:** `https://api.covalenthq.com`
+#### AsyncAPI (1)
 
-#### Tags
+Event-driven and webhook contracts.
 
-- Blockchain
-- Web3
-- Balances
-- Transactions
-- NFT
-- Multi-Chain
-- Historical Data
+- [GoldRush Streaming API](https://apis.io/asyncapis/covalent/covalent-asyncapi/)
 
-#### Properties
+#### Event channels (1)
 
-- [Documentation](https://goldrush.dev/docs/api-reference/foundational-api/)
-- [Documentation](https://goldrush.dev/docs/api-reference/foundational-api/balance-service)
-- [Documentation](https://goldrush.dev/docs/api-reference/foundational-api/transactions-service)
-- [Documentation](https://goldrush.dev/docs/api-reference/foundational-api/nft-service)
-- [Documentation](https://goldrush.dev/docs/api-reference/foundational-api/base-service)
-- [Documentation](https://goldrush.dev/docs/api-reference/foundational-api/cross-chain-activity)
-- [Documentation](https://goldrush.dev/docs/api-reference/foundational-api/security-service)
-- [Documentation](https://goldrush.dev/docs/api-reference/foundational-api/pricing-service)
-- [OpenAPI](openapi/covalent-foundational-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/covalent-foundational-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/covalent-foundational-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/covalent-balance-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/covalent-transaction-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/covalent-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+Individual events and webhooks the provider emits.
 
-### GoldRush Streaming API
+- [/graphql](https://apis.io/channels/covalent/graphql/)
 
-Real-time blockchain events via GraphQL over WebSockets with sub-second latency. Includes one-shot queries (OHLCV pairs and tokens, token search, top trader wallets, wallet PnL by token) and live subscriptions (new DEX pairs stream, OHLCV pairs and tokens streams, update pairs and tokens streams, wallet activity stream). Designed for trading bots, dashboards, gaming, and AI agents that need push-based updates.
+#### GraphQL (1)
 
-- **Human URL:** [https://goldrush.dev/docs/api-reference/streaming-api/](https://goldrush.dev/docs/api-reference/streaming-api/)
-- **Base URL:** `https://streaming.goldrush.dev`
+GraphQL schemas.
 
-#### Tags
+- [Covalent GraphQL API](https://apis.io/graphqls/covalent/covalent-graphql/)
 
-- Blockchain
-- Streaming
-- GraphQL
-- WebSocket
-- Real-Time
-- DEX
-- OHLCV
+#### Agentic access (1)
 
-#### Properties
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- [Documentation](https://goldrush.dev/docs/api-reference/streaming-api/)
-- [OpenAPI](openapi/covalent-streaming-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/covalent-streaming-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/covalent-streaming-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [AsyncAPI](asyncapi/covalent-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
+- [Covalent Agentic Access](https://apis.io/agentic-access/covalent/covalent-agentic-access/)
 
-### GoldRush Pipeline API
+#### JSON Schema (2)
 
-Managed data pipeline that streams decoded blockchain data into your own infrastructure across 20+ chains. Pipelines configure source chains, ABI decoding (event logs and functions), SQL transforms, and destinations including ClickHouse, Kafka, S3/GCS/R2 object storage, Postgres, AWS SQS, and Webhooks. Service Keys are the credential type for programmatic pipeline management. Use cases include data warehousing, analytics, ETL, and backend indexing.
+The data models the API reads and writes.
 
-- **Human URL:** [https://goldrush.dev/docs/api-reference/pipeline-api/](https://goldrush.dev/docs/api-reference/pipeline-api/)
-- **Base URL:** `https://pipeline.goldrush.dev`
+- [GoldRush Balance](https://apis.io/schemas/covalent/covalent-balance/)
+- [GoldRush Transaction](https://apis.io/schemas/covalent/covalent-transaction/)
 
-#### Tags
+#### JSON-LD (1)
 
-- Blockchain
-- Data Pipeline
-- ETL
-- ABI Decoding
-- ClickHouse
-- Kafka
-- Webhook
-- SQL
+Linked-data contexts for the provider's vocabulary.
 
-#### Properties
+- [Covalent Context](https://apis.io/jsonld/covalent/covalent-context/)
 
-- [Documentation](https://goldrush.dev/docs/api-reference/pipeline-api/)
-- [Documentation](https://goldrush.dev/docs/api-reference/pipeline-api/quickstart)
-- [Documentation](https://goldrush.dev/docs/api-reference/pipeline-api/architecture)
-- [Documentation](https://goldrush.dev/docs/api-reference/pipeline-api/destinations)
-- [Documentation](https://goldrush.dev/docs/api-reference/pipeline-api/abi-decoding)
-- [OpenAPI](openapi/covalent-pipeline-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/covalent-pipeline-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/covalent-pipeline-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Examples (3)
 
-### GoldRush Hyperliquid Info API
+Example requests and responses.
 
-Drop-in replacement for the public Hyperliquid /info API hosted at hypercore.goldrushdata.com. Supports 18 info types including clearinghouseState, batchClearinghouseState, spotClearinghouseState, spotMetaAndAssetCtxs, metaAndAssetCtxs, frontendOpenOrders, userFills / userFillsByTime, userFunding, userTwapSliceFills, userNonFundingLedgerUpdates, userVaultEquities, delegatorHistory, delegatorRewards, delegatorSummary, subAccounts, batchSpotClearinghouseState, and outcomeMeta. Adds caching, batching, and HIP-3 / HIP-4 outcome market coverage on top of the canonical Hyperliquid feed.
+- [Covalent Balances Example](https://apis.io/examples/covalent/covalent-balances-example/)
+- [Covalent Cross Chain Activity Example](https://apis.io/examples/covalent/covalent-cross-chain-activity-example/)
+- [Covalent Hyperliquid Info Example](https://apis.io/examples/covalent/covalent-hyperliquid-info-example/)
 
-- **Human URL:** [https://goldrush.dev/docs/api-reference/hyperliquid/info-api/](https://goldrush.dev/docs/api-reference/hyperliquid/info-api/)
-- **Base URL:** `https://hypercore.goldrushdata.com`
+#### Collections (39)
 
-#### Tags
+Postman and Open Collection request collections.
 
-- Blockchain
-- Hyperliquid
-- Trading
-- Perpetuals
-- DEX
-- Markets
+- [GoldRush Foundational ABI API](https://apis.io/collections/covalent/open-covalent-abi-api/)
+- [GoldRush Foundational ABI Balances API](https://apis.io/collections/covalent/open-covalent-balances-api/)
+- [GoldRush Foundational ABI Base API](https://apis.io/collections/covalent/open-covalent-base-api/)
+- [GoldRush Foundational ABI Bitcoin API](https://apis.io/collections/covalent/open-covalent-bitcoin-api/)
+- [GoldRush Foundational ABI Cross-Chain API](https://apis.io/collections/covalent/open-covalent-cross-chain-api/)
+- [GoldRush Foundational ABI Data API](https://apis.io/collections/covalent/open-covalent-data-api/)
+- [GoldRush Foundational ABI Destinations API](https://apis.io/collections/covalent/open-covalent-destinations-api/)
+- [GoldRush Foundational ABI Discovery API](https://apis.io/collections/covalent/open-covalent-discovery-api/)
+- [GoldRush Foundational API](https://apis.io/collections/covalent/open-covalent-foundational-api/)
+- [GoldRush Foundational ABI GraphQL API](https://apis.io/collections/covalent/open-covalent-graphql-api/)
+- [GoldRush Hyperliquid Info API](https://apis.io/collections/covalent/open-covalent-hyperliquid-info-api/)
+- [GoldRush Foundational ABI Info API](https://apis.io/collections/covalent/open-covalent-info-api/)
+- [GoldRush Foundational ABI NFT API](https://apis.io/collections/covalent/open-covalent-nft-api/)
+- [GoldRush Pipeline API](https://apis.io/collections/covalent/open-covalent-pipeline-api/)
+- [GoldRush Foundational ABI Pipelines API](https://apis.io/collections/covalent/open-covalent-pipelines-api/)
+- [GoldRush Foundational ABI Pricing API](https://apis.io/collections/covalent/open-covalent-pricing-api/)
+- [GoldRush Foundational ABI Queries API](https://apis.io/collections/covalent/open-covalent-queries-api/)
+- [GoldRush Foundational ABI Security API](https://apis.io/collections/covalent/open-covalent-security-api/)
+- [GoldRush Streaming API](https://apis.io/collections/covalent/open-covalent-streaming-api/)
+- [GoldRush Foundational ABI Transactions API](https://apis.io/collections/covalent/open-covalent-transactions-api/)
+- [GoldRush Foundational ABI Transforms API](https://apis.io/collections/covalent/open-covalent-transforms-api/)
+- [GoldRush x402 API](https://apis.io/collections/covalent/open-covalent-x402-api/)
+- [GoldRush Foundational ABI API](https://apis.io/collections/covalent/postman-covalent-abi-api/)
+- [GoldRush Foundational ABI Balances API](https://apis.io/collections/covalent/postman-covalent-balances-api/)
+- [GoldRush Foundational ABI Base API](https://apis.io/collections/covalent/postman-covalent-base-api/)
+- …and 14 more published on APIs.io
 
-#### Properties
+#### Governance rules (2)
 
-- [Documentation](https://goldrush.dev/docs/api-reference/hyperliquid/info-api/)
-- [Documentation](https://goldrush.dev/docs/api-reference/hyperliquid/info-api/migration-guide)
-- [Documentation](https://goldrush.dev/docs/api-reference/hyperliquid/info-api/limits)
-- [OpenAPI](openapi/covalent-hyperliquid-info-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/covalent-hyperliquid-info-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/covalent-hyperliquid-info-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Spectral rulesets for the provider's contracts.
 
-### GoldRush Hyperliquid WebSocket API
+- [Covalent — asyncapi rules](https://apis.io/rules/covalent/covalent-asyncapi-spectral-rules/)
+- [Covalent — jsonschema rules](https://apis.io/rules/covalent/covalent-jsonschema-spectral-rules/)
 
-WebSocket channels for Hyperliquid markets including l2Book (wire-equal to the public feed), l2BookDiff (GoldRush-exclusive differential updates), and l4Book (order-level GoldRush-exclusive channel) plus wallet firehose, liquidations and vault events, HIP-3 markets, and HIP-4 outcome market streams. Hosted at wss://hypercore.goldrushdata.com/ws for ultra-low-latency trading and analytics.
+#### Security (2)
 
-- **Human URL:** [https://goldrush.dev/docs/api-reference/hyperliquid/websocket-api/](https://goldrush.dev/docs/api-reference/hyperliquid/websocket-api/)
-- **Base URL:** `wss://hypercore.goldrushdata.com/ws`
+Authentication, trust centre, and vulnerability disclosure.
 
-#### Tags
+- [Covalent Authentication](https://apis.io/security/covalent/covalent-authentication/)
+- [Covalent Domain Security](https://apis.io/security/covalent/covalent-domain-security/)
 
-- Blockchain
-- Hyperliquid
-- WebSocket
-- Order Book
-- Real-Time
-- Trading
+#### Plans and pricing (1)
 
-#### Properties
+Published plans, tiers and prices.
 
-- [Documentation](https://goldrush.dev/docs/api-reference/hyperliquid/websocket-api/)
-- [Documentation](https://goldrush.dev/docs/api-reference/hyperliquid/websocket-api/l2-order-book)
-- [Documentation](https://goldrush.dev/docs/api-reference/hyperliquid/websocket-api/l2-order-book-diff)
-- [Documentation](https://goldrush.dev/docs/api-reference/hyperliquid/websocket-api/l4-order-book)
-- [Postman Collection](collections/covalent-foundational-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/covalent-foundational-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/covalent-hyperliquid-info-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/covalent-hyperliquid-info-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/covalent-pipeline-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/covalent-pipeline-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/covalent-streaming-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/covalent-streaming-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/covalent-x402-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/covalent-x402-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Covalent Plans Pricing](https://apis.io/plans/covalent/covalent-plans-pricing/)
 
-### GoldRush x402 API
+#### Rate limits (1)
 
-Pay-per-request HTTP 402 endpoints designed for autonomous AI agents and onchain micropayments. Lists and searches available x402 endpoints, exposes token balance and recent transaction lookups via the 402 settlement flow, and returns per-endpoint metadata for agents to discover and pay for data without a long-lived API key.
+Published request limits.
 
-- **Human URL:** [https://goldrush.dev/docs/api-reference/foundational-api/x402](https://goldrush.dev/docs/api-reference/foundational-api/x402)
-- **Base URL:** `https://api.covalenthq.com`
+- [Covalent Rate Limits](https://apis.io/rate-limits/covalent/covalent-rate-limits/)
 
-#### Tags
+#### FinOps (1)
 
-- Blockchain
-- x402
-- Pay-Per-Request
-- HTTP 402
-- AI Agents
+What the API costs to run, by operation.
 
-#### Properties
+- [Covalent Finops](https://apis.io/finops/covalent/covalent-finops/)
 
-- [Documentation](https://goldrush.dev/docs/api-reference/foundational-api/x402)
-- [OpenAPI](openapi/covalent-x402-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/covalent-x402-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/covalent-x402-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+## Where to find this API
 
-## Common Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- [LinkedIn](https://www.linkedin.com/company/covalent-hq)
-- [Twitter](https://twitter.com/Covalent_HQ)
-- [Git Hub](https://github.com/covalenthq)
 - [Website](https://www.covalenthq.com)
-- [Website](https://goldrush.dev)
-- [Portal](https://goldrush.dev/docs/)
 - [Documentation](https://goldrush.dev/docs/api-reference/foundational-api/)
-- [Documentation](https://goldrush.dev/docs/api-reference/streaming-api/)
-- [Documentation](https://goldrush.dev/docs/api-reference/pipeline-api/)
-- [Documentation](https://goldrush.dev/docs/api-reference/hyperliquid/)
+- [Pricing](https://goldrush.dev/pricing/)
+- [Support](https://goldrush.dev/support/)
 - [Changelog](https://goldrush.dev/docs/changelog)
 - [Blog](https://goldrush.dev/blog/)
-- [Status Page](https://status.goldrush.dev)
-- [Pricing](https://goldrush.dev/pricing/)
-- [Sign In](https://goldrush.dev/platform/)
-- [Support](https://goldrush.dev/support/)
-- [Documentation](https://goldrush.dev/chains/)
-- [Documentation](https://goldrush.dev/guides/)
-- [Case Studies](https://goldrush.dev/case-studies/)
-- [Documentation](https://goldrush.dev/agents/)
-- [SDK](https://www.npmjs.com/package/@covalenthq/client-sdk)
-- [SDK](https://github.com/covalenthq/covalent-api-sdk-go)
-- [SDK](https://github.com/covalenthq/goldrush-mcp-server)
-- [SDK](https://github.com/covalenthq/goldrush-agent-skills)
-- [C L I](https://www.npmjs.com/package/@covalenthq/goldrush-cli)
-- [SDK](https://github.com/covalenthq/goldrush-kit)
-- [SDK](https://github.com/covalenthq/ai-agent-sdk)
-- [Tools](https://github.com/covalenthq/goldrush-enhanced-spam-lists)
-- [Tools](https://github.com/covalenthq/refiner)
-- [Tools](https://github.com/covalenthq/bsp-agent)
-- [Tools](https://github.com/covalenthq/bsp-geth)
-- [Authentication](https://goldrush.dev/docs/api-reference/foundational-api/authentication)
-- [Rate Limits](https://goldrush.dev/docs/api-reference/foundational-api/rate-limits)
-- [Plans](plans/covalent-plans-pricing.yml)
-- [Rate Limits](rate-limits/covalent-rate-limits.yml)
-- [Fin Ops](finops/covalent-finops.yml)
-- [Plans](https://goldrush.dev/pricing/)
-- [Authentication](undefined)
-- [Documentation](undefined)
-- [Compliance](undefined)
+- [Status](https://status.goldrush.dev)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Covalent
-**Email:** support@covalenthq.com
-**URL:** https://goldrush.dev/support/
+**Kin Score 54.9** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 71.4 |
+| Contract quality | 65.4 |
+| Contract governance | 27.3 |
+| Operational transparency | 44.7 |
+| Developer ergonomics | 63.1 |
+| Access clarity | 47.4 |
+
+**Agent readiness 29.6** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 21.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/covalent/](https://apis.io/providers/covalent/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Covalent: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/covalent/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
